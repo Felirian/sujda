@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Quiz from './pages/Quiz';
 import Room from './pages/Room';
 import Map from './pages/Map';
+import {QUIZ_DATA_1} from "./features/data";
 
 function App() {
   return (

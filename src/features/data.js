@@ -14,6 +14,12 @@ export const QUIZ_DATA_1 = [
       "Четвертая скульптура называется «Аврора», посвященная древнеримской богине утренней зари. Соответственно, в круговороте суток она олицетворяет раннее утро.",
   },
 ]
+const EXHIBITS_DATA = [
+  {name: 'gjfjgf', img: 'jgfkgf', threejs: false},
+  {name: 'gjfjgf', img: 'jgfkgf', threejs: false},
+  {name: 'gjfjgf', img: 'jgfkgf', threejs: false},
+  {name: 'gjfjgf', img: 'jgfkgf', threejs: false},
+]
 
 const ROOMS_DATA = [
   {
@@ -22,9 +28,3 @@ const ROOMS_DATA = [
   }
 ]
 
-const EXHIBITS_DATA = [
-  {name: 'gjfjgf', img: 'jgfkgf', threejs: false},
-  {name: 'gjfjgf', img: 'jgfkgf', threejs: false},
-  {name: 'gjfjgf', img: 'jgfkgf', threejs: false},
-  {name: 'gjfjgf', img: 'jgfkgf', threejs: false},
-]
