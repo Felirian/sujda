@@ -8,7 +8,7 @@ function App() {
   return (
     <Routes>
       <Route path='/' element={<>gfdg</>} />
-      <Route path='/' element={<Map />} />
+      <Route path='map' element={<Map />} />
       <Route path='room'>
         <Route path='first'>
           <Route index element={<Room data={'jkfd'} />} />
