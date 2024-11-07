@@ -12,7 +12,7 @@ function App() {
       <Route path='room'>
         <Route path='first'>
           <Route index element={<Room data={'jkfd'} />} />
-          <Route path='quiz' element={<Quiz data={'jfdkfd'} />} />
+          <Route path="quiz" element={<Quiz data={QUIZ_DATA_1}/>} />
         </Route>
       </Route>
     </Routes>
