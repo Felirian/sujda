@@ -1,9 +1,11 @@
-import firstRoomBg from '/img/rooms/first/bg.jpg';
-import secondRoomBg from '/img/rooms/second/bg.jpg';
+import firstRoomBg from '../assets/rooms/first/bg.jpg';
+import secondRoomBg from '../assets/rooms/second/bg.jpg';
 
-import gannibalPreview from 'img/rooms/first/exhibits/gannibal.png';
-import boxPreview from 'img/rooms/first/exhibits/box.png';
-import spoonPreview from 'img/rooms/first/exhibits/spoon.png';
+import gannibalPreview from '../assets/rooms/first/exhibits/gannibal.png';
+import boxPreview from '../assets/rooms/first/exhibits/box.png';
+import spoonPreview from '../assets/rooms/first/exhibits/spoon.png';
+
+import firstRoomGuide from '../assets/rooms/first/demo.mp3';
 
 export const QUIZ_DATA_1 = [
   {
@@ -30,12 +32,26 @@ const EXHIBITS_DATA = [
 export const ROOMS_DATA = [
   {
     name: 'Зал 1',
+    route: 'first',
     bgImg: firstRoomBg,
+    audio: firstRoomGuide,
     exhibits: [EXHIBITS_DATA[0], EXHIBITS_DATA[1], EXHIBITS_DATA[2]],
+    quiz: QUIZ_DATA_1,
   },
   {
     name: 'Зал 2',
+    route: 'second',
     bgImg: secondRoomBg,
-    exhibits: [EXHIBITS_DATA[0], EXHIBITS_DATA[1], EXHIBITS_DATA[2]],
+    audio: firstRoomGuide,
+    exhibits: [EXHIBITS_DATA[2], EXHIBITS_DATA[1], EXHIBITS_DATA[0]],
+    quiz: QUIZ_DATA_1,
+  },
+  {
+    name: 'Зал 3',
+    route: 'third',
+    bgImg: secondRoomBg,
+    audio: firstRoomGuide,
+    exhibits: [EXHIBITS_DATA[1], EXHIBITS_DATA[2], EXHIBITS_DATA[0]],
+    quiz: QUIZ_DATA_1,
   },
 ];
