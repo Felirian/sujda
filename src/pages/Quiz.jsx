@@ -1,32 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import useQuiz from '../features/quiz';
-import QuizCard from '../components/Main/Quiz/QuizCard'; 
-import QuizBtn from '../components/Main/Quiz/QuizBtn';
+import QuizCard from '../components/Main/Quiz/QuizCard';
+import { QUIZ_DATA_1 } from '../features/data'; 
 
-const Quiz = ({ data }) => {
-  const { quiz, startQuiz, submitAnswer, nextQuestion, finishQuiz, setSelectedAnswer } = useQuiz(data);
-  const { currentIndex, selectedAnswer, score, isAnswerCorrect } = quiz;
-
+const Quiz = () => {
   return (
     <QuizWr>
-      <QuizCard
-        currentIndex={currentIndex}
-        data={data}
-        isAnswerCorrect={isAnswerCorrect}
-        selectedAnswer={selectedAnswer}
-        setSelectedAnswer={setSelectedAnswer}
-        score={score}
-      />
-      <QuizBtn
-        currentIndex={currentIndex}
-        data={data}
-        isAnswerCorrect={isAnswerCorrect}
-        startQuiz={startQuiz}
-        submitAnswer={submitAnswer}
-        nextQuestion={nextQuestion}
-        finishQuiz={finishQuiz}
-      />
+      <QuizCard quizData={QUIZ_DATA_1} />
     </QuizWr>
   );
 };

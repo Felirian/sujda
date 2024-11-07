@@ -1,59 +1,49 @@
 import { useState } from 'react';
 
 const useQuiz = (data) => {
-  const [quiz, setQuiz] = useState({
-    currentIndex: -1, // индекс текущего вопроса (-1 означает, что викторина не началась)
-    selectedAnswer: null, // выбранный ответ
-    score: 0, // счет
-    isAnswerCorrect: null, // булево значение для правильности ответа
-  });
+  const [currentIndex, setCurrentIndex] = useState(-1); // индекс текущего вопроса (-1 означает, что викторина не началась)
+  const [score, setScore] = useState(0); // счет
 
   // Функция для начала викторины
   const startQuiz = () => {
-    setQuiz({ ...quiz, currentIndex: 0, score: 0, selectedAnswer: null, isAnswerCorrect: null });
+    setCurrentIndex(0);
+    setScore(0);
   };
 
   // Функция для отправки ответа
-  const submitAnswer = () => {
-    const { currentIndex, selectedAnswer } = quiz;
-    const isAnswerCorrect = selectedAnswer === data[currentIndex].right_answers - 1; // Индекс правильного ответа
-    setQuiz((prev) => ({
-      ...prev,
-      isAnswerCorrect, // Обновляем состояние правильности ответа
-      score: isAnswerCorrect ? prev.score + 1 : prev.score, // Увеличиваем счет, если ответ правильный
-    }));
+  const submitAnswer = (selectedAnswer) => {
+    const correctAnswerIndex = data[currentIndex].right_answers - 1;
+    const isCorrect = selectedAnswer === correctAnswerIndex;
+
+    if (isCorrect) {
+      setScore(score + 1);
+    }
+
+    return isCorrect; // Возвращаем результат проверки
   };
 
   // Функция для перехода к следующему вопросу или завершения викторины
   const nextQuestion = () => {
-    if (quiz.currentIndex < data.length - 1) {
-      setQuiz((prev) => ({
-        ...prev,
-        currentIndex: prev.currentIndex + 1,
-        selectedAnswer: null,
-        isAnswerCorrect: null, // Сбрасываем правильность ответа
-      }));
+    if (currentIndex < data.length - 1) {
+      setCurrentIndex(currentIndex + 1);
     } else {
-      // Если вопросы закончились, показываем результаты
-      setQuiz((prev) => ({
-        ...prev,
-        currentIndex: data.length, // Переходим к результатам
-      }));
+      setCurrentIndex(-2); // -2 означает, что викторина завершена
     }
   };
 
   // Функция для завершения викторины
   const finishQuiz = () => {
-    setQuiz({ currentIndex: -1, selectedAnswer: null, score: 0, isAnswerCorrect: null });
+    setCurrentIndex(-1);
+    setScore(0);
   };
 
   return {
-    quiz,
+    currentIndex,
+    score,
     startQuiz,
     submitAnswer,
     nextQuestion,
     finishQuiz,
-    setSelectedAnswer: (answer) => setQuiz({ ...quiz, selectedAnswer: answer }),
   };
 };
 

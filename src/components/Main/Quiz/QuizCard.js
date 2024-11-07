@@ -1,142 +1,110 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const QuizCard = ({
-  currentIndex,
-  data,
-  isAnswerCorrect,
-  selectedAnswer,
-  setSelectedAnswer,
-  score,
-}) => {
-  const currentQuestion = data[currentIndex];
+const QuizCard = ({ quizData }) => {
+  const [currentIndex, setCurrentIndex] = useState(-1);
+
+  const handleNext = () => {
+    if (currentIndex < quizData.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
 
   return (
-    <QuizCardWrapper isIncorrect={isAnswerCorrect === false}>
-      {/* Стартовый экран */}
-      {currentIndex === -1 && (
+    <CardWrapper>
+      {currentIndex === -1 ? (
         <>
-          <QH>Викторина</QH>
-          <p>Мы предлагаем вам викторину. Готовы начать?</p>
+          <StartMessage>Хотите пройти викторину?</StartMessage>
+          <StartButton onClick={() => setCurrentIndex(0)}>Начать</StartButton>
+        </>
+      ) : (
+        <>
+          <QuestionWrapper>
+            <Question>{quizData[currentIndex].text}</Question>
+            <Answers>
+              {quizData[currentIndex].answers.map((answer, answerIndex) => (
+                <Answer key={answerIndex}>
+                  <input
+                    type="radio"
+                    name={`quiz-${currentIndex}`}
+                    id={`answer-${currentIndex}-${answerIndex}`}
+                  />
+                  <label htmlFor={`answer-${currentIndex}-${answerIndex}`}>{answer}</label>
+                </Answer>
+              ))}
+            </Answers>
+            <Explanation>{quizData[currentIndex].explanation}</Explanation>
+          </QuestionWrapper>
+          <NextButton onClick={handleNext}>Далее</NextButton>
         </>
       )}
-
-      {/* Вопрос и ответы */}
-      {currentIndex >= 0 && currentIndex < data.length && isAnswerCorrect === null && (
-        <>
-          <QuestionCounter>
-            {currentIndex + 1}/{data.length}
-          </QuestionCounter>
-          <QH>Вопрос {currentIndex + 1}</QH>
-          <p>{currentQuestion.text}</p>
-          <AnswersCon>
-            {currentQuestion.answers.map((answer, index) => (
-              <label key={index}>
-                <input
-                  type="radio"
-                  name="choice"
-                  value={index}
-                  checked={selectedAnswer === index}
-                  onChange={() => setSelectedAnswer(index)}
-                />
-                {answer}
-              </label>
-            ))}
-          </AnswersCon>
-        </>
-      )}
-
-      {/* Правильный ответ и объяснение */}
-      {currentIndex >= 0 && currentIndex < data.length && isAnswerCorrect !== null && (
-        <>
-          <QH>{isAnswerCorrect ? 'Вы правы!' : 'Вы неправы!'}</QH>
-          <p>
-            <b>Правильный ответ:</b>
-          </p>
-          <p>{currentQuestion.explanation}</p>
-        </>
-      )}
-
-      {/* Результаты */}
-      {currentIndex >= data.length && (
-        <>
-          <QH>Результаты</QH>
-          <p>
-            {score} правильно из {data.length}
-          </p>
-        </>
-      )}
-    </QuizCardWrapper>
+    </CardWrapper>
   );
 };
 
 export default QuizCard;
 
-const QuizCardWrapper = styled.div`
-  position: relative;
-  background-color: ${({ isIncorrect }) => (isIncorrect ? '#6C2929' : '#333E2C')};
+const CardWrapper = styled.div`
+  background-color: #000;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
   text-align: center;
-  width: 90%;
-  max-width: 400px;
-  margin-bottom: 20px;
-
-  p,
-  b {
-    color: #ffffff;
-  }
-
-  h1 {
-    color: #f9ab00;
-  }
 `;
 
-const QuestionCounter = styled.div`
-  position: absolute;
-  top: -35px;
-  right: 0px;
-  background-color: #f9ab00;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 14px;
+const QuestionWrapper = styled.div`
+  margin-bottom: 20px;
 `;
 
-const AnswersCon = styled.div`
+const Question = styled.h2`
+  font-size: 1.5rem;
   margin-bottom: 20px;
-  label {
-    display: block;
-    margin: 10px 0;
-    color: #ffffff;
-  }
+`;
+
+const Answers = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+`;
+
+const Answer = styled.div`
+  display: flex;
+  align-items: center;
 
   input[type='radio'] {
-    appearance: none;
-    width: 18px;
-    height: 18px;
-    background-color: #ffffff;
-    border-radius: 50%;
-    outline: none;
     margin-right: 10px;
-    position: relative;
-
-    &:checked::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 10px;
-      height: 10px;
-      background-color: #ae4040;
-      border-radius: 50%;
-    }
   }
 `;
 
-const QH = styled.h1`
+const Explanation = styled.p`
+  font-size: 1rem;
+  color: #666;
+`;
+
+const StartMessage = styled.p`
+  font-size: 1.2rem;
   margin-bottom: 20px;
-  color: #f9ab00;
+`;
+
+const StartButton = styled.button`
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+`;
+
+const NextButton = styled.button`
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
 `;
