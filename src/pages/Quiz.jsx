@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 const Quiz = ({ data }) => {
@@ -80,7 +80,9 @@ const Quiz = ({ data }) => {
   const renderResultScreen = () => (
     <>
       <QH>Результаты</QH>
-      <p>{score} правильно из {data.length}</p>
+      <p>
+        {score} правильно из {data.length}
+      </p>
     </>
   );
 
@@ -90,7 +92,9 @@ const Quiz = ({ data }) => {
     return (
       <>
         <QH>{isCorrect ? 'Вы правы!' : 'Вы неправы!'}</QH>
-        <p><b>Правильный ответ</b></p>
+        <p>
+          <b>Правильный ответ</b>
+        </p>
         <p>{currentQuestion.explanation}</p>
       </>
     );
@@ -99,13 +103,13 @@ const Quiz = ({ data }) => {
   // Основной рендеринг компонента Quiz
   return (
     <QuizWr>
-      {/* Отображение счетчика вопросов, если текущее состояние - вопрос */}
-      {quizState === 'question' && (
-        <QuestionCounter>
-          {currentQuestionIndex + 1}/{data.length}
-        </QuestionCounter>
-      )}
       <QuizCard quizState={quizState}>
+        {/* Отображение счетчика вопросов, если текущее состояние - вопрос */}
+        {quizState === 'question' && (
+          <QuestionCounter>
+            {currentQuestionIndex + 1}/{data.length}
+          </QuestionCounter>
+        )}
         {/* Отображение соответствующего экрана в зависимости от состояния викторины */}
         {quizState === 'start' && renderStartScreen()}
         {quizState === 'question' && renderQuestionScreen()}
@@ -116,14 +120,15 @@ const Quiz = ({ data }) => {
       {/* Отображение соответствующих кнопок в зависимости от состояния викторины */}
       {quizState === 'start' && <Button onClick={handleStartQuiz}>Начать</Button>}
       {quizState === 'question' && <Button onClick={handleAnswerSubmit}>Отправить</Button>}
-      {(quizState === 'correct' || quizState === 'incorrect') && <Button onClick={handleNextQuestion}>Далее</Button>}
+      {(quizState === 'correct' || quizState === 'incorrect') && (
+        <Button onClick={handleNextQuestion}>Далее</Button>
+      )}
       {quizState === 'results' && <Button onClick={handleFinishQuiz}>Завершить</Button>}
     </QuizWr>
   );
 };
 
 const QuizWr = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -136,7 +141,8 @@ const QuizWr = styled.div`
 `;
 
 const QuizCard = styled.div`
-  background-color: ${({ quizState }) => quizState === 'incorrect' ? '#6C2929' : '#333E2C'};
+  position: relative;
+  background-color: ${({ quizState }) => (quizState === 'incorrect' ? '#6C2929' : '#333E2C')};
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -145,20 +151,21 @@ const QuizCard = styled.div`
   max-width: 400px;
   margin-bottom: 20px;
 
-  p, b {
-    color: #FFFFFF;
+  p,
+  b {
+    color: #ffffff;
   }
 
   h1 {
-    color: #F9AB00;
+    color: #f9ab00;
   }
 `;
 
 const QuestionCounter = styled.div`
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #F9AB00;
+  top: -35px;
+  right: 0px;
+  background-color: #f9ab00;
   color: white;
   padding: 5px 10px;
   border-radius: 5px;
@@ -174,14 +181,14 @@ const AnswersCon = styled.div`
   label {
     display: block;
     margin: 10px 0;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
-  input[type="radio"] {
+  input[type='radio'] {
     appearance: none;
     width: 18px;
     height: 18px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border-radius: 50%;
     outline: none;
     margin-right: 10px;
@@ -195,7 +202,7 @@ const AnswersCon = styled.div`
       transform: translate(-50%, -50%);
       width: 10px;
       height: 10px;
-      background-color: #AE4040;
+      background-color: #ae4040;
       border-radius: 50%;
     }
   }
@@ -203,7 +210,7 @@ const AnswersCon = styled.div`
 
 const QH = styled.h1`
   margin-bottom: 20px;
-  color: #F9AB00;
+  color: #f9ab00;
 `;
 
 const Button = styled.button`
