@@ -5,7 +5,8 @@ import gannibalPreview from '../assets/rooms/first/exhibits/gannibal.png';
 import boxPreview from '../assets/rooms/first/exhibits/box.png';
 import spoonPreview from '../assets/rooms/first/exhibits/spoon.png';
 
-import firstRoomGuide from '../assets/rooms/first/demo.mp3';
+import firstRoomGuide from '../assets/rooms/first/guide.mp3';
+import secondRoomGuide from '../assets/rooms/second/guide.mp3';
 
 export const QUIZ_DATA_1 = [
   {
@@ -42,7 +43,7 @@ export const ROOMS_DATA = [
     name: 'Зал 2',
     route: 'second',
     bgImg: secondRoomBg,
-    audio: firstRoomGuide,
+    audio: secondRoomGuide,
     exhibits: [EXHIBITS_DATA[2], EXHIBITS_DATA[1], EXHIBITS_DATA[0]],
     quiz: QUIZ_DATA_1,
   },

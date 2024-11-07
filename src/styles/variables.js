@@ -4,8 +4,10 @@ export const COLORS = {
   white: '#FFFFFF',
   black: '#000',
   lightSand: '#f5d9ad',
+  sand: '#BDBC8E',
   brown: '#32211A',
   green: '#333E2C',
+  red: '#AE4040',
 };
 
 const breakpoints = {

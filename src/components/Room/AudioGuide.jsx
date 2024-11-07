@@ -28,7 +28,8 @@ const AudioGuideWr = styled.div`
 `;
 
 const Audio = styled.audio`
-  height: 60%;
+  height: 6vw;
+  width: 90vw;
 `;
 
 export default AudioGuide;
