@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const QuizCard = ({ quizData }) => {
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [pointsEarned, setPointsEarned] = useState(0);
-  const [isAnswerCorrect, setIsAnswerCorrect] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
 
   const handleAnswerChange = (event) => {
@@ -14,14 +13,12 @@ const QuizCard = ({ quizData }) => {
 
   const handleSubmitAnswer = () => {
     const isCorrect = selectedAnswer === quizData[currentIndex].right_answers - 1;
-    setIsAnswerCorrect(isCorrect);
     if (isCorrect) {
       setPointsEarned(pointsEarned + 1);
     }
   };
 
   const handleNext = () => {
-    setIsAnswerCorrect(null);
     setSelectedAnswer(null);
     if (currentIndex < quizData.length - 1) {
       setCurrentIndex(currentIndex + 1);
@@ -45,32 +42,29 @@ const QuizCard = ({ quizData }) => {
         </ResultsWrapper>
       ) : (
         <>
-          {isAnswerCorrect === null ? (
-            <>
-              <QuestionWrapper>
-                <Question>{quizData[currentIndex].text}</Question>
-                <Answers>
-                  {quizData[currentIndex].answers.map((answer, answerIndex) => (
-                    <AnswerLabel key={answerIndex}>
-                      <input
-                        type="radio"
-                        name="quizAnswer"
-                        value={answerIndex}
-                        onChange={handleAnswerChange}
-                        checked={selectedAnswer === answerIndex}
-                      />
-                      {answer}
-                    </AnswerLabel>
-                  ))}
-                </Answers>
-                <SubmitButton onClick={handleSubmitAnswer} disabled={selectedAnswer === null}>
-                  Отправить
-                </SubmitButton>
-              </QuestionWrapper>
-            </>
-          ) : (
+          <QuestionWrapper>
+            <Question>{quizData[currentIndex].text}</Question>
+            <Answers>
+              {quizData[currentIndex].answers.map((answer, answerIndex) => (
+                <AnswerLabel key={answerIndex}>
+                  <input
+                    type="radio"
+                    name="quizAnswer"
+                    value={answerIndex}
+                    onChange={handleAnswerChange}
+                    checked={selectedAnswer === answerIndex}
+                  />
+                  {answer}
+                </AnswerLabel>
+              ))}
+            </Answers>
+            <SubmitButton onClick={handleSubmitAnswer} disabled={selectedAnswer === null}>
+              Отправить
+            </SubmitButton>
+          </QuestionWrapper>
+          {selectedAnswer !== null && (
             <ExplanationCard>
-              <h1>{isAnswerCorrect ? 'Вы правы!' : 'Вы неправы!'}</h1>
+              <h1>{selectedAnswer === quizData[currentIndex].right_answers - 1 ? 'Вы правы!' : 'Вы неправы!'}</h1>
               <Explanation>{quizData[currentIndex].explanation}</Explanation>
               <NextButton onClick={handleNext}>Далее</NextButton>
             </ExplanationCard>
@@ -83,7 +77,6 @@ const QuizCard = ({ quizData }) => {
 
 export default QuizCard;
 
-// Стили остаются прежними
 const CardWrapper = styled.div`
   background-color: #000;
   padding: 20px;
