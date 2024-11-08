@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const QuizCard = ({ quizData }) => {
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [pointsEarned, setPointsEarned] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [selectedAnswer, setSelectedAnswer] = useState(null); // необходим для корректной передачи индекса выбранного ответа
 
   const handleAnswerChange = (event) => {
     const selectedAnswerIndex = parseInt(event.target.value, 10);
