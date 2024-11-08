@@ -8,6 +8,10 @@ import spoonPreview from '../assets/rooms/first/exhibits/spoon.png';
 import firstRoomGuide from '../assets/rooms/first/guide.mp3';
 import secondRoomGuide from '../assets/rooms/second/guide.mp3';
 
+import Person1 from '../assets/rooms/secret/person3.png';
+import Person2 from '../assets/rooms/secret/person2.png';
+import Person3 from '../assets/rooms/secret/person3.png';
+
 export const QUIZ_DATA_1 = [
   {
     text: 'Скульптурная композиция Летнего сада «Круговорот суток» включает в себя 4 скульптуры. «Полдень», «Закат», «Ночь» и четвертая, название которой отсылает нас к одной знаменитой достопримечательности Санкт-Петербурга. К какой именно? ',
@@ -56,3 +60,21 @@ export const ROOMS_DATA = [
     quiz: QUIZ_DATA_1,
   },
 ];
+
+export const PERSONS = [
+  {
+    name: 'чел челович1',
+    info: 'gjgjgdjf dfkgdjgd',
+    image: Person1
+  },
+  {
+    name: 'чел челович2',
+    info: 'gjgjgdjf dfkgdjgd',
+    image: Person2
+  },
+  {
+    name: 'чел челович3',
+    info: 'gjgjgdjf dfkgdjgd',
+    image: Person3
+  },
+]
