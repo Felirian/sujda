@@ -24,6 +24,9 @@ const Controls = () => {
           ))}
         </HallsBlock>
       </HallsBlockWr>
+      <SecretRoomBtn>
+        <SecretRoom>секретная комната</SecretRoom>
+      </SecretRoomBtn>
     </ControlsWr>
   );
 };
@@ -32,6 +35,9 @@ const ControlsWr = styled.div`
   height: 38vw;
   background-color: ${COLORS.green};
   padding: 6.15vw 5.13vw 7.18vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.67vw;
 `;
 
 const HallsBlockWr = styled.div`
@@ -43,6 +49,21 @@ const HallsBlock = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  border: 0.3vw solid ${COLORS.grey};
+  background-color: ${COLORS.sand};
+  height: 10.26vw;
+`;
+
+const SecretRoomBtn = styled.button`
+  padding: 0.77vw;
+  background-color: ${COLORS.sand};
+`;
+
+const SecretRoom = styled.div`
+  ${ButtonTextStyle}
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 0.3vw solid ${COLORS.grey};
   background-color: ${COLORS.sand};
   height: 10.26vw;
