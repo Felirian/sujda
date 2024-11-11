@@ -2,6 +2,8 @@ import React from 'react';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import { styled } from 'styled-components';
 import { COLORS } from '../styles/variables';
+import Button from "../components/Shared/Button";
+import {Link} from "react-router-dom";
 
 const Map = () => {
   return (
@@ -16,6 +18,9 @@ const Map = () => {
           </TransformComponent>
         </>
       </TransformWrapper>
+      <Link to="/museum">
+        <Button type={'orange'}>в музей</Button>
+      </Link>
     </MapWr>
   );
 };

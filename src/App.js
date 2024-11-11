@@ -9,6 +9,7 @@ import Main from './pages/Main';
 import {QUIZ_DATA_1} from "./features/data";
 import {ROOMS_DATA} from './features/data';
 import Secret from "./pages/Secret";
+import Museum from "./pages/Museum";
 
 function App() {
   const [isDesktop, setIsDesktop] = useState(false)
@@ -33,6 +34,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Main/>} />
       <Route path='map' element={<Map />} />
+      <Route path='museum' element={<Museum />} />
       <Route path='room'>
         <Route path='secret' element={<Secret/>}/>
         {ROOMS_DATA.map((roomData, index) => (

@@ -5,12 +5,12 @@ import {useNavigate, useLocation, Link} from 'react-router-dom';
 import { ROOMS_DATA } from '../../features/data';
 import { ButtonTextStyle } from '../../styles/textTags';
 
-const Controls = () => {
+const Controls = ({background = false}) => {
   const navigate = useNavigate();
   const location = useLocation();
 
   return (
-    <ControlsWr>
+    <ControlsWr background={background}>
       <HallsBlockWr>
         <HallsBlock>
           {ROOMS_DATA.map((room) => (
@@ -35,7 +35,7 @@ const Controls = () => {
 
 const ControlsWr = styled.div`
   height: 38vw;
-  background-color: ${COLORS.green};
+  background-color: ${ (props) => props.background ? COLORS.green : 'rgba(0,0,0,0)'};
   padding: 6.15vw 5.13vw 7.18vw;
   display: flex;
   flex-direction: column;

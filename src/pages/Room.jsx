@@ -9,7 +9,7 @@ const Room = ({ data }) => {
       <RoomImgBlock img={data.bgImg}>{data.name}</RoomImgBlock>
       <RoomMainBlock>
         <AudioGuide audioSrc={data.audio} />
-        <Controls />
+        <Controls background />
       </RoomMainBlock>
     </RoomWr>
   );

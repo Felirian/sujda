@@ -20,7 +20,7 @@ const ButtonWr = styled.div`
   justify-content: center;
   text-align: center;
   width: 51.2821vw;
-  height: 10.2564;
+  height: 10.2564vw;
   padding: 3px;
   border: ${({ type }) => (type === 'orange' ? '1px' : '0px')}; solid ${({ type }) =>
   type === 'orange' ? COLORS.black : null};
