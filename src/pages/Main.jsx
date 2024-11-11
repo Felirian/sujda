@@ -17,9 +17,9 @@ const Main = () => {
           </H1Styled>
           <P1>Музей-усадьба</P1>
         </ConText>
-        <Link to="/map">
+        <MainBtn to="/map">
           <Button type={'sand'}>Начать</Button>
-        </Link>
+        </MainBtn>
       </MainCon>
     </MainWr>
   );
@@ -59,4 +59,10 @@ const ConText = styled.div`
 const H1Styled = styled(H1)`
   color: ${COLORS.lightSand};
   margin-bottom: 2vw;
+`;
+
+const MainBtn = styled(Link)`
+  width: 100%;
+  padding: 0.77vw;
+  background-color: ${COLORS.sand};
 `;
