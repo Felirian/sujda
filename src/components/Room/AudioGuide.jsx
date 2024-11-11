@@ -12,22 +12,23 @@ const AudioGuide = ({ audioSrc }) => {
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.volume = savedVolume;
+      const audio = audioRef.current;
+      audio.volume = savedVolume;
 
-      const updateDuration = () => setDuration(audioRef.current.duration);
-      const updateTime = () => setCurrentTime(audioRef.current.currentTime);
+      const updateDuration = () => setDuration(audio.duration);
+      const updateTime = () => setCurrentTime(audio.currentTime);
 
-      audioRef.current.addEventListener('loadedmetadata', updateDuration);
-      audioRef.current.addEventListener('timeupdate', updateTime);
-      audioRef.current.addEventListener('ended', () => setIsPlaying(false));
+      audio.addEventListener('loadedmetadata', updateDuration);
+      audio.addEventListener('timeupdate', updateTime);
+      audio.addEventListener('ended', () => setIsPlaying(false));
 
-      // return () => {
-      //   audioRef.current.removeEventListener('loadedmetadata', updateDuration);
-      //   audioRef.current.removeEventListener('timeupdate', updateTime);
-      //   audioRef.current.removeEventListener('ended', () => setIsPlaying(false));
-      // };
+      return () => {
+        audio.removeEventListener('loadedmetadata', updateDuration);
+        audio.removeEventListener('timeupdate', updateTime);
+        audio.removeEventListener('ended', () => setIsPlaying(false));
+      };
     }
-  }, [audioSrc]);
+  }, [audioSrc, savedVolume]);
 
   useEffect(() => {
     if (audioRef.current) {
