@@ -133,7 +133,7 @@ const ProgressContainer = styled.div`
   margin: 0 6.7vw 0;
   cursor: pointer;
   width: 55.13vw;
-  padding: 0 0.5vw;
+  padding: 0 0.2vw;
 `;
 
 const ProgressBar = styled.div`

@@ -2,11 +2,13 @@ import React from 'react';
 import { styled } from 'styled-components';
 import AudioGuide from '../components/Room/AudioGuide';
 import Controls from '../components/Room/Controls';
+import ModelSelector from '../components/Room/ModelSelector';
 
 const Room = ({ data }) => {
   return (
     <RoomWr>
       <RoomImgBlock img={data.bgImg}>{data.name}</RoomImgBlock>
+      <ModelSelector exhibits={data.exhibits} />
       <RoomMainBlock>
         <AudioGuide audioSrc={data.audio} />
         <Controls background />
@@ -16,6 +18,7 @@ const Room = ({ data }) => {
 };
 
 const RoomWr = styled.div`
+  position: absolute;
   width: 100%;
   height: 100vh;
 `;

@@ -1,22 +1,22 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import { COLORS } from '../../styles/variables';
-import {useNavigate, useLocation, Link} from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { ROOMS_DATA } from '../../features/data';
 import { ButtonTextStyle } from '../../styles/textTags';
 
-const Controls = ({background = false}) => {
+const Controls = ({ background = false }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
   return (
-    <ControlsWr background={background}>
+    <ControlsWr $background={background}>
       <HallsBlockWr>
         <HallsBlock>
           {ROOMS_DATA.map((room) => (
             <Hall
               key={room.route}
-              active={location.pathname.includes(room.route)}
+              $active={location.pathname.includes(room.route)}
               onClick={() => navigate(`/room/${room.route}`)}
             >
               {room.name}
@@ -24,9 +24,7 @@ const Controls = ({background = false}) => {
           ))}
         </HallsBlock>
       </HallsBlockWr>
-      <SecretRoomBtn
-        to={'/room/secret'}
-      >
+      <SecretRoomBtn to={'/room/secret'}>
         <SecretRoom>секретная комната</SecretRoom>
       </SecretRoomBtn>
     </ControlsWr>
@@ -35,7 +33,7 @@ const Controls = ({background = false}) => {
 
 const ControlsWr = styled.div`
   height: 38vw;
-  background-color: ${ (props) => props.background ? COLORS.green : 'rgba(0,0,0,0)'};
+  background-color: ${(props) => (props.$background ? COLORS.green : 'rgba(0,0,0,0)')};
   padding: 6.15vw 5.13vw 7.18vw;
   display: flex;
   flex-direction: column;
@@ -74,7 +72,7 @@ const SecretRoom = styled.div`
 const Hall = styled.span`
   ${ButtonTextStyle}
 
-  color: ${({ active }) => active && COLORS.red};
+  color: ${({ $active }) => $active && COLORS.red};
 
   cursor: pointer;
 `;
