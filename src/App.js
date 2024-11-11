@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Route, Routes} from 'react-router-dom';
 import Quiz from './pages/Quiz';
 import Room from './pages/Room';
@@ -7,6 +7,7 @@ import {ROOMS_DATA} from './features/data';
 import Secret from "./pages/Secret";
 
 function App() {
+  const [isDesktop, setIsDesktop] = useState(false)
   useEffect(() => {
     const userAgent = navigator.userAgent;
     const isIPod = userAgent.includes("iPod");

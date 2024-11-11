@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import QuizCard from '../components/Main/Quiz/QuizCard';
+import QuizCard from '../components/Room/Quiz/QuizCard';
 import { QUIZ_DATA_1 } from '../features/data'; 
 
 const Quiz = () => {

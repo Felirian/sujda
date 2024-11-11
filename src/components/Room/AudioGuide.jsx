@@ -21,11 +21,11 @@ const AudioGuide = ({ audioSrc }) => {
       audioRef.current.addEventListener('timeupdate', updateTime);
       audioRef.current.addEventListener('ended', () => setIsPlaying(false));
 
-      return () => {
-        audioRef.current.removeEventListener('loadedmetadata', updateDuration);
-        audioRef.current.removeEventListener('timeupdate', updateTime);
-        audioRef.current.removeEventListener('ended', () => setIsPlaying(false));
-      };
+      // return () => {
+      //   audioRef.current.removeEventListener('loadedmetadata', updateDuration);
+      //   audioRef.current.removeEventListener('timeupdate', updateTime);
+      //   audioRef.current.removeEventListener('ended', () => setIsPlaying(false));
+      // };
     }
   }, [audioSrc]);
 

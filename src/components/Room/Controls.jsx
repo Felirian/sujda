@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import { COLORS } from '../../styles/variables';
-import { useNavigate, useLocation } from 'react-router-dom';
+import {useNavigate, useLocation, Link} from 'react-router-dom';
 import { ROOMS_DATA } from '../../features/data';
 import { ButtonTextStyle } from '../../styles/textTags';
 
@@ -24,7 +24,9 @@ const Controls = () => {
           ))}
         </HallsBlock>
       </HallsBlockWr>
-      <SecretRoomBtn>
+      <SecretRoomBtn
+        to={'/room/secret'}
+      >
         <SecretRoom>секретная комната</SecretRoom>
       </SecretRoomBtn>
     </ControlsWr>
@@ -54,13 +56,13 @@ const HallsBlock = styled.div`
   height: 10.26vw;
 `;
 
-const SecretRoomBtn = styled.button`
+const SecretRoomBtn = styled(Link)`
   padding: 0.77vw;
   background-color: ${COLORS.sand};
 `;
 
 const SecretRoom = styled.div`
-  ${ButtonTextStyle}
+  ${ButtonTextStyle};
   display: flex;
   justify-content: center;
   align-items: center;
