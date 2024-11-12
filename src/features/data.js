@@ -37,9 +37,48 @@ const QUIZ_DATA_1 = [
 ];
 
 const EXHIBITS_DATA = [
-  { name: 'gannibal', img: gannibalPreview, threejs: false },
-  { name: 'box', img: boxPreview, threejs: false },
-  { name: 'spoon', img: spoonPreview, threejs: false },
+  {
+    name: 'gannibal',
+    route: 'gannibal',
+    img: gannibalPreview,
+    preview: gannibalPreview,
+    threejs: false,
+    description: {
+      img: Person1,
+      text: [
+        'Ложка чайная из подарочного комплекта столовых приборов на крещение внука Абрама Ганнибала Вениамина Петровича Ганнибала (1780–1839).',
+        'Ложка лаконичной формы с овальной неглубокой лопастью, плоским плавно расширяющимся к концу черенком, прямоугольным в сечении.',
+      ],
+    },
+  },
+  {
+    name: 'box',
+    route: 'box',
+    img: boxPreview,
+    preview: boxPreview,
+    threejs: false,
+    description: {
+      img: Person1,
+      text: [
+        'Ложка чайная из подарочного комплекта столовых приборов на крещение внука Абрама Ганнибала Вениамина Петровича Ганнибала (1780–1839).',
+        'Ложка лаконичной формы с овальной неглубокой лопастью, плоским плавно расширяющимся к концу черенком, прямоугольным в сечении.',
+      ],
+    },
+  },
+  {
+    name: 'ложка чайная «на зубок»',
+    route: 'spoon',
+    img: spoonPreview,
+    preview: spoonPreview,
+    threejs: false,
+    description: {
+      img: Person1,
+      text: [
+        'Ложка чайная из подарочного комплекта столовых приборов на крещение внука Абрама Ганнибала Вениамина Петровича Ганнибала (1780–1839).',
+        'Ложка лаконичной формы с овальной неглубокой лопастью, плоским плавно расширяющимся к концу черенком, прямоугольным в сечении.',
+      ],
+    },
+  },
 ];
 
 export const ROOMS_DATA = [
@@ -48,7 +87,14 @@ export const ROOMS_DATA = [
     route: 'first',
     bgImg: firstRoomBg,
     audio: firstRoomGuide,
-    exhibits: [EXHIBITS_DATA[0], EXHIBITS_DATA[1], EXHIBITS_DATA[2]],
+    exhibits: [
+      EXHIBITS_DATA[0],
+      EXHIBITS_DATA[1],
+      EXHIBITS_DATA[2],
+      EXHIBITS_DATA[1],
+      EXHIBITS_DATA[1],
+      EXHIBITS_DATA[1],
+    ],
     quiz: QUIZ_DATA_1,
   },
   {
@@ -73,16 +119,16 @@ export const PERSONS = [
   {
     name: 'чел челович1',
     info: 'gjgjgdjf dfkgdjgd',
-    image: Person1
+    image: Person1,
   },
   {
     name: 'чел челович2',
     info: 'gjgjgdjf dfkgdjgd',
-    image: Person2
+    image: Person2,
   },
   {
     name: 'чел челович3',
     info: 'gjgjgdjf dfkgdjgd',
-    image: Person3
+    image: Person3,
   },
-]
+];

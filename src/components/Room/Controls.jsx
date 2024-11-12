@@ -11,7 +11,7 @@ const Controls = ({ background = false }) => {
   const location = useLocation();
 
   return (
-    <ControlsWr background={background}>
+    <ControlsWr $background={background}>
       <HallsBlockWr>
         <HallsBlock>
           {ROOMS_DATA.map((room, index) => (
@@ -28,16 +28,16 @@ const Controls = ({ background = false }) => {
         </HallsBlock>
       </HallsBlockWr>
       <SecretRoomBtn to={'/room/secret'}>
-        <Button type={'sand'}>секретная комната</Button>
+        <SecretRoom>секретная комната</SecretRoom>
       </SecretRoomBtn>
     </ControlsWr>
   );
 };
 
 const ControlsWr = styled.div`
-
-  background-color: ${props => props.background ? COLORS.green : 'rgba(0,0,0,0)'};
-  // padding: 6.15vw 5.13vw 7.18vw;
+  height: 38vw;
+  background-color: ${(props) => (props.$background ? COLORS.green : 'rgba(0,0,0,0)')};
+  padding: 6.15vw 5.13vw 7.18vw;
   display: flex;
   flex-direction: column;
   gap: 1.67vw;
@@ -73,17 +73,11 @@ const SecretRoom = styled.div`
 `;
 
 const Hall = styled.span`
-  ${ButtonTextStyle}
+  ${ButtonTextStyle};
 
-  color: ${({ active }) => active && COLORS.red};
+  color: ${({ $active }) => $active && COLORS.red};
+
   cursor: pointer;
-  padding: 0 1vw;
-`;
-
-const VerticalLine = styled.div`
-  width: 0.2vw;
-  height: 50%;
-  background-color: ${COLORS.grey};
 `;
 
 export default Controls;
