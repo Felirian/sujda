@@ -6,6 +6,7 @@ import { Navigation } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { Link } from 'react-router-dom';
 
 const ModelSelector = ({ exhibits }) => {
   return (
@@ -22,9 +23,9 @@ const ModelSelector = ({ exhibits }) => {
       >
         {exhibits.map((item, index) => (
           <SwiperSlide key={index}>
-            <SlideContainer>
+            <SlideContainer to={`${item.route}`}>
               <ImageWrapper>
-                <img src={item.img} alt={item.name} />
+                <img src={item.preview} alt={item.name} />
               </ImageWrapper>
             </SlideContainer>
           </SwiperSlide>
@@ -57,7 +58,7 @@ const ModelSelectorWr = styled.div`
   }
 `;
 
-const SlideContainer = styled.div`
+const SlideContainer = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;

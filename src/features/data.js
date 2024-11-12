@@ -39,9 +39,48 @@ export const QUIZ_DATA_1 = [
   },
 ];
 const EXHIBITS_DATA = [
-  { name: 'gannibal', route: 'gannibal', img: gannibalPreview, threejs: false },
-  { name: 'box', route: 'box', img: boxPreview, threejs: false },
-  { name: 'spoon', route: 'spoon', img: spoonPreview, threejs: false },
+  {
+    name: 'gannibal',
+    route: 'gannibal',
+    img: gannibalPreview,
+    preview: gannibalPreview,
+    threejs: false,
+    description: {
+      img: Person1,
+      text: [
+        'Ложка чайная из подарочного комплекта столовых приборов на крещение внука Абрама Ганнибала Вениамина Петровича Ганнибала (1780–1839).',
+        'Ложка лаконичной формы с овальной неглубокой лопастью, плоским плавно расширяющимся к концу черенком, прямоугольным в сечении.',
+      ],
+    },
+  },
+  {
+    name: 'box',
+    route: 'box',
+    img: boxPreview,
+    preview: boxPreview,
+    threejs: false,
+    description: {
+      img: Person1,
+      text: [
+        'Ложка чайная из подарочного комплекта столовых приборов на крещение внука Абрама Ганнибала Вениамина Петровича Ганнибала (1780–1839).',
+        'Ложка лаконичной формы с овальной неглубокой лопастью, плоским плавно расширяющимся к концу черенком, прямоугольным в сечении.',
+      ],
+    },
+  },
+  {
+    name: 'ложка чайная «на зубок»',
+    route: 'spoon',
+    img: spoonPreview,
+    preview: spoonPreview,
+    threejs: false,
+    description: {
+      img: Person1,
+      text: [
+        'Ложка чайная из подарочного комплекта столовых приборов на крещение внука Абрама Ганнибала Вениамина Петровича Ганнибала (1780–1839).',
+        'Ложка лаконичной формы с овальной неглубокой лопастью, плоским плавно расширяющимся к концу черенком, прямоугольным в сечении.',
+      ],
+    },
+  },
 ];
 
 export const ROOMS_DATA = [
