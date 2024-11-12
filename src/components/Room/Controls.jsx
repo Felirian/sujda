@@ -4,7 +4,6 @@ import { COLORS } from '../../styles/variables';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { ROOMS_DATA } from '../../features/data';
 import { ButtonTextStyle } from '../../styles/textTags';
-import Button from '../Shared/Button';
 
 const Controls = ({ background = false }) => {
   const navigate = useNavigate();
@@ -70,6 +69,12 @@ const SecretRoom = styled.div`
   border: 0.3vw solid ${COLORS.grey};
   background-color: ${COLORS.sand};
   height: 10.26vw;
+`;
+
+const VerticalLine = styled.div`
+  width: 0.2vw;
+  height: 50%;
+  background-color: ${COLORS.grey};
 `;
 
 const Hall = styled.span`
