@@ -3,15 +3,12 @@ import { useState } from 'react';
 export const useQuizFunctions = () => {
   const [currentQuestion, setCurrentQuestion] = useState(-1);
   const [score, setScore] = useState(0);
-  const [responseAnswer, setResponseAnswer] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [answered, setAnswered] = useState(false)
 
-  const sendAnswer = (boll) => {
-    setAnswered(boll)
-  };
-
   const nextQuestion = (isCorrect) => {
+    //todo: проверка на не выбранный ответ
+    // if (!answered || currentQuestion == -1) return false;
     setAnswered(false)
     setSelectedAnswer(null)
     setCurrentQuestion(currentQuestion + 1);
@@ -29,14 +26,13 @@ export const useQuizFunctions = () => {
     variables : {
       currentQuestion,
       score,
-      responseAnswer,
       answered,
       selectedAnswer
     },
     fun: {
       nextQuestion,
       startOver,
-      sendAnswer,
+      setAnswered,
       setSelectedAnswer
     }
   };

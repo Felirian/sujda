@@ -3,7 +3,7 @@ import { H3 } from '../../styles/textTags';
 import styled from 'styled-components';
 import { COLORS } from '../../styles/variables';
 
-const Button = ({ type, children }) => {
+const CustomButton = ({ type, children }) => {
   return (
     <ButtonWr type={type}>
       <ButtonCon type={type}>
@@ -13,7 +13,7 @@ const Button = ({ type, children }) => {
   );
 };
 
-export default Button;
+export default CustomButton;
 
 const ButtonWr = styled.div`
   display: flex;

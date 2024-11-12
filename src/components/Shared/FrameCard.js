@@ -34,7 +34,8 @@ const FrameCardContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0vw 1.795vw;
+  margin: -0.5vw 0;
+  padding: 0 1.795vw;
 `;
 
 const FrameCardBox = styled.div`
