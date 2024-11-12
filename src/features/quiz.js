@@ -4,18 +4,20 @@ export const useQuizFunctions = () => {
   const [currentQuestion, setCurrentQuestion] = useState(-1);
   const [score, setScore] = useState(0);
   const [responseAnswer, setResponseAnswer] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [answered, setAnswered] = useState(false)
 
-  const sendQuestion = (isCorrect) => {
-    setAnswered(true)
+  const sendAnswer = (boll) => {
+    setAnswered(boll)
+  };
+
+  const nextQuestion = (isCorrect) => {
+    setAnswered(false)
+    setSelectedAnswer(null)
+    setCurrentQuestion(currentQuestion + 1);
     if (isCorrect) {
       setScore(score + 1);
     }
-  };
-
-  const nextQuestion = () => {
-    setAnswered(false)
-    setCurrentQuestion(currentQuestion + 1);
   };
 
   const startOver = () => {
@@ -24,12 +26,18 @@ export const useQuizFunctions = () => {
   };
 
   return {
-    currentQuestion,
-    score,
-    nextQuestion,
-    startOver,
-    responseAnswer,
-    answered,
-    sendQuestion
+    variables : {
+      currentQuestion,
+      score,
+      responseAnswer,
+      answered,
+      selectedAnswer
+    },
+    fun: {
+      nextQuestion,
+      startOver,
+      sendAnswer,
+      setSelectedAnswer
+    }
   };
 };

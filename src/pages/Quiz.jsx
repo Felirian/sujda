@@ -2,30 +2,25 @@ import React from 'react';
 import styled from 'styled-components';
 import Question from "../components/Room/Quiz/Question";
 import {useQuizFunctions} from "../features/quiz";
-import ResponseAnswer from "../components/Room/Quiz/ResponseAnsver";
 
 const Quiz = ({data}) => {
   const QuizFunc = useQuizFunctions();
 
   return (
     <QuizWr>
-      {QuizFunc.currentQuestion === -1 ? (
+      {QuizFunc.variables.currentQuestion === -1 ? (
         <>
           Start
-          <button onClick={() => QuizFunc.nextQuestion(false)}> ff </button>
+          <button onClick={() => QuizFunc.fun.nextQuestion(false)}> ff </button>
         </>
-      ) : QuizFunc.currentQuestion === data.length ? (
+      ) : QuizFunc.variables.currentQuestion === data.length ? (
         <>
-          Конец {QuizFunc.score}
-          <button onClick={() => QuizFunc.startOver()}> заново</button>
-        </>
-      ) : QuizFunc.answered ? (
-        <>
-          <ResponseAnswer correctAnswer={false} QuizFunc={QuizFunc}/>
+          Конец {QuizFunc.variables.score}
+          <button onClick={() => QuizFunc.fun.startOver()}> заново</button>
         </>
       ) : (
         <>
-          <Question question={data[QuizFunc.currentQuestion]} QuizFunc={QuizFunc}/>
+          <Question question={data[QuizFunc.variables.currentQuestion]} QuizFunc={QuizFunc}/>
         </>
       )}
     </QuizWr>

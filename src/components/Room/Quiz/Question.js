@@ -4,29 +4,43 @@ import styled from "styled-components";
 import ResponseAnswer from "./ResponseAnsver";
 
 const Question = ({question, QuizFunc}) => {
-  const [selectedAnswer, setSelectedAnswer] = useState(null)
+
 
   return (
     <>
-      <H1>Вопрос {QuizFunc.currentQuestion + 1}</H1>
-      <P2>{question.text}</P2>
-      {question.answers.map((answer, i) => (
-        <AnswersCon key={i} onClick={() => setSelectedAnswer(i)}>
-          <input
-            type="radio"
-            name="quizAnswer"
-            value={i}
-            onChange={() => setSelectedAnswer(i)}
-            checked={selectedAnswer === i}
-          />
-          {answer}
-        </AnswersCon>
-      ))}
-      <button
-        onClick={() => QuizFunc.sendQuestion(selectedAnswer === question.right_answers)}
-      >
-        ответить
-      </button>
+      {
+        QuizFunc.variables.answered ? (
+          <>
+            <ResponseAnswer
+              correctAnswer={QuizFunc.variables.selectedAnswer === question.right_answers}
+              QuizFunc={QuizFunc}
+            />
+          </>
+        ) : (
+          <>
+            <H1>Вопрос {QuizFunc.variables.currentQuestion + 1}</H1>
+            <P2>{question.text}</P2>
+            {question.answers.map((answer, i) => (
+              <AnswersCon key={i} onClick={() => QuizFunc.fun.setSelectedAnswer(i)}>
+                <input
+                  type="radio"
+                  name="quizAnswer"
+                  value={i}
+                  onChange={() => QuizFunc.fun.setSelectedAnswer(i)}
+                  checked={QuizFunc.variables.selectedAnswer === i}
+                />
+                {answer}
+              </AnswersCon>
+            ))}
+            <button
+              onClick={() =>  QuizFunc.fun.sendAnswer(true)}
+            >
+              ответить
+            </button>
+          </>
+        )
+      }
+
     </>
   );
 };

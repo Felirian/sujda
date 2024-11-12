@@ -7,7 +7,9 @@ const ResponseAnswer = ({ correctAnswer , QuizFunc}) => {
   return (
     <ResponseAnswerWr correctAnswer={correctAnswer}>
       {correctAnswer.toString()}
-      <button onClick={() => QuizFunc.nextQuestion()}>Dalee</button>
+      <button onClick={() => {
+        QuizFunc.fun.nextQuestion(correctAnswer)
+      }}>Dalee</button>
     </ResponseAnswerWr>
   );
 };
