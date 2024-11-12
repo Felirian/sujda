@@ -1,12 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
-import QuizCard from '../components/Room/Quiz/QuizCard';
-import { QUIZ_DATA_1 } from '../features/data'; 
+import Question from "../components/Room/Quiz/Question";
+import {useQuizFunctions} from "../features/quiz";
+import ResponseAnswer from "../components/Room/Quiz/ResponseAnsver";
 
-const Quiz = () => {
+const Quiz = ({data}) => {
+  const QuizFunc = useQuizFunctions();
+
   return (
     <QuizWr>
-      <QuizCard quizData={QUIZ_DATA_1} />
+      {QuizFunc.currentQuestion === -1 ? (
+        <>
+          Start
+          <button onClick={() => QuizFunc.nextQuestion(false)}> ff </button>
+        </>
+      ) : QuizFunc.currentQuestion === data.length ? (
+        <>
+          Конец {QuizFunc.score}
+          <button onClick={() => QuizFunc.startOver()}> заново</button>
+        </>
+      ) : QuizFunc.answered ? (
+        <>
+          <ResponseAnswer correctAnswer={false} QuizFunc={QuizFunc}/>
+        </>
+      ) : (
+        <>
+          <Question question={data[QuizFunc.currentQuestion]} QuizFunc={QuizFunc}/>
+        </>
+      )}
     </QuizWr>
   );
 };

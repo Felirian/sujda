@@ -2,10 +2,12 @@ import React from 'react';
 import { styled } from 'styled-components';
 import AudioGuide from '../components/Room/AudioGuide';
 import Controls from '../components/Room/Controls';
+import {Link} from "react-router-dom";
 
 const Room = ({ data }) => {
   return (
     <RoomWr>
+      <Link to={`/room/${data.route}/quiz`}>викторина</Link>
       <RoomImgBlock img={data.bgImg}>{data.name}</RoomImgBlock>
       <RoomMainBlock>
         <AudioGuide audioSrc={data.audio} />

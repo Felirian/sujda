@@ -1,18 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
+import {COLORS} from "../../../styles/variables";
 
-const ResponseAnswer = ({ answer }) => {
+const ResponseAnswer = ({ correctAnswer , QuizFunc}) => {
+
   return (
-    <Div>
-      {answer ? 'Ответ верный' : 'Ответ неверный'}
-    </Div>
+    <ResponseAnswerWr correctAnswer={correctAnswer}>
+      {correctAnswer.toString()}
+      <button onClick={() => QuizFunc.nextQuestion()}>Dalee</button>
+    </ResponseAnswerWr>
   );
 };
 
+const ResponseAnswerWr = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: ${(props)=> props.correctAnswer ? COLORS.green : COLORS.red};
+`
+
 export default ResponseAnswer;
 
-const Div = styled.div`
-
-  background-color: ${({ answer }) => (answer ? '#6C2929' : '#333E2C')};
- 
-`;
