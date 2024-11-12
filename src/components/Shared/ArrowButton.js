@@ -25,7 +25,7 @@ const ArrowButtonWr = styled.div`
   position: relative;
   transition: background-color 0.3s ease;
   z-index: 1;
-   border-radius: 1px;
+  border-radius: 0.3vw;
 
   &:active {
     background-color: ${COLORS.green};
@@ -41,7 +41,7 @@ const ArrowButtonWr = styled.div`
     background-color: ${COLORS.green};
     transform: rotate(-45deg);
     z-index: 0;
-    border-radius: 1.5px;
+    border-radius: 0.4vw;
   }
 `;
 
@@ -52,22 +52,22 @@ const InnerButton = styled.div`
   width: 100%;
   padding: 0.5vw 3vw;
   background-color: ${COLORS.green};
-  border: 1px solid ${COLORS.white};
+  border: 0.3vw solid ${COLORS.white};
   position: relative;
-    border-radius: 1px;
+  border-radius: 0.3vw;
 
   &:after {
     content: '';
     position: absolute;
-    top: 0.8vw;
-    //top: 12%;
+    //top: 1vw;
+    top: 12%;
     right: -3.2vw;
     width: 5.5vw;
     height: 5.5vw;
-    border: 1px solid ${COLORS.white};
+    border: 0.3vw solid ${COLORS.white};
     background-color: ${COLORS.green};
     transform: rotate(-45deg);
-    border-radius: 1.5px;
+    border-radius: 0.4vw;
   }
 
   &:before {
@@ -80,6 +80,7 @@ const InnerButton = styled.div`
     background-color: ${COLORS.green};
     transform: rotate(0deg);
     z-index: 2;
+    border-radius: 0.2vw;
   }
 `;
 

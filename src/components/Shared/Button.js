@@ -21,7 +21,7 @@ const ButtonWr = styled.div`
   text-align: center;
   height: 10.26vw;
   width: 100%;
-  border: ${({ type }) => (type === 'orange' ? '1px' : '0px')}; solid ${({ type }) =>
+  border: ${({ type }) => (type === 'orange' ? '0.3vw' : '0px')}; solid ${({ type }) =>
   type === 'orange' ? COLORS.black : null};
   background-color: ${({ type }) => (type === 'orange' ? COLORS.orange : COLORS.sand)};
   transition: background-color 0.3s ease;
@@ -38,7 +38,7 @@ const ButtonCon = styled.div`
   width: 100%;
   padding: 1.2vw;
   border: ${({ type }) =>
-    type === 'send' ? 'none' : `1px solid ${type === 'orange' ? COLORS.black : COLORS.grey}`};
+    type === 'send' ? 'none' : `0.3vw solid ${type === 'orange' ? COLORS.black : COLORS.grey}`};
 `;
 
 const H3Styled = styled(H3)`
