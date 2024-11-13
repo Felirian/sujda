@@ -13,11 +13,15 @@ import { PERSONS } from '../features/data';
 import Button from '../components/Shared/CustomButton';
 import { Link } from 'react-router-dom';
 import { COLORS } from '../styles/variables';
-import { H3, P2 } from '../styles/textTags';
+import { H1, H3, P1, P2, P3 } from '../styles/textTags';
+import FrameCard from '../components/Shared/FrameCard';
+import SvgSelector from '../components/Shared/SvgSelector';
+import CancelButton from '../components/Shared/CancelButton';
 
 const Secret = () => {
   const [currentPerson, setCurrentPerson] = useState(PERSONS[0]);
   const [fadeOut, setFadeOut] = useState(false);
+  const [showStory, setShowStory] = useState(false);
   const prevIndexRef = useRef(0);
 
   const handleSlideChange = (swiper) => {
@@ -30,6 +34,14 @@ const Secret = () => {
         prevIndexRef.current = swiper.realIndex;
       }, 300);
     }
+  };
+
+  const handleLearnMoreClick = () => {
+    setShowStory(true);
+  };
+
+  const handleCloseStory = () => {
+    setShowStory(false);
   };
 
   return (
@@ -69,10 +81,23 @@ const Secret = () => {
           <H3>{currentPerson?.name}</H3>
           <P2>{currentPerson?.info}</P2>
         </SwiperText>
-        <MainBtn to={'/'}>
+        <MainBtn onClick={handleLearnMoreClick}>
           <Button type={'sand'}>узнать больше</Button>
         </MainBtn>
       </BottomContainer>
+
+      {showStory && (
+        <Overlay onClick={handleCloseStory}>
+          <StoryWr onClick={(e) => e.stopPropagation()}>
+            <CancelButton onClick={handleCloseStory} />
+            <SvgSelector svg={'topFrameStoryGreen'} />
+            <StoryContainer>
+              <H1Styled>{currentPerson.name}</H1Styled>
+              <P1Styled>{currentPerson.story}</P1Styled>
+            </StoryContainer>
+          </StoryWr>
+        </Overlay>
+      )}
     </SecretRoomWr>
   );
 };
@@ -112,7 +137,7 @@ const GlassImg = styled.img`
 
 const SwiperContainer = styled.div`
   position: absolute;
-  bottom: 79vw;
+  bottom: 75vw;
   width: 100%;
   display: flex;
   align-items: center;
@@ -157,7 +182,7 @@ const SwiperPagination = styled.div`
     background-color: ${COLORS.sand};
     opacity: 1;
     border-radius: 0;
-    margin: 0 5px;
+    margin: 0 1.282vw;
   }
 
   .swiper-pagination-bullet-active {
@@ -185,4 +210,49 @@ const MainBtn = styled(Link)`
   z-index: 3;
   text-align: center;
   margin-top: 12vw;
+`;
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: ${COLORS.black};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+`;
+
+const StoryWr = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  padding: 10vw 7.18vw 0 7.18vw;
+  position: relative;
+  align-items: center;
+  background-color: ${COLORS.green};
+  width: 80%;
+  max-height: 80%;
+  overflow-y: auto;
+  z-index: 101;
+`;
+
+const StoryContainer = styled.div`
+  background-color: ${COLORS.green};
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: -0.5vw 0;
+  padding: 0 1.795vw;
+`;
+
+const H1Styled = styled(H1)`
+  margin-bottom: 4.5vw;
+`;
+
+const P1Styled = styled(P1)`
+  text-align: left;
 `;
