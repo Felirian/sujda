@@ -3,13 +3,11 @@ import { styled } from 'styled-components';
 import AudioGuide from '../components/Room/AudioGuide';
 import Controls from '../components/Room/Controls';
 import ModelSelector from '../components/Room/ModelSelector';
-import {Link} from "react-router-dom";
 
 const Room = ({ data }) => {
   return (
     <RoomWr>
-      <Link to={`/room/${data.route}/quiz`}>викторина</Link>
-      <RoomImgBlock img={data.bgImg}>{data.name}</RoomImgBlock>
+      <RoomImgBlock img={data.bgImg} />
       <ModelSelector exhibits={data.exhibits} />
       <RoomMainBlock>
         <AudioGuide audioSrc={data.audio} />
@@ -29,7 +27,7 @@ const RoomImgBlock = styled.div`
   background-image: ${({ img }) => `url(${img})`};
   background-size: cover;
   background-position: center;
-  height: 80%;
+  height: 90%;
 `;
 
 const RoomMainBlock = styled.div`

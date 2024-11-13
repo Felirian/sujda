@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 import { COLORS } from '../../styles/variables';
+import SvgSelector from '../Shared/SvgSelector';
+import { Link } from 'react-router-dom';
 
 const AudioGuide = ({ audioSrc }) => {
   const audioRef = useRef(null);
@@ -99,8 +101,11 @@ const AudioGuide = ({ audioSrc }) => {
       >
         <ProgressBar style={{ width: `${(currentTime / duration) * 100}%` }} />
       </ProgressContainer>
+      <QuizButton to='quiz'>
+        <SvgSelector svg='quiz' />
+      </QuizButton>
       <TimeDisplay>
-        {formatTime(currentTime)} / {formatTime(duration)}
+        <span>{formatTime(currentTime)}</span> / {formatTime(duration)}
       </TimeDisplay>
       <audio ref={audioRef} src={audioSrc} />
     </AudioGuideWr>
@@ -108,6 +113,7 @@ const AudioGuide = ({ audioSrc }) => {
 };
 
 const AudioGuideWr = styled.div`
+  position: relative;
   height: 10.26vw;
   border-radius: 6.15vw 6.15vw 0 0;
   background-color: ${COLORS.green};
@@ -117,7 +123,18 @@ const AudioGuideWr = styled.div`
   padding: 5.13vw 5.13vw 0;
 `;
 
+const QuizButton = styled(Link)`
+  width: 14.87vw;
+  height: 8.21vw;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
 const PlayButton = styled.button`
+  position: relative;
+  top: -1.5vw;
   color: ${COLORS.white};
   font-size: 6vw;
   cursor: pointer;
@@ -126,13 +143,14 @@ const PlayButton = styled.button`
 
 const ProgressContainer = styled.div`
   position: relative;
+  top: -1.5vw;
   display: flex;
   align-items: center;
   height: 1.4vw;
   background-color: ${COLORS.white};
   margin: 0 6.7vw 0;
   cursor: pointer;
-  width: 55.13vw;
+  width: 57vw;
   padding: 0 0.2vw;
 `;
 
@@ -143,10 +161,18 @@ const ProgressBar = styled.div`
 `;
 
 const TimeDisplay = styled.span`
-  font-family: sans-serif;
+  position: absolute;
+  font-family: 'Roboto Slab';
+  font-size: 2.05vw;
+  font-style: normal;
   font-weight: 700;
-  font-size: 3.08vw;
+  line-height: normal;
   white-space: nowrap;
+  bottom: -0.5vw;
+  right: 27.5vw;
+  span {
+    color: ${COLORS.yellow};
+  }
 `;
 
 export default AudioGuide;

@@ -16,7 +16,7 @@ const Controls = ({ background = false }) => {
           {ROOMS_DATA.map((room, index) => (
             <React.Fragment key={room.route}>
               <Hall
-                active={location.pathname.includes(room.route)}
+                $active={location.pathname.includes(room.route)}
                 onClick={() => navigate(`/room/${room.route}`)}
               >
                 {room.name}
