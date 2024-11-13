@@ -1,13 +1,12 @@
 import React from 'react';
-import {H1, H3, P2} from "../../../styles/textTags";
-import styled from "styled-components";
-import ResponseAnswer from "./ResponseAnsver";
-import FrameCard from "../../Shared/FrameCard";
-import {COLORS} from "../../../styles/variables";
-import {QuizBtn} from "../../../pages/Quiz";
+import { H1, H3, P2 } from '../../../styles/textTags';
+import styled from 'styled-components';
+import ResponseAnswer from './ResponseAnsver';
+import FrameCard from '../../Shared/FrameCard';
+import { COLORS } from '../../../styles/variables';
+import { QuizBtn } from '../../../pages/Quiz';
 
-const Question = ({question, QuizFunc}) => {
-
+const Question = ({ question, QuizFunc }) => {
   return (
     <>
       {QuizFunc.variables.answered ? (
@@ -26,13 +25,10 @@ const Question = ({question, QuizFunc}) => {
               <P2>{question.text}</P2>
               <AnswersCon>
                 {question.answers.map((answer, i) => (
-                  <AnswersBlock
-                    key={i}
-                    onClick={() => QuizFunc.fun.setSelectedAnswer(i)}
-                  >
+                  <AnswersBlock key={i} onClick={() => QuizFunc.fun.setSelectedAnswer(i)}>
                     <StyledInput
-                      type="radio"
-                      name="quizAnswer"
+                      type='radio'
+                      name='quizAnswer'
                       value={i}
                       onChange={() => QuizFunc.fun.setSelectedAnswer(i)}
                       checked={QuizFunc.variables.selectedAnswer === i}
@@ -46,7 +42,7 @@ const Question = ({question, QuizFunc}) => {
 
           <QuizBtn
             disabled={QuizFunc.variables.selectedAnswer === null}
-            style={{marginTop: '12.82vw'}}
+            style={{ marginTop: '12.82vw' }}
             onClick={() => QuizFunc.fun.setAnswered(true)}
           >
             ОТПРАВИТЬ
@@ -62,12 +58,12 @@ const QuestionWr = styled.div`
   flex-direction: column;
   gap: 4.62vw;
   padding: 0 7.18vw;
-`
+`;
 const AnswersCon = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3.08vw;
-`
+`;
 const AnswersBlock = styled.div`
   display: flex;
   align-items: center;
@@ -76,7 +72,7 @@ const AnswersBlock = styled.div`
   ${H3} {
     color: ${COLORS.white};
   }
-`
+`;
 
 const StyledInput = styled.input`
   appearance: none;
