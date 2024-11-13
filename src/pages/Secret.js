@@ -10,7 +10,7 @@ import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
 import { PERSONS } from '../features/data';
-import Button from '../components/Shared/Button';
+import Button from '../components/Shared/CustomButton';
 import { Link } from 'react-router-dom';
 import { COLORS } from '../styles/variables';
 import { H3, P2 } from '../styles/textTags';
@@ -105,6 +105,7 @@ const GlassImg = styled.img`
   z-index: 1;
   bottom: 0%;
 `;
+
 const SwiperContainer = styled.div`
   position: absolute;
   bottom: 79vw;
@@ -120,9 +121,8 @@ const BottomContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   z-index: 10;
-  padding: 0 5vw 12vw 5vw;
+  padding: 12vw 5vw;
   margin-top: auto;
 `;
 
@@ -137,12 +137,16 @@ const SwiperText = styled.div`
 
 const SwiperPaginationWrapper = styled.div`
   width: 100%;
+  height: 3vw;
   display: flex;
   justify-content: center;
-  margin-bottom: 10vw;
+  position: absolute;
+  top: 0;
 `;
 
 const SwiperPagination = styled.div`
+  position: absolute;
+  top: 0;
   .swiper-pagination-bullet {
     width: 3vw;
     height: 3vw;
