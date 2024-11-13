@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import frame from '../assets/rooms/secret/mirror-bg.png';
 import glass from '../assets/rooms/secret/mirror-glass.png';
@@ -10,6 +10,7 @@ import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
 import { PERSONS } from '../features/data';
+import Button from '../components/Shared/Button';
 import { Link } from 'react-router-dom';
 import { COLORS } from '../styles/variables';
 import { H3, P2 } from '../styles/textTags';
@@ -18,14 +19,18 @@ import CustomButton from "../components/Shared/CustomButton";
 const Secret = () => {
   const [currentPerson, setCurrentPerson] = useState(PERSONS[0]);
   const [fadeOut, setFadeOut] = useState(false);
+  const prevIndexRef = useRef(0);
 
   const handleSlideChange = (swiper) => {
     const selectedPerson = PERSONS[swiper.realIndex];
-    setFadeOut(true);
-    setTimeout(() => {
-      setCurrentPerson(selectedPerson);
-      setFadeOut(false);
-    }, 300);
+    if (swiper.realIndex !== prevIndexRef.current) {
+      setFadeOut(true);
+      setTimeout(() => {
+        setCurrentPerson(selectedPerson);
+        setFadeOut(false);
+        prevIndexRef.current = swiper.realIndex;
+      }, 300);
+    }
   };
 
   return (
@@ -120,9 +125,8 @@ const BottomContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   z-index: 10;
-  padding: 0 5vw 12vw 5vw;
+  padding: 12vw 5vw;
   margin-top: auto;
 `;
 
@@ -137,12 +141,16 @@ const SwiperText = styled.div`
 
 const SwiperPaginationWrapper = styled.div`
   width: 100%;
+  height: 3vw;
   display: flex;
   justify-content: center;
-  margin-bottom: 10vw;
+  position: absolute;
+  top: 0;
 `;
 
 const SwiperPagination = styled.div`
+  position: absolute;
+  top: 0;
   .swiper-pagination-bullet {
     width: 3vw;
     height: 3vw;

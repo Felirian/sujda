@@ -1,26 +1,38 @@
 import React from 'react';
 import styled from 'styled-components';
-import Question from "../components/Room/Quiz/Question";
-import {useQuizFunctions} from "../features/quiz";
-import {COLORS} from "../styles/variables";
-import {H1, H3, P1, P3} from "../styles/textTags";
-import FrameCard from "../components/Shared/FrameCard";
+import Question from '../components/Room/Quiz/Question';
+import { useQuizFunctions } from '../features/quiz';
+import { COLORS } from '../styles/variables';
+import { H1, H3, P1, P3 } from '../styles/textTags';
+import FrameCard from '../components/Shared/FrameCard';
+import bg from '../assets/quiz/quiz-bg.png';
+import feather from '../assets/quiz/feather.png';
+import QuestionCounter from '../components/Room/Quiz/QuestionCounter';
 
-const Quiz = ({data}) => {
+const Quiz = ({ data }) => {
   const QuizFunc = useQuizFunctions();
 
   return (
     <QuizWr>
+      {QuizFunc.variables.currentQuestion >= 0 && QuizFunc.variables.currentQuestion < data.length && (
+        <QuestionCounter
+          currentQuestion={QuizFunc.variables.currentQuestion}
+          totalQuestions={data.length}
+        />
+      )}
+
       {QuizFunc.variables.currentQuestion === -1 ? (
         <>
           <FrameCard>
             <StartPageWr>
               <H1>Викторина</H1>
-              <P1>Мы предлагаем Вам пройти викторину текст текст текст текст текст текст текст</P1>
+              <P1Styled>
+                Мы предлагаем Вам пройти викторину текст текст текст текст текст текст текст
+              </P1Styled>
             </StartPageWr>
           </FrameCard>
           <QuizBtn
-            style={{marginTop: '12.82vw'}}
+            style={{ marginTop: '12.82vw' }}
             onClick={() => QuizFunc.fun.nextQuestion(false)}
           >
             НАЧАТЬ
@@ -28,24 +40,22 @@ const Quiz = ({data}) => {
         </>
       ) : QuizFunc.variables.currentQuestion === data.length ? (
         <>
-          <FrameCard >
-            <StartPageWr>
+          <FrameCard>
+            <EndPageWr>
+              <FeatherImg src={feather} alt={'feather'} />
               <H1>Результаты</H1>
 
               <P1>{QuizFunc.variables.score}</P1>
-            </StartPageWr>
+            </EndPageWr>
           </FrameCard>
 
-          <QuizBtn
-            style={{marginTop: '12.82vw'}}
-            onClick={() => QuizFunc.fun.startOver()}
-          >
+          <QuizBtn style={{ marginTop: '12.82vw' }} onClick={() => QuizFunc.fun.startOver()}>
             ЗАВЕРШИТЬ
           </QuizBtn>
         </>
       ) : (
         <>
-          <Question question={data[QuizFunc.variables.currentQuestion]} QuizFunc={QuizFunc}/>
+          <Question question={data[QuizFunc.variables.currentQuestion]} QuizFunc={QuizFunc} />
         </>
       )}
     </QuizWr>
@@ -57,12 +67,20 @@ export default Quiz;
 const StartPageWr = styled.div`
   display: flex;
   flex-direction: column;
-  //justify-content: center;
-  //align-items: center;
-  text-align: start;
+  alaign-items: center;
   width: 100%;
   gap: 4.62vw;
   padding: 0 7.18vw;
+`;
+
+const EndPageWr = styled.div`
+  display: flex;
+  flex-direction: column;
+  alaign-items: center;
+  width: 100%;
+  gap: 4.62vw;
+  padding: 10vw 7.18vw 0 7.18vw;
+  position: relative;
 `;
 
 const QuizWr = styled.div`
@@ -72,23 +90,20 @@ const QuizWr = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
-  background-image: url('/img/quiz-bg.png');
+  background-image: url('${bg}');
   background-size: cover;
   background-position: center;
 `;
 
-export const QuizBtn = ({children, onClick, ...props}) => {
+export const QuizBtn = ({ children, onClick, ...props }) => {
   return (
-    <QuizBtnWr
-      {...props}
-      onClick={onClick}
-    >
+    <QuizBtnWr {...props} onClick={onClick}>
       <QuizCon>
         <H3>{children}</H3>
       </QuizCon>
     </QuizBtnWr>
   );
-}
+};
 
 const QuizBtnWr = styled.button`
   background-color: ${COLORS.lightSand};
@@ -96,12 +111,12 @@ const QuizBtnWr = styled.button`
   height: 10.26vw;
   padding: 0.77vw;
   &:active {
-    background-color: #D7BF99;
-  } 
+    background-color: #d7bf99;
+  }
   &:disabled {
     opacity: 0.5;
   }
-`
+`;
 
 const QuizCon = styled.div`
   width: 100%;
@@ -114,5 +129,21 @@ const QuizCon = styled.div`
     color: ${COLORS.brown};
     font-weight: 600;
   }
-`
+`;
 
+const P1Styled = styled(P1)`
+  text-align: left;
+`;
+
+const FeatherImg = styled.img`
+  width: 20.5vw;
+  height: 20.5vw;
+  object-fit: cover;
+  object-position: bottom;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+  top: -10vw;
+  left: 50%;
+  transform: translateX(-50%);
+`;
