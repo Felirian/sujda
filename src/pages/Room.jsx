@@ -3,12 +3,10 @@ import { styled } from 'styled-components';
 import AudioGuide from '../components/Room/AudioGuide';
 import Controls from '../components/Room/Controls';
 import ModelSelector from '../components/Room/ModelSelector';
-import {Link} from "react-router-dom";
 
 const Room = ({ data }) => {
   return (
     <RoomWr>
-      <Link to={`/room/${data.route}/quiz`}>викторина</Link>
       <RoomImgBlock img={data.bgImg}>{data.name}</RoomImgBlock>
       <ModelSelector exhibits={data.exhibits} />
       <RoomMainBlock>
