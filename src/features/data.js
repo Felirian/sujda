@@ -8,7 +8,7 @@ import spoonPreview from '../assets/rooms/first/exhibits/spoon.png';
 import firstRoomGuide from '../assets/rooms/first/guide.mp3';
 import secondRoomGuide from '../assets/rooms/second/guide.mp3';
 
-import Person1 from '../assets/rooms/secret/person3.png';
+import Person1 from '../assets/rooms/secret/person1.png';
 import Person2 from '../assets/rooms/secret/person2.png';
 import Person3 from '../assets/rooms/secret/person3.png';
 
@@ -118,17 +118,17 @@ export const ROOMS_DATA = [
 export const PERSONS = [
   {
     name: 'чел челович1',
-    info: 'gjgjgdjf dfkgdjgd',
+    info: 'qqqqqqqqq qqqqqqqqq fgdfgggg gggggghgj',
     image: Person1,
   },
   {
     name: 'чел челович2',
-    info: 'gjgjgdjf dfkgdjgd',
+    info: 'wwwwwww wwwwwww dfkgd fgh g fgjgd',
     image: Person2,
   },
   {
     name: 'чел челович3',
-    info: 'gjgjgdjf dfkgdjgd',
+    info: 'eeeeeee eeeeeee dfkgd gf fg jgd',
     image: Person3,
   },
 ];
