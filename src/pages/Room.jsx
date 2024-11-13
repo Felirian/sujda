@@ -27,7 +27,7 @@ const RoomImgBlock = styled.div`
   background-image: ${({ img }) => `url(${img})`};
   background-size: cover;
   background-position: center;
-  height: 80%;
+  height: 90%;
 `;
 
 const RoomMainBlock = styled.div`
