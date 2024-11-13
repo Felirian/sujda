@@ -13,6 +13,7 @@ const Question = ({question, QuizFunc}) => {
       {QuizFunc.variables.answered ? (
         <>
           <ResponseAnswer
+            explanation={question.explanation}
             correctAnswer={QuizFunc.variables.selectedAnswer === question.right_answers}
             QuizFunc={QuizFunc}
           />
@@ -49,7 +50,6 @@ const Question = ({question, QuizFunc}) => {
             onClick={() => QuizFunc.fun.setAnswered(true)}
           >
             ОТПРАВИТЬ
-
           </QuizBtn>
         </>
       )}

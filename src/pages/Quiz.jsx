@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Question from "../components/Room/Quiz/Question";
 import {useQuizFunctions} from "../features/quiz";
 import {COLORS} from "../styles/variables";
-import {H1, H3, P1} from "../styles/textTags";
+import {H1, H3, P1, P3} from "../styles/textTags";
 import FrameCard from "../components/Shared/FrameCard";
 
 const Quiz = ({data}) => {
@@ -28,9 +28,20 @@ const Quiz = ({data}) => {
         </>
       ) : QuizFunc.variables.currentQuestion === data.length ? (
         <>
-          Конец {QuizFunc.variables.score}
+          <FrameCard >
+            <StartPageWr>
+              <H1>Результаты</H1>
 
-          <QuizBtn onClick={() => QuizFunc.fun.startOver()}>заново</QuizBtn>
+              <P1>{QuizFunc.variables.score}</P1>
+            </StartPageWr>
+          </FrameCard>
+
+          <QuizBtn
+            style={{marginTop: '12.82vw'}}
+            onClick={() => QuizFunc.fun.startOver()}
+          >
+            ЗАВЕРШИТЬ
+          </QuizBtn>
         </>
       ) : (
         <>

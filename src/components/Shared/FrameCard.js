@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import SvgSelector from './SvgSelector';
 import { COLORS } from '../../styles/variables';
 
-const FrameCard = ({ children }) => {
+const FrameCard = ({ children , green = true}) => {
   return (
     <FrameCardWr>
-      <SvgSelector svg={'topframe'} />
-      <FrameCardContainer>
-        <FrameCardBox>{children}</FrameCardBox>
+      <SvgSelector svg={green ? 'topFrameGreen' : 'topFrameRed'} />
+      <FrameCardContainer green={green}>
+        <FrameCardBox green={green}>{children}</FrameCardBox>
       </FrameCardContainer>
-      <SvgSelector svg={'bottomframe'} />
+      <SvgSelector svg={green ? 'bottomFrameGreen' : 'bottomFrameRed'} />
     </FrameCardWr>
   );
 };
@@ -29,7 +29,7 @@ const FrameCardWr = styled.div`
 `;
 
 const FrameCardContainer = styled.div`
-  background-color: ${COLORS.green};
+  background-color: ${(props) => props.green ? COLORS.green : COLORS.darkRed};
   width: 100%;
   display: flex;
   justify-content: center;
@@ -39,7 +39,7 @@ const FrameCardContainer = styled.div`
 `;
 
 const FrameCardBox = styled.div`
-  background-color: ${COLORS.green};
+  background-color: ${(props) => props.green ? COLORS.green : COLORS.darkRed};
   width: 100%;
   display: flex;
   justify-content: center;
