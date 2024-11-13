@@ -7,7 +7,7 @@ import ModelSelector from '../components/Room/ModelSelector';
 const Room = ({ data }) => {
   return (
     <RoomWr>
-      <RoomImgBlock img={data.bgImg}>{data.name}</RoomImgBlock>
+      <RoomImgBlock img={data.bgImg} />
       <ModelSelector exhibits={data.exhibits} />
       <RoomMainBlock>
         <AudioGuide audioSrc={data.audio} />
