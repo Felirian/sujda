@@ -4,7 +4,7 @@ import frame from '../assets/rooms/secret/mirror-bg.png';
 import glass from '../assets/rooms/secret/mirror-glass.png';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, FreeMode, Pagination } from 'swiper/modules';
+import { FreeMode, Pagination } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/grid';
@@ -13,58 +13,62 @@ import { PERSONS } from '../features/data';
 import Button from '../components/Shared/Button';
 import { Link } from 'react-router-dom';
 import { COLORS } from '../styles/variables';
+import { H3, P2 } from '../styles/textTags';
 
 const Secret = () => {
-  const [currentPerson, setCurrentPerson] = useState(null);
+  const [currentPerson, setCurrentPerson] = useState(PERSONS[0]);
+  const [fadeOut, setFadeOut] = useState(false);
 
   const handleSlideChange = (swiper) => {
     const selectedPerson = PERSONS[swiper.realIndex];
-    setCurrentPerson(selectedPerson);
-    console.log(currentPerson?.name);
+    setFadeOut(true);
+    setTimeout(() => {
+      setCurrentPerson(selectedPerson);
+      setFadeOut(false);
+    }, 300);
   };
 
   return (
     <SecretRoomWr>
-      <SecretRoomContainer>
-        <GlassImg src={glass} alt={'fff'} />
-        <FrameImg src={frame} alt={'fff'} />
-        <SwiperContainer>
-          <Swiper
-            slidesPerView={1}
-            spaceBetween={28}
-            speed={1000}
-            loop={true}
-            pagination={{
-              clickable: true,
-              el: '.swiper-pagination',
-              bulletClass: 'swiper-pagination-bullet',
-              bulletActiveClass: 'swiper-pagination-bullet-active',
-            }}
-            onSlideChange={handleSlideChange}
-            modules={[FreeMode, Pagination, Autoplay]}
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: true,
-            }}
-            className="mySwiper"
-          >
-            {PERSONS.map((person, index) => (
-              <PersonSlide key={index}>
-                <Personimg src={person.image} alt={person.name} />
-              </PersonSlide>
-            ))}
-          </Swiper>
-        </SwiperContainer>
-      </SecretRoomContainer>
-      <SwiperPagination className="swiper-pagination" />
-      <SwiperText>
-        <p>{currentPerson?.name}</p>
-        <p>{currentPerson?.info}</p>
-      </SwiperText>
+      <GlassImg src={glass} alt={'glass'} />
+      <FrameImg src={frame} alt={'frame'} />
+      <SwiperContainer>
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={28}
+          speed={1000}
+          loop={true}
+          pagination={{
+            clickable: true,
+            el: '.swiper-pagination',
+            bulletClass: 'swiper-pagination-bullet',
+            bulletActiveClass: 'swiper-pagination-bullet-active',
+          }}
+          onSlideChange={handleSlideChange}
+          modules={[FreeMode, Pagination]}
+          className='mySwiper'
+        >
+          {PERSONS.map((person, index) => (
+            <PersonSlide key={index}>
+              <Personimg src={person.image} alt={person.name} />
+            </PersonSlide>
+          ))}
+        </Swiper>
+      </SwiperContainer>
 
-      <MainBtn to={'/'}>
-        <Button type={'sand'}>узнать больше</Button>
-      </MainBtn>
+      <BottomContainer>
+        <SwiperPaginationWrapper>
+          <SwiperPagination className='swiper-pagination' />
+        </SwiperPaginationWrapper>
+
+        <SwiperText fadeOut={fadeOut}>
+          <H3>{currentPerson?.name}</H3>
+          <P2>{currentPerson?.info}</P2>
+        </SwiperText>
+        <MainBtn to={'/'}>
+          <Button type={'sand'}>узнать больше</Button>
+        </MainBtn>
+      </BottomContainer>
     </SecretRoomWr>
   );
 };
@@ -80,70 +84,68 @@ const SecretRoomWr = styled.div`
   align-items: center;
 `;
 
-const SecretRoomContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 3;
-  width: 100%;
-  height: 100%;
-  position: relative;
-`;
-
 const FrameImg = styled.img`
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom;
   pointer-events: none;
   position: absolute;
   z-index: 2;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  bottom: 0%;
 `;
 
 const GlassImg = styled.img`
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom;
   pointer-events: none;
   position: absolute;
   z-index: 1;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  bottom: 0%;
 `;
-
 const SwiperContainer = styled.div`
+  position: absolute;
+  bottom: 79vw;
   width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+const BottomContainer = styled.div`
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+  padding: 0 5vw 12vw 5vw;
+  margin-top: auto;
 `;
 
 const SwiperText = styled.div`
-  width: 100%;
-  height: 100%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: start;
   justify-content: center;
-  position: absolute;
-  z-index: 3;
-  bottom: 0%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  opacity: ${({ fadeOut }) => (fadeOut ? 0 : 1)};
+  transition: opacity 0.3s ease-in-out;
+`;
+
+const SwiperPaginationWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10vw;
 `;
 
 const SwiperPagination = styled.div`
-  position: absolute;
-  bottom: 20%; 
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-
   .swiper-pagination-bullet {
-    width: 10px;
-    height: 10px;
+    width: 3vw;
+    height: 3vw;
     background-color: ${COLORS.sand};
     opacity: 1;
     border-radius: 0;
@@ -164,7 +166,7 @@ const PersonSlide = styled(SwiperSlide)`
 `;
 
 const Personimg = styled.img`
-  width: 50%;
+  width: 90%;
   height: auto;
 `;
 
@@ -173,8 +175,6 @@ const MainBtn = styled(Link)`
   padding: 0.77vw;
   background-color: ${COLORS.sand};
   z-index: 3;
-  bottom: 5%;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  text-align: center;
+  margin-top: 12vw;
 `;
