@@ -2,7 +2,7 @@ import React from 'react';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import { styled } from 'styled-components';
 import { COLORS } from '../styles/variables';
-import Button from "../components/Shared/Button";
+import CustomButton from "../components/Shared/CustomButton";
 import {Link} from "react-router-dom";
 
 const Map = () => {
@@ -12,14 +12,17 @@ const Map = () => {
         <>
           <TransformComponent wrapperClass='map_wrapper' contentClass='map_wrapper_content'>
             <ZoomableMap>
-              ZoomableMap ZoomableMap ZoomableMap ZoomableMap ZoomableMap ZoomableMap ZoomableMap ZoomableMap ZoomableMap ZoomableMap
-              ZoomableMap
+              ZoomableMap ZoomableMap
+              ZoomableMap ZoomableMap
+              ZoomableMap ZoomableMap
+              ZoomableMap ZoomableMap
+              ZoomableMap ZoomableMap
             </ZoomableMap>
           </TransformComponent>
         </>
       </TransformWrapper>
       <Link to="/museum">
-        <Button type={'orange'}>в музей</Button>
+        <CustomButton type={'orange'}>в музей</CustomButton>
       </Link>
     </MapWr>
   );

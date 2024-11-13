@@ -9,6 +9,7 @@ export const COLORS = {
   brown: '#32211A',
   green: '#333E2C',
   red: '#AE4040',
+  darkRed: '#6C2929',
   orange: '#AD6154',
   darkOrange: '#9A5347',
 };

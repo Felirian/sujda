@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { H1, P1 } from '../styles/textTags';
 import { Link } from 'react-router-dom';
-import Button from '../components/Shared/Button';
+import CustomButton from '../components/Shared/CustomButton';
 import { COLORS } from '../styles/variables';
 
 const Main = () => {
@@ -18,7 +18,7 @@ const Main = () => {
           <P1>Музей-усадьба</P1>
         </ConText>
         <MainBtn to="/map">
-          <Button type={'sand'}>Начать</Button>
+          <CustomButton type={'sand'}>Начать</CustomButton>
         </MainBtn>
       </MainCon>
     </MainWr>
