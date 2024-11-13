@@ -7,8 +7,7 @@ export const useQuizFunctions = () => {
   const [answered, setAnswered] = useState(false)
 
   const nextQuestion = (isCorrect) => {
-    //todo: проверка на не выбранный ответ
-    // if (!answered || currentQuestion == -1) return false;
+
     setAnswered(false)
     setSelectedAnswer(null)
     setCurrentQuestion(currentQuestion + 1);

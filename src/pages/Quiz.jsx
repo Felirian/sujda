@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import Question from "../components/Room/Quiz/Question";
 import {useQuizFunctions} from "../features/quiz";
 import {COLORS} from "../styles/variables";
-import {H3} from "../styles/textTags";
+import {H1, H3, P1} from "../styles/textTags";
+import FrameCard from "../components/Shared/FrameCard";
 
 const Quiz = ({data}) => {
   const QuizFunc = useQuizFunctions();
@@ -12,14 +13,24 @@ const Quiz = ({data}) => {
     <QuizWr>
       {QuizFunc.variables.currentQuestion === -1 ? (
         <>
-          Start
-          <QuizBtn onClick={() => QuizFunc.fun.nextQuestion(false)}>НАЧАТЬ</QuizBtn>
+          <FrameCard>
+            <StartPageWr>
+              <H1>Викторина</H1>
+              <P1>Мы предлагаем Вам пройти викторину текст текст текст текст текст текст текст</P1>
+            </StartPageWr>
+          </FrameCard>
+          <QuizBtn
+            style={{marginTop: '12.82vw'}}
+            onClick={() => QuizFunc.fun.nextQuestion(false)}
+          >
+            НАЧАТЬ
+          </QuizBtn>
         </>
       ) : QuizFunc.variables.currentQuestion === data.length ? (
         <>
           Конец {QuizFunc.variables.score}
 
-          <QuizBtn onClick={() => QuizFunc.fun.startOver()}> заново</QuizBtn>
+          <QuizBtn onClick={() => QuizFunc.fun.startOver()}>заново</QuizBtn>
         </>
       ) : (
         <>
@@ -31,6 +42,17 @@ const Quiz = ({data}) => {
 };
 
 export default Quiz;
+
+const StartPageWr = styled.div`
+  display: flex;
+  flex-direction: column;
+  //justify-content: center;
+  //align-items: center;
+  text-align: start;
+  width: 100%;
+  gap: 4.62vw;
+  padding: 0 7.18vw;
+`;
 
 const QuizWr = styled.div`
   display: flex;
@@ -44,9 +66,12 @@ const QuizWr = styled.div`
   background-position: center;
 `;
 
-export const QuizBtn = ({children, onClick}) => {
+export const QuizBtn = ({children, onClick, ...props}) => {
   return (
-    <QuizBtnWr onClick={onClick}>
+    <QuizBtnWr
+      {...props}
+      onClick={onClick}
+    >
       <QuizCon>
         <H3>{children}</H3>
       </QuizCon>
@@ -61,7 +86,10 @@ const QuizBtnWr = styled.button`
   padding: 0.77vw;
   &:active {
     background-color: #D7BF99;
-  }  
+  } 
+  &:disabled {
+    opacity: 0.5;
+  }
 `
 
 const QuizCon = styled.div`

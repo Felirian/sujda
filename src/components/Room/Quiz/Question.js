@@ -44,6 +44,8 @@ const Question = ({question, QuizFunc}) => {
           </FrameCard>
 
           <QuizBtn
+            disabled={QuizFunc.variables.selectedAnswer === null}
+            style={{marginTop: '12.82vw'}}
             onClick={() => QuizFunc.fun.setAnswered(true)}
           >
             ОТПРАВИТЬ
