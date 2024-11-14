@@ -17,6 +17,7 @@ import { H1, H3, P1, P2, P3 } from '../styles/textTags';
 import FrameCard from '../components/Shared/FrameCard';
 import SvgSelector from '../components/Shared/SvgSelector';
 import CancelButton from '../components/Shared/CancelButton';
+import LongFrameCard from '../components/Shared/LongFrameCard';
 
 const Secret = () => {
   const [currentPerson, setCurrentPerson] = useState(PERSONS[0]);
@@ -87,15 +88,11 @@ const Secret = () => {
       </BottomContainer>
 
       {showStory && (
-        <Overlay onClick={handleCloseStory}>
-          <StoryWr onClick={(e) => e.stopPropagation()}>
-            <CancelButton onClick={handleCloseStory} />
-            <SvgSelector svg={'topFrameStoryGreen'} />
-            <StoryContainer>
-              <H1Styled>{currentPerson.name}</H1Styled>
-              <P1Styled>{currentPerson.story}</P1Styled>
-            </StoryContainer>
-          </StoryWr>
+        <Overlay>
+          <OverlayContainer onClick={handleCloseStory}>
+            <CancelButton />
+          </OverlayContainer>
+          <LongFrameCard>dfgdfg</LongFrameCard>
         </Overlay>
       )}
     </SecretRoomWr>
@@ -137,7 +134,7 @@ const GlassImg = styled.img`
 
 const SwiperContainer = styled.div`
   position: absolute;
-  bottom: 75vw;
+  bottom: 77vw;
   width: 100%;
   display: flex;
   align-items: center;
@@ -158,8 +155,7 @@ const BottomContainer = styled.div`
 const SwiperText = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: center;
+  margin-right: auto;
   opacity: ${({ fadeOut }) => (fadeOut ? 0 : 1)};
   transition: opacity 0.3s ease-in-out;
 `;
@@ -220,9 +216,15 @@ const Overlay = styled.div`
   height: 100%;
   background-color: ${COLORS.black};
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 100;
+`;
+
+const OverlayContainer = styled.div`
+  display: flex;
+  margin: 3vw 6vw 3vw auto;
 `;
 
 const StoryWr = styled.div`
