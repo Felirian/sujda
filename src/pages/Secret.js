@@ -10,7 +10,6 @@ import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
 import { PERSONS } from '../features/data';
-
 import { Link } from 'react-router-dom';
 import { COLORS } from '../styles/variables';
 import { H3, P2 } from '../styles/textTags';
