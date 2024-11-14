@@ -10,11 +10,11 @@ import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
 import { PERSONS } from '../features/data';
-import Button from '../components/Shared/Button';
+
 import { Link } from 'react-router-dom';
 import { COLORS } from '../styles/variables';
 import { H3, P2 } from '../styles/textTags';
-import CustomButton from "../components/Shared/CustomButton";
+import CustomButton from '../components/Shared/CustomButton';
 
 const Secret = () => {
   const [currentPerson, setCurrentPerson] = useState(PERSONS[0]);

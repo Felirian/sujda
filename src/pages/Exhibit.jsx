@@ -1,17 +1,19 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import Model from '../components/Exhibit/Model';
+import Preview from '../components/Exhibit/Preview';
 import Description from '../components/Exhibit/Description';
 
 const Exhibit = ({ data }) => {
   return (
     <ExhibitWr>
-      <Model data={data} />
+      <Preview data={data} />
       <Description data={data} />
     </ExhibitWr>
   );
 };
 
-const ExhibitWr = styled.div``;
+const ExhibitWr = styled.div`
+  position: relative;
+`;
 
 export default Exhibit;

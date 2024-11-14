@@ -11,6 +11,7 @@ import { ROOMS_DATA } from './features/data';
 import Secret from './pages/Secret';
 import Museum from './pages/Museum';
 import Exhibit from './pages/Exhibit';
+import ModelViewer from './components/Exhibit/ModelViewer';
 
 function App() {
   const [isDesktop, setIsDesktop] = useState(false);
@@ -44,11 +45,17 @@ function App() {
             <Route path='quiz' element={<Quiz data={roomData.quiz} />} />
             {roomData.exhibits.map((exhibit, index) => {
               return (
-                <Route
-                  key={`${index}_exhibit`}
-                  path={exhibit.route}
-                  element={<Exhibit data={exhibit} />}
-                />
+                <>
+                  <Route
+                    key={`${index}_exhibit`}
+                    path={exhibit.route}
+                    element={<Exhibit data={exhibit} />}
+                  />
+                  <Route
+                    path={`${exhibit.route}/model`}
+                    element={<ModelViewer model={exhibit.threejs} />}
+                  />
+                </>
               );
             })}
           </Route>

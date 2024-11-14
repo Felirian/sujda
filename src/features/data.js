@@ -58,7 +58,7 @@ const EXHIBITS_DATA = [
     route: 'gannibal',
     img: gannibalPreview,
     preview: gannibalPreview,
-    threejs: false,
+    threejs: 'gannibal',
     description: {
       img: Person1,
       text: [
@@ -72,7 +72,7 @@ const EXHIBITS_DATA = [
     route: 'box',
     img: boxPreview,
     preview: boxPreview,
-    threejs: false,
+    threejs: 'gannibal',
     description: {
       img: Person1,
       text: [
@@ -86,7 +86,7 @@ const EXHIBITS_DATA = [
     route: 'spoon',
     img: spoonPreview,
     preview: spoonPreview,
-    threejs: false,
+    threejs: 'box',
     description: {
       img: Person1,
       text: [
