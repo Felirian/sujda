@@ -1,26 +1,27 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import SvgSelector from '../Shared/SvgSelector';
+import { Link } from 'react-router-dom';
 
-const Model = ({ data }) => {
+const Preview = ({ data }) => {
   return (
-    <ModelWr>
+    <PreviewWr>
       <img src={data.img} alt={data.name} />
-      <button>
+      <Link to='model'>
         <SvgSelector svg='3d' />
-      </button>
-    </ModelWr>
+      </Link>
+    </PreviewWr>
   );
 };
 
-const ModelWr = styled.div`
+const PreviewWr = styled.div`
   width: 100%;
   padding: 15.38vw;
   position: relative;
   img {
     width: 100%;
   }
-  button {
+  a {
     position: absolute;
     bottom: 12.82vw;
     right: 12.82vw;
@@ -30,7 +31,10 @@ const ModelWr = styled.div`
       width: 100%;
       height: 100%;
     }
+    &:active {
+      opacity: 0.8;
+    }
   }
 `;
 
-export default Model;
+export default Preview;
