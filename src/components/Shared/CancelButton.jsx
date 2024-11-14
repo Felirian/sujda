@@ -15,8 +15,14 @@ export default CancelButton;
 
 const CancelButtonWr = styled.div`
   display: flex;
-  alaign-items: center;
+  width: 10vw;
+  height: 10vw;
+  align-items: center;
   justify-content: center;
   background-color: ${COLORS.red};
   border-radius: 100%;
+  & > svg {
+    width: 5vw;
+    height: 5vw;
+  }
 `;
