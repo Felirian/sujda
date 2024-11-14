@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import frame from '../assets/rooms/secret/mirror-bg.png';
 import glass from '../assets/rooms/secret/mirror-glass.png';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Pagination } from 'swiper/modules';
-
 import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
@@ -13,17 +11,15 @@ import { PERSONS } from '../features/data';
 import Button from '../components/Shared/CustomButton';
 import { Link } from 'react-router-dom';
 import { COLORS } from '../styles/variables';
-import { H1, H3, P1, P2, P3 } from '../styles/textTags';
-import FrameCard from '../components/Shared/FrameCard';
-import SvgSelector from '../components/Shared/SvgSelector';
-import CancelButton from '../components/Shared/CancelButton';
+import { H1, H3, P2 } from '../styles/textTags';
 import LongFrameCard from '../components/Shared/LongFrameCard';
 
 const Secret = () => {
   const [currentPerson, setCurrentPerson] = useState(PERSONS[0]);
   const [fadeOut, setFadeOut] = useState(false);
-  const [showStory, setShowStory] = useState(false);
-  const prevIndexRef = useRef(0);
+  const [overlayPosition, setOverlayPosition] = useState(100); // Начальное положение карточки
+  const startYRef = useRef(0); // Ссылка на начальное положение Y
+  const prevIndexRef = useRef(0); // Для отслеживания предыдущего индекса
 
   const handleSlideChange = (swiper) => {
     const selectedPerson = PERSONS[swiper.realIndex];
@@ -38,11 +34,32 @@ const Secret = () => {
   };
 
   const handleLearnMoreClick = () => {
-    setShowStory(true);
+    setOverlayPosition(50); // Показываем карточку частично
   };
 
-  const handleCloseStory = () => {
-    setShowStory(false);
+  const handleTouchStart = (e) => {
+    startYRef.current = e.touches ? e.touches[0].clientY : e.clientY;
+  };
+
+  const handleTouchMove = (e) => {
+    const currentY = e.touches ? e.touches[0].clientY : e.clientY;
+    const deltaY = currentY - startYRef.current;
+
+    let newY = overlayPosition + (deltaY / window.innerHeight) * 100;
+
+    // Лимитируем движение карточки: верхний предел - 100%, нижний предел - 0%
+    if (newY <= 100 && newY >= 0) {
+      setOverlayPosition(newY);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    // Если карточка поднята выше середины, скрыть её, иначе вернуть в исходное положение
+    if (overlayPosition > 30) {
+      setOverlayPosition(100);
+    } else if (overlayPosition < 50) {
+      setOverlayPosition(0);
+    }
   };
 
   return (
@@ -87,14 +104,25 @@ const Secret = () => {
         </MainBtn>
       </BottomContainer>
 
-      {showStory && (
-        <Overlay>
-          <OverlayContainer onClick={handleCloseStory}>
-            <CancelButton />
-          </OverlayContainer>
-          <LongFrameCard>dfgdfg</LongFrameCard>
-        </Overlay>
-      )}
+      <DarkOverlay style={{ opacity: overlayPosition === 100 ? 0 : 0.5 }} />
+
+      <OverlayWr
+        style={{ transform: `translateY(${overlayPosition}%)` }}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onMouseDown={handleTouchStart}
+        onMouseMove={(e) => e.buttons === 1 && handleTouchMove(e)} // Для мыши
+        onMouseUp={handleTouchEnd}
+      >
+        <LongFrameCard>
+          <StoryWr>
+            <H1Styled>{currentPerson?.name.split(' ')[0]}</H1Styled>
+            <P2>{currentPerson?.story}</P2>
+            <P2>{currentPerson?.story}</P2>
+          </StoryWr>
+        </LongFrameCard>
+      </OverlayWr>
     </SecretRoomWr>
   );
 };
@@ -208,53 +236,34 @@ const MainBtn = styled(Link)`
   margin-top: 12vw;
 `;
 
-const Overlay = styled.div`
+const OverlayWr = styled.div`
   position: fixed;
-  top: 0;
-  left: 0;
+  bottom: 0;
   width: 100%;
-  height: 100%;
-  background-color: ${COLORS.black};
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  overflow: auto;
   z-index: 100;
-`;
-
-const OverlayContainer = styled.div`
-  display: flex;
-  margin: 3vw 6vw 3vw auto;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
 `;
 
 const StoryWr = styled.div`
   display: flex;
   flex-direction: column;
-  text-align: start;
-  padding: 10vw 7.18vw 0 7.18vw;
-  position: relative;
-  align-items: center;
-  background-color: ${COLORS.green};
-  width: 80%;
-  max-height: 80%;
-  overflow-y: auto;
-  z-index: 101;
-`;
-
-const StoryContainer = styled.div`
-  background-color: ${COLORS.green};
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: -0.5vw 0;
-  padding: 0 1.795vw;
+  gap: 6vw;
 `;
 
 const H1Styled = styled(H1)`
-  margin-bottom: 4.5vw;
+  text-transform: uppercase;
 `;
 
-const P1Styled = styled(P1)`
-  text-align: left;
+const DarkOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 99;
+  pointer-events: none;
 `;

@@ -42,4 +42,5 @@ const LongFrameCardContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 5.641vw 5.641vw 5.641vw;
 `;
