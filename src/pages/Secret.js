@@ -98,7 +98,7 @@ const Secret = () => {
           <SwiperPagination className='swiper-pagination' />
         </SwiperPaginationWrapper>
 
-        <SwiperText fadeOut={fadeOut}>
+        <SwiperText $fadeOut={fadeOut}>
           <H3>{currentPerson?.name}</H3>
           <P2>{currentPerson?.info}</P2>
         </SwiperText>
@@ -186,7 +186,7 @@ const SwiperText = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: auto;
-  opacity: ${({ fadeOut }) => (fadeOut ? 0 : 1)};
+  opacity: ${( props ) => (props.$fadeOut ? 0 : 1)};
   transition: opacity 0.3s ease-in-out;
 `;
 
@@ -229,7 +229,7 @@ const Personimg = styled.img`
   height: auto;
 `;
 
-const MainBtn = styled(Link)`
+const MainBtn = styled.div`
   width: 57.69vw;
   padding: 0.77vw;
   background-color: ${COLORS.sand};
