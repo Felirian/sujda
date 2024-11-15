@@ -15,7 +15,7 @@ const Quiz = ({ data }) => {
 
   return (
     <QuizWr>
-      <Header backTo={'/'} type={'black'}/>
+      <Header back={true} type={'black'}/>
 
       {QuizFunc.variables.currentQuestion >= 0 && QuizFunc.variables.currentQuestion < data.length && (
         <QuestionCounter
