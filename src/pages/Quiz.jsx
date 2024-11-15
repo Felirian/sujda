@@ -8,12 +8,15 @@ import FrameCard from '../components/Shared/FrameCard';
 import bg from '../assets/quiz/quiz-bg.png';
 import feather from '../assets/quiz/feather.png';
 import QuestionCounter from '../components/Room/Quiz/QuestionCounter';
+import Header from '../components/Shared/Header';
 
 const Quiz = ({ data }) => {
   const QuizFunc = useQuizFunctions();
 
   return (
     <QuizWr>
+      <Header to={'/'} type={'black'}/>
+
       {QuizFunc.variables.currentQuestion >= 0 && QuizFunc.variables.currentQuestion < data.length && (
         <QuestionCounter
           currentQuestion={QuizFunc.variables.currentQuestion}

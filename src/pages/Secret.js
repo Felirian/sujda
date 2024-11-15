@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 import { COLORS } from '../styles/variables';
 import { H1, H3, P2 } from '../styles/textTags';
 import LongFrameCard from '../components/Shared/LongFrameCard';
+import Header from '../components/Shared/Header';
 
 const Secret = () => {
   const [currentPerson, setCurrentPerson] = useState(PERSONS[0]);
@@ -64,6 +65,8 @@ const Secret = () => {
 
   return (
     <SecretRoomWr>
+      <Header />
+
       <GlassImg src={glass} alt={'glass'} />
       <FrameImg src={frame} alt={'frame'} />
       <SwiperContainer>
