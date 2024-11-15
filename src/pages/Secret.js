@@ -8,7 +8,6 @@ import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
 import { PERSONS } from '../features/data';
-import { Link } from 'react-router-dom';
 import { COLORS } from '../styles/variables';
 import { H1, H3, P2 } from '../styles/textTags';
 import CustomButton from '../components/Shared/CustomButton';
@@ -46,7 +45,11 @@ const Secret = () => {
     const currentY = e.touches ? e.touches[0].clientY : e.clientY;
     const deltaY = currentY - startYRef.current;
 
-    let newY = overlayPosition + (deltaY / window.innerHeight) * 100;
+    // Скорость движения карточки
+    const maxDelta = 25;
+    const limitedDeltaY = Math.sign(deltaY) * Math.min(Math.abs(deltaY), maxDelta);
+
+    let newY = overlayPosition + (limitedDeltaY / window.innerHeight) * 100;
 
     // Лимитируем движение карточки: верхний предел - 100%, нижний предел - 0%
     if (newY <= 100 && newY >= 0) {
@@ -55,14 +58,14 @@ const Secret = () => {
   };
 
   const handleTouchEnd = () => {
-    // Если карточка поднята выше середины, скрыть её, иначе вернуть в исходное положение
-    if (overlayPosition > 30) {
-      setOverlayPosition(100);
-    } else if (overlayPosition < 50) {
+    if (overlayPosition < 25) {
       setOverlayPosition(0);
+    } else if (overlayPosition > 60) {
+      setOverlayPosition(100);
+    } else {
+      setOverlayPosition(50);
     }
   };
-
   return (
     <SecretRoomWr>
       <Header />

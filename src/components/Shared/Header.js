@@ -4,10 +4,10 @@ import SvgSelector from './SvgSelector';
 import { COLORS } from '../../styles/variables';
 import { Link } from 'react-router-dom';
 
-const Header = ({ to, type }) => (
+const Header = ({ backTo, type }) => (
   <HeaderWr>
-    {to && (
-      <HeaderArrow to={to} type={type}>
+    {backTo && (
+      <HeaderArrow to={backTo} type={type}>
         {type === 'black' ? (
           <SvgSelector svg={'headerArrowBlack'} />
         ) : (
@@ -15,7 +15,7 @@ const Header = ({ to, type }) => (
         )}
       </HeaderArrow>
     )}
-    <HeaderMenu type={type}>
+    <HeaderMenu to={'/museum'} type={type}>
       {type === 'black' ? <SvgSelector svg={'headerBlack'} /> : <SvgSelector svg={'headerWhite'} />}
     </HeaderMenu>
   </HeaderWr>
@@ -32,7 +32,7 @@ const HeaderWr = styled.div`
   width: 100%;
 `;
 
-const HeaderMenu = styled.header`
+const HeaderMenu = styled(Link)`
   width: 9.2vw;
   height: 9.2vw;
   padding: 3vw;

@@ -1,7 +1,7 @@
 import React from 'react';
 import Controls from '../components/Room/Controls';
 import styled from 'styled-components';
-import Img from '../assets/rooms/secret/person3.png';
+import Img from '../assets/museum/museum-person.png';
 import SvgSelector from '../components/Shared/SvgSelector';
 import ArrowButton from '../components/Shared/ArrowButton';
 import { Link } from 'react-router-dom';
@@ -51,6 +51,7 @@ const ControlsWr = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-top:auto;
 `;
 
 export default Museum;
