@@ -35,7 +35,7 @@ const Controls = ({ background = false }) => {
 
 const ControlsWr = styled.div`
   background-color: ${(props) => (props.$background ? COLORS.green : 'rgba(0,0,0,0)')};
-  padding: 0vw;
+  padding: ${(props) => (props.$background ? '6.15vw 5.13vw 7.18vw' : '0')};
   display: flex;
   flex-direction: column;
   gap: 1.67vw;

@@ -7,7 +7,6 @@ export const useQuizFunctions = () => {
   const [answered, setAnswered] = useState(false)
 
   const nextQuestion = (isCorrect) => {
-
     setAnswered(false)
     setSelectedAnswer(null)
     setCurrentQuestion(currentQuestion + 1);
