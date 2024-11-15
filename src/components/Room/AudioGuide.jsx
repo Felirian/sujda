@@ -132,11 +132,12 @@ const AudioGuideWr = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 5.13vw 5.13vw 0;
+  margin-bottom: -0.5vw;
 `;
 
 const QuizButton = styled(Link)`
-  width: 14.87vw;
-  height: 8.21vw;
+  width: 11.54vw;
+  height: 11.54vw;
   svg {
     width: 100%;
     height: 100%;
@@ -145,7 +146,7 @@ const QuizButton = styled(Link)`
 
 const PlayButton = styled.button`
   position: relative;
-  top: -1.5vw;
+  top: 0;
   color: ${COLORS.white};
   font-size: 6vw;
   cursor: pointer;
@@ -154,14 +155,15 @@ const PlayButton = styled.button`
 
 const ProgressContainer = styled.div`
   position: relative;
-  top: -1.5vw;
+  top: 0;
+  left: 1vw;
   display: flex;
   align-items: center;
   height: 1.4vw;
   background-color: ${COLORS.white};
   margin: 0 6.7vw 0;
   cursor: pointer;
-  width: 57vw;
+  width: 68vw;
   padding: 0 0.2vw;
 `;
 
@@ -179,8 +181,8 @@ const TimeDisplay = styled.span`
   font-weight: 700;
   line-height: normal;
   white-space: nowrap;
-  bottom: -0.5vw;
-  right: 27.5vw;
+  bottom: -2vw;
+  right: 21.5vw;
   span {
     color: ${COLORS.yellow};
   }
