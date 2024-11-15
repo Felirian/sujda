@@ -1,24 +1,26 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import frame from '../assets/rooms/secret/mirror-bg.png';
 import glass from '../assets/rooms/secret/mirror-glass.png';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Pagination } from 'swiper/modules';
-
 import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
 import { PERSONS } from '../features/data';
 import { Link } from 'react-router-dom';
 import { COLORS } from '../styles/variables';
-import { H3, P2 } from '../styles/textTags';
+import { H1, H3, P2 } from '../styles/textTags';
 import CustomButton from '../components/Shared/CustomButton';
+import LongFrameCard from '../components/Shared/LongFrameCard';
+import Header from '../components/Shared/Header';
 
 const Secret = () => {
   const [currentPerson, setCurrentPerson] = useState(PERSONS[0]);
   const [fadeOut, setFadeOut] = useState(false);
-  const prevIndexRef = useRef(0);
+  const [overlayPosition, setOverlayPosition] = useState(100); // Начальное положение карточки
+  const startYRef = useRef(0); // Ссылка на начальное положение Y
+  const prevIndexRef = useRef(0); // Для отслеживания предыдущего индекса
 
   const handleSlideChange = (swiper) => {
     const selectedPerson = PERSONS[swiper.realIndex];
@@ -32,8 +34,39 @@ const Secret = () => {
     }
   };
 
+  const handleLearnMoreClick = () => {
+    setOverlayPosition(50); // Показываем карточку частично
+  };
+
+  const handleTouchStart = (e) => {
+    startYRef.current = e.touches ? e.touches[0].clientY : e.clientY;
+  };
+
+  const handleTouchMove = (e) => {
+    const currentY = e.touches ? e.touches[0].clientY : e.clientY;
+    const deltaY = currentY - startYRef.current;
+
+    let newY = overlayPosition + (deltaY / window.innerHeight) * 100;
+
+    // Лимитируем движение карточки: верхний предел - 100%, нижний предел - 0%
+    if (newY <= 100 && newY >= 0) {
+      setOverlayPosition(newY);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    // Если карточка поднята выше середины, скрыть её, иначе вернуть в исходное положение
+    if (overlayPosition > 30) {
+      setOverlayPosition(100);
+    } else if (overlayPosition < 50) {
+      setOverlayPosition(0);
+    }
+  };
+
   return (
     <SecretRoomWr>
+      <Header />
+
       <GlassImg src={glass} alt={'glass'} />
       <FrameImg src={frame} alt={'frame'} />
       <SwiperContainer>
@@ -69,10 +102,30 @@ const Secret = () => {
           <H3>{currentPerson?.name}</H3>
           <P2>{currentPerson?.info}</P2>
         </SwiperText>
-        <MainBtn to={'/'}>
+        <MainBtn onClick={handleLearnMoreClick}>
           <CustomButton type={'sand'}>узнать больше</CustomButton>
         </MainBtn>
       </BottomContainer>
+
+      <DarkOverlay style={{ opacity: overlayPosition === 100 ? 0 : 0.5 }} />
+
+      <OverlayWr
+        style={{ transform: `translateY(${overlayPosition}%)` }}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onMouseDown={handleTouchStart}
+        onMouseMove={(e) => e.buttons === 1 && handleTouchMove(e)} // Для мыши
+        onMouseUp={handleTouchEnd}
+      >
+        <LongFrameCard>
+          <StoryWr>
+            <H1Styled>{currentPerson?.name.split(' ')[0]}</H1Styled>
+            <P2>{currentPerson?.story}</P2>
+            <P2>{currentPerson?.story}</P2>
+          </StoryWr>
+        </LongFrameCard>
+      </OverlayWr>
     </SecretRoomWr>
   );
 };
@@ -111,7 +164,7 @@ const GlassImg = styled.img`
 `;
 const SwiperContainer = styled.div`
   position: absolute;
-  bottom: 79vw;
+  bottom: 77vw;
   width: 100%;
   display: flex;
   align-items: center;
@@ -132,8 +185,7 @@ const BottomContainer = styled.div`
 const SwiperText = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: center;
+  margin-right: auto;
   opacity: ${({ fadeOut }) => (fadeOut ? 0 : 1)};
   transition: opacity 0.3s ease-in-out;
 `;
@@ -156,7 +208,7 @@ const SwiperPagination = styled.div`
     background-color: ${COLORS.sand};
     opacity: 1;
     border-radius: 0;
-    margin: 0 5px;
+    margin: 0 1.282vw;
   }
 
   .swiper-pagination-bullet-active {
@@ -184,4 +236,36 @@ const MainBtn = styled(Link)`
   z-index: 3;
   text-align: center;
   margin-top: 12vw;
+`;
+
+const OverlayWr = styled.div`
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  overflow: auto;
+  z-index: 100;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+`;
+
+const StoryWr = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6vw;
+`;
+
+const H1Styled = styled(H1)`
+  text-transform: uppercase;
+`;
+
+const DarkOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 99;
+  pointer-events: none;
 `;
