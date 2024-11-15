@@ -7,6 +7,7 @@ import FrameCard from '../components/Shared/FrameCard';
 import { ButtonTextStyle, H1 } from '../styles/textTags';
 import SvgSelector from '../components/Shared/SvgSelector';
 import { COLORS } from '../styles/variables';
+import Header from '../components/Shared/Header';
 
 const Room = ({ data }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -19,6 +20,8 @@ const Room = ({ data }) => {
 
   return (
     <RoomWr>
+      <Header type='black' />
+
       {modalIsOpen && <RoomBackdrop />}
       <RoomModal $modalisopen={modalIsOpen}>
         <FrameCard>
@@ -46,6 +49,7 @@ const Room = ({ data }) => {
 };
 
 const RoomWr = styled.div`
+  overflow: hidden;
   position: relative;
   width: 100%;
   height: 100vh;
@@ -72,6 +76,11 @@ const RoomMainBlock = styled.div`
   bottom: 0;
   width: 100%;
 `;
+
+// const RoomHeaderWr = styled.div`
+//   position: absolute;
+//   z-index: 97;
+// `;
 
 const RoomModal = styled.div`
   position: absolute;
