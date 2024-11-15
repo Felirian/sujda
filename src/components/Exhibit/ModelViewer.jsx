@@ -1,4 +1,4 @@
-import React, { Suspense, useRef } from 'react';
+import React, { Suspense, useEffect, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { CameraControls, useGLTF } from '@react-three/drei';
 import styled from 'styled-components';
@@ -6,14 +6,33 @@ import { COLORS } from '../../styles/variables';
 import SvgSelector from '../Shared/SvgSelector';
 import { P2 } from '../../styles/textTags';
 import { useNavigate } from 'react-router-dom';
+import { Box3, Vector3 } from 'three';
 
 const Model = ({ model }) => {
   const { scene, error } = useGLTF(`/models/${model}.glb`, true);
+
+  useEffect(() => {
+    if (scene) {
+      const box = new Box3().setFromObject(scene);
+      const size = new Vector3();
+      box.getSize(size);
+
+      const maxDimension = Math.max(size.x, size.y, size.z);
+      const scaleFactor = 2 / maxDimension;
+
+      scene.scale.setScalar(scaleFactor);
+      const center = new Vector3();
+      box.getCenter(center);
+      scene.position.sub(center);
+    }
+  }, [scene]);
+
   if (error) {
     console.error('Failed to load model:', error);
     return <ErrorMessage>Ошибка загрузки модели</ErrorMessage>;
   }
-  return <primitive object={scene} scale={0.8} position={[0, -1, 0]} />;
+
+  return <primitive object={scene} />;
 };
 
 const ModelViewer = ({ model }) => {
@@ -32,7 +51,8 @@ const ModelViewer = ({ model }) => {
       <Suspense fallback={<div>Загрузка модели...</div>}>
         <Canvas key={model} camera={{ fov: 45, position: [0, 1, 5] }}>
           <CameraControls minDistance={2} maxDistance={12} />
-          <ambientLight intensity={8} />
+          <ambientLight intensity={5} />
+          <directionalLight position={[5, 10, 5]} intensity={6} castShadow />
           <Model model={model} />
         </Canvas>
       </Suspense>
