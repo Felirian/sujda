@@ -24,17 +24,13 @@ function App() {
             <Route path='quiz' element={<Quiz data={roomData.quiz} />} />
             {roomData.exhibits.map((exhibit, index) => {
               return (
-                <>
-                  <Route
-                    key={`${index}_exhibit`}
-                    path={exhibit.route}
-                    element={<Exhibit data={exhibit} />}
-                  />
+                <React.Fragment key={`${index}_exhibit`}>
+                  <Route path={exhibit.route} element={<Exhibit data={exhibit} />} />
                   <Route
                     path={`${exhibit.route}/model`}
                     element={<ModelViewer model={exhibit.threejs} />}
                   />
-                </>
+                </React.Fragment>
               );
             })}
           </Route>

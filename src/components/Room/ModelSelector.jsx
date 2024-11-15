@@ -7,6 +7,7 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Link } from 'react-router-dom';
+import SvgSelector from '../Shared/SvgSelector';
 
 const ModelSelector = ({ exhibits }) => {
   return (
@@ -25,6 +26,7 @@ const ModelSelector = ({ exhibits }) => {
           <SwiperSlide key={index}>
             <SlideContainer to={`${item.route}`}>
               <ImageWrapper>
+                <SvgSelector svg='cardBg' />
                 <img src={item.preview} alt={item.name} />
               </ImageWrapper>
             </SlideContainer>
@@ -68,11 +70,18 @@ const ImageWrapper = styled.div`
   width: 24.36vw;
   height: 28.46vw;
   padding: 3.08vw;
-  /* border: 2px solid ${(props) => (props.isActive ? 'orange' : 'transparent')}; */
-  background-color: white;
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  position: relative;
+  svg {
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
 
   img {
     width: 20.51vw;

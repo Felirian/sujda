@@ -21,7 +21,6 @@ const ModelViewer = ({ model }) => {
   const navigate = useNavigate();
 
   const handleGoBack = (e) => {
-    e.preventDefault();
     navigate(-1);
   };
 
