@@ -197,6 +197,65 @@ const SvgSelector = ({ svg }) => {
         </svg>
       );
 
+    case 'headerWhite':
+      return (
+        <svg
+          width='16'
+          height='17'
+          viewBox='0 0 16 17'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path d='M0 1H15.5M0 8.5H15.5M0 16H15.5' stroke='white' strokeWidth='2' />
+        </svg>
+      );
+
+    case 'headerBlack':
+      return (
+        <svg
+          width='16'
+          height='17'
+          viewBox='0 0 16 17'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path d='M0 1H15.5M0 8.5H15.5M0 16H15.5' stroke='#232323' strokeWidth='2' />
+        </svg>
+      );
+
+    case 'headerArrowWhite':
+      return (
+        <svg
+          width='40'
+          height='31'
+          viewBox='0 0 40 31'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path
+            d='M40 16.6923L4.64421 16.6923L17.4097 29.2115L15.8049 31L-6.77526e-07 15.5L15.8049 1.21649e-06L17.4097 1.78846L4.64421 14.3077L40 14.3077L40 16.6923Z'
+            fill='white'
+          />
+        </svg>
+      );
+
+    case 'headerArrowBlack':
+      return (
+        <svg
+          width='40'
+          height='31'
+          viewBox='0 0 40 31'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path
+            d='M4.29412 17.0493L16.7181 29.2336L15.7818 30.2771L0.714095 15.5L15.7818 0.722949L16.7181 1.76639L4.29412 13.9507L3.42028 14.8077L4.64421 14.8077L39.5 14.8077L39.5 16.1923L4.64421 16.1923L3.42028 16.1923L4.29412 17.0493Z'
+            fill='#232323'
+            stroke='#232323'
+          />
+        </svg>
+      );
+
     default:
       return <></>;
   }
