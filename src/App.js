@@ -19,7 +19,7 @@ function App() {
       <Route path='room'>
         <Route path='secret' element={<Secret />} />
         {ROOMS_DATA.map((roomData, index) => (
-          <Route key={index} path={roomData.route}>
+          <Route key={`${index}_rooms`} path={roomData.route}>
             <Route index element={<Room data={roomData} />} />
             <Route path='quiz' element={<Quiz data={roomData.quiz} />} />
             {roomData.exhibits.map((exhibit, index) => {
