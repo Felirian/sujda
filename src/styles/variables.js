@@ -4,8 +4,6 @@ export const COLORS = {
   white: '#FFFFFF',
   black: '#232323',
 
-  dark: '#0E0E0E',
-
   lightSand: '#f5d9ad',
   sand: '#BDBC8E',
   darkSand: '#989777',

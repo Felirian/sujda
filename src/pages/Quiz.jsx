@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Question from '../components/Room/Quiz/Question';
 import { useQuizFunctions } from '../features/quiz';
 import { COLORS } from '../styles/variables';
-import { H1, H3, P1, P3 } from '../styles/textTags';
+import { H1, H3, P1} from '../styles/textTags';
 import FrameCard from '../components/Shared/FrameCard';
 import bg from '../assets/quiz/quiz-bg.png';
 import feather from '../assets/quiz/feather.png';
