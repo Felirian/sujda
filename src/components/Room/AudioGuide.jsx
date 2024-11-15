@@ -4,7 +4,7 @@ import { COLORS } from '../../styles/variables';
 import SvgSelector from '../Shared/SvgSelector';
 import { Link } from 'react-router-dom';
 
-const AudioGuide = ({ audioSrc }) => {
+const AudioGuide = ({ audioSrc, setModalIsOpen, allowPlay }) => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -40,7 +40,18 @@ const AudioGuide = ({ audioSrc }) => {
     }
   }, [audioSrc]);
 
+  useEffect(() => {
+    if (allowPlay) {
+      togglePlay();
+    }
+  }, [allowPlay]);
+
   const togglePlay = () => {
+    if (!allowPlay) {
+      setModalIsOpen(true);
+      return;
+    }
+
     if (audioRef.current.paused) {
       audioRef.current.play();
       setIsPlaying(true);
