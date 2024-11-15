@@ -17,9 +17,10 @@ import Header from '../components/Shared/Header';
 const Secret = () => {
   const [currentPerson, setCurrentPerson] = useState(PERSONS[0]);
   const [fadeOut, setFadeOut] = useState(false);
-  const [overlayPosition, setOverlayPosition] = useState(100); // Начальное положение карточки
-  const startYRef = useRef(0); // Ссылка на начальное положение Y
-  const prevIndexRef = useRef(0); // Для отслеживания предыдущего индекса
+  const [preOpen, setPreOpen] = useState(false);
+  const [darkOverlay, setDarkOverlay] = useState(false);
+
+  const prevIndexRef = useRef(0);
 
   const handleSlideChange = (swiper) => {
     const selectedPerson = PERSONS[swiper.realIndex];
@@ -34,38 +35,10 @@ const Secret = () => {
   };
 
   const handleLearnMoreClick = () => {
-    setOverlayPosition(50); // Показываем карточку частично
+    setDarkOverlay(true);
+    setPreOpen(true);
   };
 
-  const handleTouchStart = (e) => {
-    startYRef.current = e.touches ? e.touches[0].clientY : e.clientY;
-  };
-
-  const handleTouchMove = (e) => {
-    const currentY = e.touches ? e.touches[0].clientY : e.clientY;
-    const deltaY = currentY - startYRef.current;
-
-    // Скорость движения карточки
-    const maxDelta = 25;
-    const limitedDeltaY = Math.sign(deltaY) * Math.min(Math.abs(deltaY), maxDelta);
-
-    let newY = overlayPosition + (limitedDeltaY / window.innerHeight) * 100;
-
-    // Лимитируем движение карточки: верхний предел - 100%, нижний предел - 0%
-    if (newY <= 100 && newY >= 0) {
-      setOverlayPosition(newY);
-    }
-  };
-
-  const handleTouchEnd = () => {
-    if (overlayPosition < 25) {
-      setOverlayPosition(0);
-    } else if (overlayPosition > 60) {
-      setOverlayPosition(100);
-    } else {
-      setOverlayPosition(50);
-    }
-  };
   return (
     <SecretRoomWr>
       <Header />
@@ -110,25 +83,16 @@ const Secret = () => {
         </MainBtn>
       </BottomContainer>
 
-      <DarkOverlay style={{ opacity: overlayPosition === 100 ? 0 : 0.5 }} />
+      <DarkOverlay style={{ opacity: darkOverlay ? 0.5 : 0 }} />
 
-      <OverlayWr
-        style={{ transform: `translateY(${overlayPosition}%)` }}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        onMouseDown={handleTouchStart}
-        onMouseMove={(e) => e.buttons === 1 && handleTouchMove(e)} // Для мыши
-        onMouseUp={handleTouchEnd}
-      >
+      <LongFrameCardWr $preOpen={preOpen}>
         <LongFrameCard>
           <StoryWr>
             <H1Styled>{currentPerson?.name.split(' ')[0]}</H1Styled>
             <P2>{currentPerson?.story}</P2>
-            <P2>{currentPerson?.story}</P2>
           </StoryWr>
         </LongFrameCard>
-      </OverlayWr>
+      </LongFrameCardWr>
     </SecretRoomWr>
   );
 };
@@ -189,7 +153,7 @@ const SwiperText = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: auto;
-  opacity: ${( props ) => (props.$fadeOut ? 0 : 1)};
+  opacity: ${(props) => (props.$fadeOut ? 0 : 1)};
   transition: opacity 0.3s ease-in-out;
 `;
 
@@ -241,13 +205,12 @@ const MainBtn = styled.div`
   margin-top: 12vw;
 `;
 
-const OverlayWr = styled.div`
+const LongFrameCardWr = styled.div`
   position: fixed;
   bottom: 0;
   width: 100%;
   overflow: auto;
   z-index: 100;
-  transform: translateY(100%);
   transition: transform 0.3s ease-in-out;
 `;
 
@@ -266,7 +229,7 @@ const DarkOverlay = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: black;
   transition: opacity 0.3s ease-in-out;
   z-index: 99;
