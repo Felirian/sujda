@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import frame from '../assets/rooms/secret/mirror-bg.png';
 import glass from '../assets/rooms/secret/mirror-glass.png';
@@ -17,10 +17,16 @@ import Header from '../components/Shared/Header';
 const Secret = () => {
   const [currentPerson, setCurrentPerson] = useState(PERSONS[0]);
   const [fadeOut, setFadeOut] = useState(false);
-  const [preOpen, setPreOpen] = useState(false);
   const [darkOverlay, setDarkOverlay] = useState(false);
+  const [cardPosition, setCardPosition] = useState('0px'); // Track the position of the LongFrameCard wrapper
 
   const prevIndexRef = useRef(0);
+
+  // Adjust LongFrameCard's wrapper position based on screen size
+  useEffect(() => {
+    const screenHeight = window.innerHeight;
+    setCardPosition(`${screenHeight}px`); // Initially hide the card
+  }, []);
 
   const handleSlideChange = (swiper) => {
     const selectedPerson = PERSONS[swiper.realIndex];
@@ -36,7 +42,8 @@ const Secret = () => {
 
   const handleLearnMoreClick = () => {
     setDarkOverlay(true);
-    setPreOpen(true);
+    const screenHeight = window.innerHeight;
+    setCardPosition(`${screenHeight / 2 }px`);
   };
 
   return (
@@ -59,7 +66,7 @@ const Secret = () => {
           }}
           onSlideChange={handleSlideChange}
           modules={[FreeMode, Pagination]}
-          className='mySwiper'
+          className="mySwiper"
         >
           {PERSONS.map((person, index) => (
             <PersonSlide key={index}>
@@ -71,7 +78,7 @@ const Secret = () => {
 
       <BottomContainer>
         <SwiperPaginationWrapper>
-          <SwiperPagination className='swiper-pagination' />
+          <SwiperPagination className="swiper-pagination" />
         </SwiperPaginationWrapper>
 
         <SwiperText $fadeOut={fadeOut}>
@@ -85,14 +92,14 @@ const Secret = () => {
 
       <DarkOverlay style={{ opacity: darkOverlay ? 0.5 : 0 }} />
 
-      <LongFrameCardWr $preOpen={preOpen}>
+      <CardWrapper style={{ top: cardPosition }}>
         <LongFrameCard>
           <StoryWr>
             <H1Styled>{currentPerson?.name.split(' ')[0]}</H1Styled>
             <P2>{currentPerson?.story}</P2>
           </StoryWr>
         </LongFrameCard>
-      </LongFrameCardWr>
+      </CardWrapper>
     </SecretRoomWr>
   );
 };
@@ -129,6 +136,7 @@ const GlassImg = styled.img`
   z-index: 1;
   bottom: 0%;
 `;
+
 const SwiperContainer = styled.div`
   position: absolute;
   bottom: 77vw;
@@ -188,7 +196,6 @@ const PersonSlide = styled(SwiperSlide)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: end;
 `;
 
 const Personimg = styled.img`
@@ -203,15 +210,6 @@ const MainBtn = styled.div`
   z-index: 3;
   text-align: center;
   margin-top: 12vw;
-`;
-
-const LongFrameCardWr = styled.div`
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  overflow: auto;
-  z-index: 100;
-  transition: transform 0.3s ease-in-out;
 `;
 
 const StoryWr = styled.div`
@@ -234,4 +232,14 @@ const DarkOverlay = styled.div`
   transition: opacity 0.3s ease-in-out;
   z-index: 99;
   pointer-events: none;
+`;
+
+const CardWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  transform: translateX(-50%);
+  z-index: 99;
+  transition: top 0.3s ease-in-out;
 `;

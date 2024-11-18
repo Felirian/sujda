@@ -18,7 +18,6 @@ export default LongFrameCard;
 
 const LongFrameCardWr = styled.div`
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -30,7 +29,7 @@ const SvgWrapper = styled.div`
 
   & > svg {
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: cover;
   }
 `;
@@ -38,9 +37,9 @@ const SvgWrapper = styled.div`
 const LongFrameCardContainer = styled.div`
   background-color: ${COLORS.green};
   width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0 5.641vw 5.641vw 5.641vw;
+  flex-grow: 1;
 `;
