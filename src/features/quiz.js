@@ -1,14 +1,18 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export const useQuizFunctions = () => {
   const [currentQuestion, setCurrentQuestion] = useState(-1);
   const [score, setScore] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState(null)
-  const [answered, setAnswered] = useState(false)
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [answered, setAnswered] = useState(false);
+
+  const location = useLocation();
+  const currentRoom = location.pathname.split('/')[2];
 
   const nextQuestion = (isCorrect) => {
-    setAnswered(false)
-    setSelectedAnswer(null)
+    setAnswered(false);
+    setSelectedAnswer(null);
     setCurrentQuestion(currentQuestion + 1);
     if (isCorrect) {
       setScore(score + 1);
@@ -16,22 +20,25 @@ export const useQuizFunctions = () => {
   };
 
   const startOver = () => {
+    if (score >= 4) {
+      localStorage.setItem(currentRoom, true);
+    }
     setCurrentQuestion(-1);
     setScore(0);
   };
 
   return {
-    variables : {
+    variables: {
       currentQuestion,
       score,
       answered,
-      selectedAnswer
+      selectedAnswer,
     },
     fun: {
       nextQuestion,
       startOver,
       setAnswered,
-      setSelectedAnswer
-    }
+      setSelectedAnswer,
+    },
   };
 };
