@@ -28,8 +28,8 @@ const MuseumWr = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 8.2vw 0vw;
-  height: 100vh;
+  padding: 8.2vw 0;
+  height: 100svh;
   width: 82vw;
   margin: 0 auto;
 `;

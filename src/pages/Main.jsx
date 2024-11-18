@@ -34,7 +34,7 @@ const MainWr = styled.div`
   background-image: url('/img/main-bg.png');
   background-size: cover;
   background-position: center;
-  height: 100vh;
+  height: 100svh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

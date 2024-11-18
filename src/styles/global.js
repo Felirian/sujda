@@ -18,6 +18,7 @@ const GlobalStyles = createGlobalStyle`
 
   body {
     width: 100%;
+    height: 100svh;
     overflow-x: hidden;
     max-width: 100vw;
     background-color: ${COLORS.black};

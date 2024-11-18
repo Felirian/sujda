@@ -92,7 +92,7 @@ const QuizWr = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 100svh;
   background-image: url('${bg}');
   background-size: cover;
   background-position: center;

@@ -101,7 +101,7 @@ export default Secret;
 
 const SecretRoomWr = styled.div`
   display: flex;
-  height: 100vh;
+  height: 100svh;
   overflow: hidden;
   position: relative;
   justify-content: center;
@@ -229,7 +229,7 @@ const DarkOverlay = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100svh;
   background-color: black;
   transition: opacity 0.3s ease-in-out;
   z-index: 99;
