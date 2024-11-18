@@ -19,8 +19,11 @@ const Secret = () => {
   const [fadeOut, setFadeOut] = useState(false);
   const [darkOverlay, setDarkOverlay] = useState(false);
   const [cardPosition, setCardPosition] = useState('0px'); // Track the position of the LongFrameCard wrapper
+  const [isCardVisible, setIsCardVisible] = useState(true); // Track visibility of the card
 
   const prevIndexRef = useRef(0);
+  const startTouchY = useRef(0); // To store the initial touch Y position
+  const cardWrapperRef = useRef(null); // Ref for the card wrapper element
 
   // Adjust LongFrameCard's wrapper position based on screen size
   useEffect(() => {
@@ -46,10 +49,42 @@ const Secret = () => {
     setCardPosition(`${screenHeight / 2 }px`);
   };
 
+  const handleTouchStart = (e) => {
+    const touchStartY = e.touches[0].clientY;
+    startTouchY.current = touchStartY;
+  };
+
+  const handleTouchMove = (e) => {
+    const touchMoveY = e.touches[0].clientY;
+    const touchDeltaY = touchMoveY - startTouchY.current;
+
+    // Adjust the card position based on the finger movement
+    setCardPosition((prevPosition) => {
+      const currentPosition = parseFloat(prevPosition.replace('px', ''));
+      return `${currentPosition + touchDeltaY}px`;
+    });
+
+    // Update the initial touch position
+    startTouchY.current = touchMoveY;
+  };
+
+  const handleTouchEnd = () => {
+    const screenHeight = window.innerHeight;
+    const cardTopPosition = parseFloat(cardPosition); // Get the current top position of the card
+
+    // If the card is below half the screen, reset position and hide the overlay
+    if (cardTopPosition > screenHeight / 2) {
+      setCardPosition(`${screenHeight}px`); // Move card back below the screen
+      setDarkOverlay(false); // Hide dark overlay
+    } else {
+      // Otherwise, leave the card in its current position
+      setIsCardVisible(true); // Keep card visible
+    }
+  };
+
   return (
     <SecretRoomWr>
       <Header />
-
       <GlassImg src={glass} alt={'glass'} />
       <FrameImg src={frame} alt={'frame'} />
       <SwiperContainer>
@@ -92,19 +127,31 @@ const Secret = () => {
 
       <DarkOverlay style={{ opacity: darkOverlay ? 0.5 : 0 }} />
 
-      <CardWrapper style={{ top: cardPosition }}>
-        <LongFrameCard>
-          <StoryWr>
-            <H1Styled>{currentPerson?.name.split(' ')[0]}</H1Styled>
-            <P2>{currentPerson?.story}</P2>
-          </StoryWr>
-        </LongFrameCard>
-      </CardWrapper>
+      {isCardVisible && (
+        <CardWrapper
+          ref={cardWrapperRef}
+          style={{ top: cardPosition }}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          <LongFrameCard>
+            <StoryWr>
+              <H1Styled>{currentPerson?.name.split(' ')[0]}</H1Styled>
+              <P2>{currentPerson?.story}</P2>
+            </StoryWr>
+          </LongFrameCard>
+        </CardWrapper>
+      )}
     </SecretRoomWr>
   );
 };
 
 export default Secret;
+
+
+
+
 
 const SecretRoomWr = styled.div`
   display: flex;
