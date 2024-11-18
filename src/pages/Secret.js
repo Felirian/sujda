@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import frame from '../assets/rooms/secret/mirror-bg.png';
 import glass from '../assets/rooms/secret/mirror-glass.png';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -18,24 +18,15 @@ const Secret = () => {
   const [currentPerson, setCurrentPerson] = useState(PERSONS[0]);
   const [fadeOut, setFadeOut] = useState(false);
   const [darkOverlay, setDarkOverlay] = useState(false);
-  const [cardPosition, setCardPosition] = useState('0px');
-  const [isCardVisible, setIsCardVisible] = useState(true);
-
+  const [isCardVisible, setIsCardVisible] = useState(false);
+  const [isCrossed, setIsCrossed] = useState(false);
+  const [isDowned, setIsDowned] = useState(false);
+  const touchStartY = useRef(0);
+  const touchEndY = useRef(0);
   const prevIndexRef = useRef(0);
-  const startTouchY = useRef(0); // Начальная точка касания
-  const cardWrapperRef = useRef(null); // Ссылка на карточку
-  const maxTopPositionRef = useRef(0); // Динамическая верхняя граница
+  const cardWrapperRef = useRef(null);
+  const cardContainerRef = useRef(null);
 
-  useEffect(() => {
-    const screenHeight = window.innerHeight;
-    setCardPosition(`${screenHeight}px`); // Устанавливаем начальное положение карточки
-
-    // Рассчитываем верхнюю границу для текущей карточки
-    if (cardWrapperRef.current) {
-      const cardHeight = cardWrapperRef.current.offsetHeight;
-      maxTopPositionRef.current = screenHeight - cardHeight; // Верхняя граница = экран - высота карточки
-    }
-  }, [currentPerson]); // Пересчитываем при смене карточки
 
   const handleSlideChange = (swiper) => {
     const selectedPerson = PERSONS[swiper.realIndex];
@@ -51,54 +42,56 @@ const Secret = () => {
 
   const handleLearnMoreClick = () => {
     setDarkOverlay(true);
-    const screenHeight = window.innerHeight;
-    setCardPosition(`${screenHeight / 2}px`);
+    setIsCardVisible(true);
   };
 
-  const handleTouchStart = (e) => {
-    const touchStartY = e.touches[0].clientY;
-    startTouchY.current = touchStartY;
-  };
-
-  const handleTouchMove = (e) => {
-    const touchMoveY = e.touches[0].clientY;
-    const touchDeltaY = touchMoveY - startTouchY.current;
-
-    setCardPosition((prevPosition) => {
-      const currentPosition = parseFloat(prevPosition.replace('px', ''));
-      const screenHeight = window.innerHeight;
-      const maxTopPosition = maxTopPositionRef.current; // Используем динамическую верхнюю границу
-      const minTopPosition = screenHeight; // Нижняя граница (скрытая позиция)
-
-      // Рассчитываем новую позицию
-      let newPosition = currentPosition + touchDeltaY;
-
-      // Ограничиваем новую позицию
-      if (newPosition < maxTopPosition) {
-        newPosition = maxTopPosition; // Если выше допустимого, фиксируем
-      } else if (newPosition > minTopPosition) {
-        newPosition = minTopPosition; // Если ниже допустимого, фиксируем
+  const handleScroll = () => {
+    if (cardWrapperRef.current && cardContainerRef.current) {
+      const cardWrapperRect = cardWrapperRef.current.getBoundingClientRect();
+      const cardContainerRect = cardContainerRef.current.getBoundingClientRect();
+  
+      if (Math.abs(cardWrapperRect.top - cardContainerRect.top) < 1) {
+        console.log('crossing');
+        setIsCrossed(true);
       }
-
-      return `${newPosition}px`;
-    });
-
-    startTouchY.current = touchMoveY; // Обновляем начальную позицию
+    }
+  };
+  
+  const handleTouchStart = (e) => {
+    touchStartY.current = e.touches[0].clientY;
   };
 
-  const handleTouchEnd = () => {
-    const screenHeight = window.innerHeight;
-    const cardTopPosition = parseFloat(cardPosition);
-
-    // Если карточка опущена ниже половины экрана, скрываем её
-    if (cardTopPosition > screenHeight / 2) {
-      setCardPosition(`${screenHeight}px`); // Скрыть карточку
-      setDarkOverlay(false); // Скрыть оверлей
-    } else {
-      setIsCardVisible(true); // Оставить карточку видимой
+  const handleTouchEnd = (e) => {
+    touchEndY.current = e.changedTouches[0].clientY;
+    if (touchEndY.current > touchStartY.current) {
+      console.log('down'); 
+      setIsDowned(true);
+      closeCard();
     }
   };
 
+  const closeCard = () => {
+    if (isCrossed && isDowned) {
+      setIsCardVisible(false);
+      setDarkOverlay(false);
+      console.log('closeCard'); 
+    }
+  }
+
+  useEffect(() => {
+    const wrapper = document.querySelector('#root');
+    if (wrapper) {
+      wrapper.addEventListener('touchstart', handleTouchStart);
+      wrapper.addEventListener('touchend', handleTouchEnd);
+    }
+
+    return () => {
+      if (wrapper) {
+        wrapper.removeEventListener('touchstart', handleTouchStart);
+        wrapper.removeEventListener('touchend', handleTouchEnd);
+      }
+    };
+  }, []);
 
   return (
     <SecretRoomWr>
@@ -145,31 +138,21 @@ const Secret = () => {
 
       <DarkOverlay style={{ opacity: darkOverlay ? 0.5 : 0 }} />
 
-      {isCardVisible && (
-        <CardWrapper
-          ref={cardWrapperRef}
-          style={{ top: cardPosition }}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-        >
+      <CardWrapper  ref={cardWrapperRef} onScroll={handleScroll} isVisible={isCardVisible}>
+        <CardContainer  ref={cardContainerRef}>
           <LongFrameCard>
             <StoryWr>
               <H1Styled>{currentPerson?.name.split(' ')[0]}</H1Styled>
               <P2>{currentPerson?.story}</P2>
             </StoryWr>
           </LongFrameCard>
-        </CardWrapper>
-      )}
+        </CardContainer>
+      </CardWrapper>
     </SecretRoomWr>
   );
 };
 
 export default Secret;
-
-
-
-
 
 const SecretRoomWr = styled.div`
   display: flex;
@@ -301,10 +284,23 @@ const DarkOverlay = styled.div`
 
 const CardWrapper = styled.div`
   position: absolute;
-  top: 0;
-  left: 50%;
+  //border: 2px pink solid;
+  top: 1px;
   width: 100%;
-  transform: translateX(-50%);
   z-index: 99;
-  transition: top 0.3s ease-in-out;
+  overflow-y: scroll;
+  max-height: 100vh;
+  padding-top: ${(props) => (props.isVisible ? '1svh' : '100svh')};
+  transition: padding-top 0.3s ease-in-out;
+  pointer-events: ${(props) => (props.isVisible ? 'all' : 'none')};
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const CardContainer = styled.div`
+  display: flex;
+  border: 2px pink solid;
+  padding-top: 60svh;
 `;
