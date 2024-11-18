@@ -1,38 +1,60 @@
-import React, { Suspense, useEffect, useRef } from 'react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { CameraControls, useGLTF } from '@react-three/drei';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import styled from 'styled-components';
 import { COLORS } from '../../styles/variables';
 import SvgSelector from '../Shared/SvgSelector';
-import { P2 } from '../../styles/textTags';
+import { P1Style, P2 } from '../../styles/textTags';
 import { useNavigate } from 'react-router-dom';
 import { Box3, Vector3 } from 'three';
 
 const Model = ({ model }) => {
-  const { scene, error } = useGLTF(`/models/${model}.glb`, true);
+  // const { scene, error } = useGLTF(`/models/${model}.glb`, true);
+
+  const [scene, setScene] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    const loader = new GLTFLoader();
+    loader.load(
+      `/models/${model}.glb`,
+      (gltf) => {
+        setScene(gltf.scene);
+      },
+      undefined,
+      (err) => {
+        console.error('Failed to load model:', err);
+        setError(err);
+      }
+    );
+  }, [model]);
+
+  useEffect(() => {
+    // центрирование модельки и расчет размера
     if (scene) {
+      scene.updateWorldMatrix(true, true);
+
       const box = new Box3().setFromObject(scene);
       const size = new Vector3();
+      const center = new Vector3();
+
       box.getSize(size);
+      box.getCenter(center);
+
+      scene.position.sub(center);
 
       const maxDimension = Math.max(size.x, size.y, size.z);
       const scaleFactor = 2 / maxDimension;
-
       scene.scale.setScalar(scaleFactor);
-      const center = new Vector3();
-      box.getCenter(center);
-      scene.position.sub(center);
     }
   }, [scene]);
 
   if (error) {
-    console.error('Failed to load model:', error);
     return <ErrorMessage>Ошибка загрузки модели</ErrorMessage>;
   }
 
-  return <primitive object={scene} />;
+  return scene && <primitive object={scene} />;
 };
 
 const ModelViewer = ({ model }) => {
@@ -48,7 +70,7 @@ const ModelViewer = ({ model }) => {
       <CloseBtn onClick={handleGoBack}>
         <SvgSelector svg='close3d' />
       </CloseBtn>
-      <Suspense fallback={<div>Загрузка модели...</div>}>
+      <Suspense fallback={<Loader />}>
         <Canvas key={model} camera={{ fov: 45, position: [0, 1, 5] }}>
           <CameraControls minDistance={2} maxDistance={12} />
           <ambientLight intensity={5} />
@@ -84,8 +106,33 @@ const CloseBtn = styled.button`
 `;
 
 const ErrorMessage = styled(P2)`
+  ${P1Style};
   color: ${COLORS.red};
-  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+const Loader = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 5.13vw;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.7;
+  box-shadow: 0 0 0 0 #fff;
+  animation: l1 1s infinite;
+
+  @keyframes l1 {
+    100% {
+      box-shadow: 0 0 0 7vw #0000;
+    }
+  }
 `;
 
 export default ModelViewer;
