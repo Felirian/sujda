@@ -18,18 +18,24 @@ const Secret = () => {
   const [currentPerson, setCurrentPerson] = useState(PERSONS[0]);
   const [fadeOut, setFadeOut] = useState(false);
   const [darkOverlay, setDarkOverlay] = useState(false);
-  const [cardPosition, setCardPosition] = useState('0px'); // Track the position of the LongFrameCard wrapper
-  const [isCardVisible, setIsCardVisible] = useState(true); // Track visibility of the card
+  const [cardPosition, setCardPosition] = useState('0px');
+  const [isCardVisible, setIsCardVisible] = useState(true);
 
   const prevIndexRef = useRef(0);
-  const startTouchY = useRef(0); // To store the initial touch Y position
-  const cardWrapperRef = useRef(null); // Ref for the card wrapper element
+  const startTouchY = useRef(0); // Начальная точка касания
+  const cardWrapperRef = useRef(null); // Ссылка на карточку
+  const maxTopPositionRef = useRef(0); // Динамическая верхняя граница
 
-  // Adjust LongFrameCard's wrapper position based on screen size
   useEffect(() => {
     const screenHeight = window.innerHeight;
-    setCardPosition(`${screenHeight}px`); // Initially hide the card
-  }, []);
+    setCardPosition(`${screenHeight}px`); // Устанавливаем начальное положение карточки
+
+    // Рассчитываем верхнюю границу для текущей карточки
+    if (cardWrapperRef.current) {
+      const cardHeight = cardWrapperRef.current.offsetHeight;
+      maxTopPositionRef.current = screenHeight - cardHeight; // Верхняя граница = экран - высота карточки
+    }
+  }, [currentPerson]); // Пересчитываем при смене карточки
 
   const handleSlideChange = (swiper) => {
     const selectedPerson = PERSONS[swiper.realIndex];
@@ -46,7 +52,7 @@ const Secret = () => {
   const handleLearnMoreClick = () => {
     setDarkOverlay(true);
     const screenHeight = window.innerHeight;
-    setCardPosition(`${screenHeight / 2 }px`);
+    setCardPosition(`${screenHeight / 2}px`);
   };
 
   const handleTouchStart = (e) => {
@@ -58,29 +64,41 @@ const Secret = () => {
     const touchMoveY = e.touches[0].clientY;
     const touchDeltaY = touchMoveY - startTouchY.current;
 
-    // Adjust the card position based on the finger movement
     setCardPosition((prevPosition) => {
       const currentPosition = parseFloat(prevPosition.replace('px', ''));
-      return `${currentPosition + touchDeltaY}px`;
+      const screenHeight = window.innerHeight;
+      const maxTopPosition = maxTopPositionRef.current; // Используем динамическую верхнюю границу
+      const minTopPosition = screenHeight; // Нижняя граница (скрытая позиция)
+
+      // Рассчитываем новую позицию
+      let newPosition = currentPosition + touchDeltaY;
+
+      // Ограничиваем новую позицию
+      if (newPosition < maxTopPosition) {
+        newPosition = maxTopPosition; // Если выше допустимого, фиксируем
+      } else if (newPosition > minTopPosition) {
+        newPosition = minTopPosition; // Если ниже допустимого, фиксируем
+      }
+
+      return `${newPosition}px`;
     });
 
-    // Update the initial touch position
-    startTouchY.current = touchMoveY;
+    startTouchY.current = touchMoveY; // Обновляем начальную позицию
   };
 
   const handleTouchEnd = () => {
     const screenHeight = window.innerHeight;
-    const cardTopPosition = parseFloat(cardPosition); // Get the current top position of the card
+    const cardTopPosition = parseFloat(cardPosition);
 
-    // If the card is below half the screen, reset position and hide the overlay
+    // Если карточка опущена ниже половины экрана, скрываем её
     if (cardTopPosition > screenHeight / 2) {
-      setCardPosition(`${screenHeight}px`); // Move card back below the screen
-      setDarkOverlay(false); // Hide dark overlay
+      setCardPosition(`${screenHeight}px`); // Скрыть карточку
+      setDarkOverlay(false); // Скрыть оверлей
     } else {
-      // Otherwise, leave the card in its current position
-      setIsCardVisible(true); // Keep card visible
+      setIsCardVisible(true); // Оставить карточку видимой
     }
   };
+
 
   return (
     <SecretRoomWr>
