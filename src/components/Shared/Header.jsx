@@ -37,7 +37,7 @@ const Header = ({ type, back }) => {
           )}
         </HeaderArrow>
       )}
-      <HeaderMenu type={type}>
+      <HeaderMenu to={'/museum'} type={type}>
         {type === 'black' ? <SvgSelector svg={'headerBlack'} /> : <SvgSelector svg={'headerWhite'} />}
       </HeaderMenu>
     </HeaderWr>
@@ -55,7 +55,7 @@ const HeaderWr = styled.div`
   width: 100%;
 `;
 
-const HeaderMenu = styled.header`
+const HeaderMenu = styled(Link)`
   width: 9.2vw;
   height: 9.2vw;
   padding: 3vw;
