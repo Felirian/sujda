@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import frame from '../assets/rooms/secret/mirror-bg.png';
 import glass from '../assets/rooms/secret/mirror-glass.png';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -19,14 +19,31 @@ const Secret = () => {
   const [fadeOut, setFadeOut] = useState(false);
   const [darkOverlay, setDarkOverlay] = useState(false);
   const [isCardVisible, setIsCardVisible] = useState(false);
-  const [isCrossed, setIsCrossed] = useState(false);
-  const [isDowned, setIsDowned] = useState(false);
+  const [down, setDown] = useState(false);
+  const [hasCrossed, setHasCrossed] = useState(false);
+
   const touchStartY = useRef(0);
   const touchEndY = useRef(0);
   const prevIndexRef = useRef(0);
   const cardWrapperRef = useRef(null);
   const cardContainerRef = useRef(null);
 
+  useEffect(() => {
+    const wrapper = document.querySelector('#root');
+    if (wrapper) {
+      wrapper.addEventListener('touchstart', handleTouchStart);
+      wrapper.addEventListener('touchend', handleTouchEnd);
+      wrapper.addEventListener('touchmove', handleTouchMove);
+    }
+
+    return () => {
+      if (wrapper) {
+        wrapper.removeEventListener('touchstart', handleTouchStart);
+        wrapper.removeEventListener('touchend', handleTouchEnd);
+        wrapper.removeEventListener('touchmove', handleTouchMove);
+      }
+    };
+  }, []);
 
   const handleSlideChange = (swiper) => {
     const selectedPerson = PERSONS[swiper.realIndex];
@@ -47,16 +64,34 @@ const Secret = () => {
 
   const handleScroll = () => {
     if (cardWrapperRef.current && cardContainerRef.current) {
-      const cardWrapperRect = cardWrapperRef.current.getBoundingClientRect();
       const cardContainerRect = cardContainerRef.current.getBoundingClientRect();
-  
-      if (Math.abs(cardWrapperRect.top - cardContainerRect.top) < 1) {
-        console.log('crossing');
-        setIsCrossed(true);
+      const screenMiddle = window.innerHeight / 2;
+
+      if (cardContainerRect.top <= screenMiddle && cardContainerRect.bottom >= screenMiddle) {
+        if (!hasCrossed) {
+          console.log('crossing');
+          setHasCrossed(true);
+        }
+      } else {
+        setHasCrossed(false);
+      }
+
+      checkCardPosition();
+    }
+  };
+
+  const checkCardPosition = () => {
+    if (cardContainerRef.current) {
+      const cardContainerRect = cardContainerRef.current.getBoundingClientRect();
+      const screenMiddle = window.innerHeight / 2;
+
+      if (cardContainerRect.top > screenMiddle && hasCrossed) {
+        setIsCardVisible(false);
+        setDarkOverlay(false);
       }
     }
   };
-  
+
   const handleTouchStart = (e) => {
     touchStartY.current = e.touches[0].clientY;
   };
@@ -64,35 +99,32 @@ const Secret = () => {
   const handleTouchEnd = (e) => {
     touchEndY.current = e.changedTouches[0].clientY;
     if (touchEndY.current > touchStartY.current) {
-      console.log('down'); 
-      setIsDowned(true);
+      console.log('down');
+      setDown(true);
       closeCard();
+    } else {
+      setDown(false);
+    }
+  };
+
+  const handleTouchMove = (e) => {
+    const currentY = e.touches[0].clientY;
+    if (currentY > touchStartY.current) {
+      setDown(true);
+    } else {
+      setDown(false);
     }
   };
 
   const closeCard = () => {
-    if (isCrossed && isDowned) {
+    if (hasCrossed && down) {
       setIsCardVisible(false);
       setDarkOverlay(false);
-      console.log('closeCard'); 
+      console.log('closeCard');
+      setDown(false);
+      setHasCrossed(false);
     }
-  }
-
-  useEffect(() => {
-    const wrapper = document.querySelector('#root');
-    if (wrapper) {
-      wrapper.addEventListener('touchstart', handleTouchStart);
-      wrapper.addEventListener('touchend', handleTouchEnd);
-    }
-
-    return () => {
-      if (wrapper) {
-        wrapper.removeEventListener('touchstart', handleTouchStart);
-        wrapper.removeEventListener('touchend', handleTouchEnd);
-      }
-    };
-  }, []);
-
+  };
   return (
     <SecretRoomWr>
       <Header />
@@ -138,8 +170,8 @@ const Secret = () => {
 
       <DarkOverlay style={{ opacity: darkOverlay ? 0.5 : 0 }} />
 
-      <CardWrapper  ref={cardWrapperRef} onScroll={handleScroll} isVisible={isCardVisible}>
-        <CardContainer  ref={cardContainerRef}>
+      <CardWrapper ref={cardWrapperRef} onScroll={handleScroll} isVisible={isCardVisible}>
+        <CardContainer ref={cardContainerRef}>
           <LongFrameCard>
             <StoryWr>
               <H1Styled>{currentPerson?.name.split(' ')[0]}</H1Styled>
@@ -286,11 +318,12 @@ const CardWrapper = styled.div`
   position: absolute;
   //border: 2px pink solid;
   top: 1px;
+  height: 100svh;
   width: 100%;
   z-index: 99;
   overflow-y: scroll;
   max-height: 100vh;
-  padding-top: ${(props) => (props.isVisible ? '1svh' : '100svh')};
+  padding-top: ${(props) => (props.isVisible ? '50svh' : '150svh')};
   transition: padding-top 0.3s ease-in-out;
   pointer-events: ${(props) => (props.isVisible ? 'all' : 'none')};
   scrollbar-width: none;
@@ -301,6 +334,6 @@ const CardWrapper = styled.div`
 
 const CardContainer = styled.div`
   display: flex;
-  border: 2px pink solid;
-  padding-top: 60svh;
+  //border: 2px pink solid;
+  padding-top: 20svh;
 `;
