@@ -1,9 +1,10 @@
 import React from 'react';
+import mapImg from '../assets/map/map.jpg';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import { styled } from 'styled-components';
 import { COLORS } from '../styles/variables';
-import CustomButton from "../components/Shared/CustomButton";
-import {Link} from "react-router-dom";
+import CustomButton from '../components/Shared/CustomButton';
+import { Link } from 'react-router-dom';
 
 const Map = () => {
   return (
@@ -12,16 +13,12 @@ const Map = () => {
         <>
           <TransformComponent wrapperClass='map_wrapper' contentClass='map_wrapper_content'>
             <ZoomableMap>
-              ZoomableMap ZoomableMap
-              ZoomableMap ZoomableMap
-              ZoomableMap ZoomableMap
-              ZoomableMap ZoomableMap
-              ZoomableMap ZoomableMap
+              <img src={mapImg} alt='Карта' />
             </ZoomableMap>
           </TransformComponent>
         </>
       </TransformWrapper>
-      <Link to="/museum">
+      <Link to='/museum'>
         <CustomButton type={'orange'}>в музей</CustomButton>
       </Link>
     </MapWr>

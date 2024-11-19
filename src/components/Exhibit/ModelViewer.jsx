@@ -31,7 +31,7 @@ const Model = ({ model }) => {
   }, [model]);
 
   useEffect(() => {
-    // центрирование модельки и расчет размера
+    // центрирование модельки и расчет размера, чтобы она влезала в экран
     if (scene) {
       scene.updateWorldMatrix(true, true);
 
@@ -47,6 +47,8 @@ const Model = ({ model }) => {
       const maxDimension = Math.max(size.x, size.y, size.z);
       const scaleFactor = 2 / maxDimension;
       scene.scale.setScalar(scaleFactor);
+
+      scene.position.y += 0.5;
     }
   }, [scene]);
 
@@ -70,6 +72,9 @@ const ModelViewer = ({ model }) => {
       <CloseBtn onClick={handleGoBack}>
         <SvgSelector svg='close3d' />
       </CloseBtn>
+      <ObsIcon>
+        <SvgSelector svg='3dObs' />
+      </ObsIcon>
       <Suspense fallback={<Loader />}>
         <Canvas key={model} camera={{ fov: 45, position: [0, 1, 5] }}>
           <CameraControls minDistance={2} maxDistance={12} />
@@ -102,6 +107,22 @@ const CloseBtn = styled.button`
   }
   &:active {
     opacity: 0.8;
+  }
+`;
+
+const ObsIcon = styled.div`
+  position: absolute;
+  bottom: 12.82vw;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 26.92vw;
+  height: 26.92vw;
+
+  z-index: 11;
+  svg {
+    width: 100%;
+    height: 100%;
   }
 `;
 

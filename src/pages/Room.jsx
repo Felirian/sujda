@@ -20,7 +20,7 @@ const Room = ({ data }) => {
 
   return (
     <RoomWr>
-      <Header type='black' />
+      <Header />
 
       {modalIsOpen && <RoomBackdrop />}
       <RoomModal $modalisopen={modalIsOpen}>

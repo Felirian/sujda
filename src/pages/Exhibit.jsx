@@ -3,10 +3,12 @@ import { styled } from 'styled-components';
 import Preview from '../components/Exhibit/Preview';
 import Description from '../components/Exhibit/Description';
 import SvgSelector from '../components/Shared/SvgSelector';
+import Header from '../components/Shared/Header';
 
 const Exhibit = ({ data }) => {
   return (
     <ExhibitWr>
+      <Header back />
       <Preview data={data} />
       <DescriptionBlock>
         <SvgSelector svg='topLongFrameGreen' />
