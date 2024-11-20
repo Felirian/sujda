@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Quiz from './pages/Quiz';
 import Room from './pages/Room';
@@ -23,7 +23,7 @@ function App() {
         {ROOMS_DATA.map((roomData, index) => (
           <Route key={`${index}_rooms`} path={roomData.route}>
             <Route index element={<Room data={roomData} />} />
-            <Route path='quiz' element={<Quiz data={roomData.quiz} />} />
+            <Route path='quiz' element={<Quiz data={roomData.quiz} quizTexts={roomData.quizTexts}/>} />
             {roomData.exhibits.map((exhibit, index) => {
               return (
                 <React.Fragment key={`${index}_exhibit`}>

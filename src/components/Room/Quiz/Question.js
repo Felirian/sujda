@@ -12,7 +12,7 @@ const Question = ({ question, QuizFunc }) => {
       {QuizFunc.variables.answered ? (
         <>
           <ResponseAnswer
-            explanation={question.explanation}
+            explanation={question.answers[question.right_answers]}
             correctAnswer={QuizFunc.variables.selectedAnswer === question.right_answers}
             QuizFunc={QuizFunc}
           />

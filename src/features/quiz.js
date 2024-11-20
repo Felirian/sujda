@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 
 export const useQuizFunctions = () => {
+  const navigate = useNavigate();
   const [currentQuestion, setCurrentQuestion] = useState(-1);
   const [score, setScore] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -25,6 +26,7 @@ export const useQuizFunctions = () => {
     }
     setCurrentQuestion(-1);
     setScore(0);
+    navigate('/room/secret')
   };
 
   return {
