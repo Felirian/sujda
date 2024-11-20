@@ -100,7 +100,9 @@ const AudioGuide = ({ audioSrc, setModalIsOpen, allowPlay }) => {
 
   return (
     <AudioGuideWr>
-      <PlayButton onClick={togglePlay}>{isPlaying ? '❚❚' : '▶'}</PlayButton>
+      <PlayButton onClick={togglePlay}>
+        <SvgSelector svg={isPlaying ? 'pause' : 'play'} />
+      </PlayButton>
       <ProgressContainer
         onClick={handleProgressClick}
         onMouseDown={startDrag}
@@ -150,13 +152,18 @@ const PlayButton = styled.button`
   color: ${COLORS.white};
   font-size: 6vw;
   cursor: pointer;
-  width: 3vw;
+  width: 5.13vw;
+  height: 5.9vw;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const ProgressContainer = styled.div`
   position: relative;
   top: 0;
-  left: 1vw;
+  left: 0;
   display: flex;
   align-items: center;
   height: 1.4vw;

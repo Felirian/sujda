@@ -417,6 +417,31 @@ const SvgSelector = ({ svg }) => {
           />
         </svg>
       );
+    case 'play':
+      return (
+        <svg
+          width='20'
+          height='23'
+          viewBox='0 0 20 23'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path d='M-1.13059e-06 23L0 0L19.261 11.7447L-1.13059e-06 23Z' fill='white' />
+        </svg>
+      );
+    case 'pause':
+      return (
+        <svg
+          width='14'
+          height='23'
+          viewBox='0 0 14 23'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <rect width='4' height='23' fill='white' />
+          <rect width='4' height='23' transform='translate(10)' fill='white' />
+        </svg>
+      );
 
     default:
       return <></>;
