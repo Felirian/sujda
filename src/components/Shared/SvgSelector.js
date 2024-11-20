@@ -443,6 +443,46 @@ const SvgSelector = ({ svg }) => {
         </svg>
       );
 
+    case 'arrowBgL':
+      return (
+        <svg
+          width='174'
+          height='37'
+          viewBox='0 0 174 37'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path d='M0 0H153.97L174 18.5L153.97 37H0V0Z' fill='#333E2C' />
+          <path d='M2.49426 3.5H152.255L169.742 18.5L152.255 33.5H2.49426V3.5Z' stroke='white' />
+        </svg>
+      );
+    case 'arrowBgM':
+      return (
+        <svg
+          width='162'
+          height='37'
+          viewBox='0 0 162 37'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path d='M0 0H141.327L162 19L141.327 37H0V0Z' fill='#333E2C' />
+          <path d='M2.5 3.5H139.343L156.247 18.5L139.343 33.5H2.5V3.5Z' stroke='white' />
+        </svg>
+      );
+    case 'arrowBgS':
+      return (
+        <svg
+          width='145'
+          height='37'
+          viewBox='0 0 145 37'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path d='M0 0H124.323L145 18L124.323 37H0V0Z' fill='#333E2C' />
+          <path d='M2.4931 3.5H122.061L138.77 18.5L122.061 33.5H2.4931V3.5Z' stroke='white' />
+        </svg>
+      );
+
     default:
       return <></>;
   }

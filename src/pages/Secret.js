@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import frame from '../assets/rooms/secret/mirror-bg.png';
 import glass from '../assets/rooms/secret/mirror-glass.png';
@@ -10,6 +10,7 @@ import LongFrameCard from '../components/Shared/LongFrameCard';
 import Header from '../components/Shared/Header';
 import CustomSlider from '../components/Room/Secret/CustomSlider';
 import PopUpScroller from '../components/Shared/PopUpScroller';
+import SecretWords from '../components/Room/Secret/SecretWords';
 
 const Secret = () => {
   const [currentPerson, setCurrentPerson] = useState(PERSONS[0]);
@@ -34,9 +35,9 @@ const Secret = () => {
     setPopUp(false);
   };
 
-
   return (
     <SecretRoomWr>
+      <SecretWords />
       <Header />
       <GlassImg src={glass} alt={'glass'} />
       <FrameImg src={frame} alt={'frame'} />
@@ -67,8 +68,6 @@ const Secret = () => {
     </SecretRoomWr>
   );
 };
-
-export default Secret;
 
 const SecretRoomWr = styled.div`
   display: flex;
@@ -164,3 +163,5 @@ const StoryWr = styled.div`
 const H1Styled = styled(H1)`
   text-transform: uppercase;
 `;
+
+export default Secret;
