@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Quiz from './pages/Quiz';
 import Room from './pages/Room';
@@ -11,6 +11,8 @@ import Exhibit from './pages/Exhibit';
 import ModelViewer from './components/Exhibit/ModelViewer';
 
 function App() {
+
+
   return (
     <Routes>
       <Route path='/' element={<Main />} />

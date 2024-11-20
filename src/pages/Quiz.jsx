@@ -12,7 +12,8 @@ import Header from '../components/Shared/Header';
 
 const Quiz = ({ data }) => {
   const QuizFunc = useQuizFunctions();
-
+  //TODO: завершение викторины перекидывает на секретную комнату
+  //TODO: если чел прошел викторину, то кнопка пропадает (хотябы 2< - прошел)
   return (
     <QuizWr>
       <Header back={true} type={'black'}/>

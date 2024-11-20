@@ -145,7 +145,7 @@ const SwiperPagination = styled.div`
   }
 `;
 
-const MainBtn = styled.div`
+const MainBtn = styled.button`
   width: 57.69vw;
   padding: 0.77vw;
   background-color: ${COLORS.sand};
