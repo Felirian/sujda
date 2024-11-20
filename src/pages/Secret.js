@@ -2,48 +2,21 @@ import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import frame from '../assets/rooms/secret/mirror-bg.png';
 import glass from '../assets/rooms/secret/mirror-glass.png';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { FreeMode, Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/grid';
-import 'swiper/css/pagination';
 import { PERSONS } from '../features/data';
 import { COLORS } from '../styles/variables';
 import { H1, H3, P2 } from '../styles/textTags';
 import CustomButton from '../components/Shared/CustomButton';
 import LongFrameCard from '../components/Shared/LongFrameCard';
 import Header from '../components/Shared/Header';
+import CustomSlider from '../components/Room/Secret/CustomSlider';
+import PopUpScroller from '../components/Shared/PopUpScroller';
 
 const Secret = () => {
   const [currentPerson, setCurrentPerson] = useState(PERSONS[0]);
   const [fadeOut, setFadeOut] = useState(false);
-  const [darkOverlay, setDarkOverlay] = useState(false);
-  const [isCardVisible, setIsCardVisible] = useState(false);
-  const [down, setDown] = useState(false);
-  const [hasCrossed, setHasCrossed] = useState(false);
+  const [popUp, setPopUp] = useState(false);
 
-  const touchStartY = useRef(0);
-  const touchEndY = useRef(0);
   const prevIndexRef = useRef(0);
-  const cardWrapperRef = useRef(null);
-  const cardContainerRef = useRef(null);
-
-  useEffect(() => {
-    const wrapper = document.querySelector('#root');
-    if (wrapper) {
-      wrapper.addEventListener('touchstart', handleTouchStart);
-      wrapper.addEventListener('touchend', handleTouchEnd);
-      wrapper.addEventListener('touchmove', handleTouchMove);
-    }
-
-    return () => {
-      if (wrapper) {
-        wrapper.removeEventListener('touchstart', handleTouchStart);
-        wrapper.removeEventListener('touchend', handleTouchEnd);
-        wrapper.removeEventListener('touchmove', handleTouchMove);
-      }
-    };
-  }, []);
 
   const handleSlideChange = (swiper) => {
     const selectedPerson = PERSONS[swiper.realIndex];
@@ -57,129 +30,40 @@ const Secret = () => {
     }
   };
 
-  const handleLearnMoreClick = () => {
-    setDarkOverlay(true);
-    setIsCardVisible(true);
+  const handleClosePopUp = () => {
+    setPopUp(false);
   };
 
-  const handleScroll = () => {
-    if (cardWrapperRef.current && cardContainerRef.current) {
-      const cardContainerRect = cardContainerRef.current.getBoundingClientRect();
-      const screenMiddle = window.innerHeight / 2;
 
-      if (cardContainerRect.top <= screenMiddle && cardContainerRect.bottom >= screenMiddle) {
-        if (!hasCrossed) {
-          console.log('crossing');
-          setHasCrossed(true);
-        }
-      } else {
-        setHasCrossed(false);
-      }
-
-      checkCardPosition();
-    }
-  };
-
-  const checkCardPosition = () => {
-    if (cardContainerRef.current) {
-      const cardContainerRect = cardContainerRef.current.getBoundingClientRect();
-      const screenMiddle = window.innerHeight / 2;
-
-      if (cardContainerRect.top > screenMiddle && hasCrossed) {
-        setIsCardVisible(false);
-        setDarkOverlay(false);
-      }
-    }
-  };
-
-  const handleTouchStart = (e) => {
-    touchStartY.current = e.touches[0].clientY;
-  };
-
-  const handleTouchEnd = (e) => {
-    touchEndY.current = e.changedTouches[0].clientY;
-    if (touchEndY.current > touchStartY.current) {
-      console.log('down');
-      setDown(true);
-      closeCard();
-    } else {
-      setDown(false);
-    }
-  };
-
-  const handleTouchMove = (e) => {
-    const currentY = e.touches[0].clientY;
-    if (currentY > touchStartY.current) {
-      setDown(true);
-    } else {
-      setDown(false);
-    }
-  };
-
-  const closeCard = () => {
-    if (hasCrossed && down) {
-      setIsCardVisible(false);
-      setDarkOverlay(false);
-      console.log('closeCard');
-      setDown(false);
-      setHasCrossed(false);
-    }
-  };
   return (
     <SecretRoomWr>
       <Header />
       <GlassImg src={glass} alt={'glass'} />
       <FrameImg src={frame} alt={'frame'} />
-      <SwiperContainer>
-        <Swiper
-          slidesPerView={1}
-          spaceBetween={28}
-          speed={1000}
-          loop={true}
-          pagination={{
-            clickable: true,
-            el: '.swiper-pagination',
-            bulletClass: 'swiper-pagination-bullet',
-            bulletActiveClass: 'swiper-pagination-bullet-active',
-          }}
-          onSlideChange={handleSlideChange}
-          modules={[FreeMode, Pagination]}
-          className="mySwiper"
-        >
-          {PERSONS.map((person, index) => (
-            <PersonSlide key={index}>
-              <Personimg src={person.image} alt={person.name} />
-            </PersonSlide>
-          ))}
-        </Swiper>
-      </SwiperContainer>
+      <CustomSlider onSlideChange={handleSlideChange} />
 
       <BottomContainer>
         <SwiperPaginationWrapper>
-          <SwiperPagination className="swiper-pagination" />
+          <SwiperPagination className='swiper-pagination' />
         </SwiperPaginationWrapper>
 
         <SwiperText $fadeOut={fadeOut}>
           <H3>{currentPerson?.name}</H3>
           <P2>{currentPerson?.info}</P2>
         </SwiperText>
-        <MainBtn onClick={handleLearnMoreClick}>
+        <MainBtn onClick={() => setPopUp(true)}>
           <CustomButton type={'sand'}>узнать больше</CustomButton>
         </MainBtn>
       </BottomContainer>
 
-      <DarkOverlay style={{ opacity: darkOverlay ? 0.5 : 0 }} />
-
-      <CardWrapper ref={cardWrapperRef} onScroll={handleScroll} isVisible={isCardVisible}>
-        <CardContainer ref={cardContainerRef}>
-          <LongFrameCard>
-            <StoryWr>
-              <H1Styled>{currentPerson?.name.split(' ')[0]}</H1Styled>
-              <P2>{currentPerson?.story}</P2>
-            </StoryWr>
-          </LongFrameCard>
-        </CardContainer>
-      </CardWrapper>
+      <PopUpScroller popUp={popUp} onClose={handleClosePopUp}>
+        <LongFrameCard>
+          <StoryWr>
+            <H1Styled>{currentPerson?.name.split(' ')[0]}</H1Styled>
+            <P2>{currentPerson?.story}</P2>
+          </StoryWr>
+        </LongFrameCard>
+      </PopUpScroller>
     </SecretRoomWr>
   );
 };
@@ -215,15 +99,6 @@ const GlassImg = styled.img`
   position: absolute;
   z-index: 1;
   bottom: 0%;
-`;
-
-const SwiperContainer = styled.div`
-  position: absolute;
-  bottom: 77vw;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const BottomContainer = styled.div`
@@ -271,18 +146,6 @@ const SwiperPagination = styled.div`
   }
 `;
 
-const PersonSlide = styled(SwiperSlide)`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const Personimg = styled.img`
-  width: 90%;
-  height: auto;
-`;
-
 const MainBtn = styled.div`
   width: 57.69vw;
   padding: 0.77vw;
@@ -300,40 +163,4 @@ const StoryWr = styled.div`
 
 const H1Styled = styled(H1)`
   text-transform: uppercase;
-`;
-
-const DarkOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100svh;
-  background-color: black;
-  transition: opacity 0.3s ease-in-out;
-  z-index: 99;
-  pointer-events: none;
-`;
-
-const CardWrapper = styled.div`
-  position: absolute;
-  //border: 2px pink solid;
-  top: 1px;
-  height: 100svh;
-  width: 100%;
-  z-index: 99;
-  overflow-y: scroll;
-  max-height: 100vh;
-  padding-top: ${(props) => (props.isVisible ? '50svh' : '150svh')};
-  transition: padding-top 0.3s ease-in-out;
-  pointer-events: ${(props) => (props.isVisible ? 'all' : 'none')};
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
-const CardContainer = styled.div`
-  display: flex;
-  //border: 2px pink solid;
-  padding-top: 20svh;
 `;
