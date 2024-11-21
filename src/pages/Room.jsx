@@ -5,10 +5,13 @@ import Controls from '../components/Room/Controls';
 import ModelSelector from '../components/Room/ModelSelector';
 import Header from '../components/Shared/Header';
 import HeadphonesModal from '../components/Shared/HeadphonesModal';
+import {useLocation} from "react-router-dom";
 
 const Room = ({ data }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [allowPlay, setAllowPlay] = useState(false);
+  const location = useLocation();
+  const currentRoom = location.pathname.split('/')[2];
 
   const handleModalChoice = (choice) => {
     setModalIsOpen(false);
@@ -27,7 +30,7 @@ const Room = ({ data }) => {
           audioSrc={data.audio}
           setModalIsOpen={setModalIsOpen}
           allowPlay={allowPlay}
-          hasQuiz={true}
+          hasQuiz={localStorage.getItem(currentRoom) === null}
         />
         <Controls background />
       </RoomMainBlock>
