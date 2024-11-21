@@ -1,9 +1,9 @@
 import React from 'react';
-import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
+import { KeepScale, TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import { MAP_POINTS } from '../../features/data';
 import { styled } from 'styled-components';
-import { COLORS } from '../../styles/variables';
 import mapImage from '../../assets/map/map.jpg';
+import SvgSelector from '../Shared/SvgSelector';
 
 const MapSection = ({ handleDotClick }) => {
   return (
@@ -17,7 +17,11 @@ const MapSection = ({ handleDotClick }) => {
               key={index}
               onClick={() => handleDotClick(point)}
               style={{ top: `${point.top}px`, left: `${point.left}px` }}
-            />
+            >
+              <KeepScale>
+                <SvgSelector svg='mapPoint' />
+              </KeepScale>
+            </Dot>
           ))}
         </ZoomableMap>
       </TransformComponent>
@@ -31,13 +35,17 @@ const ZoomableMap = styled.div`
 `;
 
 const Dot = styled.div`
-  width: 20px;
-  height: 20px;
-  background-color: ${COLORS.yellow};
-  border: 2px solid ${COLORS.white};
-  border-radius: 50%;
+  width: 7.44vw;
+  height: 10.77vw;
+
   position: absolute;
   cursor: pointer;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    transform: translateY(-40%);
+  }
 `;
 
 export default MapSection;

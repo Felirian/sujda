@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import { COLORS } from '../styles/variables';
 import CustomButton from '../components/Shared/CustomButton';
@@ -10,12 +10,12 @@ import mapGuide from '../assets/rooms/first/guide.mp3';
 import HeadphonesModal from '../components/Shared/HeadphonesModal';
 import AudioGuide from '../components/Room/AudioGuide';
 import PopUpScroller from '../components/Shared/PopUpScroller';
-import LongFrameCard from '../components/Shared/LongFrameCard';
+import ModalContent from '../components/Map/ModalContent';
 
 const Map = () => {
   const [selectedPoint, setSelectedPoint] = useState(null);
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [headphonesModalIsOpen, setHeadphonesModalIsOpen] = useState(false);
   const [allowPlay, setAllowPlay] = useState(false);
 
   const [popUp, setPopUp] = useState(false);
@@ -30,19 +30,27 @@ const Map = () => {
   };
 
   const handleModalChoice = (choice) => {
-    setModalIsOpen(false);
+    setHeadphonesModalIsOpen(false);
     setAllowPlay(choice === 'yes');
   };
 
+  useEffect(() => {
+    const handleContextmenu = (e) => {
+      e.preventDefault();
+    };
+    document.addEventListener('contextmenu', handleContextmenu);
+  }, []);
+
   return (
     <MapWr>
-      <HeadphonesModal modalIsOpen={modalIsOpen} handleModalChoice={handleModalChoice} />
+      <HeadphonesModal modalIsOpen={headphonesModalIsOpen} handleModalChoice={handleModalChoice} />
 
       <MapSection handleDotClick={handleDotClick} />
+
       <MapControls>
         <AudioGuide
           audioSrc={mapGuide}
-          setModalIsOpen={setModalIsOpen}
+          setModalIsOpen={setHeadphonesModalIsOpen}
           allowPlay={allowPlay}
           hasQuiz={false}
         />
@@ -51,14 +59,9 @@ const Map = () => {
         </MapLink>
       </MapControls>
 
-      {selectedPoint && (
-        <PopUpScroller popUp={popUp} onClose={handleClosePopUp}>
-          <LongFrameCard>
-            <Title>{selectedPoint.name}</Title>
-            <Info>{selectedPoint.info}</Info>
-          </LongFrameCard>
-        </PopUpScroller>
-      )}
+      <PopUpScroller popUp={popUp} onClose={handleClosePopUp}>
+        <ModalContent selectedPoint={selectedPoint} />
+      </PopUpScroller>
     </MapWr>
   );
 };
@@ -69,6 +72,7 @@ const MapWr = styled.div`
   overflow: hidden;
   height: 100vh;
   height: 100svh;
+  /* touch-action: none; */
   background-color: ${COLORS.black};
   .map_wrapper {
     width: 100%;
