@@ -15,8 +15,7 @@ const Description = ({ data }) => {
 };
 
 const DescriptionWr = styled.div`
-  padding: 16.92vw 5.64vw 14.1vw 5.64vw;
-  padding-top: 16.92vw;
+  padding: 0 5.64vw 14.1vw 5.64vw;
   width: 100%;
   background-color: ${COLORS.green};
   display: flex;

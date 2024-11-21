@@ -3,17 +3,21 @@ import styled from 'styled-components';
 import Question from '../components/Room/Quiz/Question';
 import { useQuizFunctions } from '../features/quiz';
 import { COLORS } from '../styles/variables';
-import { H1, H3, P1, P3 } from '../styles/textTags';
+import { H1, H3, P1} from '../styles/textTags';
 import FrameCard from '../components/Shared/FrameCard';
 import bg from '../assets/quiz/quiz-bg.png';
 import feather from '../assets/quiz/feather.png';
 import QuestionCounter from '../components/Room/Quiz/QuestionCounter';
+import Header from '../components/Shared/Header';
 
-const Quiz = ({ data }) => {
+const Quiz = ({ data, quizTexts }) => {
   const QuizFunc = useQuizFunctions();
-
+  //TODO: завершение викторины перекидывает на секретную комнату
+  //TODO: если чел прошел викторину, то кнопка пропадает (хотябы 2< - прошел)
   return (
     <QuizWr>
+      <Header back={true} type={'black'}/>
+
       {QuizFunc.variables.currentQuestion >= 0 && QuizFunc.variables.currentQuestion < data.length && (
         <QuestionCounter
           currentQuestion={QuizFunc.variables.currentQuestion}
@@ -27,7 +31,7 @@ const Quiz = ({ data }) => {
             <StartPageWr>
               <H1>Викторина</H1>
               <P1Styled>
-                Мы предлагаем Вам пройти викторину текст текст текст текст текст текст текст
+                {quizTexts.startPage}
               </P1Styled>
             </StartPageWr>
           </FrameCard>
@@ -89,7 +93,7 @@ const QuizWr = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 100svh;
   background-image: url('${bg}');
   background-size: cover;
   background-position: center;

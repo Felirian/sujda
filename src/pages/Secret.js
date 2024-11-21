@@ -1,23 +1,22 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import frame from '../assets/rooms/secret/mirror-bg.png';
 import glass from '../assets/rooms/secret/mirror-glass.png';
-
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { FreeMode, Pagination } from 'swiper/modules';
-
-import 'swiper/css';
-import 'swiper/css/grid';
-import 'swiper/css/pagination';
 import { PERSONS } from '../features/data';
-import { Link } from 'react-router-dom';
 import { COLORS } from '../styles/variables';
-import { H3, P2 } from '../styles/textTags';
-import CustomButton from "../components/Shared/CustomButton";
+import { H1, H3, P2 } from '../styles/textTags';
+import CustomButton from '../components/Shared/CustomButton';
+import LongFrameCard from '../components/Shared/LongFrameCard';
+import Header from '../components/Shared/Header';
+import CustomSlider from '../components/Room/Secret/CustomSlider';
+import PopUpScroller from '../components/Shared/PopUpScroller';
+import SecretWords from '../components/Room/Secret/SecretWords';
 
 const Secret = () => {
   const [currentPerson, setCurrentPerson] = useState(PERSONS[0]);
   const [fadeOut, setFadeOut] = useState(false);
+  const [popUp, setPopUp] = useState(false);
+
   const prevIndexRef = useRef(0);
 
   const handleSlideChange = (swiper) => {
@@ -32,56 +31,47 @@ const Secret = () => {
     }
   };
 
+  const handleClosePopUp = () => {
+    setPopUp(false);
+  };
+
   return (
     <SecretRoomWr>
+      <SecretWords />
+      <Header />
       <GlassImg src={glass} alt={'glass'} />
       <FrameImg src={frame} alt={'frame'} />
-      <SwiperContainer>
-        <Swiper
-          slidesPerView={1}
-          spaceBetween={28}
-          speed={1000}
-          loop={true}
-          pagination={{
-            clickable: true,
-            el: '.swiper-pagination',
-            bulletClass: 'swiper-pagination-bullet',
-            bulletActiveClass: 'swiper-pagination-bullet-active',
-          }}
-          onSlideChange={handleSlideChange}
-          modules={[FreeMode, Pagination]}
-          className='mySwiper'
-        >
-          {PERSONS.map((person, index) => (
-            <PersonSlide key={index}>
-              <Personimg src={person.image} alt={person.name} />
-            </PersonSlide>
-          ))}
-        </Swiper>
-      </SwiperContainer>
+      <CustomSlider onSlideChange={handleSlideChange} />
 
       <BottomContainer>
         <SwiperPaginationWrapper>
           <SwiperPagination className='swiper-pagination' />
         </SwiperPaginationWrapper>
 
-        <SwiperText fadeOut={fadeOut}>
+        <SwiperText $fadeOut={fadeOut}>
           <H3>{currentPerson?.name}</H3>
           <P2>{currentPerson?.info}</P2>
         </SwiperText>
-        <MainBtn to={'/'}>
+        <MainBtn onClick={() => setPopUp(true)}>
           <CustomButton type={'sand'}>узнать больше</CustomButton>
         </MainBtn>
       </BottomContainer>
+
+      <PopUpScroller popUp={popUp} onClose={handleClosePopUp}>
+        <LongFrameCard>
+          <StoryWr>
+            <H1Styled>{currentPerson?.name.split(' ')[0]}</H1Styled>
+            <P2>{currentPerson?.story}</P2>
+          </StoryWr>
+        </LongFrameCard>
+      </PopUpScroller>
     </SecretRoomWr>
   );
 };
 
-export default Secret;
-
 const SecretRoomWr = styled.div`
   display: flex;
-  height: 100vh;
+  height: 100svh;
   overflow: hidden;
   position: relative;
   justify-content: center;
@@ -109,14 +99,6 @@ const GlassImg = styled.img`
   z-index: 1;
   bottom: 0%;
 `;
-const SwiperContainer = styled.div`
-  position: absolute;
-  bottom: 79vw;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
 
 const BottomContainer = styled.div`
   position: relative;
@@ -132,9 +114,8 @@ const BottomContainer = styled.div`
 const SwiperText = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: center;
-  opacity: ${({ fadeOut }) => (fadeOut ? 0 : 1)};
+  margin-right: auto;
+  opacity: ${(props) => (props.$fadeOut ? 0 : 1)};
   transition: opacity 0.3s ease-in-out;
 `;
 
@@ -156,7 +137,7 @@ const SwiperPagination = styled.div`
     background-color: ${COLORS.sand};
     opacity: 1;
     border-radius: 0;
-    margin: 0 5px;
+    margin: 0 1.282vw;
   }
 
   .swiper-pagination-bullet-active {
@@ -164,20 +145,7 @@ const SwiperPagination = styled.div`
   }
 `;
 
-const PersonSlide = styled(SwiperSlide)`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: end;
-`;
-
-const Personimg = styled.img`
-  width: 90%;
-  height: auto;
-`;
-
-const MainBtn = styled(Link)`
+const MainBtn = styled.button`
   width: 57.69vw;
   padding: 0.77vw;
   background-color: ${COLORS.sand};
@@ -185,3 +153,15 @@ const MainBtn = styled(Link)`
   text-align: center;
   margin-top: 12vw;
 `;
+
+const StoryWr = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6vw;
+`;
+
+const H1Styled = styled(H1)`
+  text-transform: uppercase;
+`;
+
+export default Secret;

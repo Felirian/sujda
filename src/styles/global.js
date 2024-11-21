@@ -1,12 +1,13 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { COLORS } from './variables';
+import { H3 } from './textTags';
 
 const GlobalStyles = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  
+    -webkit-tap-highlight-color: transparent;
     //border: 1px pink solid;
   }
 
@@ -17,6 +18,7 @@ const GlobalStyles = createGlobalStyle`
 
   body {
     width: 100%;
+    height: 100svh;
     overflow-x: hidden;
     max-width: 100vw;
     background-color: ${COLORS.black};
@@ -76,3 +78,28 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 export default GlobalStyles;
+
+export const WarningWr = styled.div`
+  position: absolute;
+  background-color: ${COLORS.dark};
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const WarningContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vw;
+`;
+
+export const WarningH = styled(H3)`
+  color: ${COLORS.white};
+  text-transform: uppercase;
+  text-align: center;
+`;
