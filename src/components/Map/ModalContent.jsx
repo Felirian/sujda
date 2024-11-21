@@ -25,7 +25,9 @@ const ModalContentWr = styled.div`
   gap: 6.15vw;
 `;
 
-const Title = styled(H1)``;
+const Title = styled(H1)`
+  text-transform: uppercase;
+`;
 
 const Info = styled(P1)`
   text-align: start;
