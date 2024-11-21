@@ -43,7 +43,9 @@ const TopSection = styled.div`
 `;
 
 const Ganibal = styled.img`
-  width: 100%;
+  width: 85%;
+  height: auto;
+  margin: 0 auto;
   display: block;
 `;
 
@@ -51,7 +53,7 @@ const ControlsWr = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top:auto;
+  margin-top: auto;
 `;
 
 export default Museum;
