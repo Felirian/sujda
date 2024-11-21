@@ -12,6 +12,10 @@ import secondRoomGuide from '../assets/rooms/second/guide.mp3';
 import Person1 from '../assets/rooms/secret/person1.png';
 import Person2 from '../assets/rooms/secret/person2.png';
 import Person3 from '../assets/rooms/secret/person3.png';
+import Person4 from '../assets/rooms/secret/person4.png';
+import Person5 from '../assets/rooms/secret/person5.png';
+import Person6 from '../assets/rooms/secret/person6.png';
+import Person7 from '../assets/rooms/secret/person7.png';
 
 const QUIZ_DATA_1 = [
   {
@@ -195,7 +199,7 @@ export const PERSONS = [
   },
   {
     name: `Иван Абрамович Ганнибал`,
-    info: 'Текст текст текст',
+    info: 'Русский военачальник, генерал-аншеф, главнокомандующий Черноморским флотом',
     image: Person2,
     story:
       <>
@@ -233,7 +237,7 @@ export const PERSONS = [
   },
   {
     name: `Надежда Осиповна Ганнибал`,
-    info: 'Текст текст текст',
+    info: 'Дочь Осипа Абрамовича Ганнибала и Марии Алексеевны Ганнибал',
     image: Person3,
     story:
       <>
@@ -252,8 +256,8 @@ export const PERSONS = [
   },
   {
     name: `Осип Абрамович Ганнибал`,
-    info: 'Текст текст текст',
-    image: Person3,
+    info: 'Российский военный, дед поэта Александра Пушкина, основатель усадьбы Михайловское',
+    image: Person4,
     story:
       <>
         Третий сын А.П. Ганнибала, Осип Абрамович, родился в Ревеле 20 января 1744 года. Он служил в
@@ -281,8 +285,8 @@ export const PERSONS = [
   },
   {
     name: `Мария Алексеевна Пушкина`,
-    info: 'Текст текст текст',
-    image: Person3,
+    info: 'Мать Н. О. Пушкиной, бабушка поэта.',
+    image: Person5,
     story:
       <>
         Бабушка А. С. Пушкина Мария Алексеевна Ганнибал родилась 20 (31) января 1745 года в
@@ -318,8 +322,8 @@ export const PERSONS = [
   },
   {
     name: `Сергей Львович Пушкин`,
-    info: 'Текст текст текст',
-    image: Person3,
+    info: 'Отец Александра Пушкина, поэт-любитель',
+    image: Person6,
     story:
       <>
         3 июня (23 мая по ст. стилю) 1770 года родился Сергей Львович Пушкин. Сын богатого помещика.
@@ -350,8 +354,8 @@ export const PERSONS = [
   },
   {
     name: `Арина Родионовна`,
-    info: 'Текст текст текст',
-    image: Person3,
+    info: 'Крепостная, няня Александра Сергеевича Пушкина',
+    image: Person7,
     story: 
       <>
         Ирина Родионова родилась 10 апреля (ст.ст) 1758 года на мызе Суйда Копорского уезда

@@ -5,7 +5,7 @@ import { useQuizFunctions } from '../features/quiz';
 import { COLORS } from '../styles/variables';
 import { H1, H3, P1} from '../styles/textTags';
 import FrameCard from '../components/Shared/FrameCard';
-import bg from '../assets/quiz/quiz-bg.png';
+import bg from '../assets/quiz/quiz-bg.jpg';
 import feather from '../assets/quiz/feather.png';
 import QuestionCounter from '../components/Room/Quiz/QuestionCounter';
 import Header from '../components/Shared/Header';
