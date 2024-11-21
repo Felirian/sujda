@@ -5,25 +5,44 @@ import CustomButton from '../components/Shared/CustomButton';
 import { Link } from 'react-router-dom';
 import { H1Style, P1Style } from '../styles/textTags';
 import MapSection from '../components/Map/MapSection';
-import SvgSelector from '../components/Shared/SvgSelector';
+import mapGuide from '../assets/rooms/first/guide.mp3';
+
+import HeadphonesModal from '../components/Shared/HeadphonesModal';
+import AudioGuide from '../components/Room/AudioGuide';
 
 const Map = () => {
   const [selectedPoint, setSelectedPoint] = useState(null);
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [allowPlay, setAllowPlay] = useState(false);
 
   const handleDotClick = (point) => {
     setSelectedPoint(point);
   };
 
+  const handleModalChoice = (choice) => {
+    setModalIsOpen(false);
+    setAllowPlay(choice === 'yes');
+  };
+
   return (
     <MapWr>
-      <LogoWr>
-        <SvgSelector svg='elephantLogo' />
-      </LogoWr>
+      <HeadphonesModal modalIsOpen={modalIsOpen} handleModalChoice={handleModalChoice} />
+
       {selectedPoint && <Overlay onClick={() => setSelectedPoint(null)} />}
+
       <MapSection handleDotClick={handleDotClick} />
-      <Link to='/museum'>
-        <CustomButton type={'orange'}>в музей</CustomButton>
-      </Link>
+      <MapControls>
+        <AudioGuide
+          audioSrc={mapGuide}
+          setModalIsOpen={setModalIsOpen}
+          allowPlay={allowPlay}
+          hasQuiz={false}
+        />
+        <MapLink to='/museum'>
+          <CustomButton type={'orange'}>в музей</CustomButton>
+        </MapLink>
+      </MapControls>
 
       {selectedPoint && (
         <InfoSection>
@@ -37,16 +56,18 @@ const Map = () => {
 };
 
 const MapWr = styled.div`
+  position: relative;
   width: 100%;
   overflow: hidden;
   height: 100vh;
   height: 100svh;
-  padding-top: 30.77vw;
-  background-color: ${COLORS.brown};
+  background-color: ${COLORS.black};
   .map_wrapper {
     width: 100%;
+    height: 90%;
   }
   .map_wrapper_content {
+    height: 100%;
   }
 `;
 
@@ -56,6 +77,32 @@ const Title = styled.h1`
 
 const Info = styled.p`
   ${P1Style};
+`;
+
+const MapControls = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 44vw;
+  background-color: ${COLORS.green};
+  border-radius: 6.15vw 6.15vw 0 0;
+`;
+
+const MapLink = styled(Link)`
+  position: absolute;
+  bottom: 8.21vw;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 51.28vw;
+
+  div {
+    margin: 3px;
+    h2 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 `;
 
 const InfoSection = styled.div`
@@ -93,19 +140,6 @@ const Overlay = styled.div`
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 10;
-`;
-
-const LogoWr = styled.div`
-  position: absolute;
-  top: 3.85vw;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 57px;
-  height: 58px;
-  svg {
-    width: 100%;
-    height: 100%;
-  }
 `;
 
 export default Map;

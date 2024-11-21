@@ -14,7 +14,7 @@ const MapSection = ({ handleDotClick }) => {
 
           {MAP_POINTS.map((point, index) => (
             <Dot
-              key={point.id}
+              key={index}
               onClick={() => handleDotClick(point)}
               style={{ top: `${point.top}px`, left: `${point.left}px` }}
             />
@@ -26,10 +26,8 @@ const MapSection = ({ handleDotClick }) => {
 };
 
 const ZoomableMap = styled.div`
-  background-color: ${COLORS.brown};
-  width: 900px;
-  height: 700px;
-  font-size: 70px;
+  width: 240vw;
+  height: 230vw;
 `;
 
 const Dot = styled.div`
