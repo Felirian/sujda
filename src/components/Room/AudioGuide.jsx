@@ -4,7 +4,7 @@ import { COLORS } from '../../styles/variables';
 import SvgSelector from '../Shared/SvgSelector';
 import { Link } from 'react-router-dom';
 
-const AudioGuide = ({ audioSrc, setModalIsOpen, allowPlay }) => {
+const AudioGuide = ({ audioSrc, setModalIsOpen, allowPlay, hasQuiz }) => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -104,6 +104,7 @@ const AudioGuide = ({ audioSrc, setModalIsOpen, allowPlay }) => {
         <SvgSelector svg={isPlaying ? 'pause' : 'play'} />
       </PlayButton>
       <ProgressContainer
+        $hasquiz={hasQuiz}
         onClick={handleProgressClick}
         onMouseDown={startDrag}
         onMouseMove={handleDrag}
@@ -114,10 +115,13 @@ const AudioGuide = ({ audioSrc, setModalIsOpen, allowPlay }) => {
       >
         <ProgressBar style={{ width: `${(currentTime / duration) * 100}%` }} />
       </ProgressContainer>
-      <QuizButton to='quiz'>
-        <SvgSelector svg='quiz' />
-      </QuizButton>
-      <TimeDisplay>
+      {hasQuiz && (
+        <QuizButton to='quiz'>
+          <SvgSelector svg='quiz' />
+        </QuizButton>
+      )}
+
+      <TimeDisplay $hasquiz={hasQuiz}>
         <span>{formatTime(currentTime)}</span> / {formatTime(duration)}
       </TimeDisplay>
       <audio ref={audioRef} src={audioSrc} />
@@ -168,10 +172,12 @@ const ProgressContainer = styled.div`
   align-items: center;
   height: 1.4vw;
   background-color: ${COLORS.white};
-  margin: 0 6.7vw 0;
+
   cursor: pointer;
-  width: 68vw;
+
   padding: 0 0.2vw;
+  width: ${({ $hasquiz }) => ($hasquiz ? '68vw' : '80vw')};
+  margin: ${({ $hasquiz }) => ($hasquiz ? '0 6.7vw 0' : '0')};
 `;
 
 const ProgressBar = styled.div`
@@ -189,7 +195,7 @@ const TimeDisplay = styled.span`
   line-height: normal;
   white-space: nowrap;
   bottom: -2vw;
-  right: 21.5vw;
+  right: ${({ $hasquiz }) => ($hasquiz ? '21.5vw' : '5vw')};
   span {
     color: ${COLORS.yellow};
   }
