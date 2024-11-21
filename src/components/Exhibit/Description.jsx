@@ -8,8 +8,8 @@ const Description = ({ data }) => {
     <DescriptionWr>
       <Title>{data.name}</Title>
       <Text>{data.description.text[0]}</Text>
-      <img src={data.description.img} alt={data.description.text[0]} />
-      <Text>{data.description.text[1]}</Text>
+      {data.description.img && <img src={data.description.img} alt={data.description.text[0]}/>}
+      {data.description.text[1] && <Text>{data.description.text[1]}</Text>}
     </DescriptionWr>
   );
 };
