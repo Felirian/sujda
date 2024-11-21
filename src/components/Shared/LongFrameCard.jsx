@@ -20,6 +20,7 @@ const LongFrameCardWr = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  z-index: 999;
 `;
 
 const SvgWrapper = styled.div`

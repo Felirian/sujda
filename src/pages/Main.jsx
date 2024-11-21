@@ -1,11 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 import { H1, P1 } from '../styles/textTags';
-import { Link } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import CustomButton from '../components/Shared/CustomButton';
 import { COLORS } from '../styles/variables';
 
 const Main = () => {
+  const navigate = useNavigate();
+  const requestFullscreen = () => {
+    const elem = document.documentElement;
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { // Для Safari
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { // Для IE11
+      elem.msRequestFullscreen();
+    }
+    navigate('/map')
+  };
   return (
     <MainWr>
       <Logo src="/img/main-logo.png" alt="Logo" />
@@ -17,7 +29,7 @@ const Main = () => {
           </H1Styled>
           <P1>Музей-усадьба</P1>
         </ConText>
-        <MainBtn to="/map">
+        <MainBtn onClick={requestFullscreen}>
           <CustomButton type={'sand'}>Начать</CustomButton>
         </MainBtn>
       </MainCon>
@@ -61,7 +73,7 @@ const H1Styled = styled(H1)`
   margin-bottom: 2vw;
 `;
 
-const MainBtn = styled(Link)`
+const MainBtn = styled.button`
   width: 100%;
   padding: 0.77vw;
   background-color: ${COLORS.sand};

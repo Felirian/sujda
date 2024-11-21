@@ -11,6 +11,8 @@ import Exhibit from './pages/Exhibit';
 import ModelViewer from './components/Exhibit/ModelViewer';
 
 function App() {
+
+
   return (
     <Routes>
       <Route path='/' element={<Main />} />
@@ -21,7 +23,7 @@ function App() {
         {ROOMS_DATA.map((roomData, index) => (
           <Route key={`${index}_rooms`} path={roomData.route}>
             <Route index element={<Room data={roomData} />} />
-            <Route path='quiz' element={<Quiz data={roomData.quiz} />} />
+            <Route path='quiz' element={<Quiz data={roomData.quiz} quizTexts={roomData.quizTexts}/>} />
             {roomData.exhibits.map((exhibit, index) => {
               return (
                 <React.Fragment key={`${index}_exhibit`}>

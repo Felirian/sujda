@@ -2,8 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 
 const PopUpScroller = ({ children, popUp, onClose }) => {
-  const [darkOverlay, setDarkOverlay] = useState(false);
-  const [isCardVisible, setIsCardVisible] = useState(false);
+  const [isCardVisible, setIsCardVisible] = useState(popUp);
+  const [darkOverlay, setDarkOverlay] = useState(popUp);
   const [down, setDown] = useState(false);
 
   const touchStartY = useRef(0);
@@ -12,83 +12,66 @@ const PopUpScroller = ({ children, popUp, onClose }) => {
   const cardContainerRef = useRef(null);
 
   useEffect(() => {
-    const wrapper = document.querySelector('#root');
-    if (wrapper) {
-      wrapper.addEventListener('touchstart', handleTouchStart);
-      wrapper.addEventListener('touchend', handleTouchEnd);
-      wrapper.addEventListener('touchmove', handleTouchMove);
-    }
-
-    return () => {
-      if (wrapper) {
-        wrapper.removeEventListener('touchstart', handleTouchStart);
-        wrapper.removeEventListener('touchend', handleTouchEnd);
-        wrapper.removeEventListener('touchmove', handleTouchMove);
-      }
-    };
-  }, []);
-
-  const checkCardPosition = () => {
-    if (cardContainerRef.current) {
-      const cardContainerRect = cardContainerRef.current.getBoundingClientRect();
-      const screenMiddle = window.innerHeight / 2;
-
-      if (cardContainerRect.top > screenMiddle && down) {
-        closeCard();
-      }
-    }
-  };
+    setIsCardVisible(popUp);
+    setDarkOverlay(popUp);
+    setDown(false);
+  }, [popUp]);
 
   const handleTouchStart = (e) => {
     touchStartY.current = e.touches[0].clientY;
+    setDown(false);
   };
 
   const handleTouchEnd = (e) => {
     touchEndY.current = e.changedTouches[0].clientY;
-    if (touchEndY.current > touchStartY.current) {
+    if (touchEndY.current - touchStartY.current > 50) {
       setDown(true);
-      closeCard();
-    } else {
-      setDown(false);
     }
   };
 
   const handleTouchMove = (e) => {
     const currentY = e.touches[0].clientY;
-    setDown(currentY > touchStartY.current);
-  };
+    const cardContainerRect = cardContainerRef.current.getBoundingClientRect();
 
-  const openCard = () => {
-    setIsCardVisible(true);
-    setDarkOverlay(true);
-  };
-
-  const closeCard = () => {
-    setIsCardVisible(false);
-    setDarkOverlay(false);
-    if (onClose) {
+    if (currentY > touchStartY.current && cardContainerRect.top > window.innerHeight / 2) {
+      setIsCardVisible(false);
+      setDarkOverlay(false);
       onClose();
     }
   };
-
   useEffect(() => {
-    if (popUp) {
-      openCard();
-    } else if (!popUp && isCardVisible) {
-      closeCard();
-    }
-  }, [popUp]);
+    const handleScroll = () => {
+      if (cardContainerRef.current) {
+        const cardContainerRect = cardContainerRef.current.getBoundingClientRect();
+        if (cardContainerRect.top > window.innerHeight / 2 && down) {
+          setIsCardVisible(false);
+          setDarkOverlay(false);
+          onClose();
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [down, onClose]);
 
   return (
-    <CardWrapper ref={cardWrapperRef} onScroll={checkCardPosition} isVisible={isCardVisible}>
+    <CardWrapper
+      ref={cardWrapperRef}
+      isVisible={isCardVisible}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       <DarkOverlay style={{ opacity: darkOverlay ? 0.5 : 0 }} />
       <CardContainer ref={cardContainerRef}>{children}</CardContainer>
     </CardWrapper>
   );
 };
-
 export default PopUpScroller;
-
 
 const DarkOverlay = styled.div`
   position: fixed;
@@ -107,10 +90,10 @@ const CardWrapper = styled.div`
   top: 1px;
   height: 100svh;
   width: 100%;
-  z-index: 99; 
+  z-index: 99;
   overflow-y: scroll;
   max-height: 100vh;
-  padding-top: ${(props) => (props.isVisible ? '70svh' : '150svh')};
+  padding-top: ${(props) => (props.isVisible ? '60svh' : '150svh')};
   transition: padding-top 0.3s ease-in-out;
   pointer-events: ${(props) => (props.isVisible ? 'all' : 'none')};
   scrollbar-width: none;

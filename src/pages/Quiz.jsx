@@ -10,9 +10,10 @@ import feather from '../assets/quiz/feather.png';
 import QuestionCounter from '../components/Room/Quiz/QuestionCounter';
 import Header from '../components/Shared/Header';
 
-const Quiz = ({ data }) => {
+const Quiz = ({ data, quizTexts }) => {
   const QuizFunc = useQuizFunctions();
-
+  //TODO: завершение викторины перекидывает на секретную комнату
+  //TODO: если чел прошел викторину, то кнопка пропадает (хотябы 2< - прошел)
   return (
     <QuizWr>
       <Header back={true} type={'black'}/>
@@ -30,7 +31,7 @@ const Quiz = ({ data }) => {
             <StartPageWr>
               <H1>Викторина</H1>
               <P1Styled>
-                Мы предлагаем Вам пройти викторину текст текст текст текст текст текст текст
+                {quizTexts.startPage}
               </P1Styled>
             </StartPageWr>
           </FrameCard>
