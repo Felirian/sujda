@@ -41,7 +41,7 @@ const MainWr = styled.div`
   padding: 12.82vw 4.1vw 8.21vw 4.1vw;
   color: white;
   text-align: center;
-  background-image: url('/img/main-bg.png');
+  background-image: url('/img/main-bg.jpg');
   background-size: cover;
   background-position: center;
   height: 100svh;
