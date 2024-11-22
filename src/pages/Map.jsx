@@ -3,7 +3,6 @@ import { styled } from 'styled-components';
 import { COLORS } from '../styles/variables';
 import CustomButton from '../components/Shared/CustomButton';
 import { Link } from 'react-router-dom';
-import { H1Style, P1Style } from '../styles/textTags';
 
 import mapGuide from '../assets/rooms/first/guide.mp3';
 
