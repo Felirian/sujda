@@ -4,13 +4,14 @@ import { COLORS } from '../styles/variables';
 import CustomButton from '../components/Shared/CustomButton';
 import { Link } from 'react-router-dom';
 import { H1Style, P1Style } from '../styles/textTags';
-import MapSection from '../components/Map/MapSection';
+
 import mapGuide from '../assets/rooms/first/guide.mp3';
 
 import HeadphonesModal from '../components/Shared/HeadphonesModal';
 import AudioGuide from '../components/Room/AudioGuide';
 import PopUpScroller from '../components/Shared/PopUpScroller';
 import ModalContent from '../components/Map/ModalContent';
+import MapSection from '../components/Map/MapSection';
 
 const Map = () => {
   const [selectedPoint, setSelectedPoint] = useState(null);
@@ -81,14 +82,6 @@ const MapWr = styled.div`
   .map_wrapper_content {
     height: 100%;
   }
-`;
-
-const Title = styled.h1`
-  ${H1Style};
-`;
-
-const Info = styled.p`
-  ${P1Style};
 `;
 
 const MapControls = styled.div`
