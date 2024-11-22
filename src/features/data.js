@@ -96,7 +96,7 @@ const EXHIBITS_DATA = [
     route: 'gannibal',
     img: gannibalPreview,
     preview: gannibalPreview,
-    threejs: 'gannibal',
+    threejs: 'room1/1',
     description: {
       imgs: [Person1, Person2],
       text: [
@@ -129,7 +129,7 @@ const EXHIBITS_DATA = [
     route: 'box',
     img: boxPreview,
     preview: boxPreview,
-    threejs: 'gannibal',
+    threejs: 'room1/2',
     description: {
       imgs: [Person1, Person2],
       text: [
@@ -154,11 +154,11 @@ const EXHIBITS_DATA = [
     },
   },
   {
-    name: 'Монета Полушка 1736 г',
+    name: 'Монета Полушка 1736 г',
     route: 'spoon',
     img: spoonPreview,
     preview: spoonPreview,
-    threejs: 'box',
+    threejs: 'room1/3',
     description: {
       imgs: [Person1, Person2],
       text: [
@@ -188,7 +188,7 @@ const EXHIBITS_DATA = [
     route: 'spoon',
     img: spoonPreview,
     preview: spoonPreview,
-    threejs: 'box',
+    threejs: 'room1/4',
     description: {
       imgs: [Person1, Person2],
       text: [
