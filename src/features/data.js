@@ -63,7 +63,7 @@ const EXHIBITS_DATA = [
     preview: gannibalPreview,
     threejs: 'gannibal',
     description: {
-      img: Person1,
+      imgs: [Person1, Person2],
       text: [
         <>
           Шведское королевство. Медь, чеканка.
@@ -96,7 +96,7 @@ const EXHIBITS_DATA = [
     preview: boxPreview,
     threejs: 'gannibal',
     description: {
-      img: Person1,
+      imgs: [Person1, Person2],
       text: [
         <>
           Российская империя, Москва, Кадашевский монетный двор. Медь, чеканка.
@@ -125,7 +125,7 @@ const EXHIBITS_DATA = [
     preview: spoonPreview,
     threejs: 'box',
     description: {
-      img: Person1,
+      imgs: [Person1, Person2],
       text: [
         <>
           Российская империя. Медь, чеканка.
@@ -155,7 +155,7 @@ const EXHIBITS_DATA = [
     preview: spoonPreview,
     threejs: 'box',
     description: {
-      img: Person1,
+      imgs: [Person1, Person2],
       text: [
         <>
           Медь, чеканка, золочение.
@@ -188,7 +188,7 @@ const EXHIBITS_DATA = [
     preview: spoonPreview,
     threejs: 'box',
     description: {
-      img: Person1,
+      imgs: [Person1, Person2],
       text: [
         <>
           Автор: Шевченко В.В.
@@ -220,7 +220,7 @@ const EXHIBITS_DATA = [
     preview: spoonPreview,
     threejs: 'box',
     description: {
-      img: Person1,
+      imgs: [Person1, Person2],
       text: <>Text </>,
     },
   },
@@ -231,7 +231,7 @@ const EXHIBITS_DATA = [
     preview: spoonPreview,
     threejs: 'box',
     description: {
-      img: Person1,
+      imgs: [Person1, Person2],
       text: [
         <>
           Дата создания: 1832 г. <br />
@@ -254,7 +254,7 @@ const EXHIBITS_DATA = [
     preview: spoonPreview,
     threejs: 'box',
     description: {
-      img: Person1,
+      imgs: [Person1, Person2],
       text: [
         <>
           Африка, государство Камерун
@@ -282,7 +282,7 @@ const EXHIBITS_DATA = [
     preview: spoonPreview,
     threejs: 'box',
     description: {
-      img: Person1,
+      imgs: [Person1, Person2],
       text: [
         <>
           г. Москва
@@ -314,7 +314,7 @@ const EXHIBITS_DATA = [
     preview: spoonPreview,
     threejs: 'box',
     description: {
-      img: Person1,
+      imgs: [Person1, Person2],
       text: [
         <>
           Ленинградская обл., Луга, с. Городец. 1987 г.
@@ -344,7 +344,7 @@ const EXHIBITS_DATA = [
     preview: spoonPreview,
     threejs: 'box',
     description: {
-      img: Person1,
+      imgs: [Person1, Person2],
       text: [
         <>
           Футляр из собрания Нины Ивановны Грановской — заслуженного работника культуры РСФСР,
@@ -372,7 +372,7 @@ const EXHIBITS_DATA = [
     preview: spoonPreview,
     threejs: 'box',
     description: {
-      img: Person1,
+      imgs: [Person1, Person2],
       text: [
         <>
           Футляр из собрания Нины Ивановны Грановской — заслуженного работника культуры РСФСР,
@@ -400,7 +400,7 @@ const EXHIBITS_DATA = [
     preview: spoonPreview,
     threejs: 'box',
     description: {
-      img: Person1,
+      imgs: [Person1, Person2],
       text: [
         <>
           Российская империя, Пензенская губ. <br />
@@ -429,7 +429,7 @@ const EXHIBITS_DATA = [
     preview: spoonPreview,
     threejs: 'box',
     description: {
-      img: Person1,
+      imgs: [Person1, Person2],
       text: [
         <>
           Пензенская губ.
@@ -457,7 +457,7 @@ const EXHIBITS_DATA = [
     preview: spoonPreview,
     threejs: 'box',
     description: {
-      img: Person1,
+      imgs: [Person1, Person2],
       text: [
         <>
           Российская империя. Санкт-Петербург. Меднопрокатный завод. <br />
@@ -485,7 +485,7 @@ const EXHIBITS_DATA = [
     preview: spoonPreview,
     threejs: 'box',
     description: {
-      img: Person1,
+      imgs: [Person1, Person2],
       text: [
         <>
           Дар Ангелины Николаевны Сорокиной, жительницы СПб. <br />
@@ -511,7 +511,7 @@ const EXHIBITS_DATA = [
     preview: spoonPreview,
     threejs: 'box',
     description: {
-      img: Person1,
+      imgs: [Person1, Person2],
       text: [
         <>
           Дар Ангелины Николаевны Сорокиной, жительницы СПб. <br />
@@ -535,7 +535,7 @@ const EXHIBITS_DATA = [
     preview: spoonPreview,
     threejs: 'box',
     description: {
-      img: Person1,
+      imgs: [Person1, Person2],
       text: [
         <>
           Дар Ангелины Николаевны Сорокиной, жительницы СПб. Пензенская губ. <br />
@@ -565,7 +565,7 @@ const EXHIBITS_DATA = [
     preview: spoonPreview,
     threejs: 'box',
     description: {
-      img: Person1,
+      imgs: [Person1, Person2],
       text: [
         <>
           Дар Ангелины Николаевны Сорокиной, жительницы СПб. <br />
@@ -595,7 +595,7 @@ const EXHIBITS_DATA = [
     preview: spoonPreview,
     threejs: 'box',
     description: {
-      img: Person1,
+      imgs: [Person1, Person2],
       text: [
         <>
           Пензенская губ.
@@ -627,7 +627,7 @@ const EXHIBITS_DATA = [
     preview: spoonPreview,
     threejs: 'box',
     description: {
-      img: Person1,
+      imgs: [Person1, Person2],
       text: [
         <>
           Китай, г. Харбин.
@@ -726,6 +726,12 @@ export const PERSONS = [
     image: Person1,
     story: (
       <>
+        <span>
+          Визуализация сделана на основе портрета А.&nbsp;П.&nbsp;Ганнибала, созданного во второй
+          половине XVII века неизвестным художником
+        </span>
+        <br />
+        <br />
         Личность Абрама Петровича — крестника и сподвижника Петра I, прадеда великого русского поэта
         Александра Сергеевича Пушкина, вызывает неподдельный интерес уже не одно столетие. Арап
         Петра Великого стал свидетелем и участником важных исторических процессов и событий XVIII
@@ -761,6 +767,12 @@ export const PERSONS = [
     image: Person2,
     story: (
       <>
+        <span>
+          Визуализация сделана на основе портрета И.&nbsp;А.&nbsp;Ганнибала, созданного около 1801
+          г. Д.&nbsp;Г.&nbsp;Левицким
+        </span>
+        <br />
+        <br />
         Среди сыновей «арапа Петра Великого» наиболее выдающейся личностью был, безусловно, И.А.
         Ганнибал, родившийся 5 июня 1735 года в Карьякюла близ Ревеля. Будучи уже в 1744 году
         9-летним мальчиком, зачислен на военную службу, затем обучался в шляхетском кадетском
@@ -800,6 +812,12 @@ export const PERSONS = [
     image: Person3,
     story: (
       <>
+        <span>
+          Визуализация сделана на основе портрета Н.&nbsp;О.&nbsp;Ганнибал, созданного в
+          1-ой&nbsp;пол. 1820-х гг. неизвестным художником
+        </span>
+        <br />
+        <br />
         21 июня (ст.) 1775 года на свет появилась Надежда Осиповна Ганнибал, в замужестве Пушкина.
         Ей будет суждено стать матерью великого поэта Александра Сергеевича Пушкина.
         <br />
@@ -820,6 +838,12 @@ export const PERSONS = [
     image: Person4,
     story: (
       <>
+        <span>
+          Визуализация сделана на основе портрета И.&nbsp;А.&nbsp;Ганнибала, созданного в 1780–е г.
+          неизвестным художником. Изображение самого О.&nbsp;А.&nbsp;Ганнибала не&nbsp;сохранилось
+        </span>
+        <br />
+        <br />
         Третий сын А.П. Ганнибала, Осип Абрамович, родился в Ревеле 20 января 1744 года. Он служил в
         артиллерии (поручик в 1762 году, майор с 29 декабря 1770 года) и вышел в отставку в чине
         капитана 2-го ранга, затем поступил на гражданскую службу, сначала заседателем Псковского
@@ -845,11 +869,17 @@ export const PERSONS = [
     ),
   },
   {
-    name: `Мария Алексеевна Пушкина`,
+    name: `Мария Алексеевна Ганнибал`,
     info: 'Мать Н. О. Пушкиной, бабушка поэта.',
     image: Person5,
     story: (
       <>
+        <span>
+          Визуализация сделана на основе портрета М.&nbsp;А.&nbsp;Ганнибал, созданного
+          к.1770-х–1780-е&nbsp;гг
+        </span>
+        <br />
+        <br />
         Бабушка А. С. Пушкина Мария Алексеевна Ганнибал родилась 20 (31) января 1745 года в
         Нижегородской губернии, с двух лет жила в с. Кореневщино (Покровское тож) под Липецком.
         <br />
@@ -888,6 +918,12 @@ export const PERSONS = [
     image: Person6,
     story: (
       <>
+        <span>
+          Визуализация сделана на основе портрета С.&nbsp;Л.&nbsp;Пушкина, созданного
+          в&nbsp;1810-е&nbsp;гг. неизвестным художником
+        </span>
+        <br />
+        <br />
         3 июня (23 мая по ст. стилю) 1770 года родился Сергей Львович Пушкин. Сын богатого помещика.
         Получив светское воспитание, часто блистал в салонных собраниях своей остротой ума и
         эрудицией. Писал стихи как на французском, так и на русском языке. Имел живой интерес к
@@ -921,6 +957,12 @@ export const PERSONS = [
     image: Person7,
     story: (
       <>
+        <span>
+          Визуализация сделана на основе портрета предполагаемого портрета Арины Родионовны,
+          созданного неизвестным художником школы Ступина в&nbsp;1&nbsp;чет.&nbsp;XIX&nbsp;века
+        </span>
+        <br />
+        <br />
         Ирина Родионова родилась 10 апреля (ст.ст) 1758 года на мызе Суйда Копорского уезда
         Петербургской губернии в семье крепостных Родиона Яковлева и Лукерьи Кирилловой. Здесь же
         она росла и бывала в господской мызе своего барина Ганнибала, у которого конюхом служил брат

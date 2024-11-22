@@ -6,10 +6,11 @@ import { COLORS } from '../../styles/variables';
 const Description = ({ data }) => {
   return (
     <DescriptionWr>
-      <Title>{data.name}</Title>
-      <Text>{data.description.text[0]}</Text>
-      {data.description.img && <img src={data.description.img} alt={data.description.text[0]}/>}
-      {data.description.text[1] && <Text>{data.description.text[1]}</Text>}
+      <Title>{data?.name}</Title>
+      <Text>{data?.description?.text[0]}</Text>
+      {data.description.imgs[0] && <img src={data.description.imgs[0]} alt={data?.name} />}
+      <Text>{data?.description?.text[1]}</Text>
+      {data.description.imgs[1] && <img src={data.description.imgs[1]} alt={data?.name} />}
     </DescriptionWr>
   );
 };

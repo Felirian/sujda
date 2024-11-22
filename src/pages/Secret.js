@@ -158,6 +158,9 @@ const StoryWr = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6vw;
+  span {
+    font-style: italic;
+  }
 `;
 
 const H1Styled = styled(H1)`
