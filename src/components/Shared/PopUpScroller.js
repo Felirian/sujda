@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
+import CancelButton from './CancelButton';
 
 const PopUpScroller = ({ children, popUp, onClose }) => {
   const [isCardVisible, setIsCardVisible] = useState(popUp);
@@ -16,6 +17,12 @@ const PopUpScroller = ({ children, popUp, onClose }) => {
     setDarkOverlay(popUp);
     setDown(false);
   }, [popUp]);
+
+  const handleClose = () => {
+    setIsCardVisible(false);
+    setDarkOverlay(false);
+    onClose();
+  };
 
   const handleTouchStart = (e) => {
     touchStartY.current = e.touches[0].clientY;
@@ -66,6 +73,9 @@ const PopUpScroller = ({ children, popUp, onClose }) => {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
+      <CardCancel>
+        <CancelButton onClick={handleClose}/>
+      </CardCancel>
       <DarkOverlay style={{ opacity: darkOverlay ? 0.5 : 0 }} />
       <CardContainer ref={cardContainerRef}>{children}</CardContainer>
     </CardWrapper>
@@ -100,6 +110,15 @@ const CardWrapper = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+`;
+
+const CardCancel = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  z-index: 999;
+  position: relative;
+  padding: 0 3vw 0 0;
 `;
 
 const CardContainer = styled.div`
