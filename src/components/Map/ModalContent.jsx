@@ -1,7 +1,7 @@
 import React from 'react';
 import LongFrameCard from '../Shared/LongFrameCard';
 import { styled } from 'styled-components';
-import { H1, P1 } from '../../styles/textTags';
+import { H1, P1, P2 } from '../../styles/textTags';
 
 const ModalContent = ({ selectedPoint }) => {
   return (
@@ -9,8 +9,10 @@ const ModalContent = ({ selectedPoint }) => {
       {selectedPoint && (
         <ModalContentWr>
           <Title>{selectedPoint.name}</Title>
-          <Info>{selectedPoint.info}</Info>
-          <ModalImg src={selectedPoint.img} alt={selectedPoint.name} />
+          <P2>{selectedPoint.info}</P2>
+          {selectedPoint.img.map((image, index) => (
+            <ModalImg key={index} src={image} alt={`${selectedPoint.name} ${index + 1}`} />
+          ))}
         </ModalContentWr>
       )}
     </LongFrameCard>
@@ -20,19 +22,16 @@ const ModalContent = ({ selectedPoint }) => {
 const ModalContentWr = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 10vw;
-  padding-bottom: 10vw;
-  gap: 6.15vw;
+  gap: 6vw;
 `;
 
 const Title = styled(H1)`
   text-transform: uppercase;
 `;
 
-const Info = styled(P1)`
-  text-align: start;
+const ModalImg = styled.img`
+  width: 100%;
+  margin-top: 2vw;
 `;
-
-const ModalImg = styled.img``;
 
 export default ModalContent;

@@ -1019,9 +1019,10 @@ export const MAP_POINTS = [
         разобрали его фундамент».
       </>
     ),
-    img: [map1], //Подпись: Место, где раньше стоял Господский дом
-    top: 340,
-    left: 340,
+    img: [map1],
+    imgdesc: <>Место, где раньше стоял Господский дом</>,
+    top: 10,
+    left: 10,
   },
   {
     name: 'Дом управляющего', // (2)
@@ -1038,8 +1039,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map2],
-    top: 460,
-    left: 460,
+    top: 30,
+    left: 30,
   },
   {
     name: 'Конюшня', // (3)
@@ -1056,8 +1057,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map3],
-    top: 470,
-    left: 470,
+    top: 50,
+    left: 50,
   },
   {
     name: 'Гостевой флигель', // (4)
@@ -1090,8 +1091,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map4_1, map4_2],
-    top: 220,
-    left: 220,
+    top: 70,
+    left: 70,
   },
   {
     name: 'Людская', // (5)
@@ -1119,8 +1120,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map6_1, map6_2],
-    top: 400,
-    left: 400,
+    top: 90,
+    left: 90,
   },
   {
     name: 'Каретный сарай', // (6.1)
@@ -1132,8 +1133,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map6_1_1],
-    top: 360,
-    left: 360,
+    top: 110,
+    left: 110,
   },
   {
     name: 'Птичник', // (7)
@@ -1147,8 +1148,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map7],
-    top: 330,
-    left: 330,
+    top: 130,
+    left: 130,
   },
   {
     name: 'Амбар и Молочный дом', // (8-33)
@@ -1167,8 +1168,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map8],
-    top: 320,
-    left: 320,
+    top: 150,
+    left: 150,
   },
   {
     name: 'Хозяйственная часть мызы', // (9)
@@ -1181,8 +1182,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map9_1, map9_2],
-    top: 310,
-    left: 310,
+    top: 170,
+    left: 170,
   },
   {
     name: 'Подъездная березовая аллея', // (10)
@@ -1197,8 +1198,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [],
-    top: 410,
-    left: 410,
+    top: 190,
+    left: 190,
   },
   {
     name: 'Подъездная березовая аллея', // (11)
@@ -1211,8 +1212,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [],
-    top: 420,
-    left: 420,
+    top: 210,
+    left: 210,
   },
   {
     name: 'Регулярный парк', // (12)
@@ -1246,8 +1247,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map13],
-    top: 240,
-    left: 240,
+    top: 250,
+    left: 250,
   },
   {
     name: 'Дуб Ганнибала', // (14)
@@ -1258,8 +1259,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map14],
-    top: 250,
-    left: 250,
+    top: 270,
+    left: 270,
   },
   {
     name: 'Каменная скамья (диван)', // (15)
@@ -1273,8 +1274,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map15],
-    top: 440,
-    left: 440,
+    top: 290,
+    left: 290,
   },
   {
     name: 'Липовая аллея (фрагмент)', // (16)
@@ -1285,8 +1286,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map16],
-    top: 260,
-    left: 260,
+    top: 310,
+    left: 310,
   },
   {
     name: 'Пруд', // (17)
@@ -1303,8 +1304,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map17],
-    top: 280,
-    left: 280,
+    top: 330,
+    left: 330,
   },
   {
     name: 'Острова на пруду', // (18)
@@ -1316,8 +1317,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map18],
-    top: 450,
-    left: 450,
+    top: 350,
+    left: 350,
   },
   {
     name: 'Острова на пруду', // (19)
@@ -1329,8 +1330,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map19],
-    top: 450,
-    left: 450,
+    top: 370,
+    left: 370,
   },
   {
     name: 'Лукоморье Место «пушкинского» дуба (600-700 лет)', // (20)
@@ -1345,8 +1346,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map20],
-    top: 430,
-    left: 430,
+    top: 390,
+    left: 390,
   },
   {
     name: 'Деревянная изба западного приусадебного двора', // (22)
@@ -1358,8 +1359,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map22],
-    top: 390,
-    left: 390,
+    top: 410,
+    left: 410,
   },
   {
     name: 'Дом егеря ', // (23)
@@ -1372,8 +1373,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map23],
-    top: 300,
-    left: 300,
+    top: 430,
+    left: 430,
   },
   {
     name: 'Кузня', // (25)
@@ -1391,8 +1392,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [],
-    top: 480,
-    left: 480,
+    top: 450,
+    left: 450,
   },
   {
     name: 'Лиственницы', // (27)
@@ -1405,8 +1406,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map27],
-    top: 380,
-    left: 380,
+    top: 470,
+    left: 470,
   },
   {
     name: 'Солнечные часы', // (28)
@@ -1418,8 +1419,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map28],
-    top: 370,
-    left: 370,
+    top: 490,
+    left: 490,
   },
   {
     name: 'Егерская аллея еловая', // (29)
@@ -1431,8 +1432,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map29],
-    top: 290,
-    left: 290,
+    top: 510,
+    left: 510,
   },
   {
     name: 'Пейзажный парк', // (30)
@@ -1448,8 +1449,8 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map30],
-    top: 270,
-    left: 270,
+    top: 530,
+    left: 530,
   },
 ];
 
@@ -1469,8 +1470,8 @@ export const MAP_POINTS_LARGE = [
       </>
     ),
     img: [],
-    top: 600,
-    left: 600,
+    top: 550,
+    left: 550,
   },
   {
     name: 'Памятник Арине Родионовне в Селе Воскресенском. Место дома ее родителей, где она родилась и выросла.', // (35)
@@ -1488,8 +1489,8 @@ export const MAP_POINTS_LARGE = [
       </>
     ),
     img: [map35_1, map35_2],
-    top: 210,
-    left: 210,
+    top: 570,
+    left: 570,
   },
   {
     name: 'Церковь Воскресения Христова (1992, современная, действующая)', // (36)
@@ -1503,8 +1504,8 @@ export const MAP_POINTS_LARGE = [
       </>
     ),
     img: [map36],
-    top: 610,
-    left: 610,
+    top: 590,
+    left: 590,
   },
   {
     name: 'Место первой церкви Воскресения Христова (1718) и захоронения А.П. Ганнибала', // (37)
@@ -1521,8 +1522,8 @@ export const MAP_POINTS_LARGE = [
       </>
     ),
     img: [map37_1, map37_2],
-    top: 620,
-    left: 620,
+    top: 610,
+    left: 610,
   },
   {
     name: 'Мельница', // (38)

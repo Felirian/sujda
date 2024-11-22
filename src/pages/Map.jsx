@@ -61,7 +61,7 @@ const Map = () => {
       </MapControls>
 
       <PopUpScroller popUp={popUp} onClose={handleClosePopUp}>
-        <ModalContent selectedPoint={selectedPoint} />
+        <ModalContent key={selectedPoint?.name} selectedPoint={selectedPoint} />
       </PopUpScroller>
     </MapWr>
   );
