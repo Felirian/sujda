@@ -11,11 +11,11 @@ const MapSection = ({ handleDotClick }) => {
       doubleClick={{ disabled: true }}
       maxScale={6}
       minScale={1}
-      limitToBounds={false}
-      minPositionX={-300}
-      maxPositionX={-600}
-      minPositionY={-100}
-      maxPositionY={-300}
+      // limitToBounds={false}
+      // minPositionX={-300}
+      // maxPositionX={-600}
+      // minPositionY={-100}
+      // maxPositionY={-300}
     >
       <TransformComponent wrapperClass='map_wrapper' contentClass='map_wrapper_content'>
         <ZoomableMap handleDotClick={handleDotClick} />
