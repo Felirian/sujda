@@ -3,9 +3,9 @@ import SvgSelector from './SvgSelector';
 import styled from 'styled-components';
 import { COLORS } from '../../styles/variables';
 
-const CancelButton = () => {
+const CancelButton = ({onClick}) => {
   return (
-    <CancelButtonWr>
+    <CancelButtonWr onClick={onClick}>
       <SvgSelector svg={'cross'} />
     </CancelButtonWr>
   );
@@ -21,6 +21,8 @@ const CancelButtonWr = styled.div`
   justify-content: center;
   background-color: ${COLORS.red};
   border-radius: 100%;
+
+  z-index: 999 !important;
   & > svg {
     width: 5vw;
     height: 5vw;
