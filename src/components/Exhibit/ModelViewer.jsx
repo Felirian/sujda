@@ -23,7 +23,7 @@ const Model = ({ model }) => {
   useEffect(() => {
     const loader = new GLTFLoader();
 
-    // это нужно чтобы распаковать сжатые модельки
+    // это нужно, чтобы распаковать сжатые модельки
     const dracoLoader = new DRACOLoader();
     dracoLoader.setDecoderPath("https://www.gstatic.com/draco/v1/decoders/");
     loader.setDRACOLoader(dracoLoader);
