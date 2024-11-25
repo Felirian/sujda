@@ -20,14 +20,14 @@ const ZoomableMap = ({ handleDotClick }) => {
     <ZoomableMapWr>
       <img src={mapImage} alt='Карта' style={{ width: '100%', height: 'auto' }} />
       {currentScale >= 3
-        ? MAP_POINTS_LARGE.map((point, index) => (
+        ? MAP_POINTS.map((point, index) => (
             <Dot key={index} style={{ top: `${point.top}%`, left: `${point.left}%` }}>
               <KeepScale onClick={() => handleDotClick(point)}>
                 <SvgSelector svg='mapPoint' />
               </KeepScale>
             </Dot>
           ))
-        : MAP_POINTS.map((point, index) => (
+        : MAP_POINTS_LARGE.map((point, index) => (
             <Dot key={index} style={{ top: `${point.top}%`, left: `${point.left}%` }}>
               <KeepScale onClick={() => handleDotClick(point)}>
                 <SvgSelector svg='mapPoint' />
@@ -35,7 +35,7 @@ const ZoomableMap = ({ handleDotClick }) => {
             </Dot>
           ))}
       {currentScale < 3 && (
-        <Dot style={{ top: `60%`, left: `30%` }}>
+        <Dot style={{ top: `33%`, left: `30%` }}>
           <KeepScale>
             <SvgSelector svg='mapPoint' id='group1' />
           </KeepScale>
