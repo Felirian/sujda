@@ -1,32 +1,59 @@
-import React from 'react';
+import React, { useState } from "react";
 
-import mapImage from '../../../assets/map/map.jpg';
-import SvgSelector from '../../Shared/SvgSelector';
-import { MAP_POINTS } from '../../../features/data';
-import { styled } from 'styled-components';
-import { KeepScale, useTransformEffect } from 'react-zoom-pan-pinch';
+import mapImage from "../../../assets/map/map.jpg";
+import SvgSelector from "../../Shared/SvgSelector";
+import { MAP_POINTS, MAP_POINTS_LARGE } from "../../../features/data";
+import { styled } from "styled-components";
+import { KeepScale, useTransformContext, useTransformEffect } from "react-zoom-pan-pinch";
 
 const ZoomableMap = ({ handleDotClick }) => {
-  useTransformEffect(({ state, instance }) => {
-    // console.log(state, 'state');
-    // console.log(instance, 'instance');
+  const [currentScale, setCurrentScale] = useState(0);
+
+  const context = useTransformContext();
+  console.log(context, "conteerere");
+
+  useTransformEffect(({ state }) => {
+    setCurrentScale(state.scale);
   });
 
   return (
     <ZoomableMapWr>
-      <img src={mapImage} alt='Карта' style={{ width: '100%', height: 'auto' }} />
-
-      {MAP_POINTS.map((point, index) => (
-        <Dot
-          key={index}
-          onClick={() => handleDotClick(point)}
-          style={{ top: `${point.top}px`, left: `${point.left}px` }}
-        >
+      <img
+        src={mapImage}
+        alt="Карта"
+        style={{ width: "100%", height: "auto" }}
+      />
+      {currentScale >= 3
+        ? MAP_POINTS_LARGE.map((point, index) => (
+            <Dot
+              key={index}
+              style={{ top: `${point.top}vw`, left: `${point.left}vw` }}
+            >
+              <KeepScale onClick={() => handleDotClick(point)}>
+                <SvgSelector svg="mapPoint" />
+              </KeepScale>
+            </Dot>
+          ))
+        : MAP_POINTS.map((point, index) => (
+            <Dot
+              key={index}
+              style={{ top: `${point.top}vw`, left: `${point.left}vw` }}
+            >
+              <KeepScale onClick={() => handleDotClick(point)}>
+                <SvgSelector svg="mapPoint" />
+              </KeepScale>
+            </Dot>
+          ))}
+      {currentScale < 3 && (
+        <Dot style={{ top: `60vw`, left: `30vw` }}>
           <KeepScale>
-            <SvgSelector svg='mapPoint' />
+            <SvgSelector
+              svg="mapPoint"
+              id="group1"
+            />
           </KeepScale>
         </Dot>
-      ))}
+      )}
     </ZoomableMapWr>
   );
 };

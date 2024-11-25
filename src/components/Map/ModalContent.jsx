@@ -1,7 +1,7 @@
-import React from 'react';
-import LongFrameCard from '../Shared/LongFrameCard';
-import { styled } from 'styled-components';
-import { H1, P2, P1 } from '../../styles/textTags';
+import React from "react";
+import LongFrameCard from "../Shared/LongFrameCard";
+import { styled } from "styled-components";
+import { H1, P2, P1 } from "../../styles/textTags";
 
 const ModalContent = ({ selectedPoint }) => {
   return (
@@ -12,8 +12,11 @@ const ModalContent = ({ selectedPoint }) => {
           <P2>{selectedPoint.info}</P2>
           {selectedPoint.img.map((image, index) => (
             <div key={index}>
-              <ModalImg src={image} alt={`${selectedPoint.name} ${index + 1}`} />
-              <P1>{selectedPoint.imgdesc[index]}</P1>
+              <ModalImg
+                src={image}
+                alt={`${selectedPoint.name} ${index + 1}`}
+              />
+              <P1>{selectedPoint?.imgdesc?.[index]}</P1>
             </div>
           ))}
         </ModalContentWr>
