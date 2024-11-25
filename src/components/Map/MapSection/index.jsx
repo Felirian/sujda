@@ -1,7 +1,7 @@
-import React from 'react';
-import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
+import React from "react";
+import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 
-import ZoomableMap from './ZoomableMap';
+import ZoomableMap from "./ZoomableMap";
 
 const MapSection = ({ handleDotClick }) => {
   return (
@@ -9,10 +9,13 @@ const MapSection = ({ handleDotClick }) => {
       centerOnInit
       initialScale={1}
       doubleClick={{ disabled: true }}
-      maxScale={6}
+      maxScale={9}
       minScale={1}
     >
-      <TransformComponent wrapperClass='map_wrapper' contentClass='map_wrapper_content'>
+      <TransformComponent
+        wrapperClass="map_wrapper"
+        contentClass="map_wrapper_content"
+      >
         <ZoomableMap handleDotClick={handleDotClick} />
       </TransformComponent>
     </TransformWrapper>
