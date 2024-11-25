@@ -1063,8 +1063,8 @@ export const MAP_POINTS = [
     ),
     img: [map1],
     imgdesc: [<>Место, где раньше стоял Господский дом</>],
-    top: 10,
-    left: 10,
+    top: 278,
+    left: 269,
   },
   {
     name: 'Дом управляющего', // (2)
@@ -1081,8 +1081,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map2],
-    top: 30,
-    left: 30,
+    imgdesc: [],
+    top: 270,
+    left: 273,
   },
   {
     name: 'Конюшня', // (3)
@@ -1099,8 +1100,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map3],
-    top: 50,
-    left: 50,
+    imgdesc: [],
+    top: 272,
+    left: 282,
   },
   {
     name: 'Гостевой флигель', // (4)
@@ -1133,8 +1135,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map4_1, map4_2],
-    top: 70,
-    left: 70,
+    imgdesc: [],
+    top: 278,
+    left: 277,
   },
   {
     name: 'Людская', // (5)
@@ -1145,8 +1148,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [],
-    top: 350,
-    left: 350,
+    imgdesc: [],
+    top: 279,
+    left: 283,
   },
   {
     name: 'Оранжерея', // (6)
@@ -1162,8 +1166,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map6_1, map6_2],
-    top: 90,
-    left: 90,
+    imgdesc: [],
+    top: 276,
+    left: 288,
   },
   {
     name: 'Каретный сарай', // (6.1)
@@ -1175,8 +1180,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map6_1_1],
-    top: 110,
-    left: 110,
+    imgdesc: [],
+    top: 291,
+    left: 265,
   },
   {
     name: 'Птичник', // (7)
@@ -1190,8 +1196,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map7],
-    top: 130,
-    left: 130,
+    imgdesc: [],
+    top: 258,
+    left: 328,
   },
   {
     name: 'Амбар и Молочный дом', // (8-33)
@@ -1210,8 +1217,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map8],
-    top: 150,
-    left: 150,
+    imgdesc: [],
+    top: 288,
+    left: 318,
   },
   {
     name: 'Хозяйственная часть мызы', // (9)
@@ -1224,8 +1232,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map9_1, map9_2],
-    top: 170,
-    left: 170,
+    imgdesc: [],
+    top: 269,
+    left: 320,
   },
   {
     name: 'Подъездная березовая аллея', // (10)
@@ -1240,8 +1249,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [],
-    top: 190,
-    left: 190,
+    imgdesc: [],
+    top: 265,
+    left: 265,
   },
   {
     name: 'Подъездная березовая аллея', // (11)
@@ -1254,8 +1264,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [],
-    top: 210,
-    left: 210,
+    imgdesc: [],
+    top: 313,
+    left: 226,
   },
   {
     name: 'Регулярный парк', // (12)
@@ -1275,8 +1286,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map12],
-    top: 230,
-    left: 230,
+    imgdesc: [],
+    top: 305,
+    left: 270,
   },
   {
     name: 'Центральная дубовая аллея', // (13)
@@ -1289,8 +1301,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map13],
-    top: 250,
-    left: 250,
+    imgdesc: [],
+    top: 295,
+    left: 275,
   },
   {
     name: 'Дуб Ганнибала', // (14)
@@ -1301,8 +1314,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map14],
-    top: 270,
-    left: 270,
+    imgdesc: [],
+    top: 305,
+    left: 275,
   },
   {
     name: 'Каменная скамья (диван)', // (15)
@@ -1316,8 +1330,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map15],
-    top: 290,
-    left: 290,
+    imgdesc: [],
+    top: 308,
+    left: 275,
   },
   {
     name: 'Липовая аллея (фрагмент)', // (16)
@@ -1328,8 +1343,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map16],
-    top: 310,
-    left: 310,
+    imgdesc: [],
+    top: 304,
+    left: 280,
   },
   {
     name: 'Пруд', // (17)
@@ -1346,8 +1362,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map17],
-    top: 330,
-    left: 330,
+    imgdesc: [],
+    top: 315,
+    left: 296,
   },
   {
     name: 'Острова на пруду', // (18)
@@ -1359,8 +1376,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map18],
-    top: 350,
-    left: 350,
+    imgdesc: [],
+    top: 312,
+    left: 280,
   },
   {
     name: 'Острова на пруду', // (19)
@@ -1372,8 +1390,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map19],
-    top: 370,
-    left: 370,
+    imgdesc: [],    
+    top: 309,
+    left: 290,
   },
   {
     name: 'Лукоморье Место «пушкинского» дуба (600-700 лет)', // (20)
@@ -1388,8 +1407,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map20],
-    top: 390,
-    left: 390,
+    imgdesc: [],
+    top: 325,
+    left: 295,
   },
   {
     name: 'Деревянная изба западного приусадебного двора', // (22)
@@ -1401,8 +1421,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map22],
-    top: 410,
-    left: 410,
+    imgdesc: [],
+    top: 276,
+    left: 260,
   },
   {
     name: 'Дом егеря ', // (23)
@@ -1415,8 +1436,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map23],
-    top: 430,
-    left: 430,
+    imgdesc: [],
+    top: 310,
+    left: 236,
   },
   {
     name: 'Кузня', // (25)
@@ -1434,6 +1456,7 @@ export const MAP_POINTS = [
       </>
     ),
     img: [],
+    imgdesc: [],
     top: 450,
     left: 450,
   },
@@ -1448,8 +1471,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map27],
-    top: 470,
-    left: 470,
+    imgdesc: [],
+    top: 285,
+    left: 271,
   },
   {
     name: 'Солнечные часы', // (28)
@@ -1461,8 +1485,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map28],
-    top: 490,
-    left: 490,
+    imgdesc: [],
+    top: 285,
+    left: 273,
   },
   {
     name: 'Егерская аллея еловая', // (29)
@@ -1474,8 +1499,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map29],
-    top: 510,
-    left: 510,
+    imgdesc: [],
+    top: 310,
+    left: 240,
   },
   {
     name: 'Пейзажный парк', // (30)
@@ -1491,8 +1517,9 @@ export const MAP_POINTS = [
       </>
     ),
     img: [map30],
-    top: 530,
-    left: 530,
+    imgdesc: [],
+    top: 13,
+    left: 12,
   },
 ];
 
@@ -1512,6 +1539,7 @@ export const MAP_POINTS_LARGE = [
       </>
     ),
     img: [],
+    imgdesc: [],
     top: 550,
     left: 550,
   },
@@ -1531,6 +1559,7 @@ export const MAP_POINTS_LARGE = [
       </>
     ),
     img: [map35_1, map35_2],
+    imgdesc: [],
     top: 570,
     left: 570,
   },
@@ -1546,6 +1575,7 @@ export const MAP_POINTS_LARGE = [
       </>
     ),
     img: [map36],
+    imgdesc: [],
     top: 590,
     left: 590,
   },
@@ -1564,6 +1594,7 @@ export const MAP_POINTS_LARGE = [
       </>
     ),
     img: [map37_1, map37_2],
+    imgdesc: [],
     top: 610,
     left: 610,
   },
@@ -1579,6 +1610,7 @@ export const MAP_POINTS_LARGE = [
       </>
     ),
     img: [map38_1, map38_2],
+    imgdesc: [],
     top: 630,
     left: 630,
   },
