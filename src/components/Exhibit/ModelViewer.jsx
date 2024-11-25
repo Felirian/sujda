@@ -7,20 +7,36 @@ import { COLORS } from '../../styles/variables';
 import SvgSelector from '../Shared/SvgSelector';
 import { P1Style, P2 } from '../../styles/textTags';
 import { useNavigate } from 'react-router-dom';
-import { Box3, Vector3 } from 'three';
+import {AnimationMixer, Box3, Vector3} from 'three';
+import * as THREE from "three";
 
 const Model = ({ model }) => {
-  // const { scene, error } = useGLTF(`/models/${model}.glb`, true);
-
   const [scene, setScene] = useState(null);
+  const [animMixer, setAnimMixer] = useState(null);
+  const [action, setAction] = useState(null);
+  const [isPlayingForward, setIsPlayingForward] = useState(true);
   const [error, setError] = useState(null);
+
+  const clock = useRef(new THREE.Clock());
 
   useEffect(() => {
     const loader = new GLTFLoader();
+    let mixer = null;
+
     loader.load(
       `/models/${model}.glb`,
       (gltf) => {
         setScene(gltf.scene);
+
+        if (gltf.animations && gltf.animations.length > 0) {
+          mixer = new AnimationMixer(gltf.scene);
+          const newAction = mixer.clipAction(gltf.animations[0]); // Берём первую анимацию
+          newAction.setLoop(THREE.LoopOnce); // Воспроизводится только один раз
+          newAction.clampWhenFinished = true; // Завершается в конечной позиции
+          setAction(newAction);
+        }
+
+        setAnimMixer(mixer);
       },
       undefined,
       (err) => {
@@ -28,35 +44,56 @@ const Model = ({ model }) => {
         setError(err);
       }
     );
+
+    return () => {
+      if (mixer) {
+        mixer.stopAllAction();
+        mixer.uncacheRoot(mixer.getRoot());
+      }
+    };
   }, [model]);
 
   useEffect(() => {
-    // центрирование модельки и расчет размера, чтобы она влезала в экран
-    if (scene) {
-      scene.updateWorldMatrix(true, true);
-
-      const box = new Box3().setFromObject(scene);
-      const size = new Vector3();
-      const center = new Vector3();
-
-      box.getSize(size);
-      box.getCenter(center);
-
-      scene.position.sub(center);
-
-      const maxDimension = Math.max(size.x, size.y, size.z);
-      const scaleFactor = 2 / maxDimension;
-      scene.scale.setScalar(scaleFactor);
-
-      scene.position.y += 0.5;
+    if (animMixer) {
+      const animate = () => {
+        const delta = clock.current.getDelta();
+        animMixer.update(delta);
+        requestAnimationFrame(animate);
+      };
+      animate();
     }
-  }, [scene]);
+  }, [animMixer]);
+
+  const handleClick = () => {
+    if (!action) return;
+
+    if (isPlayingForward) {
+      action.reset(); // Сбрасываем анимацию
+      action.timeScale = 1; // Воспроизведение вперёд
+      action.play(); // Запуск анимации
+    } else {
+      action.reset(); // Сбрасываем анимацию
+      action.time = action.getClip().duration; // Устанавливаем время на конец анимации
+      action.timeScale = -1; // Воспроизведение назад
+      action.paused = false; // Разблокируем воспроизведение
+      action.play();
+    }
+
+    setIsPlayingForward(!isPlayingForward); // Переключаем направление
+  };
 
   if (error) {
     return <ErrorMessage>Ошибка загрузки модели</ErrorMessage>;
   }
 
-  return scene && <primitive object={scene} />;
+  return (
+    scene && (
+      <primitive
+        object={scene}
+        onClick={handleClick} // Добавляем обработчик клика
+      />
+    )
+  );
 };
 
 const ModelViewer = ({ model }) => {
@@ -76,8 +113,8 @@ const ModelViewer = ({ model }) => {
         <SvgSelector svg='3dObs' />
       </ObsIcon>
       <Suspense fallback={<Loader />}>
-        <Canvas key={model} camera={{ fov: 45, position: [0, 1, 5] }}>
-          <CameraControls minDistance={2} maxDistance={12} />
+        <Canvas key={model} camera={{ fov: 45, position: [0, 5, 10] }}>
+          <CameraControls minDistance={2} maxDistance={30} />
           <ambientLight intensity={5} />
           <directionalLight position={[5, 10, 5]} intensity={6} castShadow />
           <Model model={model} />
