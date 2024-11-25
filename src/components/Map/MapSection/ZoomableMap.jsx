@@ -25,6 +25,18 @@ const ZoomableMap = ({ handleDotClick, zoomToElement }) => {
         alt="Карта"
         style={{ width: "100%", height: "auto" }}
       />
+      {currentScale < 3 && (
+        <Dot
+          style={{ top: `38%`, left: `31%` }}
+          id="group1"
+        >
+          <KeepScale onClick={clickToZoom}>
+            <CirclePoint>
+              <div />
+            </CirclePoint>
+          </KeepScale>
+        </Dot>
+      )}
       {currentScale >= 3
         ? MAP_POINTS_LARGE.map((point, index) => (
             <Dot
@@ -46,18 +58,6 @@ const ZoomableMap = ({ handleDotClick, zoomToElement }) => {
               </KeepScale>
             </Dot>
           ))}
-      {currentScale < 3 && (
-        <Dot
-          style={{ top: `38%`, left: `31%` }}
-          id="group1"
-        >
-          <KeepScale onClick={clickToZoom}>
-            <CirclePoint>
-              <div />
-            </CirclePoint>
-          </KeepScale>
-        </Dot>
-      )}
     </ZoomableMapWr>
   );
 };
