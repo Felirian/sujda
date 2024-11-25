@@ -1146,8 +1146,8 @@ export const MAP_POINTS = [
     ),
     img: [map1],
     imgdesc: [<>Место, где раньше стоял Господский дом</>],
-    top: 278,
-    left: 269,
+    top:100,
+    left: 100,
   },
   {
     name: 'Дом управляющего', // (2)
@@ -1165,8 +1165,8 @@ export const MAP_POINTS = [
     ),
     img: [map2],
     imgdesc: [],
-    top: 270,
-    left: 273,
+    top: 0,
+    left: 0,
   },
   {
     name: 'Конюшня', // (3)
@@ -1184,8 +1184,8 @@ export const MAP_POINTS = [
     ),
     img: [map3],
     imgdesc: [],
-    top: 272,
-    left: 282,
+    top: 0,
+    left: 0,
   },
   {
     name: 'Гостевой флигель', // (4)
@@ -1219,8 +1219,8 @@ export const MAP_POINTS = [
     ),
     img: [map4_1, map4_2],
     imgdesc: [],
-    top: 278,
-    left: 277,
+    top: 0,
+    left: 0,
   },
   {
     name: 'Людская', // (5)
@@ -1232,8 +1232,8 @@ export const MAP_POINTS = [
     ),
     img: [],
     imgdesc: [],
-    top: 279,
-    left: 283,
+    top: 0,
+    left: 0,
   },
   {
     name: 'Оранжерея', // (6)
@@ -1250,8 +1250,8 @@ export const MAP_POINTS = [
     ),
     img: [map6_1, map6_2],
     imgdesc: [],
-    top: 276,
-    left: 288,
+    top: 0,
+    left: 0,
   },
   {
     name: 'Каретный сарай', // (6.1)
@@ -1264,8 +1264,8 @@ export const MAP_POINTS = [
     ),
     img: [map6_1_1],
     imgdesc: [],
-    top: 291,
-    left: 265,
+    top: 0,
+    left: 0,
   },
   {
     name: 'Птичник', // (7)
@@ -1280,8 +1280,8 @@ export const MAP_POINTS = [
     ),
     img: [map7],
     imgdesc: [],
-    top: 258,
-    left: 328,
+    top: 0,
+    left: 0,
   },
   {
     name: 'Амбар и Молочный дом', // (8-33)
@@ -1301,8 +1301,8 @@ export const MAP_POINTS = [
     ),
     img: [map8],
     imgdesc: [],
-    top: 288,
-    left: 318,
+    top: 0,
+    left: 0,
   },
   {
     name: 'Хозяйственная часть мызы', // (9)
@@ -1316,8 +1316,8 @@ export const MAP_POINTS = [
     ),
     img: [map9_1, map9_2],
     imgdesc: [],
-    top: 269,
-    left: 320,
+    top: 0,
+    left: 0,
   },
   {
     name: 'Подъездная березовая аллея', // (10)
@@ -1333,8 +1333,8 @@ export const MAP_POINTS = [
     ),
     img: [],
     imgdesc: [],
-    top: 265,
-    left: 265,
+    top: 0,
+    left: 0,
   },
   {
     name: 'Подъездная березовая аллея', // (11)
@@ -1348,8 +1348,8 @@ export const MAP_POINTS = [
     ),
     img: [],
     imgdesc: [],
-    top: 313,
-    left: 226,
+    top: 0,
+    left: 0,
   },
   {
     name: 'Регулярный парк', // (12)
@@ -1370,8 +1370,8 @@ export const MAP_POINTS = [
     ),
     img: [map12],
     imgdesc: [],
-    top: 305,
-    left: 270,
+    top: 0,
+    left: 0,
   },
   {
     name: 'Центральная дубовая аллея', // (13)
@@ -1385,8 +1385,8 @@ export const MAP_POINTS = [
     ),
     img: [map13],
     imgdesc: [],
-    top: 295,
-    left: 275,
+    top: 0,
+    left: 0,
   },
   {
     name: 'Дуб Ганнибала', // (14)
@@ -1398,8 +1398,8 @@ export const MAP_POINTS = [
     ),
     img: [map14],
     imgdesc: [],
-    top: 305,
-    left: 275,
+    top: 0,
+    left: 0,
   },
   {
     name: 'Каменная скамья (диван)', // (15)
@@ -1414,8 +1414,8 @@ export const MAP_POINTS = [
     ),
     img: [map15],
     imgdesc: [],
-    top: 308,
-    left: 275,
+    top: 0,
+    left: 0,
   },
   {
     name: 'Липовая аллея (фрагмент)', // (16)
@@ -1427,8 +1427,8 @@ export const MAP_POINTS = [
     ),
     img: [map16],
     imgdesc: [],
-    top: 304,
-    left: 280,
+    top: 0,
+    left: 0,
   },
   {
     name: 'Пруд', // (17)
@@ -1446,8 +1446,8 @@ export const MAP_POINTS = [
     ),
     img: [map17],
     imgdesc: [],
-    top: 315,
-    left: 296,
+    top: 0,
+    left: 0,
   },
   {
     name: 'Острова на пруду', // (18)
@@ -1460,8 +1460,8 @@ export const MAP_POINTS = [
     ),
     img: [map18],
     imgdesc: [],
-    top: 312,
-    left: 280,
+    top: 0,
+    left: 0,
   },
   {
     name: 'Острова на пруду', // (19)
@@ -1474,8 +1474,8 @@ export const MAP_POINTS = [
     ),
     img: [map19],
     imgdesc: [],    
-    top: 309,
-    left: 290,
+    top: 0,
+    left: 0,
   },
   {
     name: 'Лукоморье Место «пушкинского» дуба (600-700 лет)', // (20)
