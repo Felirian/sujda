@@ -29,6 +29,12 @@ const ModalContentWr = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6vw;
+  ${P1} {
+    span {
+      font-style: italic;
+    }
+  }
+  
 `;
 
 const Title = styled(H1)`

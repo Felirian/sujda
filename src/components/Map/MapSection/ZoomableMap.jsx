@@ -1,21 +1,22 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 
 import mapImage from "../../../assets/map/map.jpg";
 import SvgSelector from "../../Shared/SvgSelector";
-import { COLORS } from "../../../styles/variables";
-import { MAP_POINTS, MAP_POINTS_LARGE } from "../../../features/data";
-import { styled } from "styled-components";
-import { KeepScale, useTransformEffect } from "react-zoom-pan-pinch";
+import {COLORS} from "../../../styles/variables";
+import {MAP_POINTS, MAP_POINTS_LARGE} from "../../../features/data";
+import {styled} from "styled-components";
+import {KeepScale, useTransformEffect} from "react-zoom-pan-pinch";
 
-const ZoomableMap = ({ handleDotClick, zoomToElement }) => {
+const ZoomableMap = ({handleDotClick, zoomToElement}) => {
   const [currentScale, setCurrentScale] = useState(0);
 
-  useTransformEffect(({ state }) => {
+  useTransformEffect(({state}) => {
     setCurrentScale(state.scale);
   });
 
   const clickToZoom = () => {
     zoomToElement("group1", 5);
+
   };
 
   return (
@@ -23,41 +24,40 @@ const ZoomableMap = ({ handleDotClick, zoomToElement }) => {
       <img
         src={mapImage}
         alt="Карта"
-        style={{ width: "100%", height: "auto" }}
+        style={{width: "100%", height: "auto"}}
       />
-      {currentScale < 3 && (
+      {currentScale <= 3 && (
         <Dot
-          style={{ top: `38%`, left: `31%` }}
+          style={{top: `38%`, left: `31%`}}
           id="group1"
+          onClick={clickToZoom}
         >
-          <KeepScale onClick={clickToZoom}>
-            <CirclePoint>
-              <div />
-            </CirclePoint>
-          </KeepScale>
+
+          <CirclePoint>
+            <div/>
+          </CirclePoint>
+
         </Dot>
       )}
-      {currentScale >= 3
+      {currentScale <= 3
         ? MAP_POINTS_LARGE.map((point, index) => (
-            <Dot
-              key={index}
-              style={{ top: `${point.top}%`, left: `${point.left}%` }}
-            >
-              <KeepScale onClick={() => handleDotClick(point)}>
-                <SvgSelector svg="mapPoint" />
-              </KeepScale>
-            </Dot>
-          ))
+          <Dot
+            key={index}
+            onClick={() => handleDotClick(point)}
+            style={{top: `${point.top}%`, left: `${point.left}%`}}
+          >
+            <SvgSelector svg="mapPoint"/>
+          </Dot>
+        ))
         : MAP_POINTS.map((point, index) => (
-            <Dot
-              key={index}
-              style={{ top: `${point.top}%`, left: `${point.left}%` }}
-            >
-              <KeepScale onClick={() => handleDotClick(point)}>
-                <SvgSelector svg="mapPoint" />
-              </KeepScale>
-            </Dot>
-          ))}
+          <Dot
+            key={index}
+            onClick={() => handleDotClick(point)}
+            style={{top: `${point.top}%`, left: `${point.left}%`}}
+          >
+            <SvgSelector svg="mapPoint"/>
+          </Dot>
+        ))}
     </ZoomableMapWr>
   );
 };
@@ -68,7 +68,7 @@ const ZoomableMapWr = styled.div`
   position: relative;
 `;
 
-const Dot = styled.div`
+const Dot = styled(KeepScale)`
   width: 7.44vw;
   height: 10.77vw;
 
@@ -91,6 +91,7 @@ const CirclePoint = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
   div {
     width: 7vw;
     height: 7vw;
