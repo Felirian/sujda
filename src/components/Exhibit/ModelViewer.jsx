@@ -1,13 +1,14 @@
-import React, { Suspense, useEffect, useRef, useState } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { CameraControls, useGLTF } from '@react-three/drei';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import styled from 'styled-components';
-import { COLORS } from '../../styles/variables';
-import SvgSelector from '../Shared/SvgSelector';
-import { P1Style, P2 } from '../../styles/textTags';
-import { useNavigate } from 'react-router-dom';
-import {AnimationMixer, Box3, Vector3} from 'three';
+import React, { Suspense, useEffect, useRef, useState } from "react";
+import { Canvas } from "@react-three/fiber";
+import { CameraControls, useGLTF } from "@react-three/drei";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import styled from "styled-components";
+import { COLORS } from "../../styles/variables";
+import SvgSelector from "../Shared/SvgSelector";
+import { P1Style, P2 } from "../../styles/textTags";
+import { useNavigate } from "react-router-dom";
+import { AnimationMixer } from "three";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import * as THREE from "three";
 
 const Model = ({ model }) => {
@@ -21,6 +22,12 @@ const Model = ({ model }) => {
 
   useEffect(() => {
     const loader = new GLTFLoader();
+
+    // это нужно чтобы распаковать сжатые модельки
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath("https://www.gstatic.com/draco/v1/decoders/");
+    loader.setDRACOLoader(dracoLoader);
+
     let mixer = null;
 
     loader.load(
@@ -40,7 +47,7 @@ const Model = ({ model }) => {
       },
       undefined,
       (err) => {
-        console.error('Failed to load model:', err);
+        console.error("Failed to load model:", err);
         setError(err);
       }
     );
@@ -52,7 +59,6 @@ const Model = ({ model }) => {
       }
     };
   }, [model]);
-
   useEffect(() => {
     if (animMixer) {
       const animate = () => {
@@ -82,10 +88,6 @@ const Model = ({ model }) => {
     setIsPlayingForward(!isPlayingForward); // Переключаем направление
   };
 
-  if (error) {
-    return <ErrorMessage>Ошибка загрузки модели</ErrorMessage>;
-  }
-
   return (
     scene && (
       <primitive
@@ -107,16 +109,26 @@ const ModelViewer = ({ model }) => {
   return (
     <ModelViewerWr ref={containerRef}>
       <CloseBtn onClick={handleGoBack}>
-        <SvgSelector svg='close3d' />
+        <SvgSelector svg="close3d" />
       </CloseBtn>
       <ObsIcon>
-        <SvgSelector svg='3dObs' />
+        <SvgSelector svg="3dObs" />
       </ObsIcon>
       <Suspense fallback={<Loader />}>
-        <Canvas key={model} camera={{ fov: 45, position: [0, 5, 10] }}>
-          <CameraControls minDistance={2} maxDistance={30} />
+        <Canvas
+          key={model}
+          camera={{ fov: 45, position: [0, 5, 10] }}
+        >
+          <CameraControls
+            minDistance={2}
+            maxDistance={30}
+          />
           <ambientLight intensity={5} />
-          <directionalLight position={[5, 10, 5]} intensity={6} castShadow />
+          <directionalLight
+            position={[5, 10, 5]}
+            intensity={6}
+            castShadow
+          />
           <Model model={model} />
         </Canvas>
       </Suspense>
