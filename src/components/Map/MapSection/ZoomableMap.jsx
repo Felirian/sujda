@@ -27,7 +27,7 @@ const ZoomableMap = ({ handleDotClick }) => {
         ? MAP_POINTS_LARGE.map((point, index) => (
             <Dot
               key={index}
-              style={{ top: `${point.top}vw`, left: `${point.left}vw` }}
+              style={{ top: `${point.top}%`, left: `${point.left}%` }}
             >
               <KeepScale onClick={() => handleDotClick(point)}>
                 <SvgSelector svg="mapPoint" />
@@ -37,7 +37,7 @@ const ZoomableMap = ({ handleDotClick }) => {
         : MAP_POINTS.map((point, index) => (
             <Dot
               key={index}
-              style={{ top: `${point.top}vw`, left: `${point.left}vw` }}
+              style={{ top: `${point.top}%`, left: `${point.left}%` }}
             >
               <KeepScale onClick={() => handleDotClick(point)}>
                 <SvgSelector svg="mapPoint" />
@@ -45,7 +45,7 @@ const ZoomableMap = ({ handleDotClick }) => {
             </Dot>
           ))}
       {currentScale < 3 && (
-        <Dot style={{ top: `60vw`, left: `30vw` }}>
+        <Dot style={{ top: `60%`, left: `30%` }}>
           <KeepScale>
             <SvgSelector
               svg="mapPoint"
