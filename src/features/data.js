@@ -267,11 +267,11 @@ const EXHIBITS_DATA = [
     },
   },
   {
-    name: 'Медальон ПР. IOAHHЪ РЫЛЬСКIЙ, СВѦТАѦ ТРОИЦА',
-    route: 'spoon',
-    img: spoonPreview,
-    preview: spoonPreview,
-    threejs: 'room1/4',
+    name: "Медальон ПР. IOAHHЪ РЫЛЬСКIЙ, СВѦТАѦ ТРОИЦА",
+    route: "book",
+    img: Person1,
+    preview: Person1,
+    threejs: "room1/4",
     description: {
       imgs: [Person1, Person2],
       text: [
@@ -300,11 +300,11 @@ const EXHIBITS_DATA = [
     },
   },
   {
-    name: 'Бюст А.П. Ганнибала',
-    route: 'spoon',
-    img: spoonPreview,
-    preview: spoonPreview,
-    threejs: 'box',
+    name: "Бюст А.П. Ганнибала",
+    route: "hihihi",
+    img: Person2,
+    preview: Person2,
+    threejs: "room1/5",
     description: {
       imgs: [Person1, Person2],
       text: [
@@ -332,11 +332,11 @@ const EXHIBITS_DATA = [
     },
   },
   {
-    name: 'Сундук-укладка',
-    route: 'spoon',
-    img: spoonPreview,
-    preview: spoonPreview,
-    threejs: 'box',
+    name: "Сундук-укладка",
+    route: "erererere",
+    img: Person3,
+    preview: Person3,
+    threejs: "room1/6",
     description: {
       imgs: [Person1, Person2],
       text: <>Text </>,
@@ -780,14 +780,7 @@ export const ROOMS_DATA = [
     route: 'first',
     bgImg: firstRoomBg,
     audio: firstRoomGuide,
-    exhibits: [
-      EXHIBITS_DATA[0],
-      EXHIBITS_DATA[1],
-      EXHIBITS_DATA[2],
-      EXHIBITS_DATA[1],
-      EXHIBITS_DATA[1],
-      EXHIBITS_DATA[1],
-    ],
+    exhibits: [EXHIBITS_DATA[0], EXHIBITS_DATA[1], EXHIBITS_DATA[2], EXHIBITS_DATA[3], EXHIBITS_DATA[4], EXHIBITS_DATA[5]],
     quiz: QUIZ_DATA_1,
     quizTexts: {
       startPage: (

@@ -12,12 +12,17 @@ const MapSection = ({ handleDotClick }) => {
       maxScale={9}
       minScale={1}
     >
-      <TransformComponent
-        wrapperClass="map_wrapper"
-        contentClass="map_wrapper_content"
-      >
-        <ZoomableMap handleDotClick={handleDotClick} />
-      </TransformComponent>
+      {({ zoomToElement }) => (
+        <TransformComponent
+          wrapperClass="map_wrapper"
+          contentClass="map_wrapper_content"
+        >
+          <ZoomableMap
+            handleDotClick={handleDotClick}
+            zoomToElement={zoomToElement}
+          />
+        </TransformComponent>
+      )}
     </TransformWrapper>
   );
 };
