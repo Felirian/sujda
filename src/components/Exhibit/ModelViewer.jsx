@@ -72,20 +72,23 @@ const Model = ({ model }) => {
 
   const handleClick = () => {
     if (!action) return;
+    action.reset();
+
+    console.log(action.isRunning(), );
 
     if (isPlayingForward) {
-      action.reset(); // Сбрасываем анимацию
+      //action.reset(); // Сбрасываем анимацию
       action.timeScale = 1; // Воспроизведение вперёд
       action.play(); // Запуск анимации
     } else {
-      action.reset(); // Сбрасываем анимацию
+      //action.reset(); // Сбрасываем анимацию
       action.time = action.getClip().duration; // Устанавливаем время на конец анимации
       action.timeScale = -1; // Воспроизведение назад
       action.paused = false; // Разблокируем воспроизведение
       action.play();
     }
-
     setIsPlayingForward(!isPlayingForward); // Переключаем направление
+
   };
 
   return (
@@ -124,11 +127,11 @@ const ModelViewer = ({ model }) => {
             maxDistance={30}
           />
           <ambientLight intensity={5} />
-          <directionalLight
-            position={[5, 10, 5]}
-            intensity={6}
-            castShadow
-          />
+          {/*<directionalLight*/}
+          {/*  position={[5, 10, 5]}*/}
+          {/*  intensity={6}*/}
+          {/*  castShadow*/}
+          {/*/>*/}
           <Model model={model} />
         </Canvas>
       </Suspense>
