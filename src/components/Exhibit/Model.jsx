@@ -7,16 +7,14 @@ import * as THREE from 'three';
 const Model = ({ model, setHasAnimation }) => {
   const [scene, setScene] = useState(null);
   const [animMixer, setAnimMixer] = useState(null);
-  const [action, setAction] = useState(null);
+  const [actions, setActions] = useState([]);
   const [isPlayingForward, setIsPlayingForward] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(false); // Флаг для отслеживания состояния анимации
 
   const clock = useRef(new THREE.Clock());
 
   useEffect(() => {
     const loader = new GLTFLoader();
 
-    // это нужно, чтобы распаковать сжатые модельки
     const dracoLoader = new DRACOLoader();
     dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
     loader.setDRACOLoader(dracoLoader);
@@ -30,11 +28,14 @@ const Model = ({ model, setHasAnimation }) => {
 
         if (gltf.animations && gltf.animations.length > 0) {
           mixer = new AnimationMixer(gltf.scene);
-          const newAction = mixer.clipAction(gltf.animations[0]); // Берём первую анимацию
-          newAction.setLoop(THREE.LoopOnce); // Воспроизводится только один раз
-          newAction.clampWhenFinished = true; // Завершается в конечной позиции
-          setAction(newAction);
+          const loadedActions = gltf.animations.map((clip) => {
+            const action = mixer.clipAction(clip);
+            action.setLoop(THREE.LoopOnce); // Однократное воспроизведение
+            action.clampWhenFinished = true; // Остановить в конечной точке
+            return action;
+          });
 
+          setActions(loadedActions);
           setHasAnimation(true);
         }
 
@@ -65,45 +66,23 @@ const Model = ({ model, setHasAnimation }) => {
     }
   }, [animMixer]);
 
-  // const handleClick = () => {
-  //   if (!action) return;
-  //   action.reset();
-
-  //   if (isPlayingForward) {
-  //     //action.reset(); // Сбрасываем анимацию
-  //     action.timeScale = 1; // Воспроизведение вперёд
-  //     action.play(); // Запуск анимации
-  //   } else {
-  //     //action.reset(); // Сбрасываем анимацию
-  //     action.time = action.getClip().duration; // Устанавливаем время на конец анимации
-  //     action.timeScale = -1; // Воспроизведение назад
-  //     action.paused = false; // Разблокируем воспроизведение
-  //     action.play();
-  //   }
-  //   setIsPlayingForward(!isPlayingForward); // Переключаем направление
-  // };
-
   const handleClick = () => {
-    if (!action || isPlaying) return; // Игнорируем, если анимация проигрывается
+    if (actions.length === 0) return;
 
-    setIsPlaying(true); // Блокируем клики во время анимации
+    actions.forEach((action) => {
+      action.reset();
 
-    if (isPlayingForward) {
-      action.reset(); // Сбрасываем анимацию
-      action.timeScale = 1; // Воспроизведение вперёд
-    } else {
-      action.reset(); // Сбрасываем анимацию
-      action.time = action.getClip().duration; // Устанавливаем время на конец анимации
-      action.timeScale = -1; // Воспроизведение назад
-    }
-
-    action.play();
-
-    // Снимаем блокировку после завершения анимации
-    action.getMixer().addEventListener('finished', () => {
-      setIsPlaying(false); // Снимаем блокировку
-      setIsPlayingForward(!isPlayingForward); // Переключаем направление анимации
+      if (isPlayingForward) {
+        action.timeScale = 1; // Воспроизведение вперёд
+        action.play();
+      } else {
+        action.time = action.getClip().duration; // Начинаем с конца
+        action.timeScale = -1; // Воспроизведение назад
+        action.play();
+      }
     });
+
+    setIsPlayingForward(!isPlayingForward); // Переключаем направление
   };
 
   return (
