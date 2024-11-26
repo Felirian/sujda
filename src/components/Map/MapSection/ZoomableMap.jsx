@@ -43,7 +43,7 @@ const ZoomableMap = ({ handleDotClick, zoomToElement }) => {
           <Dot
             key={index}
             onClick={() => handleDotClick(point)}
-            style={{top: `${point.top}%`, left: `${point.left}%`}}
+            style={{top: `${point.top+0.4}%`, left: `${point.left+0.1}%`}}
           >
             <SvgSelector svg='mapPoint'/>
           </Dot>
