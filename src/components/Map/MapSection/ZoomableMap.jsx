@@ -6,6 +6,7 @@ import { MAP_POINTS, MAP_POINTS_LARGE } from '../../../features/data';
 import { styled } from 'styled-components';
 import { KeepScale, useTransformEffect } from 'react-zoom-pan-pinch';
 import SvgMap from '../../../assets/map/SvgMap';
+import svg from "../../../assets/map/Vector.svg";
 
 const ZoomableMap = ({ handleDotClick, zoomToElement }) => {
   const [currentScale, setCurrentScale] = useState(0);
@@ -20,33 +21,33 @@ const ZoomableMap = ({ handleDotClick, zoomToElement }) => {
 
   return (
     <ZoomableMapWr>
-      <SvgMap />
+      <img src={svg} style={{width: '100%', height: 'auto'}} alt={'суйда'}/>
       {currentScale <= 3 && (
-        <Dot style={{ top: `35%`, left: `32%` }} id='group1' onClick={clickToZoom}>
+        <Dot style={{top: `35%`, left: `32%`}} id='group1' onClick={clickToZoom}>
           <CirclePoint>
-            <div />
+            <div/>
           </CirclePoint>
         </Dot>
       )}
       {currentScale <= 3
         ? MAP_POINTS_LARGE.map((point, index) => (
-            <Dot
-              key={index}
-              onClick={() => handleDotClick(point)}
-              style={{ top: `${point.top}%`, left: `${point.left}%` }}
-            >
-              <SvgSelector svg='mapPoint' />
-            </Dot>
-          ))
+          <Dot
+            key={index}
+            onClick={() => handleDotClick(point)}
+            style={{top: `${point.top}%`, left: `${point.left}%`}}
+          >
+            <SvgSelector svg='mapPoint'/>
+          </Dot>
+        ))
         : MAP_POINTS.map((point, index) => (
-            <Dot
-              key={index}
-              onClick={() => handleDotClick(point)}
-              style={{ top: `${point.top}%`, left: `${point.left}%` }}
-            >
-              <SvgSelector svg='mapPoint' />
-            </Dot>
-          ))}
+          <Dot
+            key={index}
+            onClick={() => handleDotClick(point)}
+            style={{top: `${point.top}%`, left: `${point.left}%`}}
+          >
+            <SvgSelector svg='mapPoint'/>
+          </Dot>
+        ))}
     </ZoomableMapWr>
   );
 };
