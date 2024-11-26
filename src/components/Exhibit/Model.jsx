@@ -4,7 +4,7 @@ import { AnimationMixer } from 'three';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 import * as THREE from 'three';
 
-const Model = ({ model }) => {
+const Model = ({ model, setHasAnimation }) => {
   const [scene, setScene] = useState(null);
   const [animMixer, setAnimMixer] = useState(null);
   const [action, setAction] = useState(null);
@@ -33,6 +33,8 @@ const Model = ({ model }) => {
           newAction.setLoop(THREE.LoopOnce); // Воспроизводится только один раз
           newAction.clampWhenFinished = true; // Завершается в конечной позиции
           setAction(newAction);
+
+          setHasAnimation(true);
         }
 
         setAnimMixer(mixer);
@@ -50,6 +52,7 @@ const Model = ({ model }) => {
       }
     };
   }, [model]);
+
   useEffect(() => {
     if (animMixer) {
       const animate = () => {

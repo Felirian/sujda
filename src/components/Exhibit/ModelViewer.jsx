@@ -1,4 +1,4 @@
-import React, { Suspense, useRef } from 'react';
+import React, { Suspense, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { CameraControls } from '@react-three/drei';
 
@@ -11,8 +11,9 @@ import Model from './Model';
 const ModelViewer = ({ model }) => {
   const containerRef = useRef(null);
   const navigate = useNavigate();
+  const [hasAnimation, setHasAnimation] = useState(false);
 
-  const handleGoBack = (e) => {
+  const handleGoBack = () => {
     navigate(-1);
   };
 
@@ -21,6 +22,7 @@ const ModelViewer = ({ model }) => {
       <CloseBtn onClick={handleGoBack}>
         <SvgSelector svg='close3d' />
       </CloseBtn>
+      {hasAnimation && <AnimationPointer>tyuk syuda</AnimationPointer>}
       <ObsIcon>
         <SvgSelector svg='3dObs' />
       </ObsIcon>
@@ -33,7 +35,7 @@ const ModelViewer = ({ model }) => {
           {/*  intensity={6}*/}
           {/*  castShadow*/}
           {/*/>*/}
-          <Model model={model} />
+          <Model model={model} setHasAnimation={setHasAnimation} />
         </Canvas>
       </Suspense>
     </ModelViewerWr>
@@ -77,6 +79,28 @@ const ObsIcon = styled.div`
   svg {
     width: 100%;
     height: 100%;
+  }
+`;
+
+const AnimationPointer = styled.div`
+  position: absolute;
+  top: 40%;
+  left: 60%;
+  z-index: 11;
+  animation: displaying 3s 1s ease both;
+  @keyframes displaying {
+    0% {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(0);
+    }
   }
 `;
 
