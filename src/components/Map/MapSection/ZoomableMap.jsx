@@ -24,7 +24,7 @@ const ZoomableMap = ({ handleDotClick, zoomToElement }) => {
       {/*<img src={mapImage} alt='Карта' style={{ width: '100%', height: 'auto' }} />*/}
       <SvgMap/>
       {currentScale <= 3 && (
-        <DotCircle style={{ top: `36%`, left: `30%` }} id='group1' onClick={clickToZoom}>
+        <DotCircle style={{ top: `34%`, left: `31.5%` }} id='group1' onClick={clickToZoom}>
           <CirclePoint>
             <div />
           </CirclePoint>

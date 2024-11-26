@@ -29,6 +29,7 @@ const ModalContentWr = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6vw;
+  min-height: 60vw;
   ${P1} {
     span {
       font-style: italic;
