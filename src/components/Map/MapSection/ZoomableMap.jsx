@@ -70,6 +70,7 @@ const Dot = styled(KeepScale)`
     transform: translateY(-40%);
   }
   animation: appear 0.3s 0.1s ease both;
+
   @keyframes appear {
     0% {
       opacity: 0;
