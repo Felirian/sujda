@@ -7,6 +7,7 @@ import { COLORS } from '../../styles/variables';
 import SvgSelector from '../Shared/SvgSelector';
 import { useNavigate } from 'react-router-dom';
 import Model from './Model';
+import clickpng from '../../assets/rooms/click.png';
 
 const ModelViewer = ({ model }) => {
   const containerRef = useRef(null);
@@ -22,7 +23,7 @@ const ModelViewer = ({ model }) => {
       <CloseBtn onClick={handleGoBack}>
         <SvgSelector svg='close3d' />
       </CloseBtn>
-      {hasAnimation && <AnimationPointer>tyuk syuda</AnimationPointer>}
+      {hasAnimation && <AnimationPointer src={clickpng}/>}
       <ObsIcon>
         <SvgSelector svg='3dObs' />
       </ObsIcon>
@@ -82,10 +83,12 @@ const ObsIcon = styled.div`
   }
 `;
 
-const AnimationPointer = styled.div`
+const AnimationPointer = styled.img`
   position: absolute;
+  width: 20vw;
+  height: 20vw;
   top: 40%;
-  left: 60%;
+  left: 50%;
   z-index: 11;
   animation: displaying 3s 1s ease both;
   @keyframes displaying {
@@ -99,7 +102,7 @@ const AnimationPointer = styled.div`
     }
     100% {
       opacity: 0;
-      transform: translateY(0);
+      transform: translateY(100%);
     }
   }
 `;

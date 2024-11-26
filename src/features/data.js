@@ -345,10 +345,10 @@ const EXHIBITS_DATA = [
   },
   {
     name: 'Книжка записная',
-    route: 'spoon',
+    route: 'knizhka-zapisnaya',
     img: spoonPreview,
     preview: spoonPreview,
-    threejs: 'box',
+    threejs: 'room1/7',
     description: {
       imgs: [Person1, Person2],
       text: [
@@ -781,7 +781,7 @@ export const ROOMS_DATA = [
     route: 'first',
     bgImg: firstRoomBg,
     audio: firstRoomGuide,
-    exhibits: [EXHIBITS_DATA[0], EXHIBITS_DATA[1], EXHIBITS_DATA[2], EXHIBITS_DATA[3], EXHIBITS_DATA[4], EXHIBITS_DATA[5]],
+    exhibits: [EXHIBITS_DATA[0], EXHIBITS_DATA[1], EXHIBITS_DATA[2], EXHIBITS_DATA[3], EXHIBITS_DATA[4], EXHIBITS_DATA[5], EXHIBITS_DATA[6]],
     quiz: QUIZ_DATA_1,
     quizTexts: {
       startPage: (
