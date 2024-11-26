@@ -9,6 +9,7 @@ const Model = ({ model, setHasAnimation }) => {
   const [animMixer, setAnimMixer] = useState(null);
   const [action, setAction] = useState(null);
   const [isPlayingForward, setIsPlayingForward] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false); // Флаг для отслеживания состояния анимации
 
   const clock = useRef(new THREE.Clock());
 
@@ -64,22 +65,45 @@ const Model = ({ model, setHasAnimation }) => {
     }
   }, [animMixer]);
 
+  // const handleClick = () => {
+  //   if (!action) return;
+  //   action.reset();
+
+  //   if (isPlayingForward) {
+  //     //action.reset(); // Сбрасываем анимацию
+  //     action.timeScale = 1; // Воспроизведение вперёд
+  //     action.play(); // Запуск анимации
+  //   } else {
+  //     //action.reset(); // Сбрасываем анимацию
+  //     action.time = action.getClip().duration; // Устанавливаем время на конец анимации
+  //     action.timeScale = -1; // Воспроизведение назад
+  //     action.paused = false; // Разблокируем воспроизведение
+  //     action.play();
+  //   }
+  //   setIsPlayingForward(!isPlayingForward); // Переключаем направление
+  // };
+
   const handleClick = () => {
-    if (!action) return;
-    action.reset();
+    if (!action || isPlaying) return; // Игнорируем, если анимация проигрывается
+
+    setIsPlaying(true); // Блокируем клики во время анимации
 
     if (isPlayingForward) {
-      //action.reset(); // Сбрасываем анимацию
+      action.reset(); // Сбрасываем анимацию
       action.timeScale = 1; // Воспроизведение вперёд
-      action.play(); // Запуск анимации
     } else {
-      //action.reset(); // Сбрасываем анимацию
+      action.reset(); // Сбрасываем анимацию
       action.time = action.getClip().duration; // Устанавливаем время на конец анимации
       action.timeScale = -1; // Воспроизведение назад
-      action.paused = false; // Разблокируем воспроизведение
-      action.play();
     }
-    setIsPlayingForward(!isPlayingForward); // Переключаем направление
+
+    action.play();
+
+    // Снимаем блокировку после завершения анимации
+    action.getMixer().addEventListener('finished', () => {
+      setIsPlaying(false); // Снимаем блокировку
+      setIsPlayingForward(!isPlayingForward); // Переключаем направление анимации
+    });
   };
 
   return (
