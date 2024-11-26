@@ -86,7 +86,7 @@ const StyledInput = styled.input`
   outline: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
-
+  flex-shrink: 0;
   &:checked {
     background-color: ${COLORS.white};
     border-color: ${COLORS.white};
