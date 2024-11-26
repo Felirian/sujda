@@ -1,105 +1,13 @@
-import React, { Suspense, useEffect, useRef, useState } from "react";
-import { Canvas } from "@react-three/fiber";
-import { CameraControls, useGLTF } from "@react-three/drei";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import styled from "styled-components";
-import { COLORS } from "../../styles/variables";
-import SvgSelector from "../Shared/SvgSelector";
-import { P1Style, P2 } from "../../styles/textTags";
-import { useNavigate } from "react-router-dom";
-import { AnimationMixer } from "three";
-import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
-import * as THREE from "three";
+import React, { Suspense, useRef } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { CameraControls } from '@react-three/drei';
 
-const Model = ({ model }) => {
-  const [scene, setScene] = useState(null);
-  const [animMixer, setAnimMixer] = useState(null);
-  const [action, setAction] = useState(null);
-  const [isPlayingForward, setIsPlayingForward] = useState(true);
-  const [error, setError] = useState(null);
-
-  const clock = useRef(new THREE.Clock());
-
-  useEffect(() => {
-    const loader = new GLTFLoader();
-
-    // это нужно, чтобы распаковать сжатые модельки
-    const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath("https://www.gstatic.com/draco/v1/decoders/");
-    loader.setDRACOLoader(dracoLoader);
-
-    let mixer = null;
-
-    loader.load(
-      `/models/${model}.glb`,
-      (gltf) => {
-        setScene(gltf.scene);
-
-        if (gltf.animations && gltf.animations.length > 0) {
-          mixer = new AnimationMixer(gltf.scene);
-          const newAction = mixer.clipAction(gltf.animations[0]); // Берём первую анимацию
-          newAction.setLoop(THREE.LoopOnce); // Воспроизводится только один раз
-          newAction.clampWhenFinished = true; // Завершается в конечной позиции
-          setAction(newAction);
-        }
-
-        setAnimMixer(mixer);
-      },
-      undefined,
-      (err) => {
-        console.error("Failed to load model:", err);
-        setError(err);
-      }
-    );
-
-    return () => {
-      if (mixer) {
-        mixer.stopAllAction();
-        mixer.uncacheRoot(mixer.getRoot());
-      }
-    };
-  }, [model]);
-  useEffect(() => {
-    if (animMixer) {
-      const animate = () => {
-        const delta = clock.current.getDelta();
-        animMixer.update(delta);
-        requestAnimationFrame(animate);
-      };
-      animate();
-    }
-  }, [animMixer]);
-
-  const handleClick = () => {
-    if (!action) return;
-    action.reset();
-
-    console.log(action.isRunning(), );
-
-    if (isPlayingForward) {
-      //action.reset(); // Сбрасываем анимацию
-      action.timeScale = 1; // Воспроизведение вперёд
-      action.play(); // Запуск анимации
-    } else {
-      //action.reset(); // Сбрасываем анимацию
-      action.time = action.getClip().duration; // Устанавливаем время на конец анимации
-      action.timeScale = -1; // Воспроизведение назад
-      action.paused = false; // Разблокируем воспроизведение
-      action.play();
-    }
-    setIsPlayingForward(!isPlayingForward); // Переключаем направление
-
-  };
-
-  return (
-    scene && (
-      <primitive
-        object={scene}
-        onClick={handleClick} // Добавляем обработчик клика
-      />
-    )
-  );
-};
+import styled from 'styled-components';
+import { COLORS } from '../../styles/variables';
+import SvgSelector from '../Shared/SvgSelector';
+import { P1Style, P2 } from '../../styles/textTags';
+import { useNavigate } from 'react-router-dom';
+import Model from './Model';
 
 const ModelViewer = ({ model }) => {
   const containerRef = useRef(null);
@@ -112,20 +20,14 @@ const ModelViewer = ({ model }) => {
   return (
     <ModelViewerWr ref={containerRef}>
       <CloseBtn onClick={handleGoBack}>
-        <SvgSelector svg="close3d" />
+        <SvgSelector svg='close3d' />
       </CloseBtn>
       <ObsIcon>
-        <SvgSelector svg="3dObs" />
+        <SvgSelector svg='3dObs' />
       </ObsIcon>
       <Suspense fallback={<Loader />}>
-        <Canvas
-          key={model}
-          camera={{ fov: 45, position: [0, 5, 10] }}
-        >
-          <CameraControls
-            minDistance={2}
-            maxDistance={30}
-          />
+        <Canvas key={model} camera={{ fov: 45, position: [0, 5, 10] }}>
+          <CameraControls minDistance={2} maxDistance={30} />
           <ambientLight intensity={5} />
           {/*<directionalLight*/}
           {/*  position={[5, 10, 5]}*/}
@@ -142,6 +44,7 @@ const ModelViewer = ({ model }) => {
 const ModelViewerWr = styled.div`
   z-index: 10;
   width: 100vw;
+  height: 100vh;
   height: 100svh;
   background-color: ${COLORS.dark};
 `;

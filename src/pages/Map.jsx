@@ -23,7 +23,6 @@ const Map = () => {
   const handleDotClick = (point) => {
     setSelectedPoint(point);
     setPopUp(true);
-    console.log('hui')
   };
 
   const handleClosePopUp = () => {
