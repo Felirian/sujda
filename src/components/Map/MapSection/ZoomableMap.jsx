@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 
-import mapImage from '../../../assets/map/map.jpg';
 import SvgSelector from '../../Shared/SvgSelector';
 import { COLORS } from '../../../styles/variables';
 import { MAP_POINTS, MAP_POINTS_LARGE } from '../../../features/data';
 import { styled } from 'styled-components';
 import { KeepScale, useTransformEffect } from 'react-zoom-pan-pinch';
-import SvgMap from "../../../assets/map/SvgMap";
+import SvgMap from '../../../assets/map/SvgMap';
 
 const ZoomableMap = ({ handleDotClick, zoomToElement }) => {
   const [currentScale, setCurrentScale] = useState(0);
@@ -21,24 +20,23 @@ const ZoomableMap = ({ handleDotClick, zoomToElement }) => {
 
   return (
     <ZoomableMapWr>
-      {/*<img src={mapImage} alt='Карта' style={{ width: '100%', height: 'auto' }} />*/}
-      <SvgMap/>
+      <SvgMap />
       {currentScale <= 3 && (
-        <DotCircle style={{ top: `36%`, left: `30%` }} id='group1' onClick={clickToZoom}>
+        <Dot style={{ top: `35%`, left: `32%` }} id='group1' onClick={clickToZoom}>
           <CirclePoint>
             <div />
           </CirclePoint>
-        </DotCircle>
+        </Dot>
       )}
       {currentScale <= 3
         ? MAP_POINTS_LARGE.map((point, index) => (
-            <DotLarge
+            <Dot
               key={index}
               onClick={() => handleDotClick(point)}
               style={{ top: `${point.top}%`, left: `${point.left}%` }}
             >
               <SvgSelector svg='mapPoint' />
-            </DotLarge>
+            </Dot>
           ))
         : MAP_POINTS.map((point, index) => (
             <Dot
@@ -81,10 +79,6 @@ const Dot = styled(KeepScale)`
     }
   }
 `;
-
-const DotCircle = styled(Dot)``;
-
-const DotLarge = styled(Dot)``;
 
 const CirclePoint = styled.div`
   width: 11vw;

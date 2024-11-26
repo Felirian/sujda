@@ -5,7 +5,6 @@ import { CameraControls } from '@react-three/drei';
 import styled from 'styled-components';
 import { COLORS } from '../../styles/variables';
 import SvgSelector from '../Shared/SvgSelector';
-import { P1Style, P2 } from '../../styles/textTags';
 import { useNavigate } from 'react-router-dom';
 import Model from './Model';
 
@@ -79,15 +78,6 @@ const ObsIcon = styled.div`
     width: 100%;
     height: 100%;
   }
-`;
-
-const ErrorMessage = styled(P2)`
-  ${P1Style};
-  color: ${COLORS.red};
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 `;
 
 const Loader = styled.div`
