@@ -8,6 +8,7 @@ import spoonPreview from '../assets/rooms/first/exhibits/spoon.png';
 
 import firstRoomGuide from '../assets/rooms/first/guide.mp3';
 import secondRoomGuide from '../assets/rooms/second/guide.mp3';
+import thirdRoomGuide from '../assets/rooms/third/guide.mp3';
 
 import Person1 from '../assets/rooms/secret/person1.png';
 import Person2 from '../assets/rooms/secret/person2.png';
@@ -815,7 +816,7 @@ export const ROOMS_DATA = [
     name: 'Зал 3',
     route: 'third',
     bgImg: thirdRoomBg,
-    audio: firstRoomGuide,
+    audio: thirdRoomGuide,
     exhibits: [EXHIBITS_DATA[1], EXHIBITS_DATA[2], EXHIBITS_DATA[0]],
     quiz: QUIZ_DATA_3,
     quizTexts: {

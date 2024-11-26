@@ -4,7 +4,7 @@ import { COLORS } from '../styles/variables';
 import CustomButton from '../components/Shared/CustomButton';
 import { Link } from 'react-router-dom';
 
-import mapGuide from '../assets/rooms/first/guide.mp3';
+import mapGuide from '../assets/map/guide.mp3';
 
 import HeadphonesModal from '../components/Shared/HeadphonesModal';
 import AudioGuide from '../components/Room/AudioGuide';
