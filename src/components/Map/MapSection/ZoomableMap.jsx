@@ -6,6 +6,7 @@ import { COLORS } from '../../../styles/variables';
 import { MAP_POINTS, MAP_POINTS_LARGE } from '../../../features/data';
 import { styled } from 'styled-components';
 import { KeepScale, useTransformEffect } from 'react-zoom-pan-pinch';
+import SvgMap from "../../../assets/map/SvgMap";
 
 const ZoomableMap = ({ handleDotClick, zoomToElement }) => {
   const [currentScale, setCurrentScale] = useState(0);
@@ -20,7 +21,8 @@ const ZoomableMap = ({ handleDotClick, zoomToElement }) => {
 
   return (
     <ZoomableMapWr>
-      <img src={mapImage} alt='Карта' style={{ width: '100%', height: 'auto' }} />
+      {/*<img src={mapImage} alt='Карта' style={{ width: '100%', height: 'auto' }} />*/}
+      <SvgMap/>
       {currentScale <= 3 && (
         <DotCircle style={{ top: `36%`, left: `30%` }} id='group1' onClick={clickToZoom}>
           <CirclePoint>
