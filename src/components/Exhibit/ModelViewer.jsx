@@ -30,12 +30,12 @@ const ModelViewer = ({ model }) => {
       <Suspense fallback={<Loader />}>
         <Canvas key={model} camera={{ fov: 45, position: [0, 5, 10] }}>
           <CameraControls minDistance={2} maxDistance={30} />
-          <ambientLight intensity={5} />
-          {/*<directionalLight*/}
-          {/*  position={[5, 10, 5]}*/}
-          {/*  intensity={6}*/}
-          {/*  castShadow*/}
-          {/*/>*/}
+          <ambientLight intensity={2} />
+          <directionalLight
+            position={[2, 5, 2]}
+            intensity={2}
+            castShadow
+          />
           <Model model={model} setHasAnimation={setHasAnimation} />
         </Canvas>
       </Suspense>
@@ -85,6 +85,7 @@ const ObsIcon = styled.div`
 
 const AnimationPointer = styled.img`
   position: absolute;
+  pointer-events: none;
   width: 20vw;
   height: 20vw;
   top: 45%;

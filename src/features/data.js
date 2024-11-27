@@ -197,7 +197,7 @@ const EXHIBITS_DATA = [
     route: 'gannibal',
     img: gannibal,
     preview: gannibal,
-    threejs: 'room1/5',
+    threejs: false,
     description: {
       imgs: [Person1, Person2],
       text: [
@@ -229,7 +229,7 @@ const EXHIBITS_DATA = [
     route: 'swcoin',
     img: sweden,
     preview: sweden,
-    threejs: 'room1/1',
+    threejs: false,
     description: {
       imgs: [Person1, Person2],
       text: [
@@ -321,7 +321,7 @@ const EXHIBITS_DATA = [
     route: 'medallion',
     img: medal,
     preview: medal,
-    threejs: 'room1/4',
+    threejs: 'room1/5',
     description: {
       imgs: [Person1, Person2],
       text: [
@@ -365,7 +365,7 @@ const EXHIBITS_DATA = [
     route: 'note',
     img: note,
     preview: note,
-    threejs: 'room1/7',
+    threejs: false,
     description: {
       imgs: [Person1, Person2],
       text: [
@@ -388,7 +388,7 @@ const EXHIBITS_DATA = [
     route: 'mask',
     img: mask,
     preview: mask,
-    threejs: 'box',
+    threejs: 'room1/6',
     description: {
       imgs: [Person1, Person2],
       text: [
@@ -416,7 +416,7 @@ const EXHIBITS_DATA = [
     route: 'piano',
     img: piano,
     preview: piano,
-    threejs: 'box',
+    threejs: false,
     description: {
       imgs: [Person1, Person2],
       text: [
@@ -448,7 +448,7 @@ const EXHIBITS_DATA = [
     route: 'face',
     img: face,
     preview: face,
-    threejs: 'box',
+    threejs: false,
     description: {
       imgs: [Person1, Person2],
       text: [
@@ -478,7 +478,7 @@ const EXHIBITS_DATA = [
     route: 'case',
     img: caseImg,
     preview: caseImg,
-    threejs: 'box',
+    threejs: 'room1/7',
     description: {
       imgs: [Person1, Person2],
       text: [
@@ -506,7 +506,7 @@ const EXHIBITS_DATA = [
     route: 'textile',
     img: textile,
     preview: textile,
-    threejs: 'box',
+    threejs: false,
     description: {
       imgs: [Person1, Person2],
       text: [
@@ -535,7 +535,7 @@ const EXHIBITS_DATA = [
     route: 'forceps',
     img: forceps,
     preview: forceps,
-    threejs: 'box',
+    threejs: 'room1/1',
     description: {
       imgs: [Person1, Person2],
       text: [
@@ -563,7 +563,7 @@ const EXHIBITS_DATA = [
     route: 'stupa',
     img: stupa,
     preview: stupa,
-    threejs: 'box',
+    threejs: false,
     description: {
       imgs: [Person1, Person2],
       text: [
@@ -591,7 +591,7 @@ const EXHIBITS_DATA = [
     route: 'shirt',
     img: shirt,
     preview: shirt,
-    threejs: 'box',
+    threejs: false,
     description: {
       imgs: [Person1, Person2],
       text: [
@@ -617,7 +617,7 @@ const EXHIBITS_DATA = [
     route: 'napkin',
     img: napkin,
     preview: napkin,
-    threejs: 'box',
+    threejs: false,
     description: {
       imgs: [Person1, Person2],
       text: [
@@ -641,7 +641,7 @@ const EXHIBITS_DATA = [
     route: 'bowl',
     img: bowl,
     preview: bowl,
-    threejs: 'box',
+    threejs: false,
     description: {
       imgs: [Person1, Person2],
       text: [
@@ -671,7 +671,7 @@ const EXHIBITS_DATA = [
     route: 'cheptsy',
     img: cap,
     preview: cap,
-    threejs: 'box',
+    threejs: false,
     description: {
       imgs: [Person1, Person2],
       text: [
@@ -701,7 +701,7 @@ const EXHIBITS_DATA = [
     route: 'tablecloth',
     img: tablecloth,
     preview: tablecloth,
-    threejs: 'box',
+    threejs: false,
     description: {
       imgs: [Person1, Person2],
       text: [
@@ -733,7 +733,7 @@ const EXHIBITS_DATA = [
     route: 'trunk',
     img: trunk,
     preview: trunk,
-    threejs: 'box',
+    threejs: false,
     description: {
       imgs: [Person1, Person2],
       text: [

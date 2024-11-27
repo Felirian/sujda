@@ -7,9 +7,12 @@ const Preview = ({ data }) => {
   return (
     <PreviewWr>
       <img src={data.img} alt={data.name} />
-      <Link to='model'>
-        <SvgSelector svg='3d' />
-      </Link>
+      {data.threejs &&
+        <Link to='model'>
+          <SvgSelector svg='3d' />
+        </Link>
+      }
+
     </PreviewWr>
   );
 };
