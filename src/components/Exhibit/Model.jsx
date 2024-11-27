@@ -9,6 +9,7 @@ const Model = ({ model, setHasAnimation }) => {
   const [animMixer, setAnimMixer] = useState(null);
   const [actions, setActions] = useState([]);
   const [isPlayingForward, setIsPlayingForward] = useState(true);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const clock = useRef(new THREE.Clock());
 
@@ -67,7 +68,9 @@ const Model = ({ model, setHasAnimation }) => {
   }, [animMixer]);
 
   const handleClick = () => {
-    if (actions.length === 0) return;
+    if (isAnimating || actions.length === 0) return; // Игнорируем клики во время анимации
+
+    setIsAnimating(true); // Устанавливаем флаг анимации
 
     actions.forEach((action) => {
       action.reset();
@@ -80,6 +83,17 @@ const Model = ({ model, setHasAnimation }) => {
         action.timeScale = -1; // Воспроизведение назад
         action.play();
       }
+
+      // Добавляем завершение для каждой анимации
+      action.getMixer().addEventListener('finished', () => {
+        // Проверяем, все ли анимации завершены
+        const allFinished = actions.every(
+          (act) => act.time === 0 || act.time === act.getClip().duration
+        );
+        if (allFinished) {
+          setIsAnimating(false); // Снимаем блокировку кликов
+        }
+      });
     });
 
     setIsPlayingForward(!isPlayingForward); // Переключаем направление
