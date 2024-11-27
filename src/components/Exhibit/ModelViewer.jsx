@@ -23,7 +23,7 @@ const ModelViewer = ({ model }) => {
       <CloseBtn onClick={handleGoBack}>
         <SvgSelector svg='close3d' />
       </CloseBtn>
-      {hasAnimation && <AnimationPointer src={clickpng}/>}
+      {hasAnimation && <AnimationPointer src={clickpng} />}
       <ObsIcon>
         <SvgSelector svg='3dObs' />
       </ObsIcon>
@@ -87,22 +87,34 @@ const AnimationPointer = styled.img`
   position: absolute;
   width: 20vw;
   height: 20vw;
-  top: 40%;
+  top: 45%;
   left: 50%;
   z-index: 11;
   animation: displaying 3s 1s ease both;
   @keyframes displaying {
     0% {
       opacity: 0;
-      transform: translateY(-100%);
+      transform: translateY(-20%) scale(1);
+    }
+    40% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
     50% {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(0.8);
+    }
+    70% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    80% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
     100% {
       opacity: 0;
-      transform: translateY(100%);
+      transform: translateY(-20%) scale(1);
     }
   }
 `;
