@@ -3,6 +3,10 @@ import secondRoomBg from '../assets/rooms/second/bg.jpg';
 import thirdRoomBg from '../assets/rooms/third/bg.jpg';
 
 import gannibal from '../assets/rooms/first/exhibits/gannibal.png';
+import kopeika from '../assets/rooms/first/exhibits/kopeika.png';
+import medal from '../assets/rooms/first/exhibits/medal.png';
+import polushka from '../assets/rooms/first/exhibits/polushka.png';
+import sweden from '../assets/rooms/first/exhibits/sweden.png';
 
 import caseImg from '../assets/rooms/second/exhibits/case.png';
 import face from '../assets/rooms/second/exhibits/face.png';
@@ -189,10 +193,42 @@ const QUIZ_DATA_3 = [
 
 const EXHIBITS_DATA = [
   {
-    name: 'Монета шведская',
-    route: 'swcoin',
+    name: 'Бюст А.П. Ганнибала',
+    route: 'gannibal',
     img: gannibal,
     preview: gannibal,
+    threejs: 'room1/5',
+    description: {
+      imgs: [Person1, Person2],
+      text: [
+        <>
+          Автор: Шевченко В.В.
+          <br />
+          Дата создания:1999 г.
+          <br />
+          Место создания: Ленинградская обл., г. Гатчина.
+          <br />
+          Материал: гранит черный шведский, гранит светлый отечественный.
+          <br />
+          Техника: резьба по камню.
+          <br />
+          Размер: 58х44х28 см.
+        </>,
+        <>
+          В своей работе Валерий Владимирович Шевченко использовал посмертную маску А.С.Пушкина —
+          правнука А.П. Ганнибала. Скульптор изобразил Ганнибала на службе, в парике. Многие
+          отмечают удивительное сходство бюста с прапрапраправнучкой А.П. Ганнибала — Татьяной
+          Васильевной Игнатьевой, проживающей в Санкт-Петербурге. На бюсте имеется авторский знак
+          «Ш».
+        </>,
+      ],
+    },
+  },
+  {
+    name: 'Монета шведская',
+    route: 'swcoin',
+    img: sweden,
+    preview: sweden,
     threejs: 'room1/1',
     description: {
       imgs: [Person1, Person2],
@@ -224,8 +260,8 @@ const EXHIBITS_DATA = [
   {
     name: 'Копейка',
     route: 'kopeyka',
-    img: gannibal,
-    preview: gannibal,
+    img: kopeika,
+    preview: kopeika,
     threejs: 'room1/2',
     description: {
       imgs: [Person1, Person2],
@@ -253,8 +289,8 @@ const EXHIBITS_DATA = [
   {
     name: 'Монета Полушка 1736 г',
     route: 'polushka',
-    img: gannibal,
-    preview: gannibal,
+    img: polushka,
+    preview: polushka,
     threejs: 'room1/3',
     description: {
       imgs: [Person1, Person2],
@@ -283,8 +319,8 @@ const EXHIBITS_DATA = [
   {
     name: 'Медальон ПР. IOAHHЪ РЫЛЬСКIЙ, СВѦТАѦ ТРОИЦА',
     route: 'medallion',
-    img: Person1,
-    preview: Person1,
+    img: medal,
+    preview: medal,
     threejs: 'room1/4',
     description: {
       imgs: [Person1, Person2],
@@ -309,38 +345,6 @@ const EXHIBITS_DATA = [
           России не редкостью становится посвящение отдельных храмовых престолов памяти покровителя
           Болгарии. Всероссийский святой праведный Иоанн Кронштадтский был крещен в честь великого
           болгарского святого в день его почитания 19 октября/1 ноября 1829 года.
-        </>,
-      ],
-    },
-  },
-  {
-    name: 'Бюст А.П. Ганнибала',
-    route: 'gannibal',
-    img: gannibal,
-    preview: gannibal,
-    threejs: 'room1/5',
-    description: {
-      imgs: [Person1, Person2],
-      text: [
-        <>
-          Автор: Шевченко В.В.
-          <br />
-          Дата создания:1999 г.
-          <br />
-          Место создания: Ленинградская обл., г. Гатчина.
-          <br />
-          Материал: гранит черный шведский, гранит светлый отечественный.
-          <br />
-          Техника: резьба по камню.
-          <br />
-          Размер: 58х44х28 см.
-        </>,
-        <>
-          В своей работе Валерий Владимирович Шевченко использовал посмертную маску А.С.Пушкина —
-          правнука А.П. Ганнибала. Скульптор изобразил Ганнибала на службе, в парике. Многие
-          отмечают удивительное сходство бюста с прапрапраправнучкой А.П. Ганнибала — Татьяной
-          Васильевной Игнатьевой, проживающей в Санкт-Петербурге. На бюсте имеется авторский знак
-          «Ш».
         </>,
       ],
     },
@@ -766,7 +770,13 @@ export const ROOMS_DATA = [
     route: 'first',
     bgImg: firstRoomBg,
     audio: firstRoomGuide,
-    exhibits: [EXHIBITS_DATA[4]],
+    exhibits: [
+      EXHIBITS_DATA[0],
+      EXHIBITS_DATA[1],
+      EXHIBITS_DATA[2],
+      EXHIBITS_DATA[3],
+      EXHIBITS_DATA[4],
+    ],
     quiz: QUIZ_DATA_1,
     quizTexts: {
       startPage: (
