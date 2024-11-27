@@ -11,7 +11,7 @@ const Main = () => {
     const elem = document.documentElement;
     if (elem.requestFullscreen) {
       elem.requestFullscreen();
-    } else if (/iPad|Macintosh/.test(navigator.userAgent) && 'ontouchend' in document) {
+    } else {
       elem.webkitRequestFullscreen();
     }
     navigate('/map')
