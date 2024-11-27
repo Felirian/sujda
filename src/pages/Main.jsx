@@ -25,7 +25,7 @@ const Main = () => {
             Добро <br />
             пожаловать!
           </H1Styled>
-          <P1>Музей-усадьба</P1>
+          <P1>В виртуальную музей-усадьбу</P1>
         </ConText>
         <MainBtn onClick={requestFullscreen}>
           <CustomButton type={'sand'}>Начать</CustomButton>

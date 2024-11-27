@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import { COLORS } from '../styles/variables';
-import CustomButton from '../components/Shared/CustomButton';
 import { Link } from 'react-router-dom';
-
 import mapGuide from '../assets/map/guide.mp3';
-
+import CustomButton from '../components/Shared/CustomButton';
 import HeadphonesModal from '../components/Shared/HeadphonesModal';
 import AudioGuide from '../components/Room/AudioGuide';
 import PopUpScroller from '../components/Shared/PopUpScroller';
