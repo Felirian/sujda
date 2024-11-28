@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { H1, P1 } from '../styles/textTags';
-import {Link, useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CustomButton from '../components/Shared/CustomButton';
 import { COLORS } from '../styles/variables';
 
@@ -11,14 +11,12 @@ const Main = () => {
     const elem = document.documentElement;
     if (elem.requestFullscreen) {
       elem.requestFullscreen();
-    } else {
-      elem.webkitRequestFullscreen();
     }
-    navigate('/map')
+    navigate('/map');
   };
   return (
     <MainWr>
-      <Logo src="/img/main-logo.png" alt="Logo" />
+      <Logo src='/img/main-logo.png' alt='Logo' />
       <MainCon>
         <ConText>
           <H1Styled>
