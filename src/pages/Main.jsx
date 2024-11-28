@@ -28,7 +28,7 @@ const Main = () => {
           <P1>В виртуальную музей-усадьбу</P1>
         </ConText>
         <MainBtn onClick={requestFullscreen}>
-          <CustomButton type={'sand'}>Начать</CustomButton>
+          <CustomButton type={'send'}>Начать</CustomButton>
         </MainBtn>
       </MainCon>
     </MainWr>
