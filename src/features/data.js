@@ -7,12 +7,25 @@ import kopeika from '../assets/rooms/first/exhibits/kopeika.png';
 import medal from '../assets/rooms/first/exhibits/medal.png';
 import polushka from '../assets/rooms/first/exhibits/polushka.png';
 import sweden from '../assets/rooms/first/exhibits/sweden.png';
+import gannibal_desc1 from '../assets/rooms/first/exhibits_desc/gannibal_desc1.png';
+import gannibal_desc2 from '../assets/rooms/first/exhibits_desc/gannibal_desc2.png';
+import kopeika_desc from '../assets/rooms/first/exhibits_desc/kopeika_desc.png';
+import medal_desc from '../assets/rooms/first/exhibits_desc/medal_desc.png';
+import polushka_desc from '../assets/rooms/first/exhibits_desc/polushka_desc.png';
+import sweden_desc from '../assets/rooms/first/exhibits_desc/sweden_desc.png';
 
 import caseImg from '../assets/rooms/second/exhibits/case.png';
 import face from '../assets/rooms/second/exhibits/face.png';
 import mask from '../assets/rooms/second/exhibits/mask.png';
 import note from '../assets/rooms/second/exhibits/note.png';
 import piano from '../assets/rooms/second/exhibits/piano.png';
+import caseImg_desc1 from '../assets/rooms/second/exhibits_desc/case_desc1.png';
+import caseImg_desc2 from '../assets/rooms/second/exhibits_desc/case_desc2.png';
+import face_desc from '../assets/rooms/second/exhibits_desc/face_desc.png';
+import mask_desc from '../assets/rooms/second/exhibits_desc/mask_desc.png';
+import note_desc1 from '../assets/rooms/second/exhibits_desc/note_desc1.png';
+import note_desc2 from '../assets/rooms/second/exhibits_desc/note_desc2.png';
+import piano_desc from '../assets/rooms/second/exhibits_desc/piano_desc.png';
 
 import bowl from '../assets/rooms/third/exhibits/bowl.png';
 import cap from '../assets/rooms/third/exhibits/cap.png';
@@ -23,6 +36,16 @@ import stupa from '../assets/rooms/third/exhibits/stupa.png';
 import tablecloth from '../assets/rooms/third/exhibits/tablecloth.png';
 import textile from '../assets/rooms/third/exhibits/textile.png';
 import trunk from '../assets/rooms/third/exhibits/trunk.png';
+import bowl_desc from '../assets/rooms/third/exhibits_desc/bowl_desc.png';
+import cap_desc1 from '../assets/rooms/third/exhibits_desc/cap_desc1.png';
+import cap_desc2 from '../assets/rooms/third/exhibits_desc/cap_desc2.png';
+import forceps_desc from '../assets/rooms/third/exhibits_desc/forceps_desc.png';
+import napkin_desc from '../assets/rooms/third/exhibits_desc/napkin_desc.png';
+import shirt_desc from '../assets/rooms/third/exhibits_desc/shirt_desc.png';
+import stupa_desc from '../assets/rooms/third/exhibits_desc/stupa_desc.png';
+import tablecloth_desc from '../assets/rooms/third/exhibits_desc/tablecloth_desc.png';
+import textile_desc from '../assets/rooms/third/exhibits_desc/textile_desc.png';
+import trunk_desc from '../assets/rooms/third/exhibits_desc/trunk_desc.png';
 
 import firstRoomGuide from '../assets/rooms/first/guide.mp3';
 import secondRoomGuide from '../assets/rooms/second/guide.mp3';
@@ -96,7 +119,7 @@ const QUIZ_DATA_1 = [
   {
     text: 'К какому веку относятся самые ранние находки на территории усадьбы?',
     answers: ['XVIII век', 'XIX век', 'XX век'],
-    right_answers: 1,
+    right_answers: 0,
     explanation:
       'Четвертая скульптура называется «Аврора», посвященная древнеримской богине утренней зари. Соответственно, в круговороте суток она олицетворяет раннее утро.',
   },
@@ -119,7 +142,7 @@ const QUIZ_DATA_2 = [
   },
   {
     text: 'Как называлась старинная бумага, на которой хорошо видна сетка из поперечных и продольных полос?',
-    answers: ['4', '3', '2'],
+    answers: ['«верже»', '«понтюзо» ', '«крафт»'],
     right_answers: 0,
     explanation: '',
   },
@@ -136,7 +159,7 @@ const QUIZ_DATA_2 = [
       '«венчание сына Осипа на Марии Пушкиной»',
       '«день рождения жены - Кристины  Матвеевны»',
     ],
-    right_answers: 1,
+    right_answers: 0,
     explanation: '',
   },
   {
@@ -174,7 +197,7 @@ const QUIZ_DATA_3 = [
   {
     text: 'Как сегодня называются «земляные яблоки», которые выращивал в Суйде Ганнибал?',
     answers: ['Картофель', 'Репа ', 'Топинамбур '],
-    right_answers: 1,
+    right_answers: 0,
     explanation: '',
   },
   {
@@ -199,7 +222,7 @@ const EXHIBITS_DATA = [
     preview: gannibal,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [gannibal_desc1, gannibal_desc2],
       text: [
         <>
           Автор: Шевченко В.В.
@@ -231,7 +254,7 @@ const EXHIBITS_DATA = [
     preview: sweden,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [sweden_desc],
       text: [
         <>
           Шведское королевство. Медь, чеканка.
@@ -264,7 +287,7 @@ const EXHIBITS_DATA = [
     preview: kopeika,
     threejs: 'room1/2',
     description: {
-      imgs: [Person1, Person2],
+      imgs: [kopeika_desc],
       text: [
         <>
           Российская империя, Москва, Кадашевский монетный двор. Медь, чеканка.
@@ -293,7 +316,7 @@ const EXHIBITS_DATA = [
     preview: polushka,
     threejs: 'room1/3',
     description: {
-      imgs: [Person1, Person2],
+      imgs: [polushka_desc],
       text: [
         <>
           Российская империя. Медь, чеканка.
@@ -323,7 +346,7 @@ const EXHIBITS_DATA = [
     preview: medal,
     threejs: 'room1/5',
     description: {
-      imgs: [Person1, Person2],
+      imgs: [medal_desc],
       text: [
         <>
           Медь, чеканка, золочение.
@@ -367,7 +390,7 @@ const EXHIBITS_DATA = [
     preview: note,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [note_desc1, note_desc2],
       text: [
         <>
           Дата создания: 1832 г. <br />
@@ -390,7 +413,7 @@ const EXHIBITS_DATA = [
     preview: mask,
     threejs: 'room1/6',
     description: {
-      imgs: [Person1, Person2],
+      imgs: [mask_desc],
       text: [
         <>
           Африка, государство Камерун
@@ -418,7 +441,7 @@ const EXHIBITS_DATA = [
     preview: piano,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [piano_desc],
       text: [
         <>
           г. Москва
@@ -450,7 +473,7 @@ const EXHIBITS_DATA = [
     preview: face,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [face_desc],
       text: [
         <>
           Ленинградская обл., Луга, с. Городец. 1987 г.
@@ -480,7 +503,7 @@ const EXHIBITS_DATA = [
     preview: caseImg,
     threejs: 'room1/7',
     description: {
-      imgs: [Person1, Person2],
+      imgs: [caseImg_desc1, caseImg_desc2],
       text: [
         <>
           Футляр из собрания Нины Ивановны Грановской — заслуженного работника культуры РСФСР,
@@ -508,7 +531,7 @@ const EXHIBITS_DATA = [
     preview: textile,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [textile_desc],
       text: [
         <>
           Российская империя, Пензенская губ. <br />
@@ -537,7 +560,7 @@ const EXHIBITS_DATA = [
     preview: forceps,
     threejs: 'room1/1',
     description: {
-      imgs: [Person1, Person2],
+      imgs: [forceps_desc],
       text: [
         <>
           Пензенская губ.
@@ -565,7 +588,7 @@ const EXHIBITS_DATA = [
     preview: stupa,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [stupa_desc],
       text: [
         <>
           Российская империя. Санкт-Петербург. Меднопрокатный завод. <br />
@@ -593,7 +616,7 @@ const EXHIBITS_DATA = [
     preview: shirt,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [shirt_desc],
       text: [
         <>
           Дар Ангелины Николаевны Сорокиной, жительницы СПб. <br />
@@ -619,7 +642,7 @@ const EXHIBITS_DATA = [
     preview: napkin,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [napkin_desc],
       text: [
         <>
           Дар Ангелины Николаевны Сорокиной, жительницы СПб. <br />
@@ -643,7 +666,7 @@ const EXHIBITS_DATA = [
     preview: bowl,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [bowl_desc],
       text: [
         <>
           Дар Ангелины Николаевны Сорокиной, жительницы СПб. Пензенская губ. <br />
@@ -673,7 +696,7 @@ const EXHIBITS_DATA = [
     preview: cap,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [cap_desc1, cap_desc2],
       text: [
         <>
           Дар Ангелины Николаевны Сорокиной, жительницы СПб. <br />
@@ -703,7 +726,7 @@ const EXHIBITS_DATA = [
     preview: tablecloth,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [tablecloth_desc],
       text: [
         <>
           Пензенская губ.
@@ -735,7 +758,7 @@ const EXHIBITS_DATA = [
     preview: trunk,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [trunk_desc],
       text: [
         <>
           Китай, г. Харбин.
@@ -1131,6 +1154,16 @@ export const PERSONS = [
   },
 ];
 
+export const FILTERS = [
+  'Жилые здания и села',
+  'Хозяйственные здания',
+  'Природные элементы',
+  'Аллеи',
+  'Парки',
+  'Памятники',
+  'Религиозные объекты',
+];
+
 export const MAP_POINTS = [
   {
     name: 'Господский дом', // (1)
@@ -1149,6 +1182,7 @@ export const MAP_POINTS = [
     imgdesc: [<span>Место, где раньше стоял Господский дом</span>],
     top: 32.24,
     left: 29.9,
+    filter: FILTERS[0],
   },
   {
     name: 'Дом управляющего', // (2)
@@ -1168,6 +1202,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 31.3,
     left: 30.4,
+    filter: FILTERS[0],
   },
   {
     name: 'Конюшня', // (3)
@@ -1187,6 +1222,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 31.5,
     left: 31.1,
+    filter: FILTERS[1],
   },
   {
     name: 'Гостевой флигель', // (4)
@@ -1222,6 +1258,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 32.1,
     left: 30.5,
+    filter: FILTERS[0],
   },
   {
     name: 'Людская', // (5)
@@ -1235,6 +1272,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 32.2,
     left: 31.3,
+    filter: FILTERS[0],
   },
   {
     name: 'Оранжерея', // (6)
@@ -1252,6 +1290,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 32.0,
     left: 32.0,
+    filter: FILTERS[1],
   },
   {
     name: 'Каретный сарай', // (6.1)
@@ -1266,6 +1305,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 33.6,
     left: 29.4,
+    filter: FILTERS[1],
   },
   {
     name: 'Птичник', // (7)
@@ -1282,6 +1322,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 29.8,
     left: 36.3,
+    filter: FILTERS[1],
   },
   {
     name: 'Амбар и Молочный дом', // (8-33)
@@ -1303,6 +1344,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 33,
     left: 35.2,
+    filter: FILTERS[1],
   },
   {
     name: 'Хозяйственная часть мызы', // (9)
@@ -1318,6 +1360,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 31.3,
     left: 35.5,
+    filter: FILTERS[1],
   },
   {
     name: 'Подъездная березовая аллея', // (10)
@@ -1335,6 +1378,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 30.6,
     left: 29.3,
+    filter: FILTERS[3],
   },
   {
     name: 'Подъездная березовая аллея', // (11)
@@ -1350,6 +1394,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 36.0,
     left: 25.5,
+    filter: FILTERS[3],
   },
   {
     name: 'Регулярный парк', // (12)
@@ -1372,6 +1417,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 35.0,
     left: 29.8,
+    filter: FILTERS[2],
   },
   {
     name: 'Центральная дубовая аллея', // (13)
@@ -1387,6 +1433,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 34.0,
     left: 30.4,
+    filter: FILTERS[4],
   },
   {
     name: 'Дуб Ганнибала', // (14)
@@ -1400,6 +1447,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 35.0,
     left: 30.7,
+    filter: FILTERS[2],
   },
   {
     name: 'Каменная скамья (диван)', // (15)
@@ -1416,6 +1464,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 35.4,
     left: 30.8,
+    filter: FILTERS[5],
   },
   {
     name: 'Липовая аллея (фрагмент)', // (16)
@@ -1429,6 +1478,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 35.2,
     left: 31.2,
+    filter: FILTERS[3],
   },
   {
     name: 'Пруд', // (17)
@@ -1448,6 +1498,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 36.5,
     left: 32.9,
+    filter: FILTERS[2],
   },
   {
     name: 'Острова на пруду', // (18)
@@ -1462,6 +1513,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 36.0,
     left: 31.2,
+    filter: FILTERS[2],
   },
   {
     name: 'Острова на пруду', // (19)
@@ -1476,6 +1528,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 35.77,
     left: 32.1,
+    filter: FILTERS[2],
   },
   {
     name: 'Лукоморье Место «пушкинского» дуба (600-700 лет)', // (20)
@@ -1493,6 +1546,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 37.76,
     left: 32.8,
+    filter: FILTERS[2],
   },
   {
     name: 'Деревянная изба западного приусадебного двора', // (22)
@@ -1507,6 +1561,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 32.0,
     left: 28.9,
+    filter: FILTERS[0],
   },
   {
     name: 'Дом егеря ', // (23)
@@ -1522,6 +1577,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 35.8,
     left: 26.2,
+    filter: FILTERS[0],
   },
   {
     name: 'Кузня', // (25)
@@ -1542,6 +1598,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 31.4,
     left: 33.0,
+    filter: FILTERS[1],
   },
   {
     name: 'Лиственницы', // (27)
@@ -1557,6 +1614,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 32.9,
     left: 30.5,
+    filter: FILTERS[2],
   },
   {
     name: 'Солнечные часы', // (28)
@@ -1571,6 +1629,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 33.0,
     left: 30.1,
+    filter: FILTERS[4],
   },
   {
     name: 'Егерская аллея еловая', // (29)
@@ -1585,6 +1644,7 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 35.8,
     left: 27.0,
+    filter: FILTERS[3],
   },
   {
     name: 'Пейзажный парк', // (30)
@@ -1603,10 +1663,8 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: 36.5,
     left: 29.0,
+    filter: FILTERS[4],
   },
-];
-
-export const MAP_POINTS_LARGE = [
   {
     name: 'Село Воскресенское', // (34)
     info: (
@@ -1625,6 +1683,7 @@ export const MAP_POINTS_LARGE = [
     imgdesc: [],
     top: '15.5',
     left: '35.0',
+    filter: FILTERS[0],
   },
   {
     name: 'Памятник Арине Родионовне в Селе Воскресенском. Место дома ее родителей, где она родилась и выросла.', // (35)
@@ -1644,6 +1703,7 @@ export const MAP_POINTS_LARGE = [
     imgdesc: [],
     top: '18.25',
     left: '31.25',
+    filter: FILTERS[5],
   },
   {
     name: 'Церковь Воскресения Христова (1992, современная, действующая)', // (36)
@@ -1660,6 +1720,7 @@ export const MAP_POINTS_LARGE = [
     imgdesc: [],
     top: '25.5',
     left: '27',
+    filter: FILTERS[6],
   },
   {
     name: 'Место первой церкви Воскресения Христова (1718) и захоронения А.П. Ганнибала', // (37)
@@ -1679,6 +1740,7 @@ export const MAP_POINTS_LARGE = [
     imgdesc: [],
     top: '33.0',
     left: '22',
+    filter: FILTERS[6],
   },
   {
     name: 'Мельница', // (38)
@@ -1695,5 +1757,8 @@ export const MAP_POINTS_LARGE = [
     imgdesc: [],
     top: '65.0',
     left: '6',
+    filter: FILTERS[4],
   },
 ];
+
+export const MAP_POINTS_LARGE = [];
