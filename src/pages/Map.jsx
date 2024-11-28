@@ -9,6 +9,7 @@ import AudioGuide from '../components/Room/AudioGuide';
 import PopUpScroller from '../components/Shared/PopUpScroller';
 import ModalContent from '../components/Map/ModalContent';
 import MapSection from '../components/Map/MapSection';
+import Filter from '../components/Map/Filter';
 
 const Map = () => {
   const [selectedPoint, setSelectedPoint] = useState(null);
@@ -42,6 +43,10 @@ const Map = () => {
   return (
     <MapWr>
       <HeadphonesModal modalIsOpen={headphonesModalIsOpen} handleModalChoice={handleModalChoice} />
+
+      <FilterWr>
+        <Filter />
+      </FilterWr>
 
       <MapSection handleDotClick={handleDotClick} />
 
@@ -104,6 +109,14 @@ const MapLink = styled(Link)`
       align-items: center;
     }
   }
+`;
+
+const FilterWr = styled.div`
+  position: absolute;
+  top: 1%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9;
 `;
 
 export default Map;
