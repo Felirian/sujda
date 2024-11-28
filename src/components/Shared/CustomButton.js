@@ -3,9 +3,9 @@ import { H3 } from '../../styles/textTags';
 import styled from 'styled-components';
 import { COLORS } from '../../styles/variables';
 
-const CustomButton = ({ type, children }) => {
+const CustomButton = ({ type, children, onClick }) => {
   return (
-    <ButtonWr type={type}>
+    <ButtonWr type={type} onClick={onClick}>
       <ButtonCon type={type}>
         <H3Styled type={type}>{children}</H3Styled>
       </ButtonCon>
@@ -38,7 +38,7 @@ const ButtonCon = styled.div`
   width: 100%;
   padding: 1.2vw;
   border: ${({ type }) =>
-    type === 'send' ? 'none' : `0.3vw solid ${type === 'orange' ? COLORS.black : COLORS.grey}`};
+    type === 'sand' ? 'none' : `0.3vw solid ${type === 'orange' ? COLORS.black : COLORS.grey}`};
 `;
 
 const H3Styled = styled(H3)`

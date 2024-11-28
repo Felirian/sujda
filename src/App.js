@@ -9,6 +9,8 @@ import Secret from './pages/Secret';
 import Museum from './pages/Museum';
 import Exhibit from './pages/Exhibit';
 import ModelViewer from './components/Exhibit/ModelViewer';
+import Tutorial from './pages/Tutorial';
+import { TUTORIAL_DATA } from './features/data_tutorial';
 
 function App() {
 
@@ -16,6 +18,7 @@ function App() {
   return (
     <Routes>
       <Route path='/' element={<Main />} />
+      <Route path='tutorial' element={<Tutorial data={TUTORIAL_DATA} />} />
       <Route path='map' element={<Map />} />
       <Route path='museum' element={<Museum />} />
       <Route path='room'>
