@@ -101,6 +101,7 @@ const AudioGuide = ({ audioSrc, setModalIsOpen, allowPlay, hasQuiz }) => {
   return (
     <AudioGuideWr>
       <PlayButton onClick={togglePlay}>
+        <SvgSelector svg={'headphones'} />
         <SvgSelector svg={isPlaying ? 'pause' : 'play'} />
       </PlayButton>
       <ProgressContainer
@@ -151,13 +152,15 @@ const QuizButton = styled(Link)`
 `;
 
 const PlayButton = styled.button`
+  display: flex;
   position: relative;
   top: 0;
   color: ${COLORS.white};
   font-size: 6vw;
   cursor: pointer;
-  width: 5.13vw;
+  width: 15.13vw;
   height: 5.9vw;
+  gap: 3vw;
   svg {
     width: 100%;
     height: 100%;
@@ -176,7 +179,7 @@ const ProgressContainer = styled.div`
   cursor: pointer;
 
   padding: 0 0.2vw;
-  width: ${({ $hasquiz }) => ($hasquiz ? '68vw' : '80vw')};
+  width: ${({ $hasquiz }) => ($hasquiz ? '60vw' : '72vw')};
   margin: ${({ $hasquiz }) => ($hasquiz ? '0 6.7vw 0' : '0')};
 `;
 

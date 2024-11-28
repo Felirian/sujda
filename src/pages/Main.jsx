@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { H1, P1 } from '../styles/textTags';
+import { H1 } from '../styles/textTags';
 import { useNavigate } from 'react-router-dom';
 import CustomButton from '../components/Shared/CustomButton';
 import { COLORS } from '../styles/variables';
@@ -18,15 +18,12 @@ const Main = () => {
     <MainWr>
       <Logo src='/img/main-logo.png' alt='Logo' />
       <MainCon>
-        <ConText>
-          <H1Styled>
-            Добро <br />
-            пожаловать!
-          </H1Styled>
-          <P1>В виртуальную музей-усадьбу</P1>
-        </ConText>
+        <H1Styled>
+          Добро <br />
+          пожаловать!
+        </H1Styled>
         <MainBtn onClick={requestFullscreen}>
-          <CustomButton type={'sand'}>Начать</CustomButton>
+          <CustomButton type={'send'}>Начать</CustomButton>
         </MainBtn>
       </MainCon>
     </MainWr>
@@ -58,15 +55,11 @@ const MainCon = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-const ConText = styled.div`
-  margin-bottom: 20.5128vw;
+  gap: 8vw;
 `;
 
 const H1Styled = styled(H1)`
   color: ${COLORS.lightSand};
-  margin-bottom: 2vw;
 `;
 
 const MainBtn = styled.button`
