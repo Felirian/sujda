@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 import SvgSelector from '../../Shared/SvgSelector';
 import { COLORS } from '../../../styles/variables';
 import { MAP_POINTS, MAP_POINTS_LARGE } from '../../../features/data';
-import { css, styled } from 'styled-components';
-import { KeepScale, useControls, useTransformEffect, useTransformInit } from 'react-zoom-pan-pinch';
+import { styled } from 'styled-components';
+import { KeepScale, useTransformEffect } from 'react-zoom-pan-pinch';
 import svg from '../../../assets/map/Vector.svg';
 
 const ZoomableMap = ({ handleDotClick, zoomToElement }) => {
   const [currentScale, setCurrentScale] = useState(0);
 
-  const { zoomIn } = useControls();
+  // const { zoomIn } = useControls();
 
   useTransformEffect(({ state }) => {
     setCurrentScale(state.scale);
