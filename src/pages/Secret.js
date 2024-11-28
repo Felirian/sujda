@@ -38,7 +38,7 @@ const Secret = () => {
   return (
     <SecretRoomWr>
       <SecretWords />
-      <Header />
+      <Header map/>
       <GlassImg src={glass} alt={'glass'} />
       <FrameImg src={frame} alt={'frame'} />
       <CustomSlider onSlideChange={handleSlideChange} />
