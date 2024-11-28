@@ -14,12 +14,14 @@ const GlobalStyles = createGlobalStyle`
   html {
     scroll-behavior: smooth;
     scroll-padding: 0;
+    overscroll-behavior: none !important;
   }
 
   body {
     width: 100%;
     height: 100svh;
     overflow-x: hidden;
+    //overflow:hidden;
     max-width: 100vw;
     background-color: ${COLORS.black};
     color: ${COLORS.white};

@@ -20,11 +20,14 @@ const Exhibit = ({ data }) => {
 
 const ExhibitWr = styled.div`
   position: relative;
+  height: 100svh;
+  overflow-y: scroll;
 `;
 
 const DescriptionBlock = styled.div`
   display: flex;
   flex-direction: column;
+  
   svg {
     width: 100vw;
     height: 16.92vw;
