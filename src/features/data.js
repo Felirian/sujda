@@ -252,7 +252,7 @@ const EXHIBITS_DATA = [
     route: 'swcoin',
     img: sweden,
     preview: sweden,
-    threejs: false,
+    threejs: 'room1/2',
     description: {
       imgs: [sweden_desc],
       text: [
@@ -285,7 +285,7 @@ const EXHIBITS_DATA = [
     route: 'kopeyka',
     img: kopeika,
     preview: kopeika,
-    threejs: 'room1/2',
+    threejs: 'room1/3',
     description: {
       imgs: [kopeika_desc],
       text: [
@@ -314,7 +314,7 @@ const EXHIBITS_DATA = [
     route: 'polushka',
     img: polushka,
     preview: polushka,
-    threejs: 'room1/3',
+    threejs: 'room1/4',
     description: {
       imgs: [polushka_desc],
       text: [
@@ -388,7 +388,7 @@ const EXHIBITS_DATA = [
     route: 'note',
     img: note,
     preview: note,
-    threejs: false,
+    threejs: 'room2/2',
     description: {
       imgs: [note_desc1, note_desc2],
       text: [
@@ -411,7 +411,7 @@ const EXHIBITS_DATA = [
     route: 'mask',
     img: mask,
     preview: mask,
-    threejs: 'room1/6',
+    threejs: 'room2/3',
     description: {
       imgs: [mask_desc],
       text: [
@@ -501,7 +501,7 @@ const EXHIBITS_DATA = [
     route: 'case',
     img: caseImg,
     preview: caseImg,
-    threejs: 'room1/7',
+    threejs: 'room2/6',
     description: {
       imgs: [caseImg_desc1, caseImg_desc2],
       text: [
@@ -558,7 +558,7 @@ const EXHIBITS_DATA = [
     route: 'forceps',
     img: forceps,
     preview: forceps,
-    threejs: 'room1/1',
+    threejs: 'room3/forceps',
     description: {
       imgs: [forceps_desc],
       text: [
@@ -756,7 +756,7 @@ const EXHIBITS_DATA = [
     route: 'trunk',
     img: trunk,
     preview: trunk,
-    threejs: false,
+    threejs: 'room3/trunk',
     description: {
       imgs: [trunk_desc],
       text: [
