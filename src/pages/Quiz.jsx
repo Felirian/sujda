@@ -7,7 +7,6 @@ import { H1, H3, P1} from '../styles/textTags';
 import FrameCard from '../components/Shared/FrameCard';
 import bg from '../assets/quiz/quiz-bg.jpg';
 import feather from '../assets/quiz/feather.png';
-import QuestionCounter from '../components/Room/Quiz/QuestionCounter';
 import Header from '../components/Shared/Header';
 
 const Quiz = ({ data, quizTexts }) => {
@@ -16,13 +15,6 @@ const Quiz = ({ data, quizTexts }) => {
   return (
     <QuizWr>
       <Header back={true} type={'black'}/>
-
-      {QuizFunc.variables.currentQuestion >= 0 && QuizFunc.variables.currentQuestion < data.length && (
-        <QuestionCounter
-          currentQuestion={QuizFunc.variables.currentQuestion}
-          totalQuestions={data.length}
-        />
-      )}
 
       {QuizFunc.variables.currentQuestion === -1 ? (
         <>
@@ -58,7 +50,7 @@ const Quiz = ({ data, quizTexts }) => {
         </>
       ) : (
         <>
-          <Question question={data[QuizFunc.variables.currentQuestion]} QuizFunc={QuizFunc} />
+          <Question totalQuestions={data.length} question={data[QuizFunc.variables.currentQuestion]} QuizFunc={QuizFunc} />
         </>
       )}
     </QuizWr>

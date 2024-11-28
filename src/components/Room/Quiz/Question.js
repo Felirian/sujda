@@ -6,7 +6,7 @@ import FrameCard from '../../Shared/FrameCard';
 import { COLORS } from '../../../styles/variables';
 import { QuizBtn } from '../../../pages/Quiz';
 
-const Question = ({ question, QuizFunc }) => {
+const Question = ({ totalQuestions, question, QuizFunc }) => {
   return (
     <>
       {QuizFunc.variables.answered ? (
@@ -21,7 +21,7 @@ const Question = ({ question, QuizFunc }) => {
         <>
           <FrameCard>
             <QuestionWr>
-              <H1>Вопрос {QuizFunc.variables.currentQuestion + 1}</H1>
+              <H1>Вопрос {QuizFunc.variables.currentQuestion + 1} из {totalQuestions}</H1>
               <P2>{question.text}</P2>
               <AnswersCon>
                 {question.answers.map((answer, i) => (
