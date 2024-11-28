@@ -5,11 +5,12 @@ import { COLORS } from '../../../styles/variables';
 import { MAP_POINTS, MAP_POINTS_LARGE } from '../../../features/data';
 import { styled } from 'styled-components';
 import { KeepScale, useTransformEffect } from 'react-zoom-pan-pinch';
-import SvgMap from '../../../assets/map/SvgMap';
-import svg from "../../../assets/map/Vector.svg";
+import svg from '../../../assets/map/Vector.svg';
 
 const ZoomableMap = ({ handleDotClick, zoomToElement }) => {
   const [currentScale, setCurrentScale] = useState(0);
+
+  // const { zoomIn } = useControls();
 
   useTransformEffect(({ state }) => {
     setCurrentScale(state.scale);
@@ -19,42 +20,56 @@ const ZoomableMap = ({ handleDotClick, zoomToElement }) => {
     zoomToElement('group1', 6);
   };
 
+  // useTransformInit(({ _, instance }) => {
+  //   if (instance.mounted) {
+  //     setTimeout(() => {
+  //       zoomIn(0.5);
+  //     }, 150);
+  //   }
+  // });
+
   return (
     <ZoomableMapWr>
-      <img src={svg} style={{width: '100%', height: 'auto'}} alt={'суйда'}/>
-      {currentScale <= 3 && (
-        <Dot style={{top: `35%`, left: `32%`}} id='group1' onClick={clickToZoom}>
-          <CirclePoint>
-            <div/>
-          </CirclePoint>
+      <img src={svg} style={{ width: 'auto', height: 'auto' }} alt={'суйда'} />
+
+      <Dot
+        style={{ top: `46%`, left: `31%` }}
+        id='group1'
+        onClick={clickToZoom}
+        $isvisible={currentScale <= 3}
+      >
+        <CirclePoint>
+          <div />
+        </CirclePoint>
+      </Dot>
+
+      {MAP_POINTS_LARGE.map((point, index) => (
+        <Dot
+          key={index}
+          onClick={() => handleDotClick(point)}
+          style={{ top: `${point.top}%`, left: `${point.left}%` }}
+          $isvisible={currentScale <= 3}
+        >
+          <SvgSelector svg='mapPoint' />
         </Dot>
-      )}
-      {currentScale <= 3
-        ? MAP_POINTS_LARGE.map((point, index) => (
-          <Dot
-            key={index}
-            onClick={() => handleDotClick(point)}
-            style={{top: `${point.top}%`, left: `${point.left}%`}}
-          >
-            <SvgSelector svg='mapPoint'/>
-          </Dot>
-        ))
-        : MAP_POINTS.map((point, index) => (
-          <Dot
-            key={index}
-            onClick={() => handleDotClick(point)}
-            style={{top: `${point.top+0.4}%`, left: `${point.left+0.1}%`}}
-          >
-            <SvgSelector svg='mapPoint'/>
-          </Dot>
-        ))}
+      ))}
+      {MAP_POINTS.map((point, index) => (
+        <Dot
+          key={index}
+          onClick={() => handleDotClick(point)}
+          style={{ top: `${point.top}%`, left: `${point.left}%` }}
+          $isvisible={currentScale > 3}
+        >
+          <SvgSelector svg='mapPoint' />
+        </Dot>
+      ))}
     </ZoomableMapWr>
   );
 };
 
 const ZoomableMapWr = styled.div`
-  width: 240vw;
-  height: 230vw;
+  width: 100%;
+  height: 100%;
   position: relative;
 `;
 
@@ -64,22 +79,16 @@ const Dot = styled(KeepScale)`
 
   position: absolute;
   cursor: pointer;
-  opacity: 0;
+
   svg {
     width: 100%;
     height: 100%;
     transform: translateY(-40%);
   }
-  animation: appear 0.3s 0.1s ease both;
 
-  @keyframes appear {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
+  transition: opacity 0.2s;
+  opacity: ${({ $isvisible }) => ($isvisible ? '1' : '0')};
+  pointer-events: ${({ $isvisible }) => ($isvisible ? 'auto' : 'none')};
 `;
 
 const CirclePoint = styled.div`
