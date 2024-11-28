@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import SvgSelector from '../../Shared/SvgSelector';
 import {COLORS} from '../../../styles/variables';
@@ -10,19 +10,24 @@ import {Clustering, POINTS_DATA} from "../../../features/map";
 
 const ZoomableMap = ({handleDotClick, zoomToElement}) => {
   const [currentScale, setCurrentScale] = useState(5);
-
+  const [points, setPoints] = useState(Clustering(currentScale))
   // const { zoomIn } = useControls();
 
   useTransformEffect(({state}) => {
-    setCurrentScale(5 / state.scale);
+    Math.floor(5 / state.scale) === 0 && Math.floor(5 / state.scale) !== currentScale
+      ? setCurrentScale(0.1)
+      : setCurrentScale(Math.floor(5 / state.scale));
   });
 
-  const clickToZoom = () => {
-    zoomToElement('group1', 6);
+  const clickToZoom = (to) => {
+    zoomToElement(to, 6);
   };
 
-  const array = Array.from({length: (100 / currentScale) + 1});
-  console.log(currentScale);
+  useEffect(() => {
+    //TODO: при изменении currentScale надо сделать точки в опасити и уменьшение, а потом появление.
+    setPoints(Clustering(currentScale))
+  }, [currentScale]);
+
   // useTransformInit(({ _, instance }) => {
   //   if (instance.mounted) {
   //     setTimeout(() => {
@@ -34,20 +39,14 @@ const ZoomableMap = ({handleDotClick, zoomToElement}) => {
   return (
     <ZoomableMapWr>
       <img src={svg} style={{width: 'auto', height: 'auto'}} alt={'суйда'}/>
-      {/*{array.map((item, index) => (*/}
-      {/*  <LineVer key={`${index}_line`} style={{left: `${currentScale * index}%`}}/>*/}
-      {/*))}*/}
-      {/*{array.map((item, index) => (*/}
-      {/*  <LineHor key={`${index}_line-hor`} style={{top: `${currentScale * index}%`}}/>*/}
-      {/*))}*/}
-      {Clustering(Math.floor(currentScale) === 0 ? 0.1 : Math.floor(currentScale)).map((point, index) => (
+      {points.map((point, index) => (
         point.count ? (
           <>
             <Dot
-              key={`${index}-point`}
+              key={`${index}-group`}
               style={{top: `${point.coordinates[0]}%`, left: `${point.coordinates[1]}%`}}
-              id='group1'
-              //onClick={clickToZoom}
+              id={`${index}-group`}
+              onClick={() => clickToZoom(`${index}-group`)}
               $isvisible={true}
             >
                 <CirclePoint>
@@ -60,8 +59,8 @@ const ZoomableMap = ({handleDotClick, zoomToElement}) => {
             <Dot
               key={`${index}-point`}
               style={{top: `${point.coordinates[0]}%`, left: `${point.coordinates[1]}%`}}
-              id='group1'
-              //onClick={clickToZoom}
+              id={`${index}-point`}
+              onClick={() => handleDotClick(point)}
               $isvisible={true}
             >
               <SvgSelector svg='mapPoint'/>

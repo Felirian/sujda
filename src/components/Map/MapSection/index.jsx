@@ -8,7 +8,7 @@ const MapSection = ({ handleDotClick }) => {
     <TransformWrapper
       // initialScale={1}
       doubleClick={{ disabled: true }}
-      wheel={{step:0.01, smoothStep:0.01}}
+      //wheel={{step:0.01, smoothStep:0.01}}
       disablePadding={true}
       maxScale={15}
       minScale={1}

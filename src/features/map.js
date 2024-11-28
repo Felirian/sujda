@@ -32,42 +32,63 @@ import map37_1 from '../assets/map/img/37_1.jpeg';
 import map37_2 from '../assets/map/img/37_2.jpg';
 import map38_1 from '../assets/map/img/38_1.jpg';
 import map38_2 from '../assets/map/img/38_2.jpg';
+import {log} from "three/src/nodes/math/MathNode";
 
 export const Clustering = (zoomValue) => {
-  const grid = new Map();
+  //радиус точек
+  const calculateDistance = (pointA, pointB) => {
+    const [x1, y1] = pointA.coordinates;
+    const [x2, y2] = pointB.coordinates;
+    return Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);
+  };
+  //группировка точек
+  const createCluster = (points, center) => {
+    console.log(points);
+    const avgX = points.reduce((sum, p) => sum + p.coordinates[0], 0) / points.length;
+    const avgY = points.reduce((sum, p) => sum + p.coordinates[1], 0) / points.length;
+
+    return {
+      name: `group_${points.length}`,
+      coordinates: [avgX, avgY],
+      count: points.length,
+      //points,
+    };
+  };
+
+  const clusters = [];
+  const visited = new Set();
 
   POINTS_DATA.forEach((point) => {
-    const [x, y] = point.coordinates;
+    if (visited.has(point)) return;
 
-    const cellX = Math.floor(x / zoomValue);
-    const cellY = Math.floor(y / zoomValue);
+    const cluster = [];
+    const queue = [point];
 
-    const cellKey = `${cellX},${cellY}`;
+    while (queue.length > 0) {
+      const current = queue.pop();
 
-    if (!grid.has(cellKey)) {
-      grid.set(cellKey, []);
-    }
-    grid.get(cellKey).push(point);
-  });
+      if (visited.has(current)) continue;
 
-  const result = [];
+      visited.add(current);
+      cluster.push(current);
 
-  grid.forEach((cellPoints, cellKey) => {
-    if (cellPoints.length >= 2) {
-      const avgX = cellPoints.reduce((sum, p) => sum + p.coordinates[0], 0) / cellPoints.length;
-      const avgY = cellPoints.reduce((sum, p) => sum + p.coordinates[1], 0) / cellPoints.length;
-      result.push({
-        name: `group_${cellPoints.length}`,
-        coordinates: [avgX, avgY],
-        count: cellPoints.length,
-        points: cellPoints,
+      POINTS_DATA.forEach((neighbor) => {
+        if (!visited.has(neighbor) && calculateDistance(current, neighbor) <= zoomValue) {
+          queue.push(neighbor);
+        }
       });
+    }
+
+    if (cluster.length > 1) {
+      clusters.push(createCluster(cluster, point));
     } else {
-      result.push(...cellPoints);
+      clusters.push(cluster[0]);
     }
   });
-  return result;
-}
+  console.log(clusters);
+  return clusters;
+};
+
 
 export const FILTERS = [
   'Жилые здания и села',
@@ -553,27 +574,8 @@ export const POINTS_DATA = [
     filter: FILTERS[4],
   },
   {
-    name: 'Село Воскресенское',
-    coordinates: ['15.5', '35.0'],
-    info: (
-      <>
-        Село входило в состав мызы Суйда, в нем проживали крепостные крестьяне барина. Прежнее
-        название села — Суйда. Переименовано было по названию церкви Воскресения Христова, но в
-        народе долго ходило двойное название. При Абраме Ганнибале село насчитывало более ста
-        дворов.
-        <br />
-        <br />
-        Среди жителей села до сих пор встречаются потомки и родственники Арины Родионовны и потомки
-        Ганнибалов от рожденных крепостных.
-      </>
-    ),
-    img: [],
-    imgdesc: [],
-    filter: FILTERS[0],
-  },
-  {
     name: 'Памятник Арине Родионовне в Селе Воскресенском. Место дома ее родителей, где она родилась и выросла.',
-    coordinates: ['18.25', '31.25'],
+    coordinates: [18.25, 31.25],
     info: (
       <>
         Памятник установлен в 2010 году стараниями известного писателя, журналиста и сатирика М.Н.
@@ -592,7 +594,7 @@ export const POINTS_DATA = [
   },
   {
     name: 'Церковь Воскресения Христова (1992, современная, действующая)',
-    coordinates: ['25.5', '27'],
+    coordinates: [25.5, 27],
     info: (
       <>
         Церковь поставлена в 1992 году в память о трех утраченных церквях Воскресения Христова в
@@ -608,7 +610,7 @@ export const POINTS_DATA = [
   },
   {
     name: 'Место первой церкви Воскресения Христова (1718) и захоронения А.П. Ганнибала',
-    coordinates: ['33.0', '22'],
+    coordinates: [33.0, 22],
     info: (
       <>
         В этом месте находилась первая после шведского владычества православная церковь Воскресения
@@ -627,7 +629,7 @@ export const POINTS_DATA = [
   },
   {
     name: 'Мельница',
-    coordinates: ['65.0', '6'],
+    coordinates: [65.0, 6],
     info: (
       <>
         В «Кратких экономических примечаниях Софийского уезда» за 1784 год сообщается, что на реке
