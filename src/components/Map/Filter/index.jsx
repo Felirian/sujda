@@ -1,20 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { COLORS } from '../../../styles/variables';
+import {FILTERS} from "../../../features/map";
 
-const options = [
-  { label: 'Жилые здания и села' },
-  { label: 'Хозяйственные здания' },
-  { label: 'Природные элементы' },
-  { label: 'Аллеи' },
-  { label: 'Парки' },
-  { label: 'Памятники' },
-  { label: 'Религиозные объекты' },
-];
-
-const Filter = () => {
+const Filter = ({selected, setSelected}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState([]);
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
 
@@ -31,7 +21,7 @@ const Filter = () => {
         Выбрать <Arrow $isopen={isOpen}>▼</Arrow>
       </DropdownButton>
       <DropdownList $isopen={isOpen}>
-        {options.map((option, index) => (
+        {FILTERS.map((option, index) => (
           <ListItem key={index}>
             <HiddenCheckbox
               type='checkbox'
@@ -39,7 +29,7 @@ const Filter = () => {
               onChange={() => handleCheckboxChange(index)}
             />
             <CustomCheckbox $checked={selected.includes(index)} />
-            {option.label}
+            {option}
           </ListItem>
         ))}
       </DropdownList>

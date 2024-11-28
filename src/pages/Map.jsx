@@ -13,7 +13,7 @@ import Filter from '../components/Map/Filter';
 
 const Map = () => {
   const [selectedPoint, setSelectedPoint] = useState(null);
-
+  const [selected, setSelected] = useState([]);
   const [headphonesModalIsOpen, setHeadphonesModalIsOpen] = useState(false);
   const [allowPlay, setAllowPlay] = useState(false);
 
@@ -45,10 +45,10 @@ const Map = () => {
       <HeadphonesModal modalIsOpen={headphonesModalIsOpen} handleModalChoice={handleModalChoice} />
 
       <FilterWr>
-        <Filter />
+        <Filter setSelected={setSelected} selected={selected}/>
       </FilterWr>
 
-      <MapSection handleDotClick={handleDotClick} />
+      <MapSection handleDotClick={handleDotClick} selected={selected}/>
 
       <MapControls>
         <AudioGuide

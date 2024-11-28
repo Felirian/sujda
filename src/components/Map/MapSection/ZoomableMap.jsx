@@ -2,15 +2,14 @@ import React, {useEffect, useState} from 'react';
 
 import SvgSelector from '../../Shared/SvgSelector';
 import {COLORS} from '../../../styles/variables';
-import {MAP_POINTS, MAP_POINTS_LARGE} from '../../../features/data';
 import {styled} from 'styled-components';
 import {KeepScale, useTransformEffect} from 'react-zoom-pan-pinch';
 import svg from '../../../assets/map/Vector2.svg';
 import {Clustering, POINTS_DATA} from "../../../features/map";
 
-const ZoomableMap = ({handleDotClick, zoomToElement}) => {
+const ZoomableMap = ({handleDotClick, zoomToElement, selected}) => {
   const [currentScale, setCurrentScale] = useState(5);
-  const [points, setPoints] = useState(Clustering(currentScale))
+  const [points, setPoints] = useState(Clustering(currentScale, POINTS_DATA))
   // const { zoomIn } = useControls();
 
   useTransformEffect(({state}) => {
@@ -25,8 +24,10 @@ const ZoomableMap = ({handleDotClick, zoomToElement}) => {
 
   useEffect(() => {
     //TODO: при изменении currentScale надо сделать точки в опасити и уменьшение, а потом появление.
-    setPoints(Clustering(currentScale))
-  }, [currentScale]);
+    setPoints(Clustering(currentScale, POINTS_DATA.filter((point)=> {
+      return selected.length === 0 ? true : selected.includes(point.filter)
+    })))
+  }, [currentScale, selected]);
 
   // useTransformInit(({ _, instance }) => {
   //   if (instance.mounted) {
@@ -39,35 +40,37 @@ const ZoomableMap = ({handleDotClick, zoomToElement}) => {
   return (
     <ZoomableMapWr>
       <img src={svg} style={{width: 'auto', height: 'auto'}} alt={'суйда'}/>
-      {points.map((point, index) => (
-        point.count ? (
-          <>
-            <Dot
-              key={`${index}-group`}
-              style={{top: `${point.coordinates[0]}%`, left: `${point.coordinates[1]}%`}}
-              id={`${index}-group`}
-              onClick={() => clickToZoom(`${index}-group`)}
-              $isvisible={true}
-            >
+      {points
+        .map((point, index) => (
+          point.count ? (
+            <>
+              <Dot
+                key={`${index}-group`}
+                style={{top: `${point.coordinates[0]}%`, left: `${point.coordinates[1]}%`}}
+                id={`${index}-group`}
+                onClick={() => clickToZoom(`${index}-group`)}
+                $isvisible={true}
+              >
                 <CirclePoint>
-                  <div >{point.count}</div>
+                  <div>{point.count}</div>
                 </CirclePoint>
-            </Dot>
-          </>
-        ) : (
-          <>
-            <Dot
-              key={`${index}-point`}
-              style={{top: `${point.coordinates[0]}%`, left: `${point.coordinates[1]}%`}}
-              id={`${index}-point`}
-              onClick={() => handleDotClick(point)}
-              $isvisible={true}
-            >
-              <SvgSelector svg='mapPoint'/>
-            </Dot>
-          </>
-        )
-      ))}
+              </Dot>
+            </>
+          ) : (
+            <>
+              <Dot
+                key={`${index}-point`}
+                style={{top: `${point.coordinates[0]}%`, left: `${point.coordinates[1]}%`}}
+                id={`${index}-point`}
+                onClick={() => handleDotClick(point)}
+                $isvisible={true}
+              >
+                <SvgSelector svg='mapPoint'/>
+              </Dot>
+            </>
+          )
+        ))
+      }
 
 
       {/*<Dot*/}

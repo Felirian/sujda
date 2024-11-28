@@ -3,7 +3,7 @@ import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 
 import ZoomableMap from './ZoomableMap';
 
-const MapSection = ({ handleDotClick }) => {
+const MapSection = ({ handleDotClick, selected }) => {
   return (
     <TransformWrapper
       // initialScale={1}
@@ -17,7 +17,7 @@ const MapSection = ({ handleDotClick }) => {
     >
       {({ zoomToElement }) => (
         <TransformComponent wrapperClass='map_wrapper' contentClass='map_wrapper_content'>
-          <ZoomableMap handleDotClick={handleDotClick} zoomToElement={zoomToElement} />
+          <ZoomableMap handleDotClick={handleDotClick} zoomToElement={zoomToElement} selected={selected}/>
         </TransformComponent>
       )}
     </TransformWrapper>

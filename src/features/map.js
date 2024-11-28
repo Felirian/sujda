@@ -32,9 +32,8 @@ import map37_1 from '../assets/map/img/37_1.jpeg';
 import map37_2 from '../assets/map/img/37_2.jpg';
 import map38_1 from '../assets/map/img/38_1.jpg';
 import map38_2 from '../assets/map/img/38_2.jpg';
-import {log} from "three/src/nodes/math/MathNode";
 
-export const Clustering = (zoomValue) => {
+export const Clustering = (zoomValue, points) => {
   //радиус точек
   const calculateDistance = (pointA, pointB) => {
     const [x1, y1] = pointA.coordinates;
@@ -58,7 +57,7 @@ export const Clustering = (zoomValue) => {
   const clusters = [];
   const visited = new Set();
 
-  POINTS_DATA.forEach((point) => {
+  points.forEach((point) => {
     if (visited.has(point)) return;
 
     const cluster = [];
@@ -72,7 +71,7 @@ export const Clustering = (zoomValue) => {
       visited.add(current);
       cluster.push(current);
 
-      POINTS_DATA.forEach((neighbor) => {
+      points.forEach((neighbor) => {
         if (!visited.has(neighbor) && calculateDistance(current, neighbor) <= zoomValue) {
           queue.push(neighbor);
         }
@@ -88,7 +87,6 @@ export const Clustering = (zoomValue) => {
   console.log(clusters);
   return clusters;
 };
-
 
 export const FILTERS = [
   'Жилые здания и села',
@@ -117,7 +115,7 @@ export const POINTS_DATA = [
     ),
     img: [map1],
     imgdesc: [<span>Место, где раньше стоял Господский дом</span>],
-    filter: FILTERS[0],
+    filter: 0,
   },
   {
     name: 'Дом управляющего',
@@ -136,7 +134,7 @@ export const POINTS_DATA = [
     ),
     img: [map2],
     imgdesc: [],
-    filter: FILTERS[0],
+    filter: 0,
   },
   {
     name: 'Конюшня',
@@ -155,7 +153,7 @@ export const POINTS_DATA = [
     ),
     img: [map3],
     imgdesc: [],
-    filter: FILTERS[1],
+    filter: 1,
   },
   {
     name: 'Гостевой флигель',
@@ -190,7 +188,7 @@ export const POINTS_DATA = [
     ),
     img: [map4_1, map4_2],
     imgdesc: [],
-    filter: FILTERS[0],
+    filter: 0,
   },
   {
     name: 'Людская',
@@ -203,7 +201,7 @@ export const POINTS_DATA = [
     ),
     img: [],
     imgdesc: [],
-    filter: FILTERS[0],
+    filter: 0,
   },
   {
     name: 'Оранжерея',
@@ -220,7 +218,7 @@ export const POINTS_DATA = [
     ),
     img: [map6_1, map6_2],
     imgdesc: [],
-    filter: FILTERS[1],
+    filter: 1,
   },
   {
     name: 'Каретный сарай',
@@ -234,7 +232,7 @@ export const POINTS_DATA = [
     ),
     img: [map6_1_1],
     imgdesc: [],
-    filter: FILTERS[1],
+    filter: 1,
   },
   {
     name: 'Птичник',
@@ -250,7 +248,7 @@ export const POINTS_DATA = [
     ),
     img: [map7],
     imgdesc: [],
-    filter: FILTERS[1],
+    filter: 1,
   },
   {
     name: 'Амбар и Молочный дом',
@@ -271,7 +269,7 @@ export const POINTS_DATA = [
     ),
     img: [map8],
     imgdesc: [],
-    filter: FILTERS[1],
+    filter: 1,
   },
   {
     name: 'Хозяйственная часть мызы',
@@ -286,7 +284,7 @@ export const POINTS_DATA = [
     ),
     img: [map9_1, map9_2],
     imgdesc: [],
-    filter: FILTERS[1],
+    filter: 1,
   },
   {
     name: 'Подъездная березовая аллея',
@@ -303,7 +301,7 @@ export const POINTS_DATA = [
     ),
     img: [],
     imgdesc: [],
-    filter: FILTERS[3],
+    filter: 3,
   },
   {
     name: 'Подъездная березовая аллея',
@@ -318,7 +316,7 @@ export const POINTS_DATA = [
     ),
     img: [],
     imgdesc: [],
-    filter: FILTERS[3],
+    filter: 3,
   },
   {
     name: 'Регулярный парк',
@@ -340,7 +338,7 @@ export const POINTS_DATA = [
     ),
     img: [map12],
     imgdesc: [],
-    filter: FILTERS[2],
+    filter: 2,
   },
   {
     name: 'Центральная дубовая аллея',
@@ -355,7 +353,7 @@ export const POINTS_DATA = [
     ),
     img: [map13],
     imgdesc: [],
-    filter: FILTERS[4],
+    filter: 4,
   },
   {
     name: 'Дуб Ганнибала',
@@ -368,7 +366,7 @@ export const POINTS_DATA = [
     ),
     img: [map14],
     imgdesc: [],
-    filter: FILTERS[2],
+    filter: 2,
   },
   {
     name: 'Каменная скамья (диван)',
@@ -384,7 +382,7 @@ export const POINTS_DATA = [
     ),
     img: [map15],
     imgdesc: [],
-    filter: FILTERS[5],
+    filter: 5,
   },
   {
     name: 'Липовая аллея (фрагмент)',
@@ -397,7 +395,7 @@ export const POINTS_DATA = [
     ),
     img: [map16],
     imgdesc: [],
-    filter: FILTERS[3],
+    filter: 3,
   },
   {
     name: 'Пруд',
@@ -416,7 +414,7 @@ export const POINTS_DATA = [
     ),
     img: [map17],
     imgdesc: [],
-    filter: FILTERS[2],
+    filter: 2,
   },
   {
     name: 'Острова на пруду',
@@ -430,7 +428,7 @@ export const POINTS_DATA = [
     ),
     img: [map18],
     imgdesc: [],
-    filter: FILTERS[2],
+    filter: 2,
   },
   {
     name: 'Острова на пруду',
@@ -444,7 +442,7 @@ export const POINTS_DATA = [
     ),
     img: [map19],
     imgdesc: [],
-    filter: FILTERS[2],
+    filter: 2,
   },
   {
     name: 'Лукоморье Место «пушкинского» дуба (600-700 лет)',
@@ -461,7 +459,7 @@ export const POINTS_DATA = [
     ),
     img: [map20],
     imgdesc: [],
-    filter: FILTERS[2],
+    filter: 2,
   },
   {
     name: 'Деревянная изба западного приусадебного двора',
@@ -475,7 +473,7 @@ export const POINTS_DATA = [
     ),
     img: [map22],
     imgdesc: [],
-    filter: FILTERS[0],
+    filter: 0,
   },
   {
     name: 'Дом егеря',
@@ -490,7 +488,7 @@ export const POINTS_DATA = [
     ),
     img: [map23],
     imgdesc: [],
-    filter: FILTERS[0],
+    filter: 0,
   },
   {
     name: 'Кузня',
@@ -510,7 +508,7 @@ export const POINTS_DATA = [
     ),
     img: [],
     imgdesc: [],
-    filter: FILTERS[1],
+    filter: 1,
   },
   {
     name: 'Лиственницы',
@@ -525,7 +523,7 @@ export const POINTS_DATA = [
     ),
     img: [map27],
     imgdesc: [],
-    filter: FILTERS[2],
+    filter: 2,
   },
   {
     name: 'Солнечные часы',
@@ -539,7 +537,7 @@ export const POINTS_DATA = [
     ),
     img: [map28],
     imgdesc: [],
-    filter: FILTERS[4],
+    filter: 4,
   },
   {
     name: 'Егерская аллея еловая',
@@ -553,7 +551,7 @@ export const POINTS_DATA = [
     ),
     img: [map29],
     imgdesc: [],
-    filter: FILTERS[3],
+    filter: 3,
   },
   {
     name: 'Пейзажный парк',
@@ -571,7 +569,7 @@ export const POINTS_DATA = [
     ),
     img: [map30],
     imgdesc: [],
-    filter: FILTERS[4],
+    filter: 4,
   },
   {
     name: 'Памятник Арине Родионовне в Селе Воскресенском. Место дома ее родителей, где она родилась и выросла.',
@@ -590,7 +588,7 @@ export const POINTS_DATA = [
     ),
     img: [map35_1, map35_2],
     imgdesc: [],
-    filter: FILTERS[5],
+    filter: 5,
   },
   {
     name: 'Церковь Воскресения Христова (1992, современная, действующая)',
@@ -606,7 +604,7 @@ export const POINTS_DATA = [
     ),
     img: [map36],
     imgdesc: [],
-    filter: FILTERS[6],
+    filter: 6,
   },
   {
     name: 'Место первой церкви Воскресения Христова (1718) и захоронения А.П. Ганнибала',
@@ -625,7 +623,7 @@ export const POINTS_DATA = [
     ),
     img: [map37_1, map37_2],
     imgdesc: [],
-    filter: FILTERS[6],
+    filter: 6,
   },
   {
     name: 'Мельница',
@@ -641,8 +639,9 @@ export const POINTS_DATA = [
     ),
     img: [map38_1, map38_2],
     imgdesc: [],
-    filter: FILTERS[4],
+    filter: 4,
   },
 ];
+
 
 
