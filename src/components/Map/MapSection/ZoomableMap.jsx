@@ -24,7 +24,7 @@ const ZoomableMap = ({handleDotClick, zoomToElement, selected}) => {
 
   useEffect(() => {
     //TODO: при изменении currentScale надо сделать точки в опасити и уменьшение, а потом появление.
-    setPoints(Clustering(currentScale, POINTS_DATA.filter((point)=> {
+    setPoints(Clustering(currentScale, POINTS_DATA.filter((point) => {
       return selected.length === 0 ? true : selected.includes(point.filter)
     })))
   }, [currentScale, selected]);
@@ -43,31 +43,31 @@ const ZoomableMap = ({handleDotClick, zoomToElement, selected}) => {
       {points
         .map((point, index) => (
           point.count ? (
-            <>
-              <Dot
-                key={`${index}-group`}
-                style={{top: `${point.coordinates[0]}%`, left: `${point.coordinates[1]}%`}}
-                id={`${index}-group`}
-                onClick={() => clickToZoom(`${index}-group`)}
-                $isvisible={true}
-              >
-                <CirclePoint>
-                  <div>{point.count}</div>
-                </CirclePoint>
-              </Dot>
-            </>
+
+            <Dot
+              key={`${index}-group`}
+              style={{top: `${point.coordinates[0]}%`, left: `${point.coordinates[1]}%`}}
+              id={`${index}-group`}
+              onClick={() => clickToZoom(`${index}-group`)}
+              $isvisible={true}
+            >
+              <CirclePoint>
+                <div>{point.count}</div>
+              </CirclePoint>
+            </Dot>
+
           ) : (
-            <>
-              <Dot
-                key={`${index}-point`}
-                style={{top: `${point.coordinates[0]}%`, left: `${point.coordinates[1]}%`}}
-                id={`${index}-point`}
-                onClick={() => handleDotClick(point)}
-                $isvisible={true}
-              >
-                <SvgSelector svg='mapPoint'/>
-              </Dot>
-            </>
+
+            <Dot
+              key={`${index}-point`}
+              style={{top: `${point.coordinates[0]}%`, left: `${point.coordinates[1]}%`}}
+              id={`${index}-point`}
+              onClick={() => handleDotClick(point)}
+              $isvisible={true}
+            >
+              <SvgSelector svg='mapPoint'/>
+            </Dot>
+
           )
         ))
       }

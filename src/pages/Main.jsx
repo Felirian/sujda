@@ -12,7 +12,7 @@ const Main = () => {
     if (elem.requestFullscreen) {
       elem.requestFullscreen();
     }
-    navigate('/map');
+    navigate('/tutorial');
   };
   return (
     <MainWr>
