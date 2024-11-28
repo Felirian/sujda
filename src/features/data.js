@@ -7,12 +7,25 @@ import kopeika from '../assets/rooms/first/exhibits/kopeika.png';
 import medal from '../assets/rooms/first/exhibits/medal.png';
 import polushka from '../assets/rooms/first/exhibits/polushka.png';
 import sweden from '../assets/rooms/first/exhibits/sweden.png';
+import gannibal_desc1 from '../assets/rooms/first/exhibits_desc/gannibal_desc1.png';
+import gannibal_desc2 from '../assets/rooms/first/exhibits_desc/gannibal_desc2.png';
+import kopeika_desc from '../assets/rooms/first/exhibits_desc/kopeika_desc.png';
+import medal_desc from '../assets/rooms/first/exhibits_desc/medal_desc.png';
+import polushka_desc from '../assets/rooms/first/exhibits_desc/polushka_desc.png';
+import sweden_desc from '../assets/rooms/first/exhibits_desc/sweden_desc.png';
 
 import caseImg from '../assets/rooms/second/exhibits/case.png';
 import face from '../assets/rooms/second/exhibits/face.png';
 import mask from '../assets/rooms/second/exhibits/mask.png';
 import note from '../assets/rooms/second/exhibits/note.png';
 import piano from '../assets/rooms/second/exhibits/piano.png';
+import caseImg_desc1 from '../assets/rooms/second/exhibits_desc/case_desc1.png';
+import caseImg_desc2 from '../assets/rooms/second/exhibits_desc/case_desc2.png';
+import face_desc from '../assets/rooms/second/exhibits_desc/face_desc.png';
+import mask_desc from '../assets/rooms/second/exhibits_desc/mask_desc.png';
+import note_desc1 from '../assets/rooms/second/exhibits_desc/note_desc1.png';
+import note_desc2 from '../assets/rooms/second/exhibits_desc/note_desc2.png';
+import piano_desc from '../assets/rooms/second/exhibits_desc/piano_desc.png';
 
 import bowl from '../assets/rooms/third/exhibits/bowl.png';
 import cap from '../assets/rooms/third/exhibits/cap.png';
@@ -23,6 +36,16 @@ import stupa from '../assets/rooms/third/exhibits/stupa.png';
 import tablecloth from '../assets/rooms/third/exhibits/tablecloth.png';
 import textile from '../assets/rooms/third/exhibits/textile.png';
 import trunk from '../assets/rooms/third/exhibits/trunk.png';
+import bowl_desc from '../assets/rooms/third/exhibits_desc/bowl_desc.png';
+import cap_desc1 from '../assets/rooms/third/exhibits_desc/cap_desc1.png';
+import cap_desc2 from '../assets/rooms/third/exhibits_desc/cap_desc2.png';
+import forceps_desc from '../assets/rooms/third/exhibits_desc/forceps_desc.png';
+import napkin_desc from '../assets/rooms/third/exhibits_desc/napkin_desc.png';
+import shirt_desc from '../assets/rooms/third/exhibits_desc/shirt_desc.png';
+import stupa_desc from '../assets/rooms/third/exhibits_desc/stupa_desc.png';
+import tablecloth_desc from '../assets/rooms/third/exhibits_desc/tablecloth_desc.png';
+import textile_desc from '../assets/rooms/third/exhibits_desc/textile_desc.png';
+import trunk_desc from '../assets/rooms/third/exhibits_desc/trunk_desc.png';
 
 import firstRoomGuide from '../assets/rooms/first/guide.mp3';
 import secondRoomGuide from '../assets/rooms/second/guide.mp3';
@@ -199,7 +222,7 @@ const EXHIBITS_DATA = [
     preview: gannibal,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [gannibal_desc1, gannibal_desc2],
       text: [
         <>
           Автор: Шевченко В.В.
@@ -231,7 +254,7 @@ const EXHIBITS_DATA = [
     preview: sweden,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [sweden_desc],
       text: [
         <>
           Шведское королевство. Медь, чеканка.
@@ -264,7 +287,7 @@ const EXHIBITS_DATA = [
     preview: kopeika,
     threejs: 'room1/2',
     description: {
-      imgs: [Person1, Person2],
+      imgs: [kopeika_desc],
       text: [
         <>
           Российская империя, Москва, Кадашевский монетный двор. Медь, чеканка.
@@ -293,7 +316,7 @@ const EXHIBITS_DATA = [
     preview: polushka,
     threejs: 'room1/3',
     description: {
-      imgs: [Person1, Person2],
+      imgs: [polushka_desc],
       text: [
         <>
           Российская империя. Медь, чеканка.
@@ -323,7 +346,7 @@ const EXHIBITS_DATA = [
     preview: medal,
     threejs: 'room1/5',
     description: {
-      imgs: [Person1, Person2],
+      imgs: [medal_desc],
       text: [
         <>
           Медь, чеканка, золочение.
@@ -367,7 +390,7 @@ const EXHIBITS_DATA = [
     preview: note,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [note_desc1, note_desc2],
       text: [
         <>
           Дата создания: 1832 г. <br />
@@ -390,7 +413,7 @@ const EXHIBITS_DATA = [
     preview: mask,
     threejs: 'room1/6',
     description: {
-      imgs: [Person1, Person2],
+      imgs: [mask_desc],
       text: [
         <>
           Африка, государство Камерун
@@ -418,7 +441,7 @@ const EXHIBITS_DATA = [
     preview: piano,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [piano_desc],
       text: [
         <>
           г. Москва
@@ -450,7 +473,7 @@ const EXHIBITS_DATA = [
     preview: face,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [face_desc],
       text: [
         <>
           Ленинградская обл., Луга, с. Городец. 1987 г.
@@ -480,7 +503,7 @@ const EXHIBITS_DATA = [
     preview: caseImg,
     threejs: 'room1/7',
     description: {
-      imgs: [Person1, Person2],
+      imgs: [caseImg_desc1, caseImg_desc2],
       text: [
         <>
           Футляр из собрания Нины Ивановны Грановской — заслуженного работника культуры РСФСР,
@@ -508,7 +531,7 @@ const EXHIBITS_DATA = [
     preview: textile,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [textile_desc],
       text: [
         <>
           Российская империя, Пензенская губ. <br />
@@ -537,7 +560,7 @@ const EXHIBITS_DATA = [
     preview: forceps,
     threejs: 'room1/1',
     description: {
-      imgs: [Person1, Person2],
+      imgs: [forceps_desc],
       text: [
         <>
           Пензенская губ.
@@ -565,7 +588,7 @@ const EXHIBITS_DATA = [
     preview: stupa,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [stupa_desc],
       text: [
         <>
           Российская империя. Санкт-Петербург. Меднопрокатный завод. <br />
@@ -593,7 +616,7 @@ const EXHIBITS_DATA = [
     preview: shirt,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [shirt_desc],
       text: [
         <>
           Дар Ангелины Николаевны Сорокиной, жительницы СПб. <br />
@@ -619,7 +642,7 @@ const EXHIBITS_DATA = [
     preview: napkin,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [napkin_desc],
       text: [
         <>
           Дар Ангелины Николаевны Сорокиной, жительницы СПб. <br />
@@ -643,7 +666,7 @@ const EXHIBITS_DATA = [
     preview: bowl,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [bowl_desc],
       text: [
         <>
           Дар Ангелины Николаевны Сорокиной, жительницы СПб. Пензенская губ. <br />
@@ -670,10 +693,10 @@ const EXHIBITS_DATA = [
     name: 'Чепцы',
     route: 'cheptsy',
     img: cap,
-    preview: cap,
+    preview: forceps,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [cap_desc1, cap_desc2],
       text: [
         <>
           Дар Ангелины Николаевны Сорокиной, жительницы СПб. <br />
@@ -703,7 +726,7 @@ const EXHIBITS_DATA = [
     preview: tablecloth,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [tablecloth_desc],
       text: [
         <>
           Пензенская губ.
@@ -735,7 +758,7 @@ const EXHIBITS_DATA = [
     preview: trunk,
     threejs: false,
     description: {
-      imgs: [Person1, Person2],
+      imgs: [trunk_desc],
       text: [
         <>
           Китай, г. Харбин.
@@ -1734,6 +1757,8 @@ export const MAP_POINTS = [
     imgdesc: [],
     top: '65.0',
     left: '6',
-    filter: FILTERS[1],
+    filter: FILTERS[4],
   },
 ];
+
+export const MAP_POINTS_LARGE = [];
