@@ -70,14 +70,12 @@ const MapWr = styled.div`
   overflow: hidden;
   height: 100vh;
   height: 100svh;
-  /* touch-action: none; */
   background-color: ${COLORS.black};
   .map_wrapper {
     width: 100%;
-    height: 90%;
+    height: 85%;
   }
   .map_wrapper_content {
-    height: 100%;
   }
 `;
 
