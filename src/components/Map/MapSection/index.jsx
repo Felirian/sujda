@@ -12,12 +12,16 @@ const MapSection = ({ handleDotClick, selected }) => {
       disablePadding={true}
       maxScale={15}
       minScale={1}
-      initialPositionX={-180}
+      initialPositionX={-240}
       initialPositionY={-100}
     >
       {({ zoomToElement }) => (
         <TransformComponent wrapperClass='map_wrapper' contentClass='map_wrapper_content'>
-          <ZoomableMap handleDotClick={handleDotClick} zoomToElement={zoomToElement} selected={selected}/>
+          <ZoomableMap
+            handleDotClick={handleDotClick}
+            zoomToElement={zoomToElement}
+            selected={selected}
+          />
         </TransformComponent>
       )}
     </TransformWrapper>
