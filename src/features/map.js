@@ -42,7 +42,6 @@ export const Clustering = (zoomValue, points) => {
   };
   //группировка точек
   const createCluster = (points, center) => {
-    console.log(points);
     const avgX = points.reduce((sum, p) => sum + p.coordinates[0], 0) / points.length;
     const avgY = points.reduce((sum, p) => sum + p.coordinates[1], 0) / points.length;
 
@@ -84,7 +83,7 @@ export const Clustering = (zoomValue, points) => {
       clusters.push(cluster[0]);
     }
   });
-  console.log(clusters);
+
   return clusters;
 };
 
@@ -642,6 +641,3 @@ export const POINTS_DATA = [
     filter: 4,
   },
 ];
-
-
-
