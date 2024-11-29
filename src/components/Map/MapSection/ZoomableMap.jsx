@@ -80,8 +80,8 @@ const ZoomableMapWr = styled.div`
 `;
 
 const Dot = styled.div`
-  width: 7.44vw;
-  height: 10.77vw;
+  width: 29px;
+  height: 42px;
   position: absolute;
   cursor: pointer;
   transform-origin: center;
@@ -94,18 +94,18 @@ const Dot = styled.div`
 `;
 
 const CirclePoint = styled.div`
-  width: 11vw;
-  height: 11vw;
+  width: 43px;
+  height: 43px;
   border-radius: 50%;
-  border: 0.6vw solid ${COLORS.white};
+  border: 2px solid ${COLORS.white};
   background-color: ${COLORS.pointRed};
   display: flex;
   justify-content: center;
   align-items: center;
 
   div {
-    width: 7vw;
-    height: 7vw;
+    width: 27px;
+    height: 27px;
     border-radius: 50%;
     background-color: ${COLORS.white};
     display: flex;
