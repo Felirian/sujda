@@ -8,10 +8,12 @@ import SvgSelector from '../Shared/SvgSelector';
 import { useNavigate } from 'react-router-dom';
 import Model from './Model';
 import clickpng from '../../assets/rooms/click.png';
+import Loader from '../Shared/Loader';
 
 const ModelViewer = ({ model }) => {
   const containerRef = useRef(null);
   const navigate = useNavigate();
+  const [isLoadingModel, setIsLoadingModel] = useState(false);
   const [hasAnimation, setHasAnimation] = useState(false);
 
   const handleGoBack = () => {
@@ -28,15 +30,16 @@ const ModelViewer = ({ model }) => {
         <SvgSelector svg='3dObs' />
       </ObsIcon>
       <Suspense fallback={<Loader />}>
+        {isLoadingModel && <Loader />}
         <Canvas key={model} camera={{ fov: 45, position: [0, 5, 10] }}>
           <CameraControls minDistance={2} maxDistance={30} />
           <ambientLight intensity={2} />
-          <directionalLight
-            position={[2, 5, 2]}
-            intensity={2}
-            castShadow
+          <directionalLight position={[2, 5, 2]} intensity={2} castShadow />
+          <Model
+            model={model}
+            setHasAnimation={setHasAnimation}
+            setIsLoadingModel={setIsLoadingModel}
           />
-          <Model model={model} setHasAnimation={setHasAnimation} />
         </Canvas>
       </Suspense>
     </ModelViewerWr>
@@ -116,27 +119,6 @@ const AnimationPointer = styled.img`
     100% {
       opacity: 0;
       transform: translateY(-20%) scale(1);
-    }
-  }
-`;
-
-const Loader = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  width: 5.13vw;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: #fff;
-  opacity: 0.7;
-  box-shadow: 0 0 0 0 #fff;
-  animation: l1 1s infinite;
-
-  @keyframes l1 {
-    100% {
-      box-shadow: 0 0 0 7vw #0000;
     }
   }
 `;

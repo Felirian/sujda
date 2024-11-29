@@ -4,7 +4,7 @@ import { AnimationMixer } from 'three';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 import * as THREE from 'three';
 
-const Model = ({ model, setHasAnimation }) => {
+const Model = ({ model, setHasAnimation, setIsLoadingModel }) => {
   const [scene, setScene] = useState(null);
   const [animMixer, setAnimMixer] = useState(null);
   const [actions, setActions] = useState([]);
@@ -21,7 +21,7 @@ const Model = ({ model, setHasAnimation }) => {
     loader.setDRACOLoader(dracoLoader);
 
     let mixer = null;
-
+    setIsLoadingModel(true);
     loader.load(
       `/models/${model}.glb`,
       (gltf) => {
@@ -41,6 +41,7 @@ const Model = ({ model, setHasAnimation }) => {
         }
 
         setAnimMixer(mixer);
+        setIsLoadingModel(false);
       },
       undefined,
       (err) => {
