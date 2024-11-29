@@ -10,6 +10,7 @@ import {Clustering, POINTS_DATA} from "../../../features/map";
 const ZoomableMap = ({handleDotClick, zoomToElement, selected}) => {
   const [currentScale, setCurrentScale] = useState(5);
   const [points, setPoints] = useState(Clustering(currentScale, POINTS_DATA))
+  const [isVisible, setIsVisible] = useState(true)
   // const { zoomIn } = useControls();
 
   useTransformEffect(({state}) => {
@@ -24,9 +25,14 @@ const ZoomableMap = ({handleDotClick, zoomToElement, selected}) => {
 
   useEffect(() => {
     //TODO: при изменении currentScale надо сделать точки в опасити и уменьшение, а потом появление.
+    setIsVisible(false)
+
     setPoints(Clustering(currentScale, POINTS_DATA.filter((point) => {
       return selected.length === 0 ? true : selected.includes(point.filter)
     })))
+
+    setIsVisible(true)
+
   }, [currentScale, selected]);
 
   // useTransformInit(({ _, instance }) => {
@@ -49,7 +55,7 @@ const ZoomableMap = ({handleDotClick, zoomToElement, selected}) => {
               style={{top: `${point.coordinates[0]}%`, left: `${point.coordinates[1]}%`}}
               id={`${index}-group`}
               onClick={() => clickToZoom(`${index}-group`)}
-              $isvisible={true}
+              $isvisible={isVisible}
             >
               <CirclePoint>
                 <div>{point.count}</div>
@@ -63,7 +69,7 @@ const ZoomableMap = ({handleDotClick, zoomToElement, selected}) => {
               style={{top: `${point.coordinates[0]}%`, left: `${point.coordinates[1]}%`}}
               id={`${index}-point`}
               onClick={() => handleDotClick(point)}
-              $isvisible={true}
+              $isvisible={isVisible}
             >
               <SvgSelector svg='mapPoint'/>
             </Dot>
