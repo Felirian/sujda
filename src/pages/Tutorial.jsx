@@ -21,7 +21,7 @@ const Tutorial = ({ data }) => {
       </TutorialContainer>
       <TutorialNav>
         {currentIndex === data.length - 1 ? (
-          <FullWidthLink to='/map'>
+          <FullWidthLink to='/museum'>
             <CustomButton type={'sand'}>
               завершить
             </CustomButton>
