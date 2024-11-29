@@ -18,6 +18,7 @@ export default LongFrameCard;
 
 const LongFrameCardWr = styled.div`
   width: 100%;
+  min-height: 82svh;
   display: flex;
   flex-direction: column;
   z-index: 999;
@@ -39,8 +40,8 @@ const LongFrameCardContainer = styled.div`
   background-color: ${COLORS.green};
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   padding: 0 5.641vw 5.641vw 5.641vw;
   flex-grow: 1;
 `;
