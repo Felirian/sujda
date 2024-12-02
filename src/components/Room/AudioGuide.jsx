@@ -140,6 +140,7 @@ const AudioGuideWr = styled.div`
   justify-content: space-between;
   padding: 5.13vw 5.13vw 0;
   margin-bottom: -0.5vw;
+  gap: 2.56vw;
 `;
 
 const QuizButton = styled(Link)`
@@ -173,32 +174,31 @@ const ProgressContainer = styled.div`
   left: 0;
   display: flex;
   align-items: center;
-  height: 1.4vw;
+  height: 2.05vw;
   background-color: ${COLORS.white};
 
   cursor: pointer;
 
-  padding: 0 0.2vw;
+  padding: 0.26vw;
   width: ${({ $hasquiz }) => ($hasquiz ? '60vw' : '72vw')};
   margin: ${({ $hasquiz }) => ($hasquiz ? '0 6.7vw 0' : '0')};
 `;
 
 const ProgressBar = styled.div`
-  height: 1vw;
+  height: 1.54vw;
   background-color: ${COLORS.yellow};
   width: 0;
 `;
 
 const TimeDisplay = styled.span`
   position: absolute;
-  font-family: 'Roboto Slab';
-  font-size: 2.05vw;
+  font-family: "Roboto Slab";
+  font-size: 3.08vw;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  white-space: nowrap;
-  bottom: -2vw;
-  right: ${({ $hasquiz }) => ($hasquiz ? '21.5vw' : '5vw')};
+  bottom: -3vw;
+  right: ${({ $hasquiz }) => ($hasquiz ? '24.5vw' : '5vw')};
   span {
     color: ${COLORS.yellow};
   }
