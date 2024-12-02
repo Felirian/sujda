@@ -1,12 +1,12 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { COLORS } from '../../../styles/variables';
-import {H1, H3, H3Style} from '../../../styles/textTags';
+import { ButtonTextStyle, H1, H3, H3Style } from '../../../styles/textTags';
 import SvgSelector from '../../Shared/SvgSelector';
-import FrameCard from "../../Shared/FrameCard";
-import CustomButton from "../../Shared/CustomButton";
+import FrameCard from '../../Shared/FrameCard';
+import CustomButton from '../../Shared/CustomButton';
 
-const SecretWords = ({ open, handleModalChoice }) => {
+const SecretWords = ({ open, setIsOpenModal }) => {
   const secretWords = {
     first: localStorage.getItem('first') === 'true',
     second: localStorage.getItem('second') === 'true',
@@ -19,33 +19,28 @@ const SecretWords = ({ open, handleModalChoice }) => {
       <RoomModal $modalisopen={open}>
         <FrameCard>
           <RoomModalContent>
+            <ModalTitle>Секретные слова</ModalTitle>
 
-              {secretWords.first && (
-                <SecretWord1>
-                  <H3Styled>Пушкин</H3Styled>
+            <SecretWord>
+              <img src='img/secret/1.png' alt='' />
+              {secretWords.first && <H3Styled>Ганнибал</H3Styled>}
+            </SecretWord>
 
-                </SecretWord1>
-              )}
-              {secretWords.second && (
-                <SecretWord2>
-                  <H3Styled>Ганнибал</H3Styled>
+            <SecretWord>
+              <img src='img/secret/2.png' alt='' />
+              {secretWords.second && <H3Styled>Суйда</H3Styled>}
+            </SecretWord>
 
-                </SecretWord2>
-              )}
-              {secretWords.third && (
-                <SecretWord3>
-                  <H3Styled>Суйда</H3Styled>
+            <SecretWord>
+              <img src='img/secret/3.png' alt='' />
+              {secretWords.third && <H3Styled>Пушкин</H3Styled>}
+            </SecretWord>
 
-                </SecretWord3>
-              )}
-
-            <CustomButton size='medium' onClick={() => handleModalChoice('yes')} text='хорошо' />
-            <ModalBtn onClick={() => handleModalChoice('no')}>нет, спасибо</ModalBtn>
+            <CustomButton size='medium' onClick={() => setIsOpenModal(false)} text='закрыть' />
           </RoomModalContent>
         </FrameCard>
       </RoomModal>
     </>
-
   );
 };
 
@@ -63,7 +58,8 @@ const RoomModal = styled.div`
   top: 50%;
   left: 50%;
   transform: ${({ $modalisopen }) => `translate(-50%, -50%) scale(${$modalisopen ? '1' : '0'})`};
-  transition: transform 0.2s;
+  opacity: ${({ $modalisopen }) => `${$modalisopen ? '1' : '0'}`};
+  transition: transform 0.2s, opacity 0.2s;
   z-index: 1001;
 `;
 
@@ -72,7 +68,6 @@ const RoomModalContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5.9vw;
   h1 {
     color: ${COLORS.yellow};
   }
@@ -81,59 +76,42 @@ const RoomModalContent = styled.div`
       fill: ${COLORS.white};
     }
   }
+  a {
+    margin-top: 10vw;
+  }
 `;
 
-const ModalBtn = styled.button`
-  ${H3Style};
-  color: ${COLORS.sand};
+const ModalTitle = styled.div`
+  ${ButtonTextStyle};
+  font-size: 6.92vw;
+  color: ${COLORS.lightSand};
+  margin-bottom: 3.08vw;
 `;
 
-const SecretWordsBlock = styled.div`
-  position: absolute;
-  left: 0.1vw;
-  top: 8.21vw;
-  z-index: 20;
-
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 2.05vw;
-`;
-
-const SecretWordStyle = css`
+const SecretWord = styled.div`
+  width: 36.92vw;
+  height: 16.92vw;
   position: relative;
-
-  display: flex;
-  align-items: center;
-
-  color: ${COLORS.white};
-  height: 9.49vw;
-  padding-left: 5vw;
-  
+  img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
-const SecretWord1 = styled.div`
-  ${SecretWordStyle};
-  width: 37.18vw;
-`;
-const SecretWord2 = styled.div`
-  ${SecretWordStyle};
-  width: 41.54vw;
-`;
-const SecretWord3 = styled.div`
-  ${SecretWordStyle};
-  width: 44.62vw;
-`;
-
-const H3Styled = styled(H3)`
-  color: ${COLORS.white};
-  text-transform: uppercase;
+const H3Styled = styled.div`
+  position: absolute;
+  text-align: center;
+  font-family: 'Singel';
+  font-size: 4.87vw;
+  font-style: normal;
   font-weight: 600;
-  white-space: nowrap;
-  font-size: 4.1vw;
-  z-index: 5;
+  line-height: 102%;
+  color: ${COLORS.darkGreen};
 
-  text-align: start;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export default SecretWords;

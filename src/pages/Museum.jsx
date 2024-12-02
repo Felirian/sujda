@@ -11,16 +11,12 @@ import SecretWords from '../components/Room/Secret/SecretWords';
 import { COLORS } from '../styles/variables';
 
 const Museum = () => {
-  const [wordsOpen, setWordsOpen] = useState(false);
-
-  const handleModalChoice = (choice) => {
-    setWordsOpen(true)
-  };
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   return (
     <MuseumWr>
-      <Header map words handleModalChoice={handleModalChoice}/>
-      <SecretWords open={wordsOpen} handleModalChoice={handleModalChoice}/>
+      <Header map words setIsOpenModal={setIsOpenModal} />
+      <SecretWords open={isOpenModal} setIsOpenModal={setIsOpenModal} />
       <TopSection>
         <SvgSelector svg={'elephantLogo'} />
       </TopSection>
@@ -68,7 +64,7 @@ const ControlsWr = styled.div`
 
 const Gradient = styled.div`
   width: 100%;
-  height: 23vw; 
+  height: 23vw;
   background: linear-gradient(to top, ${COLORS.green}, transparent);
   background: -webkit-linear-gradient(bottom, ${COLORS.green}, transparent);
   background: -moz-linear-gradient(bottom, ${COLORS.green}, transparent);
