@@ -13,10 +13,14 @@ import { COLORS } from '../styles/variables';
 const Museum = () => {
   const [wordsOpen, setWordsOpen] = useState(false);
 
+  const handleModalChoice = (choice) => {
+    setWordsOpen(true)
+  };
+
   return (
     <MuseumWr>
-      <Header map words />
-      <SecretWords />
+      <Header map words handleModalChoice={handleModalChoice}/>
+      <SecretWords open={wordsOpen} handleModalChoice={handleModalChoice}/>
       <TopSection>
         <SvgSelector svg={'elephantLogo'} />
       </TopSection>
