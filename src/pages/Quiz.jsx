@@ -15,7 +15,7 @@ const Quiz = ({ data, quizTexts }) => {
 
   return (
     <QuizWr>
-      <Header back home/>
+      <Header back home />
 
       {QuizFunc.variables.currentQuestion === -1 ? (
         <>
@@ -25,7 +25,13 @@ const Quiz = ({ data, quizTexts }) => {
               <P1Styled>{quizTexts.startPage}</P1Styled>
             </StartPageWr>
           </FrameCard>
-          <CustomButton  style={{ marginTop: '12.82vw' }} onClick={() => QuizFunc.fun.nextQuestion(false)} text={'начать'} size={'medium'} color={'yellow'}/>
+          <CustomButton
+            style={{ marginTop: '12.82vw' }}
+            onClick={() => QuizFunc.fun.nextQuestion(false)}
+            text={'начать'}
+            size={'medium'}
+            color={'yellow'}
+          />
         </>
       ) : QuizFunc.variables.currentQuestion === data.length ? (
         <>
@@ -38,7 +44,13 @@ const Quiz = ({ data, quizTexts }) => {
             </EndPageWr>
           </FrameCard>
 
-          <CustomButton  style={{ marginTop: '12.82vw' }} onClick={() => QuizFunc.fun.startOver()} text={'завершить'} size={'medium'} color={'yellow'}/>
+          <CustomButton
+            style={{ marginTop: '12.82vw' }}
+            onClick={() => QuizFunc.fun.startOver()}
+            text={'завершить'}
+            size={'medium'}
+            color={'yellow'}
+          />
         </>
       ) : (
         <>
@@ -62,6 +74,9 @@ const StartPageWr = styled.div`
   width: 100%;
   gap: 4.62vw;
   padding: 0 7.18vw;
+  h1 {
+    color: ${COLORS.yellow};
+  }
 `;
 
 const EndPageWr = styled.div`
@@ -72,6 +87,9 @@ const EndPageWr = styled.div`
   gap: 4.62vw;
   padding: 10vw 7.18vw 0 7.18vw;
   position: relative;
+  h1 {
+    color: ${COLORS.yellow};
+  }
 `;
 
 const QuizWr = styled.div`
