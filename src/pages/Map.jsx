@@ -45,7 +45,9 @@ const Map = () => {
   return (
     <MapWr>
       <HeadphonesModal modalIsOpen={headphonesModalIsOpen} handleModalChoice={handleModalChoice} />
-
+      <PopUpScroller popUp={popUp} onClose={handleClosePopUp}>
+        <ModalContent key={selectedPoint?.name} selectedPoint={selectedPoint} />
+      </PopUpScroller>
       <FilterWr>
         <Filter setSelected={setSelected} selected={selected} />
         <HeaderBtn to={'/museum'}>
@@ -66,9 +68,7 @@ const Map = () => {
         <Controls />
       </MapControls>
 
-      <PopUpScroller popUp={popUp} onClose={handleClosePopUp}>
-        <ModalContent key={selectedPoint?.name} selectedPoint={selectedPoint} />
-      </PopUpScroller>
+
     </MapWr>
   );
 };
