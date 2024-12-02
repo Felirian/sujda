@@ -33,6 +33,7 @@ import map37_2 from '../assets/map/img/37_2.jpg';
 import map38_1 from '../assets/map/img/38_1.jpg';
 import map38_2 from '../assets/map/img/38_2.jpg';
 import { MARK_COLORS } from '../styles/variables';
+import SvgSelector from '../components/Shared/SvgSelector';
 
 export const Clustering = (zoomValue, points) => {
   //радиус точек
@@ -88,10 +89,6 @@ export const Clustering = (zoomValue, points) => {
   return clusters;
 };
 
-export const getColorByIndex = ({ pointIndex }) => {
-  return MARK_COLORS[pointIndex] || 'ваш_цвет_по_умолчанию';
-};
-
 export const FILTERS = [
   <>Памятники</>,
   <>Хозяйственные здания</>,
@@ -117,7 +114,7 @@ export const POINTS_DATA = [
     ),
     img: [map1],
     imgdesc: [<span>Место, где раньше стоял Господский дом</span>],
-    filter: 0,
+    filter: 3,
   },
   {
     name: 'Дом управляющего',
@@ -136,7 +133,7 @@ export const POINTS_DATA = [
     ),
     img: [map2],
     imgdesc: [],
-    filter: 0,
+    filter: 3,
   },
   {
     name: 'Конюшня',
@@ -190,7 +187,7 @@ export const POINTS_DATA = [
     ),
     img: [map4_1, map4_2],
     imgdesc: [],
-    filter: 0,
+    filter: 3,
   },
   {
     name: 'Людская',
@@ -203,7 +200,7 @@ export const POINTS_DATA = [
     ),
     img: [],
     imgdesc: [],
-    filter: 0,
+    filter: 3,
   },
   {
     name: 'Оранжерея',
@@ -303,7 +300,7 @@ export const POINTS_DATA = [
     ),
     img: [],
     imgdesc: [],
-    filter: 3,
+    filter: 4,
   },
   {
     name: 'Подъездная березовая аллея',
@@ -318,7 +315,7 @@ export const POINTS_DATA = [
     ),
     img: [],
     imgdesc: [],
-    filter: 3,
+    filter: 4,
   },
   {
     name: 'Регулярный парк',
@@ -340,7 +337,7 @@ export const POINTS_DATA = [
     ),
     img: [map12],
     imgdesc: [],
-    filter: 2,
+    filter: 4,
   },
   {
     name: 'Центральная дубовая аллея',
@@ -368,7 +365,7 @@ export const POINTS_DATA = [
     ),
     img: [map14],
     imgdesc: [],
-    filter: 2,
+    filter: 4,
   },
   {
     name: 'Каменная скамья (диван)',
@@ -384,7 +381,7 @@ export const POINTS_DATA = [
     ),
     img: [map15],
     imgdesc: [],
-    filter: 5,
+    filter: 0,
   },
   {
     name: 'Липовая аллея (фрагмент)',
@@ -397,7 +394,7 @@ export const POINTS_DATA = [
     ),
     img: [map16],
     imgdesc: [],
-    filter: 3,
+    filter: 4,
   },
   {
     name: 'Пруд',
@@ -416,7 +413,7 @@ export const POINTS_DATA = [
     ),
     img: [map17],
     imgdesc: [],
-    filter: 2,
+    filter: 4,
   },
   {
     name: 'Острова на пруду',
@@ -430,7 +427,7 @@ export const POINTS_DATA = [
     ),
     img: [map18],
     imgdesc: [],
-    filter: 2,
+    filter: 4,
   },
   {
     name: 'Острова на пруду',
@@ -444,7 +441,7 @@ export const POINTS_DATA = [
     ),
     img: [map19],
     imgdesc: [],
-    filter: 2,
+    filter: 4,
   },
   {
     name: 'Лукоморье Место «пушкинского» дуба (600-700 лет)',
@@ -461,7 +458,7 @@ export const POINTS_DATA = [
     ),
     img: [map20],
     imgdesc: [],
-    filter: 2,
+    filter: 4,
   },
   {
     name: 'Деревянная изба западного приусадебного двора',
@@ -475,7 +472,7 @@ export const POINTS_DATA = [
     ),
     img: [map22],
     imgdesc: [],
-    filter: 0,
+    filter: 3,
   },
   {
     name: 'Дом егеря',
@@ -490,7 +487,7 @@ export const POINTS_DATA = [
     ),
     img: [map23],
     imgdesc: [],
-    filter: 0,
+    filter: 3,
   },
   {
     name: 'Кузня',
@@ -525,7 +522,7 @@ export const POINTS_DATA = [
     ),
     img: [map27],
     imgdesc: [],
-    filter: 2,
+    filter: 4,
   },
   {
     name: 'Солнечные часы',
@@ -539,7 +536,7 @@ export const POINTS_DATA = [
     ),
     img: [map28],
     imgdesc: [],
-    filter: 4,
+    filter: 0,
   },
   {
     name: 'Егерская аллея еловая',
@@ -553,7 +550,7 @@ export const POINTS_DATA = [
     ),
     img: [map29],
     imgdesc: [],
-    filter: 3,
+    filter: 4,
   },
   {
     name: 'Пейзажный парк',
@@ -590,7 +587,7 @@ export const POINTS_DATA = [
     ),
     img: [map35_1, map35_2],
     imgdesc: [],
-    filter: 5,
+    filter: 0,
   },
   {
     name: 'Церковь Воскресения Христова (1992, современная, действующая)',
@@ -606,7 +603,7 @@ export const POINTS_DATA = [
     ),
     img: [map36],
     imgdesc: [],
-    filter: 6,
+    filter: 2,
   },
   {
     name: 'Место первой церкви Воскресения Христова (1718) и захоронения А.П. Ганнибала',
@@ -625,7 +622,7 @@ export const POINTS_DATA = [
     ),
     img: [map37_1, map37_2],
     imgdesc: [],
-    filter: 6,
+    filter: 2,
   },
   {
     name: 'Мельница',
@@ -641,7 +638,7 @@ export const POINTS_DATA = [
     ),
     img: [map38_1, map38_2],
     imgdesc: [],
-    filter: 4,
+    filter: 1,
   },
   {
     name: 'Село Воскресенское',
@@ -660,6 +657,6 @@ export const POINTS_DATA = [
     ),
     img: [map38_1, map38_2],
     imgdesc: [],
-    filter: 0,
+    filter: 3,
   },
 ];
