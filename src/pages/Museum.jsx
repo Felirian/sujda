@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Controls from '../components/Room/Controls';
 import styled from 'styled-components';
 import Img from '../assets/museum/museum-person.png';
@@ -7,16 +7,17 @@ import ArrowButton from '../components/Shared/ArrowButton';
 import { Link } from 'react-router-dom';
 import Bg from '../assets/museum/bg.png'
 import Header from '../components/Shared/Header';
+import SecretWords from "../components/Room/Secret/SecretWords";
 
 const Museum = () => {
+  const [wordsOpen, setWordsOpen] = useState(false)
+
   return (
     <MuseumWr>
       <Header back words />
+      <SecretWords />
       <TopSection>
         <SvgSelector svg={'elephantLogo'} />
-        <Link to={'/'}>
-          <ArrowButton>на главную</ArrowButton>
-        </Link>
       </TopSection>
       <ControlsWr>
         <Ganibal src={Img} alt={'fgdfd'} />

@@ -38,7 +38,7 @@ const Secret = () => {
   return (
     <SecretRoomWr>
       <Header map home />
-      <SecretWords />
+      {/*<SecretWords />*/}
       <Header map/>
       <GlassImg src={glass} alt={'glass'} />
       <FrameImg src={frame} alt={'frame'} />
@@ -53,9 +53,8 @@ const Secret = () => {
           <H3>{currentPerson?.name}</H3>
           <P2>{currentPerson?.info}</P2>
         </SwiperText>
-        <MainBtn onClick={() => setPopUp(true)}>
-          <CustomButton type={'send'}>узнать больше</CustomButton>
-        </MainBtn>
+
+        <CustomButton text={'узнать больше'} onClick={() => setPopUp(true)} size={'large'}/>
       </BottomContainer>
 
       <PopUpScroller popUp={popUp} onClose={handleClosePopUp}>

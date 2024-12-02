@@ -4,7 +4,7 @@ import { COLORS } from '../../../styles/variables';
 import { H3 } from '../../../styles/textTags';
 import SvgSelector from '../../Shared/SvgSelector';
 
-const SecretWords = () => {
+const SecretWords = ({open}) => {
   const secretWords = {
     first: localStorage.getItem('first'),
     second: localStorage.getItem('second'),
