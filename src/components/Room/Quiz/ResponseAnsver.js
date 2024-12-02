@@ -5,6 +5,7 @@ import FrameCard from '../../Shared/FrameCard';
 import { QuizBtn } from '../../../pages/Quiz';
 import feather from '../../../assets/quiz/feather.png';
 import CustomButton from '../../Shared/CustomButton';
+import { COLORS } from '../../../styles/variables';
 
 const ResponseAnswer = ({ correctAnswer, QuizFunc, explanation }) => {
   return (
@@ -42,6 +43,7 @@ const ResponseAnswerWr = styled.div`
 `;
 const H1Styled = styled(H1)`
   margin-bottom: 4.5vw;
+  color: ${COLORS.yellow};
 `;
 
 const P3Styled = styled(P1)`

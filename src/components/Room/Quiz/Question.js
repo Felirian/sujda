@@ -54,6 +54,9 @@ const QuestionWr = styled.div`
   flex-direction: column;
   gap: 4.62vw;
   padding: 0 7.18vw;
+  h1{
+    color: ${COLORS.yellow}
+  }
 `;
 const AnswersCon = styled.div`
   display: flex;
