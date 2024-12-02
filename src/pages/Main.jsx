@@ -23,7 +23,7 @@ const Main = () => {
           пожаловать!
         </H1Styled>
         <MainBtn onClick={requestFullscreen}>
-          <CustomButton size={'medium'}>Начать</CustomButton>
+          <CustomButton text={'Начать'} size={'medium'}/>
         </MainBtn>
       </MainCon>
     </MainWr>

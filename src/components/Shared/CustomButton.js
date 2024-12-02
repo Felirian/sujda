@@ -1,10 +1,10 @@
 import React from 'react';
-import { H3 } from '../../styles/textTags';
+import {ButtonTextStyle, H3} from '../../styles/textTags';
 import styled from 'styled-components';
 import { COLORS } from '../../styles/variables';
 import SvgSelector from './SvgSelector';
 
-const CustomButton = ({ children, onClick, size, color }) => {
+const CustomButton = ({ text, onClick, size, color }) => {
   let svgString;
   if (size === 'large') {
     svgString = 'buttonLarge';
@@ -19,8 +19,7 @@ const CustomButton = ({ children, onClick, size, color }) => {
   return (
     <ButtonWr size={size} color={color} onClick={onClick}>
       <SvgBackground svg={svgString} color={COLORS[color]} />
-
-      <H3Styled>{children}</H3Styled>
+      <H3Styled>{text}</H3Styled>
     </ButtonWr>
   );
 };
@@ -33,19 +32,20 @@ const ButtonWr = styled.div`
   align-items: center;
   text-align: center;
   width: ${({ size }) => (size === 'small' ? '27.692vw' : size === 'medium' ? '78.462vw' : '90vw')};
-  background-color: transparent;
   transition: background-color 0.3s ease;
   position: relative;
   overflow: hidden;
 
-  &:active {
-    background-color: ${({ color }) => (color === 'yelow' ? COLORS.darkGreen : COLORS.green)};
-  }
+  // &:active {
+  //   background-color: ${({ color }) => (color === 'yelow' ? COLORS.darkGreen : COLORS.green)};
+  // }
 `;
 
 const H3Styled = styled(H3)`
-  position: absolute;
+  ${ButtonTextStyle};
+  position: absolute;  
   color: ${COLORS.black};
+  
   text-transform: uppercase;
   font-weight: 600;
   white-space: nowrap;
