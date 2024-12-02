@@ -4,7 +4,7 @@ import CustomButton from '../components/Shared/CustomButton';
 import {COLORS} from '../styles/variables';
 import {Link} from 'react-router-dom';
 import Page from "../components/Tutorial/Page";
-import {H3} from "../styles/textTags";
+import {H1, H3} from "../styles/textTags";
 import SvgSelector from "../components/Shared/SvgSelector";
 
 const Tutorial = ({data}) => {
@@ -39,13 +39,12 @@ const Tutorial = ({data}) => {
             <CustomButton text={'Продолжить'} size={'medium'}/>
           </Link>
         ) : (
-          <>
+          <BtnBlock $data={data[currentIndex]}>
             <CustomButton text={'Далее'} size={'medium'} onClick={handleNext} color={currentIndex%2===0 ? 'send': 'darkGreen'}/>
             <Link to='/museum'>
               <H3>пропустить</H3>
             </Link>
-
-          </>
+          </BtnBlock>
         )}
       </TutorialNav>
     </TutorialWr>
@@ -72,8 +71,14 @@ const TutorialWr = styled.div`
     color: ${(props) => props.$data.backgroundColor === '#333E2C' ? '#FFFFFF' : '#333E2C'};
   }
 
-  padding: 3vw;
+  padding: 5vw 3vw;
 `;
+const BtnBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6.41vw;
+  align-items: center;  
+`
 
 const LogoCon = styled.div`
   svg {
