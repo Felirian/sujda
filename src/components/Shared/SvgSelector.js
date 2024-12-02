@@ -603,6 +603,25 @@ const SvgSelector = ({ svg }) => {
           </g>
         </svg>
       );
+    case 'filterCheckbox':
+      return (
+        <svg
+          width='16'
+          height='16'
+          viewBox='0 0 16 16'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <g id='check mark'>
+            <rect id='Rectangle 452' width='16' height='16' rx='2' fill='#333E2C' />
+            <path
+              id='Vector'
+              d='M6.5 11.207L2 6.707L2.707 6L6.5 9.7925L13.293 3L14 3.707L6.5 11.207Z'
+              fill='white'
+            />
+          </g>
+        </svg>
+      );
 
     default:
       return <></>;
