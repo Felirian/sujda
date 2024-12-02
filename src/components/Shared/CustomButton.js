@@ -42,6 +42,7 @@ const ButtonWr = styled(Link)`
   justify-content: center;
   align-items: center;
   text-align: center;
+  width: 14.615vw;
   width: ${({ size }) => (size === 'small' ? '27.692vw' : size === 'medium' ? '78.462vw' : '90vw')};
   transition: background-color 0.3s ease;
   position: relative;
