@@ -18,9 +18,6 @@ const Museum = () => {
       <SecretWords />
       <TopSection>
         <SvgSelector svg={'elephantLogo'} />
-        <Link to={'/'}>
-          <ArrowButton>на главную</ArrowButton>
-        </Link>
       </TopSection>
       <ControlsWr>
         <Ganibal src={Img} alt={'fgdfd'} />
