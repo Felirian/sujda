@@ -70,6 +70,7 @@ const ButtonWr = styled(Link)`
   }
   &:active {
     opacity: 0.8;
+    transition: opacity 0.3s ease;
   }
 `;
 
