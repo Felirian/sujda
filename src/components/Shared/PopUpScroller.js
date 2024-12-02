@@ -124,6 +124,5 @@ const CardCancel = styled.div`
 
 const CardContainer = styled.div`
   display: flex;
-  border: 0.3vw solid pink;
   z-index: 99999;
 `;

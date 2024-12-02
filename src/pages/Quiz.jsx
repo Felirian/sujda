@@ -5,7 +5,7 @@ import { useQuizFunctions } from '../features/quiz';
 import { COLORS } from '../styles/variables';
 import { H1, H3, P1} from '../styles/textTags';
 import FrameCard from '../components/Shared/FrameCard';
-import bg from '../assets/quiz/quiz-bg.jpg';
+import bg from '../assets/quiz/bg.png';
 import feather from '../assets/quiz/feather.png';
 import Header from '../components/Shared/Header';
 
@@ -14,7 +14,7 @@ const Quiz = ({ data, quizTexts }) => {
 
   return (
     <QuizWr>
-      <Header back={true} type={'black'}/>
+      <Header back home/>
 
       {QuizFunc.variables.currentQuestion === -1 ? (
         <>
