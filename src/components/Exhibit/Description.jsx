@@ -1,15 +1,15 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import { H2, P1, P2 } from '../../styles/textTags';
+import {ButtonTextStyle, H2, P1, P2} from '../../styles/textTags';
 import { COLORS } from '../../styles/variables';
 
 const Description = ({ data }) => {
   return (
     <DescriptionWr>
       <Title>{data?.name}</Title>
-      <Text>{data?.description?.text[0]}</Text>
+      <P1>{data?.description?.text[0]}</P1>
       {data.description.imgs[0] && <img src={data.description.imgs[0]} alt={data?.name} />}
-      <Text>{data?.description?.text[1]}</Text>
+      <P1>{data?.description?.text[1]}</P1>
       {data.description.imgs[1] && <img src={data.description.imgs[1]} alt={data?.name} />}
     </DescriptionWr>
   );
@@ -28,8 +28,10 @@ const DescriptionWr = styled.div`
   }
 `;
 
-const Title = styled(H2)``;
-
-const Text = styled(P2)``;
+const Title = styled.h2`
+  ${ButtonTextStyle};
+  text-align: center;
+  color: ${COLORS.yellow};
+`;
 
 export default Description;

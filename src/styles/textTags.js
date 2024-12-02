@@ -30,8 +30,7 @@ export const H3Style = css`
   color: inherit;
 `;
 
-export const P1Style = css`
-  text-align: center;
+export const P1Style = css` 
   font-family: 'Segoe UI';
   font-size: 5.13vw;
   font-style: normal;
@@ -46,7 +45,6 @@ export const P2Style = css`
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  text-transform: uppercase;
   color: inherit;
 `;
 

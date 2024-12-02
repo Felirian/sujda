@@ -1,10 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, {useState, useRef} from 'react';
 import styled from 'styled-components';
 import frame from '../assets/rooms/secret/mirror-bg.png';
 import glass from '../assets/rooms/secret/mirror-glass.png';
-import { PERSONS } from '../features/data';
-import { COLORS } from '../styles/variables';
-import { H1, H3, P2 } from '../styles/textTags';
+import {PERSONS} from '../features/data';
+import {COLORS} from '../styles/variables';
+import {ButtonTextStyle, H1, H2, H3, P1, P2} from '../styles/textTags';
 import CustomButton from '../components/Shared/CustomButton';
 import LongFrameCard from '../components/Shared/LongFrameCard';
 import Header from '../components/Shared/Header';
@@ -37,23 +37,24 @@ const Secret = () => {
 
   return (
     <SecretRoomWr>
-      <Header map home />
+      <Header map home/>
       {/*<SecretWords />*/}
       <Header map/>
-      <GlassImg src={glass} alt={'glass'} />
-      <FrameImg src={frame} alt={'frame'} />
-      <CustomSlider onSlideChange={handleSlideChange} />
+      <GlassImg src={glass} alt={'glass'}/>
+      <FrameImg src={frame} alt={'frame'}/>
+      <CustomSlider onSlideChange={handleSlideChange}/>
 
       <BottomContainer>
         <SwiperPaginationWrapper>
-          <SwiperPagination className='swiper-pagination' />
+          <SwiperPagination className='swiper-pagination'/>
         </SwiperPaginationWrapper>
 
         <SwiperText $fadeOut={fadeOut}>
-          <H3>{currentPerson?.name}</H3>
-          <P2>{currentPerson?.info}</P2>
+          <H2>{currentPerson?.name}</H2>
+          <P1>{currentPerson?.info}</P1>
         </SwiperText>
-          <CustomButton text={'узнать больше'} size={'medium'} onClick={() => setPopUp(true)}/>
+
+        <CustomButton text={'узнать больше'} size={'medium'} onClick={() => setPopUp(true)}/>
       </BottomContainer>
 
       <PopUpScroller popUp={popUp} onClose={handleClosePopUp}>
@@ -106,6 +107,7 @@ const BottomContainer = styled.div`
   flex-direction: column;
   align-items: center;
   z-index: 10;
+  gap: 5.13vw;
   padding: 12vw 5vw;
   margin-top: auto;
 `;
@@ -115,6 +117,11 @@ const SwiperText = styled.div`
   flex-direction: column;
   margin-right: auto;
   opacity: ${(props) => (props.$fadeOut ? 0 : 1)};
+
+  ${H2} {
+    color: ${COLORS.sand};
+  }
+
   transition: opacity 0.3s ease-in-out;
 `;
 
@@ -130,6 +137,7 @@ const SwiperPaginationWrapper = styled.div`
 const SwiperPagination = styled.div`
   position: absolute;
   top: 0;
+
   .swiper-pagination-bullet {
     width: 3vw;
     height: 3vw;
@@ -157,6 +165,7 @@ const StoryWr = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6vw;
+
   span {
     font-style: italic;
   }
@@ -164,6 +173,9 @@ const StoryWr = styled.div`
 
 const H1Styled = styled(H1)`
   text-transform: uppercase;
+
+  text-align: center;
+  color: ${COLORS.yellow};
 `;
 
 export default Secret;
