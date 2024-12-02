@@ -4,11 +4,11 @@ import { COLORS } from '../../../styles/variables';
 import { H3 } from '../../../styles/textTags';
 import SvgSelector from '../../Shared/SvgSelector';
 
-const SecretWords = ({open}) => {
+const SecretWords = ({ open }) => {
   const secretWords = {
-    first: localStorage.getItem('first'),
-    second: localStorage.getItem('second'),
-    third: localStorage.getItem('third'),
+    first: localStorage.getItem('first') === 'true',
+    second: localStorage.getItem('second') === 'true',
+    third: localStorage.getItem('third') === 'true',
   };
 
   return (
