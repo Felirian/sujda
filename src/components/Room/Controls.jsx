@@ -17,19 +17,19 @@ const Controls = ({ background = false }) => {
           link={'/room/first'}
           text={'Зал 1'}
           currentPath={location.pathname}
-          style={location.pathname === '/room/first' ? { color: COLORS.red } : {}}
+          styletext={location.pathname === '/room/first' ? { color: COLORS.red } : {}}
         />
         <CustomButton
           link={'/room/second'}
           text={'Зал 2'}
           currentPath={location.pathname}
-          style={location.pathname === '/room/second' ? { color: COLORS.red } : {}}
+          styletext={location.pathname === '/room/second' ? { color: COLORS.red } : {}}
         />
         <CustomButton
           link={'/room/third'}
           text={'Зал 3'}
           currentPath={location.pathname}
-          style={location.pathname === '/room/third' ? { color: COLORS.red } : {}}
+          styletext={location.pathname === '/room/third' ? { color: COLORS.red } : {}}
         />
       </ButtonPanelContainer>
 

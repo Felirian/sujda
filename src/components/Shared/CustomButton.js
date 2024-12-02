@@ -5,7 +5,7 @@ import { COLORS } from '../../styles/variables';
 import SvgSelector from './SvgSelector';
 import { Link } from 'react-router-dom';
 
-const CustomButton = ({ text, onClick, size, color, link, style, disabled }) => {
+const CustomButton = ({ text, onClick, size, color, link, style,styletext, disabled }) => {
   let svgString;
   if (size === 'large') {
     svgString = 'buttonLarge';
@@ -37,7 +37,7 @@ const CustomButton = ({ text, onClick, size, color, link, style, disabled }) => 
       to={link}
     >
       <SvgBackground svg={svgString} />
-      <H3Styled color={color} style={style}>{text}</H3Styled>
+      <H3Styled color={color} style={styletext}>{text}</H3Styled>
     </ButtonWr>
   );
 };
