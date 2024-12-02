@@ -40,7 +40,7 @@ const PopUpScroller = ({ children, popUp, onClose }) => {
     const currentY = e.touches[0].clientY;
     const cardContainerRect = cardContainerRef.current.getBoundingClientRect();
 
-    if (currentY > touchStartY.current && cardContainerRect.top > window.innerHeight / 2) {
+    if (currentY > touchStartY.current && cardContainerRect.top > window.innerHeight / 6) {
       setIsCardVisible(false);
       setDarkOverlay(false);
       onClose();
@@ -74,7 +74,7 @@ const PopUpScroller = ({ children, popUp, onClose }) => {
       onTouchEnd={handleTouchEnd}
     >
       <CardCancel>
-        <CancelButton onClick={handleClose}/>
+        <CancelButton onClick={handleClose} />
       </CardCancel>
       <DarkOverlay style={{ opacity: darkOverlay ? 0.5 : 0 }} />
       <CardContainer ref={cardContainerRef}>{children}</CardContainer>
@@ -103,9 +103,10 @@ const CardWrapper = styled.div`
   z-index: 99;
   overflow-y: scroll;
   max-height: 100vh;
-  padding-top: ${(props) => (props.isVisible ? '60svh' : '150svh')};
+  padding-top: ${(props) => (props.isVisible ? '15svh' : '150svh')};
   transition: padding-top 0.3s ease-in-out;
   pointer-events: ${(props) => (props.isVisible ? 'all' : 'none')};
+  justify-content: flex-end;
   scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
@@ -123,6 +124,6 @@ const CardCancel = styled.div`
 
 const CardContainer = styled.div`
   display: flex;
-  padding-top: 0svh;
+  border: 0.3vw solid pink;
   z-index: 99999;
 `;
