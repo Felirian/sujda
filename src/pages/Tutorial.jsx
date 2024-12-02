@@ -1,41 +1,52 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import CustomButton from '../components/Shared/CustomButton';
-import { COLORS } from '../styles/variables';
-import { Link } from 'react-router-dom';
+import {COLORS} from '../styles/variables';
+import {Link} from 'react-router-dom';
+import Page from "../components/Tutorial/Page";
+import {H3} from "../styles/textTags";
+import SvgSelector from "../components/Shared/SvgSelector";
 
-const Tutorial = ({ data }) => {
-  const [currentIndex, setCurrentIndex] = useState(-1);
+const Tutorial = ({data}) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleNext = () => {
-    if (currentIndex < data.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-      console.log('button');
-    }
+    setCurrentIndex(currentIndex + 1);
   };
 
   return (
-    <TutorialWr>
-      <TutorialContainer>
-        {currentIndex === -1 ? <div>Привет</div> : data[currentIndex].content}
-      </TutorialContainer>
+    <TutorialWr $data={data[currentIndex]}>
+
+      <SvgSelector svg={`elephantLogo-${currentIndex%2===0 ? 'yellow': 'green'}`}/>
+
+      <Page data={data[currentIndex]}/>
+
       <TutorialNav>
-        {currentIndex === data.length - 1 ? (
-          <FullWidthLink to='/museum'>
+        <DotsCon>
+          {data.map((item, index) => (
+            <Dot key={index} style={{backgroundColor: currentIndex === index
+                ? COLORS.red
+                : data[currentIndex].backgroundColor === '#333E2C'
+                  ? COLORS.sand
+                  : COLORS.green
+            }}/>
+          ))}
+        </DotsCon>
+        {currentIndex >= data.length - 1 ? (
+          <Link to='/museum'>
             <CustomButton type={'sand'}>
               завершить
             </CustomButton>
-          </FullWidthLink>
+          </Link>
         ) : (
           <>
-            <MapLink to='/map'>
-              <CustomButton type={'orange'}>
-                пропустить
-              </CustomButton>
-            </MapLink>
-            <CustomButton type={'sand'} onClick={handleNext}>
+            <CustomButton onClick={handleNext}>
               далее
             </CustomButton>
+            <Link to='/museum'>
+              <H3>пропустить</H3>
+            </Link>
+
           </>
         )}
       </TutorialNav>
@@ -46,35 +57,47 @@ const Tutorial = ({ data }) => {
 const TutorialWr = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   height: 100svh;
-  background-color: ${COLORS.green};
+
+  background-image: url(${(props) => props.$data.backgroundImg});
+  background-size: cover;
+
+  background-color: ${(props) => props.$data.backgroundColor};
+
+  h1, h3 {
+    color: ${(props) => props.$data.backgroundColor === '#333E2C' ? '#BDBC8E' : '#333E2C'};
+  }
+  p {
+    color: ${(props) => props.$data.backgroundColor === '#333E2C' ? '#FFFFFF' : '#333E2C'};
+  }
 
   padding: 3vw;
 `;
 
-const TutorialContainer = styled.div`
+const DotsCon = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-`;
+  gap: 1.54vw;
+`
+
+const Dot = styled.div`
+  width: 2.56vw;
+  height: 2.56vw;
+`
 
 const TutorialNav = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  gap: 3vw;
+  gap: 6.41vw;
 
   & > *:only-child {
     flex: 1;
   }
 `;
 
-const MapLink = styled(Link)``;
-
-const FullWidthLink = styled(Link)`
-  flex: 1;
-`;
 
 export default Tutorial;
