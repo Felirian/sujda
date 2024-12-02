@@ -46,7 +46,7 @@ const Quiz = ({ data, quizTexts }) => {
 
           <CustomButton
             style={{ marginTop: '12.82vw' }}
-            onClick={() => QuizFunc.fun.startOver()}
+            onClick={QuizFunc.fun.startOver()}
             //link={'/museum'}
             text={'завершить'}
             size={'medium'}
