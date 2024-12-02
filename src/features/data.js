@@ -721,7 +721,7 @@ const EXHIBITS_DATA = [
     route: 'trunk',
     img: trunk,
     preview: trunk,
-    threejs: 'room3/5',
+    threejs: 'room3/trunk',
     description: {
       imgs: [trunk_desc],
       text: [
