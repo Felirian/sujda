@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { COLORS } from '../../../styles/variables';
-import {FILTERS} from "../../../features/map";
+import { FILTERS } from '../../../features/map';
+import SvgSelector from '../../Shared/SvgSelector';
+import { ButtonTextStyle } from '../../../styles/textTags';
 
-const Filter = ({selected, setSelected}) => {
+const Filter = ({ selected, setSelected }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  console.log('rerererre');
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
 
@@ -17,8 +21,11 @@ const Filter = ({selected, setSelected}) => {
 
   return (
     <DropdownWrapper>
+      <DropdownTitle>Поиск</DropdownTitle>
       <DropdownButton onClick={toggleDropdown}>
-        Выбрать <Arrow $isopen={isOpen}>▼</Arrow>
+        <Arrow $isopen={isOpen}>
+          <SvgSelector svg='filterArrow' />
+        </Arrow>
       </DropdownButton>
       <DropdownList $isopen={isOpen}>
         {FILTERS.map((option, index) => (
@@ -39,26 +46,29 @@ const Filter = ({selected, setSelected}) => {
 
 const DropdownWrapper = styled.div`
   position: relative;
-
-  width: 89.74vw;
+  width: 72.82vw;
 `;
 
 const DropdownButton = styled.button`
+  height: 11.28vw;
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  background-color: #fff;
+  padding: 2.05vw 4.1vw;
+  background-color: ${COLORS.white};
   cursor: pointer;
   text-align: left;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 5px;
+  border-radius: 3.08vw;
+`;
 
-  &:focus {
-    outline: none;
-    border-color: #007bff;
-  }
+const DropdownTitle = styled.div`
+  ${ButtonTextStyle};
+  position: absolute;
+  color: ${COLORS.green};
+  left: 4.1vw;
+  top: 50%;
+  transform: translateY(-50%);
 `;
 
 const DropdownList = styled.div`
@@ -117,10 +127,17 @@ const HiddenCheckbox = styled.input`
 `;
 
 const Arrow = styled.span`
+  position: absolute;
+  right: 4.1vw;
   display: inline-block;
   transition: transform 0.2s ease-in-out;
-  transform: ${({ $isopen }) => ($isopen ? 'rotate(180deg)' : 'rotate(0deg)')};
-  color: ${COLORS.orange};
+  transform: ${({ $isopen }) => ($isopen ? 'scale(1, -1)' : 'scale(1, 1)')};
+  width: 4.62vw;
+  height: 2.31vw;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export default Filter;

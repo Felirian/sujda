@@ -3,6 +3,9 @@ import { COLORS } from './variables';
 import { H3 } from './textTags';
 
 const GlobalStyles = createGlobalStyle`
+
+
+
   * {
     margin: 0;
     padding: 0;

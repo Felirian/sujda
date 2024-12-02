@@ -42,7 +42,7 @@ const H1Styled = styled(H1)`
   margin-bottom: 4.5vw;
 `;
 
-const P3Styled = styled(P3)`
+const P3Styled = styled(P1)`
   text-align: left;
   margin-bottom: 3vw;
 `;

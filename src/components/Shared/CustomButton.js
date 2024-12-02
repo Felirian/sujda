@@ -1,5 +1,5 @@
 import React from 'react';
-import { H3 } from '../../styles/textTags';
+import { ButtonTextStyle, H3 } from '../../styles/textTags';
 import styled from 'styled-components';
 import { COLORS } from '../../styles/variables';
 
@@ -41,7 +41,8 @@ const ButtonCon = styled.div`
     type === 'sand' ? 'none' : `0.3vw solid ${type === 'orange' ? COLORS.black : COLORS.grey}`};
 `;
 
-const H3Styled = styled(H3)`
+const H3Styled = styled.div`
+  ${ButtonTextStyle}
   color: ${({ type }) => (type === 'orange' ? COLORS.black : COLORS.grey)};
   text-transform: uppercase;
   font-weight: 600;
