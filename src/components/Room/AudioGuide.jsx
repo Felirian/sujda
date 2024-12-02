@@ -181,7 +181,7 @@ const ProgressContainer = styled.div`
 
   padding: 0.26vw;
   width: ${({ $hasquiz }) => ($hasquiz ? '60vw' : '72vw')};
-  margin: ${({ $hasquiz }) => ($hasquiz ? '0 6.7vw 0' : '0')};
+  margin: ${({ $hasquiz }) => ($hasquiz ? '0 0vw 0' : '0')};
 `;
 
 const ProgressBar = styled.div`
@@ -198,7 +198,7 @@ const TimeDisplay = styled.span`
   font-weight: 700;
   line-height: normal;
   bottom: -3vw;
-  right: ${({ $hasquiz }) => ($hasquiz ? '24.5vw' : '5vw')};
+  right: ${({ $hasquiz }) => ($hasquiz ? '19vw' : '5vw')};
   span {
     color: ${COLORS.yellow};
   }
