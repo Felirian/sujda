@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import arrow from '../../assets/header/arrow.png';
 import logo from '../../assets/header/logo.png';
 import maps from '../../assets/header/map.png';
 import word from '../../assets/header/word.png';
+import { H3Style } from '../../styles/textTags';
+import { COLORS } from '../../styles/variables';
 
 const Header = ({ home, back, map, words }) => {
   const location = useLocation();
@@ -17,6 +19,18 @@ const Header = ({ home, back, map, words }) => {
 
   const parentPath = getParentPath();
 
+  const [wordsOpen, setWordsOpen] = useState(false);
+
+  useEffect(() => {
+    const first = localStorage.getItem('first') === 'true';
+    const second = localStorage.getItem('second') === 'true';
+    const third = localStorage.getItem('third') === 'true';
+
+    const trueCount = [first, second, third].filter(Boolean).length;
+
+    setWordsOpen(trueCount);
+  }, []);
+
   return (
     <HeaderWr>
       {back && (
@@ -27,7 +41,7 @@ const Header = ({ home, back, map, words }) => {
             navigate(parentPath);
           }}
         >
-          <img src={arrow} alt="Arrow" />
+          <img src={arrow} alt='Arrow' />
         </HeaderBtn>
       )}
       {map && (
@@ -38,18 +52,19 @@ const Header = ({ home, back, map, words }) => {
             navigate('/map');
           }}
         >
-          <img src={maps} alt="Map" />
+          <img src={maps} alt='Map' />
         </HeaderBtn>
       )}
 
       {words && (
         <HeaderBtn>
-          <img src={word} alt="Word" />
+          <img src={word} alt='Word' />
+          <WordsOpenCount>{wordsOpen}</WordsOpenCount>
         </HeaderBtn>
       )}
       {home && (
         <HeaderBtn to={'/museum'}>
-          <img src={logo} alt="Logo" />
+          <img src={logo} alt='Logo' />
         </HeaderBtn>
       )}
     </HeaderWr>
@@ -67,6 +82,7 @@ const HeaderWr = styled.div`
 `;
 
 const HeaderBtn = styled(Link)`
+  position: relative;
   width: 8vw;
   height: 9.2vw;
   display: flex;
@@ -78,9 +94,18 @@ const HeaderBtn = styled(Link)`
   background-color: #6c2929;
   border-radius: 1.795vw;
   img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
   }
+`;
+
+const WordsOpenCount = styled.div`
+  ${H3Style};
+  color: ${COLORS.green};
+  font-size: 5.13vw;
+  position: absolute;
+  left: 4.7vw;
+  top: 3.2vw;
 `;
 
 export default Header;
