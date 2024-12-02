@@ -38,8 +38,8 @@ const ImgWr = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  width: 42.05vw;
-  height: 48.97vw;
+  width: 34vw;
+  height: 36vw;
   svg {
     width: 100%;
     height: 100%;

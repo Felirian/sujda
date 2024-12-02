@@ -2,10 +2,10 @@ import styled, { css } from 'styled-components';
 
 export const H1Style = css`
   text-align: center;
-  font-family: 'Forum';
-  font-size: 12.31vw;
+  font-family: 'Singel';
+  font-size: 8.97vw;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 106%;
   color: inherit;
 `;
