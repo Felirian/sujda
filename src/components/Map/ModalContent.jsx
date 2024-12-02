@@ -2,6 +2,7 @@ import React from "react";
 import LongFrameCard from "../Shared/LongFrameCard";
 import { styled } from "styled-components";
 import { H1, P2, P1 } from "../../styles/textTags";
+import {COLORS} from "../../styles/variables";
 
 const ModalContent = ({ selectedPoint }) => {
   return (
@@ -40,6 +41,7 @@ const ModalContentWr = styled.div`
 
 const Title = styled(H1)`
   text-transform: uppercase;
+  color: ${COLORS.yellow};
 `;
 
 const ModalImg = styled.img`
