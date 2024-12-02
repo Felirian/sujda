@@ -44,9 +44,10 @@ const MuseumWr = styled.div`
 
 const TopSection = styled.div`
   display: flex;
+  margin-top: 5.13vw;
   flex-direction: column;
   align-items: center;
-  width: 77vw;
+  width: 80vw;
   gap: 4vw;
 `;
 

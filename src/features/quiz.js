@@ -24,9 +24,10 @@ export const useQuizFunctions = () => {
     if (score >= 4) {
       localStorage.setItem(currentRoom, true);
     }
+    navigate('/museum');
     setCurrentQuestion(-1);
     setScore(0);
-    navigate('/room/secret')
+    console.log('fff');
   };
 
   return {
