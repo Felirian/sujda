@@ -20,7 +20,7 @@ const Room = ({ data }) => {
 
   return (
     <RoomWr>
-      <Header map/>
+      <Header map home/>
       <HeadphonesModal modalIsOpen={modalIsOpen} handleModalChoice={handleModalChoice} />
       <RoomImgBlock img={data.bgImg} />
       <ModelSelector exhibits={data.exhibits} />

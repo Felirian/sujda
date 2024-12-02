@@ -37,6 +37,7 @@ const Secret = () => {
 
   return (
     <SecretRoomWr>
+      <Header map home />
       <SecretWords />
       <Header map/>
       <GlassImg src={glass} alt={'glass'} />

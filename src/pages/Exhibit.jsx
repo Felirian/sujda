@@ -8,7 +8,7 @@ import Header from '../components/Shared/Header';
 const Exhibit = ({ data }) => {
   return (
     <ExhibitWr>
-      <Header back />
+      <Header back home />
       <Preview data={data} />
       <DescriptionBlock>
         <SvgSelector svg='topLongFrameGreen' />

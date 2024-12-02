@@ -23,7 +23,7 @@ const Main = () => {
           пожаловать!
         </H1Styled>
         <MainBtn onClick={requestFullscreen}>
-          <CustomButton type={'send'}>Начать</CustomButton>
+          <CustomButton size={'medium'}>Начать</CustomButton>
         </MainBtn>
       </MainCon>
     </MainWr>
@@ -36,7 +36,7 @@ const MainWr = styled.div`
   padding: 12.82vw 4.1vw 8.21vw 4.1vw;
   color: white;
   text-align: center;
-  background-image: url('/img/main-bg.jpg');
+  background-image: url('/img/main-bg.png');
   background-size: cover;
   background-position: center;
   height: 100svh;
@@ -63,7 +63,5 @@ const H1Styled = styled(H1)`
 `;
 
 const MainBtn = styled.button`
-  width: 100%;
-  padding: 0.77vw;
-  background-color: ${COLORS.sand};
+
 `;

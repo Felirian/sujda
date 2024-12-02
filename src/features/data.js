@@ -1,6 +1,6 @@
-import firstRoomBg from '../assets/rooms/first/bg.jpg';
-import secondRoomBg from '../assets/rooms/second/bg.jpg';
-import thirdRoomBg from '../assets/rooms/third/bg.jpg';
+import firstRoomBg from '../assets/rooms/first/bg.png';
+import secondRoomBg from '../assets/rooms/second/bg.png';
+import thirdRoomBg from '../assets/rooms/third/bg.png';
 
 import gannibal from '../assets/rooms/first/exhibits/gannibal.png';
 import kopeika from '../assets/rooms/first/exhibits/kopeika.png';
@@ -58,41 +58,6 @@ import Person4 from '../assets/rooms/secret/person4.png';
 import Person5 from '../assets/rooms/secret/person5.png';
 import Person6 from '../assets/rooms/secret/person6.png';
 import Person7 from '../assets/rooms/secret/person7.png';
-
-import map1 from '../assets/map/img/1.jpg';
-import map2 from '../assets/map/img/2.jpg';
-import map3 from '../assets/map/img/3.jpg';
-import map4_1 from '../assets/map/img/4_1.jpg';
-import map4_2 from '../assets/map/img/4_2.jpg';
-import map6_1 from '../assets/map/img/6_1.jpg';
-import map6_2 from '../assets/map/img/6_2.jpg';
-import map6_1_1 from '../assets/map/img/6_1_1.jpg';
-import map7 from '../assets/map/img/7.jpg';
-import map8 from '../assets/map/img/8.jpg';
-import map9_1 from '../assets/map/img/9_1.jpg';
-import map9_2 from '../assets/map/img/9_2.png';
-import map12 from '../assets/map/img/12.jpg';
-import map13 from '../assets/map/img/13.jpg';
-import map14 from '../assets/map/img/14.jpg';
-import map15 from '../assets/map/img/15.png';
-import map16 from '../assets/map/img/16.jpg';
-import map17 from '../assets/map/img/17.jpg';
-import map18 from '../assets/map/img/18.jpg';
-import map19 from '../assets/map/img/19.jpg';
-import map20 from '../assets/map/img/20.jpg';
-import map22 from '../assets/map/img/22.jpg';
-import map23 from '../assets/map/img/23.jpg';
-import map27 from '../assets/map/img/27.jpg';
-import map28 from '../assets/map/img/28.jpg';
-import map29 from '../assets/map/img/29.jpg';
-import map30 from '../assets/map/img/30.jpg';
-import map35_1 from '../assets/map/img/35_1.jpg';
-import map35_2 from '../assets/map/img/35_2.jpg';
-import map36 from '../assets/map/img/36.jpg';
-import map37_1 from '../assets/map/img/37_1.jpeg';
-import map37_2 from '../assets/map/img/37_2.jpg';
-import map38_1 from '../assets/map/img/38_1.jpg';
-import map38_2 from '../assets/map/img/38_2.jpg';
 
 const QUIZ_DATA_1 = [
   {

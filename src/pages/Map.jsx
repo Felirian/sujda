@@ -45,10 +45,10 @@ const Map = () => {
       <HeadphonesModal modalIsOpen={headphonesModalIsOpen} handleModalChoice={handleModalChoice} />
 
       <FilterWr>
-        <Filter setSelected={setSelected} selected={selected}/>
+        <Filter setSelected={setSelected} selected={selected} />
       </FilterWr>
 
-      <MapSection handleDotClick={handleDotClick} selected={selected}/>
+      <MapSection handleDotClick={handleDotClick} selected={selected} />
 
       <MapControls>
         <AudioGuide
@@ -58,7 +58,7 @@ const Map = () => {
           hasQuiz={false}
         />
         <MapLink to='/museum'>
-          <CustomButton type={'orange'}>в музей</CustomButton>
+          <CustomButton size={'large'}>в музей</CustomButton>
         </MapLink>
       </MapControls>
 
@@ -86,6 +86,10 @@ const MapWr = styled.div`
 
 const MapControls = styled.div`
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6.154vw;
   bottom: 0;
   width: 100%;
   height: 44vw;
@@ -94,21 +98,7 @@ const MapControls = styled.div`
 `;
 
 const MapLink = styled(Link)`
-  position: absolute;
-  bottom: 8.21vw;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 51.28vw;
   z-index: 2;
-
-  div {
-    margin: 3px;
-    h2 {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
 `;
 
 const FilterWr = styled.div`
