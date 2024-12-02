@@ -16,7 +16,7 @@ const Main = () => {
   };
   return (
     <MainWr>
-      <Logo src='/img/main-logo.png' alt='Logo' />
+      <Logo src='/svg/logo.svg' alt='Logo' />
       <MainCon>
         <H1Styled>
           Добро <br />
@@ -60,6 +60,12 @@ const MainCon = styled.div`
 
 const H1Styled = styled(H1)`
   color: ${COLORS.lightSand};
+  text-align: center;
+  font-family: Forum;
+  font-size: 12.31vw;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 106.415%; /* 51.079px */
 `;
 
 const MainBtn = styled.button`
