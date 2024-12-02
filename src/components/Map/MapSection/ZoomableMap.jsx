@@ -5,6 +5,7 @@ import { styled } from 'styled-components';
 import { useTransformEffect } from 'react-zoom-pan-pinch';
 import svg from '../../../assets/map/Vector2.svg';
 import { Clustering, POINTS_DATA } from '../../../features/map';
+import { H2Style } from '../../../styles/textTags';
 
 const ZoomableMap = ({ handleDotClick, zoomToElement, selected }) => {
   const [zoomValue, setZoomValue] = useState(0);
@@ -53,9 +54,10 @@ const ZoomableMap = ({ handleDotClick, zoomToElement, selected }) => {
             onClick={() => clickToZoom(`${index}-group`)}
             $scale={calculateScale(1, zoomValue)}
           >
-            <CirclePoint>
-              <div>{point.count}</div>
-            </CirclePoint>
+            <ClusterPoint>
+              <SvgSelector svg='clusterMapPoint' />
+              <Circle>{point.count}</Circle>
+            </ClusterPoint>
           </Dot>
         ) : (
           <Dot
@@ -109,26 +111,34 @@ const DotContent = styled.div`
   height: 100%;
 `;
 
-const CirclePoint = styled.div`
-  width: 43px;
-  height: 43px;
-  border-radius: 50%;
-  border: 2px solid ${COLORS.white};
-  background-color: ${COLORS.pointRed};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  div {
-    width: 27px;
-    height: 27px;
-    border-radius: 50%;
-    background-color: ${COLORS.white};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: black;
+const ClusterPoint = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+  svg {
+    width: 40px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    left: -6px;
   }
+`;
+
+const Circle = styled.div`
+  ${H2Style};
+  font-size: 20px;
+  position: absolute;
+  top: -14px;
+
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: ${COLORS.white};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: ${COLORS.green};
 `;
 
 export default ZoomableMap;
