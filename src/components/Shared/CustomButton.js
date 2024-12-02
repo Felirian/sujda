@@ -20,7 +20,7 @@ const CustomButton = ({ text, onClick, size, color, link, style, disabled }) => 
   const handleClick = (event) => {
     if (disabled) {
       event.preventDefault();
-      return; 
+      return;
     }
     if (onClick) {
       onClick(event);
@@ -28,7 +28,14 @@ const CustomButton = ({ text, onClick, size, color, link, style, disabled }) => 
   };
 
   return (
-    <ButtonWr disabled={disabled} style={style} size={size} color={color} onClick={handleClick} to={link}>
+    <ButtonWr
+      disabled={disabled}
+      style={style}
+      size={size}
+      color={color}
+      onClick={handleClick}
+      to={link}
+    >
       <SvgBackground svg={svgString} />
       <H3Styled color={color}>{text}</H3Styled>
     </ButtonWr>
@@ -42,16 +49,23 @@ const ButtonWr = styled(Link)`
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 14.615vw;
-  width: ${({ size }) => (size === 'small' ? '27.692vw' : size === 'medium' ? '78.462vw' : '90vw')};
+
   transition: background-color 0.3s ease;
   position: relative;
   overflow: hidden;
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
   pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
   svg {
+    height: 14.615vw;
+    width: ${({ size }) =>
+      size === 'small' ? '27.692vw' : size === 'medium' ? '78.462vw' : '90vw'};
     path {
-      fill: ${({ color }) => (color === 'darkGreen' ? COLORS.green : color === 'yellow' ? COLORS.yellow : COLORS.sand)} !important;
+      fill: ${({ color }) =>
+        color === 'darkGreen'
+          ? COLORS.green
+          : color === 'yellow'
+          ? COLORS.yellow
+          : COLORS.sand} !important;
     }
   }
 `;
@@ -59,7 +73,12 @@ const ButtonWr = styled(Link)`
 const H3Styled = styled(H3)`
   ${ButtonTextStyle};
   position: absolute;
-  color: ${({ color }) => (color === 'darkGreen' ? COLORS.sand : color === 'yellow' ? COLORS.green : COLORS.green)} !important;
+  color: ${({ color }) =>
+    color === 'darkGreen'
+      ? COLORS.sand
+      : color === 'yellow'
+      ? COLORS.green
+      : COLORS.green} !important;
   text-transform: uppercase;
   font-weight: 600;
   white-space: nowrap;
