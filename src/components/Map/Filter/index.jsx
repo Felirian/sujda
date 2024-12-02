@@ -19,7 +19,7 @@ const Filter = ({ selected, setSelected }) => {
 
   return (
     <DropdownWrapper>
-      <DropdownTitle>Поиск</DropdownTitle>
+      <DropdownTitle>Фильтр</DropdownTitle>
       <DropdownButton onClick={toggleDropdown}>
         <Arrow $isopen={isOpen}>
           <SvgSelector svg='filterArrow' />
@@ -36,6 +36,10 @@ const Filter = ({ selected, setSelected }) => {
             <CustomCheckbox $checked={selected.includes(index)}>
               {<SvgSelector svg='filterCheckbox' />}
             </CustomCheckbox>
+            <PointIconContainer>
+              <SvgSelector svg={`mapPoint-${index}`} />
+              <img src={`/img/points/${index}.png`} alt='icon' />
+            </PointIconContainer>
             {option}
           </ListItem>
         ))}
@@ -82,13 +86,13 @@ const DropdownList = styled.div`
   left: 0;
   width: 100%;
   background-color: ${COLORS.white};
-  opacity: 0.85;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
   transform: ${({ $isopen }) => ($isopen ? 'scaleY(1)' : 'scaleY(0)')};
+  opacity: ${({ $isopen }) => ($isopen ? '0.85' : '0')};
   transform-origin: top;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, opacity 0.1s ease-in-out;
   z-index: 1;
 `;
 
@@ -124,6 +128,27 @@ const CustomCheckbox = styled.div`
     transition: 0.1s;
     opacity: ${({ $checked }) => ($checked ? 1 : 0)};
     border-radius: 0.77vw;
+  }
+`;
+
+const PointIconContainer = styled.div`
+  height: 100%;
+  width: 3.85vw;
+  height: 5.64vw;
+  position: relative;
+  flex-shrink: 0;
+  margin-right: 2.05vw;
+  svg {
+    position: absolute;
+    width: 3.85vw;
+    height: 5.64vw;
+  }
+  img {
+    position: absolute;
+    width: 3.4vw;
+    height: 3.4vw;
+    left: 0.3vw;
+    top: 0.3vw;
   }
 `;
 

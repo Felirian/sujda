@@ -33,6 +33,7 @@ import map37_2 from '../assets/map/img/37_2.jpg';
 import map38_1 from '../assets/map/img/38_1.jpg';
 import map38_2 from '../assets/map/img/38_2.jpg';
 import { MARK_COLORS } from '../styles/variables';
+import SvgSelector from '../components/Shared/SvgSelector';
 
 export const Clustering = (zoomValue, points) => {
   //радиус точек
@@ -86,10 +87,6 @@ export const Clustering = (zoomValue, points) => {
   });
 
   return clusters;
-};
-
-export const getColorByIndex = ({ pointIndex }) => {
-  return MARK_COLORS[pointIndex] || 'ваш_цвет_по_умолчанию';
 };
 
 export const FILTERS = [
