@@ -1,84 +1,63 @@
 import styled, { css } from 'styled-components';
-import { COLORS } from './variables';
 
 export const H1Style = css`
-  color: ${COLORS.yellow};
   text-align: center;
-  font-family: 'Roboto Slab';
-  font-size: 8.97vw;
+  font-family: 'Forum';
+  font-size: 12.31vw;
   font-style: normal;
   font-weight: 400;
-  line-height: 116.045%;
+  line-height: 106%;
+  color: inherit;
 `;
 
 export const H2Style = css`
-  color: ${COLORS.yellow};
-  text-align: center;
-  font-family: 'Roboto Slab';
-  font-size: 7.18vw;
+  font-family: 'Singel';
+  font-size: 6.15vw;
   font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  font-weight: 600;
+  line-height: 102%;
   text-transform: uppercase;
+  color: inherit;
 `;
 
 export const H3Style = css`
-  color: ${COLORS.lightSand};
-  font-family: 'Roboto Slab';
-  font-size: 5.13vw;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  text-transform: capitalize;
-`;
-
-export const P1Style = css`
-  color: ${COLORS.white};
-  text-align: center;
-  font-family: Arsenal;
-  font-size: 5.13vw;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-`;
-
-export const P2Style = css`
-  color: ${COLORS.white};
-  font-family: Arsenal;
+  font-family: 'Forum';
   font-size: 4.62vw;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
+  line-height: 102%;
+  text-transform: uppercase;
+  color: inherit;
 `;
 
-export const P3Style = css`
-  color: ${COLORS.white};
+export const P1Style = css`
   text-align: center;
-  font-family: Arsenal;
+  font-family: 'Segoe UI';
   font-size: 5.13vw;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400;
   line-height: normal;
+  color: inherit;
 `;
 
-export const P5Style = css`
-  color: ${COLORS.white};
-  font-family: 'Roboto Slab';
+export const P2Style = css`
+  font-family: 'Segoe UI';
   font-size: 4.1vw;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
   text-transform: uppercase;
+  color: inherit;
 `;
 
 export const ButtonTextStyle = css`
-  color: ${COLORS.grey};
-  font-family: 'Roboto Slab';
-  font-size: 5.13vw;
+  font-family: 'Singel';
+  font-size: 6.92vw;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
   text-transform: uppercase;
+  color: inherit;
 `;
 
 export const H1 = styled.h1`
@@ -99,14 +78,6 @@ export const P1 = styled.p`
 
 export const P2 = styled.p`
   ${P2Style};
-`;
-
-export const P3 = styled.p`
-  ${P3Style};
-`;
-
-export const P5 = styled.p`
-  ${P5Style};
 `;
 
 export const Button = styled.button`

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Question from '../components/Room/Quiz/Question';
 import { useQuizFunctions } from '../features/quiz';
 import { COLORS } from '../styles/variables';
-import { H1, H3, P1} from '../styles/textTags';
+import { H1, H3, P1 } from '../styles/textTags';
 import FrameCard from '../components/Shared/FrameCard';
 import bg from '../assets/quiz/quiz-bg.jpg';
 import feather from '../assets/quiz/feather.png';
@@ -14,16 +14,14 @@ const Quiz = ({ data, quizTexts }) => {
 
   return (
     <QuizWr>
-      <Header back={true} type={'black'}/>
+      <Header back={true} type={'black'} />
 
       {QuizFunc.variables.currentQuestion === -1 ? (
         <>
           <FrameCard>
             <StartPageWr>
               <H1>Викторина</H1>
-              <P1Styled>
-                {quizTexts.startPage}
-              </P1Styled>
+              <P1Styled>{quizTexts.startPage}</P1Styled>
             </StartPageWr>
           </FrameCard>
           <QuizBtn
@@ -50,7 +48,11 @@ const Quiz = ({ data, quizTexts }) => {
         </>
       ) : (
         <>
-          <Question totalQuestions={data.length} question={data[QuizFunc.variables.currentQuestion]} QuizFunc={QuizFunc} />
+          <Question
+            totalQuestions={data.length}
+            question={data[QuizFunc.variables.currentQuestion]}
+            QuizFunc={QuizFunc}
+          />
         </>
       )}
     </QuizWr>
@@ -62,7 +64,7 @@ export default Quiz;
 const StartPageWr = styled.div`
   display: flex;
   flex-direction: column;
-  alaign-items: center;
+  align-items: center;
   width: 100%;
   gap: 4.62vw;
   padding: 0 7.18vw;
@@ -71,7 +73,7 @@ const StartPageWr = styled.div`
 const EndPageWr = styled.div`
   display: flex;
   flex-direction: column;
-  alaign-items: center;
+  align-items: center;
   width: 100%;
   gap: 4.62vw;
   padding: 10vw 7.18vw 0 7.18vw;

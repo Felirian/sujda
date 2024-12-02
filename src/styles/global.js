@@ -3,6 +3,39 @@ import { COLORS } from './variables';
 import { H3 } from './textTags';
 
 const GlobalStyles = createGlobalStyle`
+
+@font-face {
+    font-family: 'Singel';
+    src: url('/fonts/Singel/Singel-Trial-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Segoe UI';
+    src: url('/fonts/SegoeUI/Segoe-UI.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Segoe UI';
+    src: url('/fonts/SegoeUI/SegoeUI-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Segoe UI';
+    src: url('/fonts/SegoeUI/Segoe-UI-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+  }
+
   * {
     margin: 0;
     padding: 0;
