@@ -76,6 +76,7 @@ const DropdownTitle = styled.div`
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
+  pointer-events: none;
 `;
 
 const DropdownList = styled.div`

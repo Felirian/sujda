@@ -10,6 +10,7 @@ import PopUpScroller from '../components/Shared/PopUpScroller';
 import ModalContent from '../components/Map/ModalContent';
 import MapSection from '../components/Map/MapSection';
 import Filter from '../components/Map/Filter';
+import logo from '../assets/header/logo.png';
 
 const Map = () => {
   const [selectedPoint, setSelectedPoint] = useState(null);
@@ -46,6 +47,9 @@ const Map = () => {
 
       <FilterWr>
         <Filter setSelected={setSelected} selected={selected} />
+        <HeaderBtn to={'/museum'}>
+          <img src={logo} alt='Logo' />
+        </HeaderBtn>
       </FilterWr>
 
       <MapSection handleDotClick={handleDotClick} selected={selected} />
@@ -102,11 +106,33 @@ const MapLink = styled(Link)`
 `;
 
 const FilterWr = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4.1vw;
+  width: 100%;
+  padding: 0 5.13vw;
   position: absolute;
-  top: 1%;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 14.87vw;
+
   z-index: 9;
+`;
+
+const HeaderBtn = styled(Link)`
+  width: 8vw;
+  height: 9.2vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  width: 12.821vw;
+  height: 12.821vw;
+  background-color: #6c2929;
+  border-radius: 1.795vw;
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
 `;
 
 export default Map;
