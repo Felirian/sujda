@@ -4,6 +4,7 @@ import { COLORS } from '../../styles/variables';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { ROOMS_DATA } from '../../features/data';
 import { ButtonTextStyle } from '../../styles/textTags';
+import CustomButton from '../Shared/CustomButton';
 
 const Controls = ({ background = false }) => {
   const navigate = useNavigate();
@@ -11,24 +12,13 @@ const Controls = ({ background = false }) => {
 
   return (
     <ControlsWr $background={background}>
-      <HallsBlockWr>
-        <HallsBlock>
-          {ROOMS_DATA.map((room, index) => (
-            <React.Fragment key={room.route}>
-              <Hall
-                $active={location.pathname.includes(room.route)}
-                onClick={() => navigate(`/room/${room.route}`)}
-              >
-                {room.name}
-              </Hall>
-              {index < ROOMS_DATA.length - 1 && <VerticalLine />}
-            </React.Fragment>
-          ))}
-        </HallsBlock>
-      </HallsBlockWr>
-      <SecretRoomBtn to={'/room/secret'}>
-        <SecretRoom>секретная комната</SecretRoom>
-      </SecretRoomBtn>
+      <ButtonPanelContainer>
+        <CustomButton link={'/room/first'} text={'Зал 1'} />
+        <CustomButton link={'/room/second'} text={'Зал 2'} />
+        <CustomButton link={'/room/third'} text={'Зал 3'} />
+      </ButtonPanelContainer>
+
+      <CustomButton link={'/room/secret'} text={'Секретна комната'} size={'large'} />
     </ControlsWr>
   );
 };
@@ -38,50 +28,15 @@ const ControlsWr = styled.div`
   padding: ${(props) => (props.$background ? '6.15vw 5.13vw 7.18vw' : '0')};
   display: flex;
   flex-direction: column;
-  gap: 1.67vw;
-`;
-
-const HallsBlockWr = styled.div`
-  padding: 0.77vw;
-  background-color: ${COLORS.sand};
-`;
-
-const HallsBlock = styled.div`
-  display: flex;
   align-items: center;
-  justify-content: space-around;
-  border: 0.3vw solid ${COLORS.grey};
-  background-color: ${COLORS.sand};
-  height: 10.26vw;
+  gap: 2.564vw;
+  width: 100%;
+  padding: 6.15vw 5.13vw 7.18vw;
 `;
 
-const SecretRoomBtn = styled(Link)`
-  padding: 0.77vw;
-  background-color: ${COLORS.sand};
-`;
-
-const SecretRoom = styled.div`
-  ${ButtonTextStyle};
+const ButtonPanelContainer = styled.div`
+  width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 0.3vw solid ${COLORS.grey};
-  background-color: ${COLORS.sand};
-  height: 10.26vw;
-`;
-
-const VerticalLine = styled.div`
-  width: 0.2vw;
-  height: 50%;
-  background-color: ${COLORS.grey};
-`;
-
-const Hall = styled.span`
-  ${ButtonTextStyle};
-
-  color: ${({ $active }) => $active && COLORS.red};
-
-  cursor: pointer;
 `;
 
 export default Controls;

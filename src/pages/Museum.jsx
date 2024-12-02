@@ -5,22 +5,19 @@ import Img from '../assets/museum/museum-person.png';
 import SvgSelector from '../components/Shared/SvgSelector';
 import ArrowButton from '../components/Shared/ArrowButton';
 import { Link } from 'react-router-dom';
-import Bg from '../assets/museum/bg.png'
+import Bg from '../assets/museum/bg.png';
 import Header from '../components/Shared/Header';
 
 const Museum = () => {
   return (
     <MuseumWr>
-      <Header back words />
+      <Header map words />
       <TopSection>
         <SvgSelector svg={'elephantLogo'} />
-        <Link to={'/'}>
-          <ArrowButton>на главную</ArrowButton>
-        </Link>
       </TopSection>
       <ControlsWr>
         <Ganibal src={Img} alt={'fgdfd'} />
-        <Controls />
+        <Controls background/>
       </ControlsWr>
     </MuseumWr>
   );
@@ -31,9 +28,8 @@ const MuseumWr = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background-image:  ${`url(${Bg})`};
+  background-image: ${`url(${Bg})`};
   background-size: cover;
-  padding: 8.2vw 4.6vw;
   height: 100svh;
   margin: 0 auto;
 `;

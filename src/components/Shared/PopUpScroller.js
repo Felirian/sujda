@@ -97,10 +97,9 @@ const DarkOverlay = styled.div`
 
 const CardWrapper = styled.div`
   position: absolute;
-  top: 1px;
   height: 100svh;
   width: 100%;
-  z-index: 99;
+  z-index: 999;
   overflow-y: scroll;
   max-height: 100vh;
   padding-top: ${(props) => (props.isVisible ? '15svh' : '150svh')};

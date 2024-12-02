@@ -53,9 +53,7 @@ const Secret = () => {
           <H3>{currentPerson?.name}</H3>
           <P2>{currentPerson?.info}</P2>
         </SwiperText>
-        <MainBtn onClick={() => setPopUp(true)}>
-          <CustomButton type={'send'}>узнать больше</CustomButton>
-        </MainBtn>
+          <CustomButton text={'узнать больше'} size={'medium'} onClick={() => setPopUp(true)}/>
       </BottomContainer>
 
       <PopUpScroller popUp={popUp} onClose={handleClosePopUp}>

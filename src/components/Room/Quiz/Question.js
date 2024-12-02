@@ -5,6 +5,7 @@ import ResponseAnswer from './ResponseAnsver';
 import FrameCard from '../../Shared/FrameCard';
 import { COLORS } from '../../../styles/variables';
 import { QuizBtn } from '../../../pages/Quiz';
+import CustomButton from '../../Shared/CustomButton';
 
 const Question = ({ totalQuestions, question, QuizFunc }) => {
   return (
@@ -40,13 +41,8 @@ const Question = ({ totalQuestions, question, QuizFunc }) => {
             </QuestionWr>
           </FrameCard>
 
-          <QuizBtn
-            disabled={QuizFunc.variables.selectedAnswer === null}
-            style={{ marginTop: '12.82vw' }}
-            onClick={() => QuizFunc.fun.setAnswered(true)}
-          >
-            ОТПРАВИТЬ
-          </QuizBtn>
+          <CustomButton disabled={QuizFunc.variables.selectedAnswer === null} style={{ marginTop: '12.82vw' }} onClick={() => QuizFunc.fun.setAnswered(true)} text={'отправить'} size={'medium'} color={'yellow'}/>
+     
         </>
       )}
     </>

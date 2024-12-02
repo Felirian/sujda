@@ -1,10 +1,11 @@
 import React from 'react';
-import {ButtonTextStyle, H3} from '../../styles/textTags';
+import { ButtonTextStyle, H3 } from '../../styles/textTags';
 import styled from 'styled-components';
 import { COLORS } from '../../styles/variables';
 import SvgSelector from './SvgSelector';
+import { Link } from 'react-router-dom';
 
-const CustomButton = ({ text, onClick, size, color }) => {
+const CustomButton = ({ text, onClick, size, color, link, style, disabled }) => {
   let svgString;
   if (size === 'large') {
     svgString = 'buttonLarge';
@@ -16,17 +17,27 @@ const CustomButton = ({ text, onClick, size, color }) => {
     svgString = 'buttonSmall';
   }
 
+  const handleClick = (event) => {
+    if (disabled) {
+      event.preventDefault();
+      return; 
+    }
+    if (onClick) {
+      onClick(event);
+    }
+  };
+
   return (
-    <ButtonWr size={size} color={color} onClick={onClick}>
-      <SvgBackground svg={svgString} color={COLORS[color]} />
-      <H3Styled>{text}</H3Styled>
+    <ButtonWr disabled={disabled} style={style} size={size} color={color} onClick={handleClick} to={link}>
+      <SvgBackground svg={svgString} />
+      <H3Styled color={color}>{text}</H3Styled>
     </ButtonWr>
   );
 };
 
 export default CustomButton;
 
-const ButtonWr = styled.div`
+const ButtonWr = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,17 +46,19 @@ const ButtonWr = styled.div`
   transition: background-color 0.3s ease;
   position: relative;
   overflow: hidden;
-
-  // &:active {
-  //   background-color: ${({ color }) => (color === 'yelow' ? COLORS.darkGreen : COLORS.green)};
-  // }
+  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
+  pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
+  svg {
+    path {
+      fill: ${({ color }) => (color === 'darkGreen' ? COLORS.green : color === 'yellow' ? COLORS.yellow : COLORS.sand)} !important;
+    }
+  }
 `;
 
 const H3Styled = styled(H3)`
   ${ButtonTextStyle};
-  position: absolute;  
-  color: ${COLORS.black};
-  
+  position: absolute;
+  color: ${({ color }) => (color === 'darkGreen' ? COLORS.sand : color === 'yellow' ? COLORS.green : COLORS.green)} !important;
   text-transform: uppercase;
   font-weight: 600;
   white-space: nowrap;
