@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import { COLORS } from '../../styles/variables';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ROOMS_DATA } from '../../features/data';
 import { ButtonTextStyle } from '../../styles/textTags';
 import CustomButton from '../Shared/CustomButton';
@@ -13,9 +13,24 @@ const Controls = ({ background = false }) => {
   return (
     <ControlsWr $background={background}>
       <ButtonPanelContainer>
-        <CustomButton link={'/room/first'} text={'Зал 1'} />
-        <CustomButton link={'/room/second'} text={'Зал 2'} />
-        <CustomButton link={'/room/third'} text={'Зал 3'} />
+        <CustomButton
+          link={'/room/first'}
+          text={'Зал 1'}
+          currentPath={location.pathname}
+          style={location.pathname === '/room/first' ? { color: COLORS.red } : {}}
+        />
+        <CustomButton
+          link={'/room/second'}
+          text={'Зал 2'}
+          currentPath={location.pathname}
+          style={location.pathname === '/room/second' ? { color: COLORS.red } : {}}
+        />
+        <CustomButton
+          link={'/room/third'}
+          text={'Зал 3'}
+          currentPath={location.pathname}
+          style={location.pathname === '/room/third' ? { color: COLORS.red } : {}}
+        />
       </ButtonPanelContainer>
 
       <CustomButton link={'/room/secret'} text={'Секретна комната'} size={'large'} />

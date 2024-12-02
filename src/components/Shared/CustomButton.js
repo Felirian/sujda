@@ -37,7 +37,7 @@ const CustomButton = ({ text, onClick, size, color, link, style, disabled }) => 
       to={link}
     >
       <SvgBackground svg={svgString} />
-      <H3Styled color={color}>{text}</H3Styled>
+      <H3Styled color={color} style={style}>{text}</H3Styled>
     </ButtonWr>
   );
 };
@@ -68,6 +68,9 @@ const ButtonWr = styled(Link)`
           : COLORS.sand} !important;
     }
   }
+  &:active {
+    opacity: 0.8;
+  }
 `;
 
 const H3Styled = styled(H3)`
@@ -82,6 +85,7 @@ const H3Styled = styled(H3)`
   text-transform: uppercase;
   font-weight: 600;
   white-space: nowrap;
+  ${({ style }) => style && `color: ${style.color} !important;`}
 `;
 
 const SvgBackground = styled(SvgSelector)`
