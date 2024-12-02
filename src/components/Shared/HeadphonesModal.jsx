@@ -38,7 +38,8 @@ const RoomModal = styled.div`
   top: 50%;
   left: 50%;
   transform: ${({ $modalisopen }) => `translate(-50%, -50%) scale(${$modalisopen ? '1' : '0'})`};
-  transition: transform 0.2s;
+  opacity: ${({ $modalisopen }) => `${$modalisopen ? '1' : '0'}`};
+  transition: transform 0.2s, opacity 0.2s;
   z-index: 1001;
 `;
 

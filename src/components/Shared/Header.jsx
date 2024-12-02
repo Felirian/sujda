@@ -8,7 +8,7 @@ import word from '../../assets/header/word.png';
 import { H3Style } from '../../styles/textTags';
 import { COLORS } from '../../styles/variables';
 
-const Header = ({ home, back, map, words, handleModalChoice }) => {
+const Header = ({ home, back, map, words, setIsOpenModal }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -57,7 +57,7 @@ const Header = ({ home, back, map, words, handleModalChoice }) => {
       )}
 
       {words && (
-        <HeaderBtn onClick={handleModalChoice}>
+        <HeaderBtn onClick={() => setIsOpenModal(true)}>
           <img src={word} alt='Word' />
           <WordsOpenCount>{wordsOpen}</WordsOpenCount>
         </HeaderBtn>

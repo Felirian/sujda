@@ -15,6 +15,7 @@ export const COLORS = {
   darkOrange: '#9A5347',
   dark: '#0E0E0E',
   pointRed: '#D64F4F',
+  darkGreen: '#20291A',
 };
 
 export const MARK_COLORS = ['#84552F', '#660333', '#035854', '#00759B', '#A53131'];
