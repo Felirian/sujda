@@ -10,6 +10,7 @@ import PopUpScroller from '../components/Shared/PopUpScroller';
 import ModalContent from '../components/Map/ModalContent';
 import MapSection from '../components/Map/MapSection';
 import Filter from '../components/Map/Filter';
+import Controls from '../components/Room/Controls';
 
 const Map = () => {
   const [selectedPoint, setSelectedPoint] = useState(null);
@@ -57,9 +58,8 @@ const Map = () => {
           allowPlay={allowPlay}
           hasQuiz={false}
         />
-        <MapLink to='/museum'>
-          <CustomButton size={'large'}>в музей</CustomButton>
-        </MapLink>
+
+        <Controls />
       </MapControls>
 
       <PopUpScroller popUp={popUp} onClose={handleClosePopUp}>
@@ -88,17 +88,11 @@ const MapControls = styled.div`
   position: absolute;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 6.154vw;
   bottom: 0;
   width: 100%;
-  height: 44vw;
   background-color: ${COLORS.green};
   border-radius: 6.15vw 6.15vw 0 0;
-`;
-
-const MapLink = styled(Link)`
-  z-index: 2;
 `;
 
 const FilterWr = styled.div`

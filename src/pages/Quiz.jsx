@@ -8,6 +8,7 @@ import FrameCard from '../components/Shared/FrameCard';
 import bg from '../assets/quiz/bg.png';
 import feather from '../assets/quiz/feather.png';
 import Header from '../components/Shared/Header';
+import CustomButton from '../components/Shared/CustomButton';
 
 const Quiz = ({ data, quizTexts }) => {
   const QuizFunc = useQuizFunctions();
@@ -24,12 +25,7 @@ const Quiz = ({ data, quizTexts }) => {
               <P1Styled>{quizTexts.startPage}</P1Styled>
             </StartPageWr>
           </FrameCard>
-          <QuizBtn
-            style={{ marginTop: '12.82vw' }}
-            onClick={() => QuizFunc.fun.nextQuestion(false)}
-          >
-            НАЧАТЬ
-          </QuizBtn>
+          <CustomButton  style={{ marginTop: '12.82vw' }} onClick={() => QuizFunc.fun.nextQuestion(false)} text={'начать'} size={'medium'} color={'yellow'}/>
         </>
       ) : QuizFunc.variables.currentQuestion === data.length ? (
         <>
@@ -42,9 +38,7 @@ const Quiz = ({ data, quizTexts }) => {
             </EndPageWr>
           </FrameCard>
 
-          <QuizBtn style={{ marginTop: '12.82vw' }} onClick={() => QuizFunc.fun.startOver()}>
-            ЗАВЕРШИТЬ
-          </QuizBtn>
+          <CustomButton  style={{ marginTop: '12.82vw' }} onClick={() => QuizFunc.fun.startOver()} text={'завершить'} size={'medium'} color={'yellow'}/>
         </>
       ) : (
         <>

@@ -4,6 +4,7 @@ import { H1, P1, P3 } from '../../../styles/textTags';
 import FrameCard from '../../Shared/FrameCard';
 import { QuizBtn } from '../../../pages/Quiz';
 import feather from '../../../assets/quiz/feather.png';
+import CustomButton from '../../Shared/CustomButton';
 
 const ResponseAnswer = ({ correctAnswer, QuizFunc, explanation }) => {
   return (
@@ -17,15 +18,16 @@ const ResponseAnswer = ({ correctAnswer, QuizFunc, explanation }) => {
         </ResponseAnswerWr>
       </FrameCard>
 
-      <QuizBtn
+      <CustomButton
         disabled={QuizFunc.variables.selectedAnswer === null}
         style={{ marginTop: '12.82vw' }}
         onClick={() => {
           QuizFunc.fun.nextQuestion(correctAnswer);
         }}
-      >
-        ДАЛЬШЕ
-      </QuizBtn>
+        text={'отправить'}
+        size={'medium'}
+        color={'yellow'}
+      />
     </>
   );
 };

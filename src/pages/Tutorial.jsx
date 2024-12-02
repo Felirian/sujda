@@ -35,12 +35,12 @@ const Tutorial = ({data}) => {
           ))}
         </DotsCon>
         {currentIndex >= data.length - 1 ? (
-          <Link to='/museum'>
-            <CustomButton text={'Продолжить'} size={'medium'}/>
-          </Link>
+
+            <CustomButton link={'/museum'} text={'Продолжить'} size={'medium'}/>
+
         ) : (
-          <BtnBlock $data={data[currentIndex]}>
-            <CustomButton text={'Далее'} size={'medium'} onClick={handleNext} color={currentIndex%2===0 ? 'send': 'darkGreen'}/>
+          <BtnBlock>
+            <CustomButton text={'Далее'} size={'medium'} onClick={handleNext} color={currentIndex%2===0 ? 'sand' : 'darkGreen'}/>
             <Link to='/museum'>
               <H3>пропустить</H3>
             </Link>
