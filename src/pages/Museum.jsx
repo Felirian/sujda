@@ -71,6 +71,7 @@ const ControlsWr = styled.div`
 const Gradient = styled.div`
   width: 100%;
   height: 23vw;
+  margin-bottom: -0.3vw;
   background: linear-gradient(to top, ${COLORS.green}, transparent);
   background: -webkit-linear-gradient(bottom, ${COLORS.green}, transparent);
   background: -moz-linear-gradient(bottom, ${COLORS.green}, transparent);
