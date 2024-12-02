@@ -110,10 +110,10 @@ const CustomCheckbox = styled.div`
   position: relative;
   width: 4.1vw;
   height: 4.1vw;
-  border: 1px solid ${COLORS.green};
+  border: 0.3vw solid ${COLORS.green};
   border-radius: 0.77vw;
   margin-right: 3.08vw;
-
+  flex-shrink: 0;
   svg {
     top: 50%;
     left: 50%;
@@ -125,15 +125,6 @@ const CustomCheckbox = styled.div`
     opacity: ${({ $checked }) => ($checked ? 1 : 0)};
     border-radius: 0.77vw;
   }
-
-  /* &:after {
-    content: '';
-    width: 8px;
-    height: 8px;
-    background-color: #fff;
-    display: ${({ $checked }) => ($checked ? 'block' : 'none')};
-    border-radius: 2px;
-  } */
 `;
 
 const HiddenCheckbox = styled.input`

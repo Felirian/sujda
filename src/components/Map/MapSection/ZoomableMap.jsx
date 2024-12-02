@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import SvgSelector from '../../Shared/SvgSelector';
-import { COLORS } from '../../../styles/variables';
+import { COLORS, MARK_COLORS } from '../../../styles/variables';
 import { styled } from 'styled-components';
 import { useTransformEffect } from 'react-zoom-pan-pinch';
 import svg from '../../../assets/map/Vector2.svg';
@@ -64,8 +64,9 @@ const ZoomableMap = ({ handleDotClick, zoomToElement, selected }) => {
             id={`${index}-point`}
             $scale={calculateScale(1, zoomValue)}
             onClick={() => handleDotClick(point)}
+            $pointIndex={index}
           >
-            <SvgSelector svg='mapPoint' />
+            <SvgSelector svg={`mapPoint-${point.filter}`} />
           </Dot>
         )
       )}
