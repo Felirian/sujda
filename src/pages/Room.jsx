@@ -54,7 +54,7 @@ const RoomImgBlock = styled.div`
 
 const RoomMainBlock = styled.div`
   position: absolute;
-  bottom: 0;
+  bottom: 0svh;
   width: 100%;
 `;
 

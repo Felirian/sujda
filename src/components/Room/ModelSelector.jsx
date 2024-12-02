@@ -40,7 +40,7 @@ const ModelSelector = ({ exhibits }) => {
 
 const ModelSelectorWr = styled.div`
   position: relative;
-  bottom: 62vw;
+  bottom: 70vw;
   width: 76.92vw;
   left: 50%;
   transform: translateX(-50%);
