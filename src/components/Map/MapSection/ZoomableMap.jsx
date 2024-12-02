@@ -66,7 +66,10 @@ const ZoomableMap = ({ handleDotClick, zoomToElement, selected }) => {
             onClick={() => handleDotClick(point)}
             $pointIndex={index}
           >
-            <SvgSelector svg={`mapPoint-${point.filter}`} />
+            <DotContent>
+              <SvgSelector svg={`mapPoint-${point.filter}`} />
+              <img src={`/img/points/${point.filter}.png`} alt='point' />
+            </DotContent>
           </Dot>
         )
       )}
@@ -92,6 +95,18 @@ const Dot = styled.div`
     height: 100%;
     transform: translateY(-40%);
   }
+  img {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    left: 2px;
+    top: -14px;
+  }
+`;
+
+const DotContent = styled.div`
+  width: 100%;
+  height: 100%;
 `;
 
 const CirclePoint = styled.div`
