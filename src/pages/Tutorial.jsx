@@ -16,8 +16,10 @@ const Tutorial = ({data}) => {
 
   return (
     <TutorialWr $data={data[currentIndex]}>
+      <LogoCon>
+        <SvgSelector svg={`elephantLogo-${currentIndex%2===0 ? 'yellow': 'green'}`}/>
+      </LogoCon>
 
-      <SvgSelector svg={`elephantLogo-${currentIndex%2===0 ? 'yellow': 'green'}`}/>
 
       <Page data={data[currentIndex]}/>
 
@@ -76,6 +78,14 @@ const TutorialWr = styled.div`
 
   padding: 3vw;
 `;
+
+const LogoCon = styled.div`
+  svg {
+    width: 21.79vw;
+    height: 22.05vw;
+  }
+  
+`
 
 const DotsCon = styled.div`
   display: flex;
