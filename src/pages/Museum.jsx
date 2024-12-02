@@ -3,12 +3,12 @@ import Controls from '../components/Room/Controls';
 import styled from 'styled-components';
 import Img from '../assets/museum/museum-person.png';
 import SvgSelector from '../components/Shared/SvgSelector';
-import ArrowButton from '../components/Shared/ArrowButton';
-import { Link } from 'react-router-dom';
 import Bg from '../assets/museum/bg.png';
+import papirus from '../assets/museum/papirus.png';
 import Header from '../components/Shared/Header';
 import SecretWords from '../components/Room/Secret/SecretWords';
 import { COLORS } from '../styles/variables';
+import { H3 } from '../styles/textTags';
 
 const Museum = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -22,7 +22,9 @@ const Museum = () => {
       </TopSection>
       <ControlsWr>
         <Ganibal src={Img} alt={'fgdfd'} />
-        <Gradient />
+        <Gradient>
+          <StyledH3>Абрам Петрович Ганнибал</StyledH3>
+        </Gradient>
         <Controls background />
       </ControlsWr>
     </MuseumWr>
@@ -53,6 +55,8 @@ const Ganibal = styled.img`
   height: auto;
   margin: 0 auto -10vw auto;
   display: block;
+  z-index: 1;
+  position: relative;
 `;
 
 const ControlsWr = styled.div`
@@ -60,6 +64,7 @@ const ControlsWr = styled.div`
   flex-direction: column;
   width: 100%;
   margin-top: auto;
+  position: relative;
 `;
 
 const Gradient = styled.div`
@@ -70,6 +75,34 @@ const Gradient = styled.div`
   background: -moz-linear-gradient(bottom, ${COLORS.green}, transparent);
   background: -o-linear-gradient(bottom, ${COLORS.green}, transparent);
   background: -ms-linear-gradient(bottom, ${COLORS.green}, transparent);
+  position: relative;
+  z-index: 2;
+  text-align: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(${papirus});
+    background-size: cover;
+    background-position: center;
+    z-index: 3;
+  }
+`;
+
+const StyledH3 = styled(H3)`
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 7.179vw;
+  top: 40%;
+  left: 0%;
+  color: ${COLORS.green};
+  z-index: 4;
 `;
 
 export default Museum;
