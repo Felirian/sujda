@@ -52,8 +52,10 @@ const TopSection = styled.div`
 `;
 
 const Ganibal = styled.img`
-  width: 85%;
-  height: auto;
+  width: 85vw;
+  height: 40vh;
+  object-fit: contain;
+  object-position: bottom;
   margin: 0 auto -10vw auto;
   display: block;
   z-index: 1;
