@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Routes} from 'react-router-dom';
+import {Navigate, Route, Routes, useNavigate} from 'react-router-dom';
 import Quiz from './pages/Quiz';
 import Room from './pages/Room';
 import Map from './pages/Map';
@@ -13,10 +13,11 @@ import Tutorial from './pages/Tutorial';
 import {TUTORIAL_DATA} from './features/data_tutorial';
 
 function App() {
-
+  const navigate = useNavigate();
   return (
     <Routes>
       <Route path='/' element={<Main/>}/>
+      <Route path='/*' element={<Navigate to={'/'}/>}/>
       <Route path='tutorial' element={<Tutorial data={TUTORIAL_DATA}/>}/>
       <Route path='map' element={<Map/>}/>
       <Route path='museum' element={<Museum/>}/>
