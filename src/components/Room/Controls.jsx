@@ -33,7 +33,7 @@ const Controls = ({ background = false }) => {
         />
       </ButtonPanelContainer>
 
-      <CustomButton link={'/room/secret'} text={'Секретна комната'} size={'large'} />
+      <CustomButton link={'/room/secret'} text={'Секретная комната'} size={'large'} />
     </ControlsWr>
   );
 };
