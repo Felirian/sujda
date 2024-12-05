@@ -17,7 +17,7 @@ const Tutorial = ({data}) => {
   return (
     <TutorialWr $data={data[currentIndex]}>
       <LogoCon>
-        <SvgSelector svg={`elephantLogo-${currentIndex%2===0 ? 'yellow': 'green'}`}/>
+        <SvgSelector svg={`elephantLogo-${currentIndex % 2 === 0 ? 'yellow' : 'green'}`}/>
       </LogoCon>
 
 
@@ -26,7 +26,8 @@ const Tutorial = ({data}) => {
       <TutorialNav>
         <DotsCon>
           {data.map((item, index) => (
-            <Dot key={index} style={{backgroundColor: currentIndex === index
+            <Dot key={index} style={{
+              backgroundColor: currentIndex === index
                 ? COLORS.red
                 : data[currentIndex].backgroundColor === '#333E2C'
                   ? COLORS.sand
@@ -36,11 +37,12 @@ const Tutorial = ({data}) => {
         </DotsCon>
         {currentIndex >= data.length - 1 ? (
 
-            <CustomButton link={'/museum'} text={'Продолжить'} size={'medium'}/>
+          <CustomButton link={'/museum'} text={'Продолжить'} size={'medium'}/>
 
         ) : (
           <BtnBlock>
-            <CustomButton text={'Далее'} size={'medium'} onClick={handleNext} color={currentIndex%2===0 ? 'sand' : 'darkGreen'}/>
+            <CustomButton text={'Далее'} size={'medium'} onClick={handleNext}
+                          color={currentIndex % 2 === 0 ? 'sand' : 'darkGreen'}/>
             <Link to='/museum'>
               <H3>пропустить</H3>
             </Link>
@@ -65,10 +67,19 @@ const TutorialWr = styled.div`
   background-color: ${(props) => props.$data.backgroundColor};
 
   h1, h3 {
-    color: ${(props) => props.$data.backgroundColor === '#333E2C' ? '#BDBC8E' : '#333E2C'};
+    color: ${(props) =>
+      props.$data.backgroundColor === '#333E2C'
+        ? '#BDBC8E'
+        : '#333E2C'
+    };
   }
+
   p {
-    color: ${(props) => props.$data.backgroundColor === '#333E2C' ? '#FFFFFF' : '#333E2C'};
+    color: ${(props) =>
+      props.$data.backgroundColor === '#333E2C'
+        ? '#FFFFFF'
+        : '#333E2C'
+    };
   }
 
   padding: 5vw 3vw;
@@ -77,7 +88,7 @@ const BtnBlock = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6.41vw;
-  align-items: center;  
+  align-items: center;
 `
 
 const LogoCon = styled.div`
@@ -85,7 +96,7 @@ const LogoCon = styled.div`
     width: 21.79vw;
     height: 22.05vw;
   }
-  
+
 `
 
 const DotsCon = styled.div`
