@@ -67,8 +67,6 @@ const Map = () => {
 
         <Controls />
       </MapControls>
-
-
     </MapWr>
   );
 };
@@ -92,7 +90,7 @@ const MapControls = styled.div`
   position: absolute;
   display: flex;
   flex-direction: column;
-  gap: 6.154vw;
+  /* gap: 6.154vw; */
   bottom: 0;
   width: 100%;
   background-color: ${COLORS.green};
