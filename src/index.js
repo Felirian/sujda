@@ -35,21 +35,25 @@ const Root = () => {
 
   const {isDesktop, isLandscape} = deviceState;
 
-  return isDesktop || isLandscape ? (
-    <WarningWr>
-      <WarningContainer>
-        <SvgSelector svg={isDesktop ? 'warningDesktop' : 'warningMobile'}/>
-
-        {isDesktop ? (
-          <WarningH>откройте <br/> приложение <br/> на телефоне</WarningH>
-        ) : (
-          <WarningH>переверните <br/> устройство <br/> вертикально</WarningH>
-        )}
-      </WarningContainer>
-    </WarningWr>
-  ) : (
+  return (
     <>
       <GlobalStyle/>
+      {(isDesktop || isLandscape) && (
+        <>
+          <WarningWr>
+            <WarningContainer>
+              <SvgSelector svg={isDesktop ? 'warningDesktop' : 'warningMobile'}/>
+
+              {isDesktop ? (
+                <WarningH>откройте <br/> приложение <br/> на телефоне</WarningH>
+              ) : (
+                <WarningH>переверните <br/> устройство <br/> вертикально</WarningH>
+              )}
+            </WarningContainer>
+          </WarningWr>
+        </>
+      )}
+
       {/*<button onClick={() => openFullscreen()}>fff</button>*/}
       <BrowserRouter>
         <App/>

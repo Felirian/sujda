@@ -4,13 +4,13 @@ import Quiz from './pages/Quiz';
 import Room from './pages/Room';
 import Map from './pages/Map';
 import Main from './pages/Main';
-import {ROOMS_DATA} from './features/data';
 import Secret from './pages/Secret';
 import Museum from './pages/Museum';
 import Exhibit from './pages/Exhibit';
 import ModelViewer from './components/Exhibit/ModelViewer';
 import Tutorial from './pages/Tutorial';
 import {TUTORIAL_DATA} from './features/data_tutorial';
+import {ROOMS_DATA} from './features/data';
 
 function App() {
   const navigate = useNavigate();
