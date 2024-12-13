@@ -1,16 +1,32 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import {ButtonTextStyle, H2, P1, P2} from '../../styles/textTags';
+import {ButtonTextStyle,P1} from '../../styles/textTags';
 import { COLORS } from '../../styles/variables';
 
 const Description = ({ data }) => {
+  if (!data?.description) return null; // Проверяем наличие data и description
+
+  // Берём наибольшую длину из текстов и изображений
+  const maxLength = Math.max(
+    data.description.text?.length || 0,
+    data.description.imgs?.length || 0
+  );
+
+  // Создаём массив из текстов и изображений
+  const combinedArray = Array.from({ length: maxLength }, (_, index) => ({
+    text: data.description.text?.[index] || null,
+    img: data.description.imgs?.[index] || null,
+  }));
+
   return (
     <DescriptionWr>
       <Title>{data?.name}</Title>
-      <P1>{data?.description?.text[0]}</P1>
-      {data.description.imgs[0] && <img src={data.description.imgs[0]} alt={data?.name} />}
-      <P1>{data?.description?.text[1]}</P1>
-      {data.description.imgs[1] && <img src={data.description.imgs[1]} alt={data?.name} />}
+      {combinedArray.map((item, index) => (
+        <div key={index}>
+          {item.text && <P1>{item.text}</P1>}
+          {item.img && <img src={item.img} alt={data?.name} />}
+        </div>
+      ))}
     </DescriptionWr>
   );
 };
