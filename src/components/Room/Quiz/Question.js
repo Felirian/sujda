@@ -16,6 +16,7 @@ const Question = ({ totalQuestions, question, QuizFunc }) => {
             explanation={question.answers[question.right_answers]}
             correctAnswer={QuizFunc.variables.selectedAnswer === question.right_answers}
             QuizFunc={QuizFunc}
+
           />
         </>
       ) : (
