@@ -1,7 +1,7 @@
 import React from "react";
 import LongFrameCard from "../Shared/LongFrameCard";
 import { styled } from "styled-components";
-import { H1, P2, P1 } from "../../styles/textTags";
+import { H1, P2, P1, H2 } from "../../styles/textTags";
 import {COLORS} from "../../styles/variables";
 
 const ModalContent = ({ selectedPoint }) => {
@@ -35,6 +35,10 @@ const ModalContentWr = styled.div`
     span {
       font-style: italic;
     }
+  }
+  ${H2} {
+    color: ${COLORS.yellow};
+    text-align: center;
   }
   
 `;
