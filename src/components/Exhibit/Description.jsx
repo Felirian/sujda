@@ -38,6 +38,9 @@ const DescriptionWr = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6.15vw;
+  & span {
+    font-style: italic;
+  }
   img {
     width: 100%;
     object-fit: contain;
