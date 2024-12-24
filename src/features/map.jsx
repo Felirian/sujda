@@ -12,6 +12,7 @@ import map9_1 from '../assets/map/img/9_1.jpg';
 import map9_2 from '../assets/map/img/9_2.png';
 import map9_3 from '../assets/map/img/9_3.jpg';
 import map10 from '../assets/map/img/10.jpg';
+import map11 from '../assets/map/img/11.jpg';
 import map12 from '../assets/map/img/12.jpg';
 import map13 from '../assets/map/img/13.jpg';
 import map14 from '../assets/map/img/14.jpg';
@@ -344,8 +345,8 @@ export const POINTS_DATA = [
         Львович.
       </>
     ),
-    img: [],
-    imgdesc: [<span>Подъездная березовая аллея. 2024 г.</span>],
+    img: [map11],
+    imgdesc: [<span>Подъездная березовая аллея со стороны Кобрино. 2024 г.</span>],
     filter: 4,
   },
   {

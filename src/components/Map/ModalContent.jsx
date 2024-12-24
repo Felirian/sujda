@@ -34,6 +34,7 @@ const ModalContentWr = styled.div`
   ${P1} {
     span {
       font-style: italic;
+      font-size: 4.5vw;
     }
   }
   ${H2} {
