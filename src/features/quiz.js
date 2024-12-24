@@ -11,6 +11,10 @@ export const useQuizFunctions = () => {
   const location = useLocation();
   const currentRoom = location.pathname.split('/')[2];
 
+  const sendAnswer = (boll) => {
+    setAnswered(boll)
+  };
+
   const nextQuestion = (isCorrect) => {
     setAnswered(false);
     setSelectedAnswer(null);
@@ -38,6 +42,7 @@ export const useQuizFunctions = () => {
       selectedAnswer,
     },
     fun: {
+      sendAnswer,
       nextQuestion,
       startOver,
       setAnswered,
