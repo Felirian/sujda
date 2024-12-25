@@ -623,7 +623,7 @@ export const POINTS_DATA = [
     filter: 4,
   },
   {
-    name: 'Памятник Арине Родионовне.',
+    name: 'Памятник Арине Родионовне',
     coordinates: [24.9, 31.9],
     info: (
       <>
