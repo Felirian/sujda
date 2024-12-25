@@ -15,7 +15,7 @@ const ResponseAnswer = ({ correctAnswer, QuizFunc, explanation }) => {
           <FeatherImg src={feather} alt={'feather'} />
           <H1Styled>{correctAnswer ? 'Вы правы!' : 'Вы неправы!'}</H1Styled>
           <P3Styled>Правильный ответ</P3Styled>
-          <P1Styled>{explanation}</P1Styled>
+          {correctAnswer && <P1Styled>{explanation}</P1Styled>}
         </ResponseAnswerWr>
       </FrameCard>
 
